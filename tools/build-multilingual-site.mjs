@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { MACHINE_PAGES, STATIC_SEO_PAGES } from "../content/seo-machines.mjs";
+import { localizedMachine } from "../content/machine-localization.mjs";
 import {
   BASE_URL,
   COPY,
@@ -16,7 +17,7 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260618e";
+const ASSET_VERSION = "20260618g";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
 const DEFAULT_SOCIAL_IMAGE = "public/assets/brochure/rotary-premade-line.jpg";
 const DISALLOWED = [
@@ -99,6 +100,165 @@ const SPEC_REFERENCE_LINES = [
   ["Flow wrap and shrink", "Top-feed, bottom-feed, reciprocating, pillow line and shrink configurations for regular solids and grouped packs."],
   ["Filling and downstream lines", "Semi-auto fillers through full granule, powder, liquid, cartoning and case-packing production lines."],
 ];
+
+const HOME_DETAIL_COPY = {
+  en: {
+    guideCards: GUIDE_CARDS,
+    applicationClusters: APPLICATION_CLUSTERS,
+    specReferenceLines: SPEC_REFERENCE_LINES,
+    form: ["Name", "Email", "Company", "Machine interest", "Product", "Target output", "Project notes"],
+  },
+  es: {
+    guideCards: [
+      ["Empiece por el producto", "Gránulos, polvos, salsas, té, kits y sólidos regulares requieren dosificación, sellado y manejo distintos."],
+      ["Defina la economía del empaque", "El pouch terminado mejora la presencia en anaquel; VFFS y sachet suelen reducir el costo de film."],
+      ["Fije el límite de automatización", "Una máquina resuelve el empaque primario; una línea añade alimentación, control, cartón, cajas y transporte."],
+      ["Prepare un RFQ con evidencia", "Buenas cotizaciones necesitan fotos, muestras, peso, salida objetivo, voltaje, aire y espacio disponible."],
+    ],
+    applicationClusters: [
+      ["Alimentos, snacks y granos", "Sistemas premade pouch, VFFS, vacío y llenado para arroz, frijoles, nueces, congelados, semillas y packs retail."],
+      ["Polvos y sazonadores", "Opciones con sinfín, alimentación por tornillo y control de polvo para harina, leche en polvo, proteína, condimentos y químicos."],
+      ["Té, café y bebidas", "Bolsas piramidales, té con hilo, drip coffee y sobres con sellado ultrasónico y dosificación pequeña."],
+      ["Líquidos, salsas y pastas", "Sachets con bomba, pouches, PE film, tapado de pouch y líneas de llenado para aceites, salsas y químicos diarios."],
+      ["Sólidos regulares y empaque secundario", "Flow pack, shrink, sobreenvoltura, cartón y cajas para multipacks retail y logística."],
+      ["Hardware y piezas mixtas", "Conteo, multi-material, tornillos y kits con control de cantidad y mezcla de accesorios."],
+    ],
+    specReferenceLines: [
+      ["Sistemas premade pouch", "Pouches terminados, rango W100-350mm y L150-480mm, hasta 60 bolsas/min en formatos pequeños seleccionados."],
+      ["VFFS con roll film", "Tamaños aprox. L80-450mm y W80-350mm; báscula, vaso, sinfín o bomba según producto."],
+      ["Sachet y stick pack", "Dosis pequeñas 1-100g; una línea, doble línea, multi-línea y esquinas redondas."],
+      ["Té y drip coffee", "Formatos 1-15g con ultrasonido, sobre exterior, hilo/etiqueta, nitrógeno y precisión de dosis."],
+      ["Flow pack y shrink", "Alimentación superior/inferior, movimiento reciprocante, pillow line y shrink para sólidos y grupos."],
+      ["Llenado y final de línea", "Desde llenadoras semi-auto hasta líneas completas de gránulo, polvo, líquido, cartón y cajas."],
+    ],
+    form: ["Nombre", "Email", "Empresa", "Máquina de interés", "Producto", "Producción objetivo", "Notas del proyecto"],
+  },
+  fr: {
+    guideCards: [
+      ["Commencer par le produit", "Granulés, poudres, sauces, thé, kits et solides réguliers imposent des choix de dosage, scellage et convoyage."],
+      ["Définir l'économie du pack", "Le sachet préformé valorise le rayon; VFFS et sachet réduisent souvent le coût du film."],
+      ["Fixer le périmètre d'automation", "Une machine couvre le primaire; une ligne ajoute alimentation, contrôle, cartonnage, caisse et convoyage."],
+      ["Construire le RFQ sur preuves", "Un devis utile demande photos, échantillons, poids, cadence, tension, air et espace disponible."],
+    ],
+    applicationClusters: [
+      ["Aliments, snacks et céréales", "Systèmes pouch, VFFS, vide et remplissage pour riz, haricots, noix, surgelés, graines et packs retail."],
+      ["Poudres et assaisonnements", "Vis sans fin, alimentation par vis et contrôle poussière pour farine, lait, protéines, épices et poudres chimiques."],
+      ["Thé, café et boissons", "Sachets pyramide, fil/étiquette, drip coffee et enveloppes avec ultrason et petites doses précises."],
+      ["Liquides, sauces et pâtes", "Sachets pompe, pouches, film PE, bouchage et lignes de remplissage pour huiles, sauces et produits chimiques courants."],
+      ["Solides réguliers et secondaire", "Flow pack, shrink, suremballage, cartonnage et caisses pour multipacks retail et logistique."],
+      ["Quincaillerie et pièces mixtes", "Comptage, multi-matière, visserie et kits avec contrôle quantité et accessoires mélangés."],
+    ],
+    specReferenceLines: [
+      ["Systèmes pouch préformé", "Sachets finis, plage W100-350mm et L150-480mm, jusqu'à 60 sachets/min sur petits formats sélectionnés."],
+      ["VFFS à film en rouleau", "Formats env. L80-450mm et W80-350mm; balance, godet, vis ou pompe selon produit."],
+      ["Sachet et stick pack", "Petites doses 1-100g; une voie, double voie, multi-voies et coins arrondis."],
+      ["Thé et drip coffee", "Formats 1-15g avec ultrason, enveloppe extérieure, fil/étiquette, azote et précision de dosage."],
+      ["Flow pack et shrink", "Alimentation haut/bas, mouvement alternatif, ligne pillow et shrink pour solides et lots."],
+      ["Remplissage et aval", "De la remplisseuse semi-auto aux lignes granulé, poudre, liquide, cartonnage et caisse."],
+    ],
+    form: ["Nom", "Email", "Entreprise", "Machine recherchée", "Produit", "Cadence cible", "Notes projet"],
+  },
+  de: {
+    guideCards: [
+      ["Mit dem Produkt beginnen", "Granulat, Pulver, Saucen, Tee, Kits und reguläre Feststoffe brauchen unterschiedliche Dosier-, Siegel- und Handlingkonzepte."],
+      ["Packökonomie festlegen", "Fertigbeutel stärken die Regalwirkung; VFFS und Sachet senken oft die Folienkosten."],
+      ["Automationsgrenze klären", "Eine Maschine löst Primärverpackung; eine Linie ergänzt Zuführung, Kontrolle, Karton, Case und Fördertechnik."],
+      ["RFQ mit Fakten erstellen", "Gute Angebote benötigen Fotos, Muster, Gewicht, Zielleistung, Spannung, Druckluft und verfügbare Fläche."],
+    ],
+    applicationClusters: [
+      ["Lebensmittel, Snacks und Getreide", "Pouch-, VFFS-, Vakuum- und Füllsysteme für Reis, Bohnen, Nüsse, Tiefkühlware, Saaten und Retail-Packs."],
+      ["Pulver und Gewürze", "Schnecke, Zuführung und Staubkontrolle für Mehl, Milchpulver, Protein, Gewürze und chemische Pulver."],
+      ["Tee, Kaffee und Getränke", "Pyramidenbeutel, Faden/Etikett, Drip Coffee und Umschläge mit Ultraschall und Kleindosierung."],
+      ["Flüssigkeiten, Saucen und Pasten", "Pumpensachets, Pouches, PE-Film, Verschluss und Fülllinien für Öle, Saucen und Alltagschemie."],
+      ["Regelmäßige Feststoffe und Sekundärpack", "Flowpack, Shrink, Overwrapping, Kartonierung und Cases für Retail-Multipacks und Logistik."],
+      ["Hardware und gemischte Kleinteile", "Zählen, Multi-Material, Schrauben und Kits mit Mengen- und Zubehörkontrolle."],
+    ],
+    specReferenceLines: [
+      ["Premade-Pouch-Systeme", "Fertigbeutel, Referenz W100-350mm und L150-480mm, bis 60 Beutel/min auf ausgewählten Kleinformaten."],
+      ["VFFS Rollenfilm", "Format ca. L80-450mm und W80-350mm; Waage, Becher, Schnecke oder Pumpe je nach Produkt."],
+      ["Sachet und Stickpack", "Kleindosen 1-100g; einbahnig, zweibahnig, mehrbahnig und Rund-Ecken-Optionen."],
+      ["Tee und Drip Coffee", "1-15g Formate mit Ultraschall, Außenumschlag, Faden/Etikett, Stickstoff und Dosiergenauigkeit."],
+      ["Flowpack und Shrink", "Top-/Bottom-Feed, Hubbewegung, Pillow-Linie und Shrink für Feststoffe und Gruppen."],
+      ["Füllung und End-of-Line", "Von Semi-Auto-Füllern bis zu Granulat-, Pulver-, Flüssig-, Kartonier- und Case-Linien."],
+    ],
+    form: ["Name", "E-Mail", "Unternehmen", "Maschineninteresse", "Produkt", "Zielausstoß", "Projektnotizen"],
+  },
+  pt: {
+    guideCards: [
+      ["Comece pelo produto", "Grânulos, pós, molhos, chá, kits e sólidos regulares exigem dosagem, selagem e manuseio diferentes."],
+      ["Defina a economia da embalagem", "Pouch pronto valoriza o varejo; VFFS e sachê normalmente reduzem custo de filme."],
+      ["Fixe o limite de automação", "Uma máquina resolve a embalagem primária; uma linha adiciona alimentação, controle, cartucho, caixa e transporte."],
+      ["Monte o RFQ com evidências", "Boas cotações precisam de fotos, amostras, peso, produção alvo, tensão, ar e área disponível."],
+    ],
+    applicationClusters: [
+      ["Alimentos, snacks e grãos", "Sistemas pouch, VFFS, vácuo e envase para arroz, feijão, castanhas, congelados, sementes e packs de varejo."],
+      ["Pós e temperos", "Rosca, alimentação por parafuso e controle de pó para farinha, leite em pó, proteína, temperos e químicos."],
+      ["Chá, café e bebidas", "Sachês piramidais, fio/etiqueta, drip coffee e envelopes com ultrassom e pequenas doses precisas."],
+      ["Líquidos, molhos e pastas", "Sachês com bomba, pouches, filme PE, tampas e linhas de envase para óleos, molhos e químicos diários."],
+      ["Sólidos regulares e secundário", "Flow pack, shrink, sobreenvoltura, cartucho e caixas para multipacks e logística."],
+      ["Hardware e peças mistas", "Contagem, multi-material, parafusos e kits com controle de quantidade e acessórios mistos."],
+    ],
+    specReferenceLines: [
+      ["Sistemas premade pouch", "Pouches prontos, referência W100-350mm e L150-480mm, até 60 bolsas/min em pequenos formatos selecionados."],
+      ["VFFS com filme em bobina", "Formato aprox. L80-450mm e W80-350mm; balança, copo, rosca ou bomba por produto."],
+      ["Sachê e stick pack", "Pequenas doses 1-100g; uma linha, dupla linha, multilinhas e cantos arredondados."],
+      ["Chá e drip coffee", "Formatos 1-15g com ultrassom, envelope externo, fio/etiqueta, nitrogênio e precisão."],
+      ["Flow pack e shrink", "Alimentação superior/inferior, movimento alternado, linha pillow e shrink para sólidos e grupos."],
+      ["Envase e final de linha", "De envasadoras semi-auto a linhas de grânulo, pó, líquido, cartucho e caixas."],
+    ],
+    form: ["Nome", "Email", "Empresa", "Máquina de interesse", "Produto", "Produção alvo", "Notas do projeto"],
+  },
+  ru: {
+    guideCards: [
+      ["Начните с продукта", "Гранулы, порошки, соусы, чай, наборы и твердые изделия требуют разных решений по дозированию, запайке и подаче."],
+      ["Определите экономику упаковки", "Готовый пакет усиливает вид на полке; VFFS и саше часто снижают расход пленки."],
+      ["Зафиксируйте границу автоматизации", "Одна машина закрывает первичную упаковку; линия добавляет подачу, контроль, короб, кейс и транспорт."],
+      ["Соберите RFQ на фактах", "Для точного предложения нужны фото, образцы, вес дозы, целевая скорость, напряжение, воздух и площадь."],
+    ],
+    applicationClusters: [
+      ["Еда, снеки и зерновые", "Pouch, VFFS, вакуум и фасовка для риса, бобов, орехов, заморозки, семян и розничных пакетов."],
+      ["Порошки и специи", "Шнек, винтовая подача и пылеудаление для муки, молока, протеина, специй и химических порошков."],
+      ["Чай, кофе и напитки", "Пирамидальные пакеты, нить/ярлык, drip coffee и конверты с ультразвуком и малой дозой."],
+      ["Жидкости, соусы и пасты", "Саше с насосом, pouches, PE-пленка, укупорка и линии розлива для масел, соусов и бытовой химии."],
+      ["Регулярные твердые продукты", "Flow pack, shrink, overwrap, картонатор и короба для retail multipack и логистики."],
+      ["Метизы и смешанные детали", "Счет, multi-material, винты и наборы с контролем количества и смешанных аксессуаров."],
+    ],
+    specReferenceLines: [
+      ["Системы premade pouch", "Готовые пакеты, ориентир W100-350mm и L150-480mm, до 60 пакетов/мин на малых форматах."],
+      ["VFFS с рулонной пленкой", "Размер около L80-450mm и W80-350mm; весы, стакан, шнек или насос по продукту."],
+      ["Саше и stick pack", "Малые дозы 1-100g; одна линия, двойная линия, мультилиния и круглые углы."],
+      ["Чай и drip coffee", "Форматы 1-15g с ультразвуком, внешним конвертом, нитью/ярлыком, азотом и точностью."],
+      ["Flow pack и shrink", "Верхняя/нижняя подача, возвратно-поступательное движение, pillow line и shrink для твердых продуктов."],
+      ["Фасовка и конец линии", "От полуавтоматических дозаторов до линий гранул, порошков, жидкостей, картонов и коробов."],
+    ],
+    form: ["Имя", "Email", "Компания", "Интересующая машина", "Продукт", "Целевая скорость", "Заметки проекта"],
+  },
+  ar: {
+    guideCards: [
+      ["ابدأ من المنتج", "الحبيبات والمساحيق والصلصات والشاي والأطقم والمواد الصلبة تحتاج جرعات ولحام ومناولة مختلفة."],
+      ["حدد اقتصاد العبوة", "الكيس الجاهز يعزز مظهر البيع، بينما VFFS والساشيه يخفضان غالباً تكلفة الفيلم."],
+      ["حدد مستوى الأتمتة", "آلة واحدة تغطي التعبئة الأولية، والخط يضيف التغذية والفحص والكرتنة والصناديق والنقل."],
+      ["ابن RFQ على بيانات", "العرض الدقيق يحتاج صوراً، عينات، وزن تعبئة، إنتاجية، جهد، هواء مضغوط ومساحة متاحة."],
+    ],
+    applicationClusters: [
+      ["الأغذية والسناكس والحبوب", "أنظمة pouch وVFFS والفاكيوم والتعبئة للأرز، البقول، المكسرات، المجمدات، البذور وعبوات التجزئة."],
+      ["المساحيق والتوابل", "لولب، تغذية بالبرغي وتحكم بالغبار للدقيق، الحليب، البروتين، التوابل والمساحيق الكيميائية."],
+      ["الشاي والقهوة والمشروبات", "أكياس هرمية، خيط/بطاقة، drip coffee وأظرف مع لحام فوق صوتي وجرعات صغيرة دقيقة."],
+      ["السوائل والصلصات والمعاجين", "ساشيه بمضخة، pouches، فيلم PE، أغطية وخطوط تعبئة للزيوت والصلصات والمواد اليومية."],
+      ["مواد صلبة وتغليف ثانوي", "Flow pack وshrink وoverwrap والكرتنة والصناديق لعبوات التجزئة واللوجستيات."],
+      ["المعادن والقطع المختلطة", "عد، multi-material، براغي وأطقم مع تحكم في الكمية والملحقات المختلطة."],
+    ],
+    specReferenceLines: [
+      ["أنظمة premade pouch", "أكياس جاهزة، مرجع W100-350mm وL150-480mm، حتى 60 كيس/دقيقة في بعض الأحجام الصغيرة."],
+      ["VFFS بفيلم رول", "حجم تقريبي L80-450mm وW80-350mm؛ ميزان، كوب، لولب أو مضخة حسب المنتج."],
+      ["ساشيه وstick pack", "جرعات صغيرة 1-100g؛ خط واحد، خط مزدوج، خطوط متعددة وخيار الزوايا الدائرية."],
+      ["الشاي وdrip coffee", "أحجام 1-15g مع لحام فوق صوتي، ظرف خارجي، خيط/بطاقة، نيتروجين ودقة جرعة."],
+      ["Flow pack وshrink", "تغذية علوية/سفلية، حركة ترددية، خط pillow وshrink للمواد الصلبة والمجموعات."],
+      ["التعبئة ونهاية الخط", "من آلات نصف أوتوماتيكية إلى خطوط حبيبات، مساحيق، سوائل، كرتنة وصناديق."],
+    ],
+    form: ["الاسم", "البريد الإلكتروني", "الشركة", "الآلة المطلوبة", "المنتج", "الإنتاجية المطلوبة", "ملاحظات المشروع"],
+  },
+};
 
 const PILLAR_TEXT = {
   premade: {
@@ -342,6 +502,14 @@ function uniqueList(values) {
   return [...new Set(values.filter(Boolean))];
 }
 
+function homeDetailFor(langCode) {
+  return HOME_DETAIL_COPY[langCode] || HOME_DETAIL_COPY.en;
+}
+
+function formatTemplate(template, values) {
+  return Object.entries(values).reduce((text, [key, value]) => text.replaceAll(`{${key}}`, value), template);
+}
+
 function defaultFor(item) {
   return CATEGORY_DEFAULTS[item.category] || {
     packageStyles: ["custom package format", "retail pack", "industrial pack"],
@@ -360,13 +528,14 @@ function specLookup(item, patterns) {
   return found ? found[1] : "";
 }
 
-function snapshotFor(item) {
+function snapshotFor(item, langCode) {
+  const labels = copyFor(langCode).machine.snapshotLabels || COPY.en.machine.snapshotLabels;
   const defaults = defaultFor(item);
   return [
-    ["Best-fit products", item.applications.slice(0, 4).join(", ")],
-    ["Package formats", (item.packageStyles || defaults.packageStyles).slice(0, 4).join(", ")],
-    ["Output reference", specLookup(item, ["speed", "output", "production"]) || "Project-specific after product and pack testing"],
-    ["Dosing or filling", specLookup(item, ["dosing", "filling", "measuring", "weighing"]) || item.options.slice(0, 3).join(", ")],
+    [labels[0], item.applications.slice(0, 4).join(", ")],
+    [labels[1], (item.packageStyles || defaults.packageStyles).slice(0, 4).join(", ")],
+    [labels[2], specLookup(item, ["speed", "output", "production"]) || "Project-specific after product and pack testing"],
+    [labels[3], specLookup(item, ["dosing", "filling", "measuring", "weighing"]) || item.options.slice(0, 3).join(", ")],
   ];
 }
 
@@ -378,17 +547,33 @@ function workflowFor(item) {
   return defaults.workflow;
 }
 
-function applicationSentence(item, application, localizedCategory) {
-  return `${application} projects usually need ${localizedCategory.toLowerCase()} with the right dosing method, pack size, seal style and downstream handling.`;
+function applicationSentence(application, localizedCategory, langCode) {
+  const template = copyFor(langCode).machine.applicationTemplate || COPY.en.machine.applicationTemplate;
+  return formatTemplate(template, {
+    application,
+    category: localizedCategory.toLowerCase(),
+  });
 }
 
-function rfqDetailsFor(item) {
+function rfqDetailsFor(item, langCode = "en") {
+  const machineCopy = copyFor(langCode).machine;
   return [
-    `Target products: ${item.applications.slice(0, 5).join(", ")}.`,
-    `Target package: ${(item.packageStyles || defaultFor(item).packageStyles).slice(0, 4).join(", ")}.`,
-    `Core options to confirm: ${item.options.slice(0, 6).join(", ")}.`,
-    "Send product photos, samples, target output, voltage, compressed air and available footprint before final quotation.",
+    `${machineCopy.rfqProducts}: ${item.applications.slice(0, 5).join(", ")}.`,
+    `${machineCopy.rfqPackage}: ${(item.packageStyles || defaultFor(item).packageStyles).slice(0, 4).join(", ")}.`,
+    `${machineCopy.rfqOptions}: ${item.options.slice(0, 6).join(", ")}.`,
+    machineCopy.rfqEvidence,
   ];
+}
+
+function localizedItemFor(item, langCode) {
+  const defaults = defaultFor(item);
+  const completeItem = {
+    ...item,
+    packageStyles: item.packageStyles || defaults.packageStyles,
+    materials: item.materials || defaults.materials,
+    workflow: workflowFor(item),
+  };
+  return localizedMachine(completeItem, langCode, categoryFor(langCode, item.category));
 }
 
 function machineJsonLd(item, related, langCode) {
@@ -398,6 +583,13 @@ function machineJsonLd(item, related, langCode) {
   const home = absoluteUrl(langCode, "/");
   const library = absoluteUrl(langCode, "/machine-index.html");
   const gallery = galleryFor(item);
+  const localized = localizedItemFor(item, langCode);
+  const questions =
+    localized.faqQuestions || {
+      products: `What products fit ${localized.title}?`,
+      options: `What options can be added to ${localized.title}?`,
+      rfq: `What information is needed before quoting ${localized.title}?`,
+    };
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -405,23 +597,23 @@ function machineJsonLd(item, related, langCode) {
         "@type": "WebPage",
         "@id": `${url}#webpage`,
         url,
-        name: item.title,
-        description: item.summary,
+        name: localized.title,
+        description: localized.summary,
         inLanguage: copy.htmlLang,
         isPartOf: { "@id": `${home}#website` },
       },
       {
         "@type": "Product",
         "@id": `${url}#product`,
-        name: item.title,
+        name: localized.title,
         category: categoryFor(langCode, item.category),
-        description: `${item.summary} ${copy.machine.descriptionSuffix}`,
+        description: `${localized.summary} ${copy.machine.descriptionSuffix}`,
         image: gallery.map((image) => `${BASE_URL}/${image}`),
         brand: { "@type": "Brand", name: "Premade Pouch Machines" },
         additionalProperty: [
-          ...item.specs.map(([name, value]) => ({ "@type": "PropertyValue", name, value })),
-          { "@type": "PropertyValue", name: "Applications", value: item.applications.join(", ") },
-          { "@type": "PropertyValue", name: "Common options", value: item.options.join(", ") },
+          ...localized.specs.map(([name, value]) => ({ "@type": "PropertyValue", name, value })),
+          { "@type": "PropertyValue", name: copy.machine.applications, value: localized.applications.join(", ") },
+          { "@type": "PropertyValue", name: copy.machine.options, value: localized.options.join(", ") },
         ],
       },
       {
@@ -430,7 +622,7 @@ function machineJsonLd(item, related, langCode) {
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: home },
           { "@type": "ListItem", position: 2, name: copy.nav.seoLibrary, item: library },
-          { "@type": "ListItem", position: 3, name: item.title, item: url },
+          { "@type": "ListItem", position: 3, name: localized.title, item: url },
         ],
       },
       {
@@ -439,18 +631,18 @@ function machineJsonLd(item, related, langCode) {
         mainEntity: [
           {
             "@type": "Question",
-            name: `What products fit ${item.title}?`,
-            acceptedAnswer: { "@type": "Answer", text: item.summary },
+            name: questions.products,
+            acceptedAnswer: { "@type": "Answer", text: localized.summary },
           },
           {
             "@type": "Question",
-            name: `What options can be added to ${item.title}?`,
-            acceptedAnswer: { "@type": "Answer", text: item.options.join(", ") },
+            name: questions.options,
+            acceptedAnswer: { "@type": "Answer", text: localized.options.join(", ") },
           },
           {
             "@type": "Question",
-            name: `What information is needed before quoting ${item.title}?`,
-            acceptedAnswer: { "@type": "Answer", text: rfqDetailsFor(item).join(" ") },
+            name: questions.rfq,
+            acceptedAnswer: { "@type": "Answer", text: rfqDetailsFor(localized, langCode).join(" ") },
           },
         ],
       },
@@ -461,7 +653,7 @@ function machineJsonLd(item, related, langCode) {
         itemListElement: related.map((candidate, index) => ({
           "@type": "ListItem",
           position: index + 1,
-          name: candidate.title,
+          name: localizedItemFor(candidate, langCode).title,
           url: absoluteUrl(langCode, `/machines/${candidate.slug}.html`),
         })),
       },
@@ -472,18 +664,18 @@ function machineJsonLd(item, related, langCode) {
 function machinePage(item, langCode) {
   const copy = copyFor(langCode);
   const routePath = `/machines/${item.slug}.html`;
-  const title = `${item.title} | ${copy.machine.titleSuffix}`;
-  const description = `${item.summary} ${copy.machine.descriptionSuffix}`;
   const related = relatedFor(item);
   const localizedCategory = categoryFor(langCode, item.category);
-  const defaults = defaultFor(item);
+  const localized = localizedItemFor(item, langCode);
+  const title = `${localized.title} | ${copy.machine.titleSuffix}`;
+  const description = `${localized.summary} ${copy.machine.descriptionSuffix}`;
   const gallery = galleryFor(item);
-  const snapshot = snapshotFor(item);
-  const workflow = workflowFor(item);
-  const packageStyles = item.packageStyles || defaults.packageStyles;
-  const materials = item.materials || defaults.materials;
-  const productBehavior = item.productBehavior || `${item.title} should be selected around product flow, fill accuracy, package style, seal quality and the level of downstream automation required.`;
-  const lineFit = item.lineFit || defaults.lineFit;
+  const snapshot = snapshotFor(localized, langCode);
+  const workflow = localized.workflow;
+  const packageStyles = localized.packageStyles;
+  const materials = localized.materials;
+  const productBehavior = localized.productBehavior || copy.machine.productBehaviorFallback;
+  const lineFit = localized.lineFit || copy.machine.lineFitFallback;
 
   return `<!doctype html>
 <html lang="${copy.htmlLang}" dir="${LANGUAGES.find((lang) => lang.code === langCode).dir}">
@@ -494,11 +686,11 @@ function machinePage(item, langCode) {
       <section class="article-hero">
         <div class="article-hero-copy">
           <p class="section-kicker">${escapeHtml(localizedCategory)}</p>
-          <h1>${escapeHtml(item.h1)}</h1>
+          <h1>${escapeHtml(localized.h1)}</h1>
           <p>${escapeHtml(description)}</p>
         </div>
         <div class="article-hero-media">
-          <img src="/${escapeAttr(item.image)}" alt="${escapeAttr(item.title)}" />
+          <img src="/${escapeAttr(item.image)}" alt="${escapeAttr(localized.title)}" />
         </div>
       </section>
 
@@ -508,7 +700,7 @@ function machinePage(item, langCode) {
           <span>/</span>
           <a href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.seoLibrary)}</a>
           <span>/</span>
-          <span>${escapeHtml(item.title)}</span>
+          <span>${escapeHtml(localized.title)}</span>
         </nav>
 
         <p class="article-lede">${escapeHtml(copy.machine.lede)}</p>
@@ -517,7 +709,7 @@ function machinePage(item, langCode) {
           ${item.keywords.map((keyword) => `<span>${escapeHtml(keyword)}</span>`).join("\n          ")}
         </div>
 
-        <div class="machine-snapshot" aria-label="Machine selection snapshot">
+        <div class="machine-snapshot" aria-label="${escapeAttr(copy.machine.overview)}">
           ${snapshot
             .map(
               ([label, value]) => `<div>
@@ -529,7 +721,7 @@ function machinePage(item, langCode) {
         </div>
 
         <h2>${escapeHtml(copy.machine.overview)}</h2>
-        <p>${escapeHtml(item.summary)} ${escapeHtml(productBehavior)}</p>
+        <p>${escapeHtml(localized.summary)} ${escapeHtml(productBehavior)}</p>
 
         ${
           gallery.length > 1
@@ -537,7 +729,7 @@ function machinePage(item, langCode) {
           ${gallery
             .map(
               (image, index) => `<figure>
-            <img src="/${escapeAttr(image)}" alt="${escapeAttr(`${item.title} visual ${index + 1}`)}" loading="${index === 0 ? "eager" : "lazy"}" />
+            <img src="/${escapeAttr(image)}" alt="${escapeAttr(`${localized.title} visual ${index + 1}`)}" loading="${index === 0 ? "eager" : "lazy"}" />
           </figure>`,
             )
             .join("\n          ")}
@@ -547,33 +739,33 @@ function machinePage(item, langCode) {
 
         <h2>${escapeHtml(copy.machine.applications)}</h2>
         <div class="article-card-grid three">
-          ${item.applications
+          ${localized.applications
             .map(
               (application) => `<div class="content-card">
             <h3>${escapeHtml(application)}</h3>
-            <p>${escapeHtml(applicationSentence(item, application, localizedCategory))}</p>
+            <p>${escapeHtml(applicationSentence(application, localizedCategory, langCode))}</p>
           </div>`,
             )
             .join("\n          ")}
         </div>
 
-        <h2>Configuration path</h2>
+        <h2>${escapeHtml(copy.machine.configuration)}</h2>
         <div class="process-flow">
           ${workflow.map((step, index) => `<div><span>${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(step)}</strong></div>`).join("\n          ")}
         </div>
 
-        <h2>Package formats, materials and line fit</h2>
+        <h2>${escapeHtml(copy.machine.engineering)}</h2>
         <div class="engineering-grid">
           <div class="content-card">
-            <h3>Package formats</h3>
+            <h3>${escapeHtml(copy.machine.packageFormats)}</h3>
             <ul>${packageStyles.map((style) => `<li>${escapeHtml(style)}</li>`).join("")}</ul>
           </div>
           <div class="content-card">
-            <h3>Compatible materials</h3>
+            <h3>${escapeHtml(copy.machine.compatibleMaterials)}</h3>
             <ul>${materials.map((material) => `<li>${escapeHtml(material)}</li>`).join("")}</ul>
           </div>
           <div class="content-card">
-            <h3>Where this line fits</h3>
+            <h3>${escapeHtml(copy.machine.lineFitHeading)}</h3>
             <p>${escapeHtml(lineFit)}</p>
           </div>
         </div>
@@ -584,7 +776,7 @@ function machinePage(item, langCode) {
             <span>${escapeHtml(copy.machine.parameter)}</span>
             <span>${escapeHtml(copy.machine.value)}</span>
           </div>
-          ${item.specs
+          ${localized.specs
             .map(
               ([label, value]) => `<div class="row">
             <span>${escapeHtml(label)}</span>
@@ -598,29 +790,31 @@ function machinePage(item, langCode) {
         <div class="content-columns">
           <div class="content-card">
             <h3>${escapeHtml(copy.machine.features)}</h3>
-            <ul>${item.features.map((feature) => `<li>${escapeHtml(feature)}</li>`).join("")}</ul>
+            <ul>${localized.features.map((feature) => `<li>${escapeHtml(feature)}</li>`).join("")}</ul>
           </div>
           <div class="content-card">
             <h3>${escapeHtml(copy.machine.options)}</h3>
-            <ul>${item.options.map((option) => `<li>${escapeHtml(option)}</li>`).join("")}</ul>
+            <ul>${localized.options.map((option) => `<li>${escapeHtml(option)}</li>`).join("")}</ul>
           </div>
         </div>
 
         <h2>${escapeHtml(copy.machine.checklist)}</h2>
         <div class="rfq-detail-grid">
-          ${rfqDetailsFor(item).map((line) => `<p>${escapeHtml(line)}</p>`).join("\n          ")}
+          ${rfqDetailsFor(localized, langCode).map((line) => `<p>${escapeHtml(line)}</p>`).join("\n          ")}
         </div>
         <ul>${copy.machine.checklistItems.map((line) => `<li>${escapeHtml(line)}</li>`).join("")}</ul>
 
         <h2>${escapeHtml(copy.machine.related)}</h2>
+        ${localized.relatedIntro ? `<p>${escapeHtml(localized.relatedIntro)}</p>` : ""}
         <div class="article-card-grid">
           ${related
-            .map(
-              (candidate) => `<a class="content-card related-card" href="${localizedHref(langCode, `/machines/${candidate.slug}.html`)}">
-            <h3>${escapeHtml(candidate.title)}</h3>
-            <p>${escapeHtml(candidate.summary)}</p>
-          </a>`,
-            )
+            .map((candidate) => {
+              const relatedItem = localizedItemFor(candidate, langCode);
+              return `<a class="content-card related-card" href="${localizedHref(langCode, `/machines/${candidate.slug}.html`)}">
+            <h3>${escapeHtml(relatedItem.title)}</h3>
+            <p>${escapeHtml(relatedItem.summary)}</p>
+          </a>`;
+            })
             .join("\n          ")}
         </div>
 
@@ -687,13 +881,14 @@ function pillarPage(page, langCode) {
         <h2>${escapeHtml(copy.machine.related)}</h2>
         <div class="seo-page-grid">
           ${related
-            .map(
-              (item) => `<a class="content-card seo-page-card" href="${localizedHref(langCode, `/machines/${item.slug}.html`)}">
+            .map((item) => {
+              const relatedItem = localizedItemFor(item, langCode);
+              return `<a class="content-card seo-page-card" href="${localizedHref(langCode, `/machines/${item.slug}.html`)}">
             <span>${escapeHtml(categoryFor(langCode, item.category))}</span>
-            <h3>${escapeHtml(item.title)}</h3>
-            <p>${escapeHtml(item.summary)}</p>
-          </a>`,
-            )
+            <h3>${escapeHtml(relatedItem.title)}</h3>
+            <p>${escapeHtml(relatedItem.summary)}</p>
+          </a>`;
+            })
             .join("\n          ")}
         </div>
       </article>
@@ -743,6 +938,7 @@ function homePage(langCode) {
   const copy = copyFor(langCode);
   const lang = LANGUAGES.find((item) => item.code === langCode);
   const routePath = "/";
+  const homeDetail = homeDetailFor(langCode);
   const categoryCount = new Set(MACHINE_PAGES.map((item) => item.category)).size;
   const proofMetrics = [String(MACHINE_PAGES.length), String(categoryCount), String(LANGUAGES.length), "60"];
   return `<!doctype html>
@@ -813,9 +1009,9 @@ function homePage(langCode) {
           <a class="button button-primary" href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.catalog)}</a>
         </div>
         <div class="catalog-depth">
-          <div><strong>${MACHINE_PAGES.length}</strong><span>machine intent pages</span></div>
-          <div><strong>${new Set(MACHINE_PAGES.map((item) => item.category)).size}</strong><span>equipment families</span></div>
-          <div><strong>7</strong><span>public language versions</span></div>
+          <div><strong>${MACHINE_PAGES.length}</strong><span>${escapeHtml(copy.home.catalogDepth[0])}</span></div>
+          <div><strong>${new Set(MACHINE_PAGES.map((item) => item.category)).size}</strong><span>${escapeHtml(copy.home.catalogDepth[1])}</span></div>
+          <div><strong>7</strong><span>${escapeHtml(copy.home.catalogDepth[2])}</span></div>
         </div>
       </section>
 
@@ -828,11 +1024,11 @@ function homePage(langCode) {
           <p>${escapeHtml(copy.home.guideText)}</p>
         </div>
         <div class="guide-grid">
-          ${GUIDE_CARDS.map(
+          ${homeDetail.guideCards.map(
             (card, index) => `<article>
             <span>${String(index + 1).padStart(2, "0")}</span>
-            <h3>${escapeHtml(card.title)}</h3>
-            <p>${escapeHtml(card.text)}</p>
+            <h3>${escapeHtml(card.title || card[0])}</h3>
+            <p>${escapeHtml(card.text || card[1])}</p>
           </article>`,
           ).join("\n          ")}
         </div>
@@ -844,10 +1040,10 @@ function homePage(langCode) {
           <h2 id="applications-title">${escapeHtml(copy.home.portfolioTitle)}</h2>
         </div>
         <div class="application-grid">
-          ${APPLICATION_CLUSTERS.map(
+          ${homeDetail.applicationClusters.map(
             (item) => `<article>
-            <h3>${escapeHtml(item.title)}</h3>
-            <p>${escapeHtml(item.text)}</p>
+            <h3>${escapeHtml(item.title || item[0])}</h3>
+            <p>${escapeHtml(item.text || item[1])}</p>
           </article>`,
           ).join("\n          ")}
         </div>
@@ -860,7 +1056,7 @@ function homePage(langCode) {
         </div>
         <div class="article-table">
           <div class="row head"><span>${escapeHtml(copy.machine.parameter)}</span><span>${escapeHtml(copy.machine.value)}</span></div>
-          ${SPEC_REFERENCE_LINES.map(([label, value]) => `<div class="row"><span>${escapeHtml(label)}</span><span>${escapeHtml(value)}</span></div>`).join("\n          ")}
+          ${homeDetail.specReferenceLines.map(([label, value]) => `<div class="row"><span>${escapeHtml(label)}</span><span>${escapeHtml(value)}</span></div>`).join("\n          ")}
         </div>
       </section>
 
@@ -881,13 +1077,13 @@ function homePage(langCode) {
           <p>${escapeHtml(copy.home.quoteText)}</p>
         </div>
         <form class="quote-form" data-lead-form>
-          <label><span>Name</span><input name="name" type="text" required /></label>
-          <label><span>Email</span><input name="email" type="email" required /></label>
-          <label><span>Company</span><input name="company" type="text" /></label>
-          <label><span>Machine interest</span><select name="machine">${PILLAR_PAGES.map((page) => `<option>${escapeHtml(categoryFor(langCode, page.category))}</option>`).join("")}</select></label>
-          <label><span>Product</span><input name="product" type="text" /></label>
-          <label><span>Target output</span><input name="speed" type="text" /></label>
-          <label class="full"><span>Project notes</span><textarea name="message" rows="5"></textarea></label>
+          <label><span>${escapeHtml(homeDetail.form[0])}</span><input name="name" type="text" required /></label>
+          <label><span>${escapeHtml(homeDetail.form[1])}</span><input name="email" type="email" required /></label>
+          <label><span>${escapeHtml(homeDetail.form[2])}</span><input name="company" type="text" /></label>
+          <label><span>${escapeHtml(homeDetail.form[3])}</span><select name="machine">${PILLAR_PAGES.map((page) => `<option>${escapeHtml(categoryFor(langCode, page.category))}</option>`).join("")}</select></label>
+          <label><span>${escapeHtml(homeDetail.form[4])}</span><input name="product" type="text" /></label>
+          <label><span>${escapeHtml(homeDetail.form[5])}</span><input name="speed" type="text" /></label>
+          <label class="full"><span>${escapeHtml(homeDetail.form[6])}</span><textarea name="message" rows="5"></textarea></label>
           <button class="button button-primary full" type="submit">${escapeHtml(copy.nav.quote)}</button>
           <p class="form-status full" data-form-status role="status"></p>
         </form>
@@ -910,7 +1106,7 @@ function hubPage(langCode) {
   const itemList = MACHINE_PAGES.map((item, index) => ({
     "@type": "ListItem",
     position: index + 1,
-    name: item.title,
+    name: localizedItemFor(item, langCode).title,
     url: absoluteUrl(langCode, `/machines/${item.slug}.html`),
   }));
 
@@ -945,14 +1141,15 @@ function hubPage(langCode) {
             (group) => `<h2>${escapeHtml(categoryFor(langCode, group.category))}</h2>
         <div class="seo-page-grid">
           ${group.items
-            .map(
-              (item) => `<a class="content-card seo-page-card" href="${localizedHref(langCode, `/machines/${item.slug}.html`)}">
+            .map((item) => {
+              const localized = localizedItemFor(item, langCode);
+              return `<a class="content-card seo-page-card" href="${localizedHref(langCode, `/machines/${item.slug}.html`)}">
             <span>${escapeHtml(categoryFor(langCode, item.category))}</span>
-            <h3>${escapeHtml(item.title)}</h3>
-            <p>${escapeHtml(item.summary)}</p>
+            <h3>${escapeHtml(localized.title)}</h3>
+            <p>${escapeHtml(localized.summary)}</p>
             <small>${escapeHtml(item.keywords.slice(0, 3).join(" | "))}</small>
-          </a>`,
-            )
+          </a>`;
+            })
             .join("\n          ")}
         </div>`,
           )
