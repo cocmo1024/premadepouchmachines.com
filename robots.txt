@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://premadepouchmachines.com/sitemap.xml
