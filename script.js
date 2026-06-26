@@ -158,6 +158,38 @@ function buildMailto(data) {
   return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
 }
 
+function applyRfqContext() {
+  if (!form) return;
+  const params = new URLSearchParams(window.location.search);
+  const machine = params.get("machine");
+  const product = params.get("product");
+  const source = params.get("source");
+  const machineField = form.querySelector("[name='machine']");
+  const productField = form.querySelector("[name='product']");
+  const messageField = form.querySelector("[name='message']");
+
+  if (machine && machineField) {
+    const existing = [...machineField.options].find((option) => option.value === machine || option.textContent === machine);
+    if (existing) {
+      machineField.value = existing.value;
+    } else {
+      const option = new Option(machine, machine, true, true);
+      machineField.add(option, 0);
+      machineField.value = machine;
+    }
+  }
+
+  if (product && productField && !productField.value) {
+    productField.value = product;
+  }
+
+  if (source && messageField && !messageField.value) {
+    messageField.value = `Source machine page: ${source}\n`;
+  }
+}
+
+applyRfqContext();
+
 if (form && statusEl) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();

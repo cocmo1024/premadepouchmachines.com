@@ -17,9 +17,9 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260618g";
+const ASSET_VERSION = "20260626t";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
-const DEFAULT_SOCIAL_IMAGE = "public/assets/brochure/rotary-premade-line.jpg";
+const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const DISALLOWED = [
   ["Q", "i", "n", "d", "i", "a", "n"].join(""),
   String.fromCharCode(0x94a6, 0x5178),
@@ -100,6 +100,96 @@ const SPEC_REFERENCE_LINES = [
   ["Flow wrap and shrink", "Top-feed, bottom-feed, reciprocating, pillow line and shrink configurations for regular solids and grouped packs."],
   ["Filling and downstream lines", "Semi-auto fillers through full granule, powder, liquid, cartoning and case-packing production lines."],
 ];
+
+const LINE_FLOW_STEPS = [
+  { step: "01", title: "Product feeding", text: "Elevator, screw conveyor, bowl feeder or manual loading selected by product flow and hygiene requirements." },
+  { step: "02", title: "Dosing and filling", text: "Multi-head scale, linear scale, auger, volumetric cup, piston pump or counting module matched to target accuracy." },
+  { step: "03", title: "Primary packaging", text: "Premade pouch, VFFS roll film, sachet, tea bag, flow wrap, vacuum, cup, bottle or carton format." },
+  { step: "04", title: "Seal, code and verify", text: "Heat sealing, ultrasonic sealing, vacuum, nitrogen, date coding, checkweighing and reject handling." },
+  { step: "05", title: "Secondary packing", text: "Cartoning, shrink bundling, overwrapping, case forming, case packing and case sealing where required." },
+  { step: "06", title: "RFQ evidence", text: "Photos, pack samples, fill weight, output target, voltage, compressed air and layout define the final machine scope." },
+];
+
+const APPLICATION_VISUALS = [
+  { image: "public/assets/brochure/electronic-scale-vffs.jpg", fit: "VFFS / premade pouch / vacuum", href: "/vertical-form-fill-seal-machine.html" },
+  { image: "public/assets/brochure/powder-vffs-line.jpg", fit: "Auger dosing / dust control", href: "/vertical-form-fill-seal-machine.html" },
+  { image: "public/assets/brochure/triangle-tea-bag.jpg", fit: "Tea bag / outer envelope", href: "/tea-coffee-packaging-machine.html" },
+  { image: "public/assets/brochure/sauce-liquid-sachet.jpg", fit: "Pump filling / sachet / pouch", href: "/sachet-stick-pack-machine.html" },
+  { image: "public/assets/brochure/high-speed-pillow-system.jpg", fit: "Flow wrap / shrink / overwrap", href: "/vacuum-flow-wrap-shrink-overwrap-machines.html" },
+  { image: "public/assets/brochure/hardware-screw.jpg", fit: "Counting / kits / mixed parts", href: "/sachet-stick-pack-machine.html" },
+];
+
+const FAQ_ITEMS = [
+  ["Which machine should we quote first?", "Start with product flow, pack format and target output. A finished stand-up pouch usually points to rotary premade pouch equipment; low film cost often points to VFFS or sachet systems."],
+  ["What samples are required for testing?", "Send product photos, fill weight, density or viscosity, pouch or film samples, expected seal style and any downstream carton or case size."],
+  ["Can one line handle different products?", "Yes when product behavior and pack size stay within the same mechanical range. Dosing modules, forming parts, pouch width and sealing jaws determine the changeover boundary."],
+  ["What affects lead time and final price?", "Machine family, dosing accuracy, material contact parts, print/coding, nitrogen, vacuum, dust control, checkweighing, cartoning, case packing and local compliance requirements."],
+  ["How do we compare pouch, VFFS and sachet cost?", "Compare finished pack value, film or pouch cost, output, waste rate, operator count and changeover frequency. The lowest machine price is rarely the lowest line cost."],
+  ["What prevents rework after quotation?", "Confirm product behavior, target speed, bag dimensions, filling tolerance, voltage, compressed air, footprint, conveyor direction and acceptance samples before final machine configuration."],
+];
+
+const BROCHURE_SOURCE_BY_SLUG = {
+  "granule-premade-bag-packing-machine": { model: "240/300/350K premade pouch platform", page: "Brochure p.6" },
+  "powder-premade-bag-packing-machine": { model: "240/300/350K premade pouch platform with auger filling", page: "Brochure p.6" },
+  "sauce-liquid-premade-bag-packing-machine": { model: "240/300/350K premade pouch platform with pump filling", page: "Brochure p.6" },
+  "compact-premade-bag-packing-machine": { model: "compact premade pouch platform", page: "Brochure premade pouch section" },
+  "servo-premade-bag-packing-machine": { model: "servo premade pouch platform", page: "Brochure premade pouch section" },
+  "electronic-scale-granule-vffs-machine": { model: "420/520/620/720K electronic scale VFFS platform", page: "Brochure p.10" },
+  "full-automatic-electronic-scale-packing-machine": { model: "420/520/620/720K electronic scale VFFS platform", page: "Brochure p.10" },
+  "vertical-vacuum-packing-machine": { model: "420KZ vertical vacuum platform", page: "Brochure p.11" },
+  "full-automatic-powder-vffs-packing-machine": { model: "420/520/620/720F powder VFFS platform", page: "Brochure p.12" },
+  "triangle-tea-bag-packing-machine": { model: "20DJ triangle tea bag platform", page: "Brochure p.14" },
+  "roll-film-outer-bag-tea-packing-machine": { model: "20DJ roll-film outer envelope tea platform", page: "Brochure p.14" },
+  "prefabricated-outer-bag-tea-packing-machine": { model: "20DY prefabricated outer bag tea platform", page: "Brochure p.15" },
+  "inner-outer-tea-bag-vacuum-packing-machine": { model: "48-II inner and outer tea vacuum platform", page: "Brochure p.16" },
+  "thread-tag-tea-bag-packing-machine": { model: "11 thread-and-tag tea bag platform", page: "Brochure p.16" },
+  "tea-bag-packing-machine-with-outer-envelope": { model: "18-II tea bag outer envelope platform", page: "Brochure p.17" },
+  "drip-coffee-inner-outer-bag-packing-machine": { model: "18-KFC/18-KFY drip coffee inner and outer platform", page: "Brochure pp.18-19" },
+  "granule-sachet-packing-machine": { model: "61K granule sachet platform", page: "Brochure p.20" },
+  "powder-sachet-packing-machine": { model: "61F powder sachet platform", page: "Brochure p.20" },
+  "sauce-liquid-sachet-packing-machine": { model: "61J/Y sauce and liquid sachet platform", page: "Brochure p.21" },
+  "multi-channel-counting-packing-machine": { model: "61A4 multi-channel counting platform", page: "Brochure p.21" },
+  "ultrasonic-non-woven-packing-machine": { model: "62 ultrasonic non-woven platform", page: "Brochure p.22" },
+  "round-corner-granule-packing-machine": { model: "65KY round-corner granule platform", page: "Brochure p.22" },
+  "round-corner-powder-packing-machine": { model: "65FY round-corner powder platform", page: "Brochure p.23" },
+  "round-corner-sauce-liquid-packing-machine": { model: "65J/Y round-corner liquid platform", page: "Brochure p.23" },
+  "multi-material-packing-machine": { model: "65D multi-material platform", page: "Brochure p.24" },
+  "eight-treasure-tea-packing-machine": { model: "65DS multi-material tea platform", page: "Brochure p.25" },
+  "hardware-screw-packing-machine": { model: "60T hardware screw platform", page: "Brochure p.26" },
+  "stick-pack-granule-packing-machine": { model: "10/40/150 stick and small-granule platform", page: "Brochure p.27" },
+  "automatic-granular-packing-machine": { model: "80 automatic granule platform", page: "Brochure p.28" },
+  "double-line-packaging-machine": { model: "dual-lane sachet platform", page: "Brochure multi-lane section" },
+  "multi-line-granule-liquid-powder-packing-machine": { model: "12A/B/C multi-line platform", page: "Brochure p.30" },
+  "multi-functional-back-seal-triangle-three-side-packing-machine": { model: "3 multi-functional specialty bag platform", page: "Brochure p.31" },
+  "single-film-liquid-packing-machine": { model: "1000 single-film liquid platform", page: "Brochure p.31" },
+  "stand-up-pouch-filling-capping-machine": { model: "ZLD-2/6 stand-up pouch filling and capping platform", page: "Brochure p.32" },
+  "tube-film-packing-machine": { model: "260T tube film platform", page: "Brochure p.32" },
+  "pe-film-filling-machine": { model: "260T PE tube film platform", page: "Brochure p.32" },
+  "t-type-high-speed-bag-making-bagging-machine": { model: "35 T-type bag-making and bagging platform", page: "Brochure p.33" },
+  "stretch-film-vacuum-packaging-machine": { model: "420LS/520LS stretch film vacuum platform", page: "Brochure p.34" },
+  "high-speed-pillow-packing-machine": { model: "250L/250S flow-wrap platform", page: "Brochure p.39" },
+  "pillow-packing-machine-paper-from-top": { model: "top-feed pillow packing platform", page: "Brochure flow-wrap section" },
+  "pillow-packing-machine-paper-from-bottom": { model: "bottom-feed pillow packing platform", page: "Brochure flow-wrap section" },
+  "reciprocating-pillow-packing-machine": { model: "reciprocating pillow packing platform", page: "Brochure flow-wrap section" },
+  "pillow-type-full-automatic-packaging-production-line": { model: "250L/250S pillow type automatic production line", page: "Brochure p.39" },
+  "high-speed-automatic-packing-machine": { model: "320/898 high-speed automatic platform", page: "Brochure pp.28, 38" },
+  "heat-shrink-sealing-cutting-machine": { model: "100 heat shrink and sealing-cutting platform", page: "Brochure p.41" },
+  "full-servo-high-speed-heat-shrink-packing-machine": { model: "full-servo heat shrink platform", page: "Brochure p.41" },
+  "adjustable-transparent-film-overwrapping-machine": { model: "01 adjustable transparent overwrapping platform", page: "Brochure p.42" },
+  "transparent-film-overwrapping-machine": { model: "2000B/D/E transparent film overwrapping platform", page: "Brochure p.43" },
+  "capsule-coffee-filling-sealing-machine": { model: "1A capsule coffee filling and sealing platform", page: "Brochure p.44" },
+  "full-automatic-cup-filling-sealing-machine": { model: "4/8/12 cup filling and sealing platform", page: "Brochure p.45" },
+  "automatic-cartoning-machine": { model: "120 automatic cartoning platform", page: "Brochure p.46" },
+  "automatic-box-opening-sealing-machine": { model: "40F/560FX case opening and sealing platform", page: "Brochure p.47" },
+  "semi-auto-powder-filling-machine": { model: "5F semi-auto powder filling platform", page: "Brochure p.48" },
+  "semi-auto-granule-weighing-packing-machine": { model: "5K semi-auto granule weighing platform", page: "Brochure p.48" },
+  "automatic-granule-filling-production-line": { model: "5KL granule filling line", page: "Brochure p.49" },
+  "automatic-powder-filling-production-line": { model: "5FL powder filling line", page: "Brochure p.50" },
+  "automatic-liquid-filling-production-line": { model: "5YL liquid filling line", page: "Brochure p.51" },
+  "automatic-carton-case-packing-line": { model: "case opening, sealing and packing line", page: "Brochure p.52" },
+  "automatic-filling-machine": { model: "container filling platform", page: "Brochure filling section" },
+  "full-automatic-unmanned-packaging-production-line": { model: "full automatic unmanned packaging line", page: "Brochure p.52" },
+};
 
 const HOME_DETAIL_COPY = {
   en: {
@@ -329,6 +419,11 @@ function escapeAttr(value) {
   return escapeHtml(value).replaceAll("'", "&#39;");
 }
 
+function heroImageFor(imagePath) {
+  if (!imagePath.startsWith("public/assets/brochure/")) return imagePath;
+  return imagePath.replace("public/assets/brochure/", "public/assets/brochure/hero/");
+}
+
 function json(value) {
   return JSON.stringify(value, null, 2).replaceAll("</", "<\\/");
 }
@@ -528,6 +623,61 @@ function specLookup(item, patterns) {
   return found ? found[1] : "";
 }
 
+function sourceFor(item) {
+  return (
+    BROCHURE_SOURCE_BY_SLUG[item.slug] || {
+      model: `${item.category.toLowerCase()} configurable platform`,
+      page: "Brochure-derived equipment family",
+    }
+  );
+}
+
+function categoryPillarFor(category) {
+  return PILLAR_PAGES.find((page) => page.category === category) || PILLAR_PAGES[0];
+}
+
+function quoteHrefFor(langCode, item) {
+  const params = new URLSearchParams({
+    machine: item.title,
+    product: item.applications.slice(0, 3).join(", "),
+    source: item.slug,
+  });
+  return `${localizedPath(langCode, "/")}?${params.toString()}#quote`;
+}
+
+function acceptanceChecksFor(item) {
+  const speed = specLookup(item, ["speed", "output", "production"]) || "target output";
+  const dosing = specLookup(item, ["dosing", "filling", "measuring", "weighing"]) || item.options.slice(0, 2).join(" or ");
+  const packageStyle = (item.packageStyles || defaultFor(item).packageStyles)[0];
+  const source = sourceFor(item);
+  return [
+    `Validate ${speed} with real product samples, final pack size and the chosen dosing method.`,
+    `Run seal and leak checks around ${packageStyle}, film or pouch material, filling temperature and product residue at the seal area.`,
+    `Confirm ${dosing} accuracy, cleaning access, product contact material and changeover time before final quotation.`,
+    `Use the ${source.model} reference as a starting platform, then lock voltage, air supply, footprint, conveyor direction and downstream add-ons in the RFQ.`,
+  ];
+}
+
+function comparisonLinksFor(item, langCode) {
+  const sameCategory = MACHINE_PAGES.filter((candidate) => candidate.category === item.category && candidate.slug !== item.slug).slice(0, 5);
+  const pillar = categoryPillarFor(item.category);
+  return [
+    {
+      label: categoryFor(langCode, item.category),
+      href: localizedHref(langCode, pillar.path),
+      text: `Compare the full ${categoryFor(langCode, item.category).toLowerCase()} family before selecting one machine.`,
+    },
+    ...sameCategory.map((candidate) => {
+      const relatedItem = localizedItemFor(candidate, langCode);
+      return {
+        label: relatedItem.title,
+        href: localizedHref(langCode, `/machines/${candidate.slug}.html`),
+        text: relatedItem.summary,
+      };
+    }),
+  ].slice(0, 6);
+}
+
 function snapshotFor(item, langCode) {
   const labels = copyFor(langCode).machine.snapshotLabels || COPY.en.machine.snapshotLabels;
   const defaults = defaultFor(item);
@@ -584,6 +734,8 @@ function machineJsonLd(item, related, langCode) {
   const library = absoluteUrl(langCode, "/machine-index.html");
   const gallery = galleryFor(item);
   const localized = localizedItemFor(item, langCode);
+  const source = sourceFor(item);
+  const acceptanceChecks = acceptanceChecksFor(item);
   const questions =
     localized.faqQuestions || {
       products: `What products fit ${localized.title}?`,
@@ -593,6 +745,21 @@ function machineJsonLd(item, related, langCode) {
   return {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${home}#organization`,
+        name: "Premade Pouch Machines",
+        url: home,
+        email: "sales@premadepouchmachines.com",
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "sales",
+            email: "sales@premadepouchmachines.com",
+            availableLanguage: LANGUAGES.map((lang) => lang.label),
+          },
+        ],
+      },
       {
         "@type": "WebPage",
         "@id": `${url}#webpage`,
@@ -605,15 +772,24 @@ function machineJsonLd(item, related, langCode) {
       {
         "@type": "Product",
         "@id": `${url}#product`,
+        url,
         name: localized.title,
+        sku: item.slug,
+        mpn: source.model,
+        model: source.model,
         category: categoryFor(langCode, item.category),
         description: `${localized.summary} ${copy.machine.descriptionSuffix}`,
-        image: gallery.map((image) => `${BASE_URL}/${image}`),
+        image: gallery.map((image) => `${BASE_URL}/${heroImageFor(image)}`),
         brand: { "@type": "Brand", name: "Premade Pouch Machines" },
+        manufacturer: { "@id": `${home}#organization` },
+        mainEntityOfPage: { "@id": `${url}#webpage` },
         additionalProperty: [
           ...localized.specs.map(([name, value]) => ({ "@type": "PropertyValue", name, value })),
+          { "@type": "PropertyValue", name: "Reference model family", value: source.model },
+          { "@type": "PropertyValue", name: "Brochure evidence", value: source.page },
           { "@type": "PropertyValue", name: copy.machine.applications, value: localized.applications.join(", ") },
           { "@type": "PropertyValue", name: copy.machine.options, value: localized.options.join(", ") },
+          { "@type": "PropertyValue", name: "Acceptance checks", value: acceptanceChecks.join(" ") },
         ],
       },
       {
@@ -676,21 +852,25 @@ function machinePage(item, langCode) {
   const materials = localized.materials;
   const productBehavior = localized.productBehavior || copy.machine.productBehaviorFallback;
   const lineFit = localized.lineFit || copy.machine.lineFitFallback;
+  const source = sourceFor(item);
+  const acceptanceChecks = acceptanceChecksFor(item);
+  const comparisonLinks = comparisonLinksFor(item, langCode);
+  const quoteHref = quoteHrefFor(langCode, item);
 
   return `<!doctype html>
 <html lang="${copy.htmlLang}" dir="${LANGUAGES.find((lang) => lang.code === langCode).dir}">
-  ${pageHead({ langCode, routePath, title, description, image: item.image, type: "article", jsonLd: machineJsonLd(item, related, langCode) })}
+  ${pageHead({ langCode, routePath, title, description, image: heroImageFor(item.image), type: "article", jsonLd: machineJsonLd(item, related, langCode) })}
   <body>
     ${nav(langCode, routePath)}
     <main class="article-main">
       <section class="article-hero">
         <div class="article-hero-copy">
           <p class="section-kicker">${escapeHtml(localizedCategory)}</p>
-          <h1>${escapeHtml(localized.h1)}</h1>
+          <h1>${escapeHtml(localized.h1 || localized.title)}</h1>
           <p>${escapeHtml(description)}</p>
         </div>
         <div class="article-hero-media">
-          <img src="/${escapeAttr(item.image)}" alt="${escapeAttr(localized.title)}" />
+          <img src="/${escapeAttr(heroImageFor(item.image))}" alt="${escapeAttr(localized.title)}" />
         </div>
       </section>
 
@@ -720,6 +900,21 @@ function machinePage(item, langCode) {
             .join("\n          ")}
         </div>
 
+        <div class="evidence-strip" aria-label="Brochure-derived engineering evidence">
+          <div>
+            <span>${escapeHtml(fallbackMachineLabel(copy, "sourceModel", "Reference model family"))}</span>
+            <strong>${escapeHtml(source.model)}</strong>
+          </div>
+          <div>
+            <span>${escapeHtml(fallbackMachineLabel(copy, "sourceEvidence", "Brochure evidence"))}</span>
+            <strong>${escapeHtml(source.page)}</strong>
+          </div>
+          <div>
+            <span>${escapeHtml(fallbackMachineLabel(copy, "rfqSignal", "RFQ signal"))}</span>
+            <strong>${escapeHtml(item.applications.slice(0, 3).join(", "))}</strong>
+          </div>
+        </div>
+
         <h2>${escapeHtml(copy.machine.overview)}</h2>
         <p>${escapeHtml(localized.summary)} ${escapeHtml(productBehavior)}</p>
 
@@ -729,7 +924,7 @@ function machinePage(item, langCode) {
           ${gallery
             .map(
               (image, index) => `<figure>
-            <img src="/${escapeAttr(image)}" alt="${escapeAttr(`${localized.title} visual ${index + 1}`)}" loading="${index === 0 ? "eager" : "lazy"}" />
+            <img src="/${escapeAttr(heroImageFor(image))}" alt="${escapeAttr(`${localized.title} visual ${index + 1}`)}" loading="${index === 0 ? "eager" : "lazy"}" />
           </figure>`,
             )
             .join("\n          ")}
@@ -786,6 +981,18 @@ function machinePage(item, langCode) {
             .join("\n          ")}
         </div>
 
+        <h2>${escapeHtml(fallbackMachineLabel(copy, "acceptance", "Acceptance checks before order"))}</h2>
+        <div class="article-card-grid two compact-cards">
+          ${acceptanceChecks
+            .map(
+              (line, index) => `<div class="content-card evidence-card">
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <p>${escapeHtml(line)}</p>
+          </div>`,
+            )
+            .join("\n          ")}
+        </div>
+
         <h2>${escapeHtml(copy.machine.features)}</h2>
         <div class="content-columns">
           <div class="content-card">
@@ -818,12 +1025,24 @@ function machinePage(item, langCode) {
             .join("\n          ")}
         </div>
 
+        <h2>${escapeHtml(fallbackMachineLabel(copy, "internalLinks", "Compare nearby machine paths"))}</h2>
+        <div class="seo-link-grid">
+          ${comparisonLinks
+            .map(
+              (link) => `<a href="${link.href}">
+            <strong>${escapeHtml(link.label)}</strong>
+            <span>${escapeHtml(link.text)}</span>
+          </a>`,
+            )
+            .join("\n          ")}
+        </div>
+
         <div class="article-cta">
           <div>
             <h2>${escapeHtml(copy.machine.quoteHeading)}</h2>
             <p>${escapeHtml(copy.machine.quoteText)}</p>
           </div>
-          <a class="button button-primary" href="${localizedHref(langCode, "/", "#quote")}">${escapeHtml(copy.machine.request)}</a>
+          <a class="button button-primary" href="${quoteHref}">${escapeHtml(copy.machine.request)}</a>
         </div>
       </article>
     </main>
@@ -838,35 +1057,70 @@ function pillarPage(page, langCode) {
   const routePath = page.path;
   const title = `${categoryFor(langCode, page.category)} | ${copy.machine.titleSuffix}`;
   const [summary, secondary] = PILLAR_TEXT[page.key][langCode] || PILLAR_TEXT[page.key].en;
-  const related = MACHINE_PAGES.filter((item) => item.image === page.image || item.category === page.category).slice(0, 6);
+  const related = MACHINE_PAGES.filter((item) => item.image === page.image || item.category === page.category);
+  const adjacentCategories = PILLAR_PAGES.filter((candidate) => candidate.path !== page.path).slice(0, 5);
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "@id": `${absoluteUrl(langCode, routePath)}#page`,
-    name: title,
-    description: `${summary} ${secondary}`,
-    inLanguage: copy.htmlLang,
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${absoluteUrl(langCode, routePath)}#page`,
+        name: title,
+        description: `${summary} ${secondary}`,
+        inLanguage: copy.htmlLang,
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${absoluteUrl(langCode, routePath)}#breadcrumbs`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl(langCode, "/") },
+          { "@type": "ListItem", position: 2, name: categoryFor(langCode, page.category), item: absoluteUrl(langCode, routePath) },
+        ],
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${absoluteUrl(langCode, routePath)}#category-machines`,
+        name: categoryFor(langCode, page.category),
+        itemListElement: related.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: localizedItemFor(item, langCode).title,
+          url: absoluteUrl(langCode, `/machines/${item.slug}.html`),
+        })),
+      },
+    ],
   };
 
   return `<!doctype html>
 <html lang="${copy.htmlLang}" dir="${LANGUAGES.find((lang) => lang.code === langCode).dir}">
-  ${pageHead({ langCode, routePath, title, description: `${summary} ${secondary}`, image: page.image, type: "article", jsonLd })}
+  ${pageHead({ langCode, routePath, title, description: `${summary} ${secondary}`, image: heroImageFor(page.image), type: "article", jsonLd })}
   <body>
     ${nav(langCode, routePath)}
     <main class="article-main">
       <section class="article-hero">
         <div class="article-hero-copy">
           <p class="section-kicker">${escapeHtml(categoryFor(langCode, page.category))}</p>
-          <h1>${escapeHtml(title)}</h1>
+          <h1>${escapeHtml(categoryFor(langCode, page.category))}</h1>
           <p>${escapeHtml(summary)}</p>
         </div>
         <div class="article-hero-media">
-          <img src="/${escapeAttr(page.image)}" alt="${escapeAttr(categoryFor(langCode, page.category))}" />
+          <img src="/${escapeAttr(heroImageFor(page.image))}" alt="${escapeAttr(categoryFor(langCode, page.category))}" />
         </div>
       </section>
 
       <article class="article-body">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="${localizedHref(langCode, "/")}">Home</a>
+          <span>/</span>
+          <span>${escapeHtml(categoryFor(langCode, page.category))}</span>
+        </nav>
         <p class="article-lede">${escapeHtml(secondary)}</p>
+        <div class="machine-snapshot category-snapshot" aria-label="Category scope">
+          <div><span>${escapeHtml(fallbackMachineLabel(copy, "categoryMachines", "Machine pages"))}</span><strong>${related.length}</strong></div>
+          <div><span>${escapeHtml(fallbackMachineLabel(copy, "categoryFormat", "Primary format"))}</span><strong>${escapeHtml(categoryFor(langCode, page.category))}</strong></div>
+          <div><span>${escapeHtml(fallbackMachineLabel(copy, "categoryRfq", "RFQ focus"))}</span><strong>${escapeHtml(copy.machine.rfqProducts)}</strong></div>
+          <div><span>${escapeHtml(fallbackMachineLabel(copy, "categoryOutput", "Output basis"))}</span><strong>${escapeHtml(copy.machine.snapshotLabels[2])}</strong></div>
+        </div>
         <h2>${escapeHtml(copy.machine.applications)}</h2>
         <div class="article-card-grid three">
           ${HOME_CARDS.find((card) => card.key === page.key).options
@@ -878,18 +1132,59 @@ function pillarPage(page, langCode) {
             )
             .join("\n          ")}
         </div>
-        <h2>${escapeHtml(copy.machine.related)}</h2>
-        <div class="seo-page-grid">
+
+        <h2>${escapeHtml(fallbackMachineLabel(copy, "categoryChooser", "Choose the closest machine page"))}</h2>
+        <div class="category-machine-grid">
           ${related
             .map((item) => {
               const relatedItem = localizedItemFor(item, langCode);
-              return `<a class="content-card seo-page-card" href="${localizedHref(langCode, `/machines/${item.slug}.html`)}">
-            <span>${escapeHtml(categoryFor(langCode, item.category))}</span>
-            <h3>${escapeHtml(relatedItem.title)}</h3>
-            <p>${escapeHtml(relatedItem.summary)}</p>
+              const source = sourceFor(item);
+              return `<a class="category-machine-card" href="${localizedHref(langCode, `/machines/${item.slug}.html`)}">
+            <img src="/${escapeAttr(heroImageFor(item.image))}" alt="${escapeAttr(relatedItem.title)}" loading="lazy" />
+            <div>
+              <span>${escapeHtml(source.model)}</span>
+              <h3>${escapeHtml(relatedItem.title)}</h3>
+              <p>${escapeHtml(relatedItem.summary)}</p>
+            </div>
           </a>`;
             })
             .join("\n          ")}
+        </div>
+
+        <h2>${escapeHtml(copy.machine.technical)}</h2>
+        <div class="article-table">
+          <div class="row head">
+            <span>${escapeHtml(copy.machine.parameter)}</span>
+            <span>${escapeHtml(copy.machine.value)}</span>
+          </div>
+          ${related
+            .slice(0, 8)
+            .map((item) => {
+              const relatedItem = localizedItemFor(item, langCode);
+              return `<div class="row">
+            <span>${escapeHtml(relatedItem.title)}</span>
+            <span>${escapeHtml(snapshotFor(relatedItem, langCode)[2][1])}</span>
+          </div>`;
+            })
+            .join("\n          ")}
+        </div>
+
+        <h2>${escapeHtml(copy.machine.related)}</h2>
+        <div class="seo-page-grid">
+          ${adjacentCategories
+            .map((item) => `<a class="content-card seo-page-card" href="${localizedHref(langCode, item.path)}">
+            <span>${escapeHtml(copy.nav.seoLibrary)}</span>
+            <h3>${escapeHtml(categoryFor(langCode, item.category))}</h3>
+            <p>${escapeHtml(copy.home.catalogText)}</p>
+          </a>`)
+            .join("\n          ")}
+        </div>
+        <div class="article-cta">
+          <div>
+            <h2>${escapeHtml(copy.machine.quoteHeading)}</h2>
+            <p>${escapeHtml(copy.machine.quoteText)}</p>
+          </div>
+          <a class="button button-primary" href="${localizedPath(langCode, "/")}?machine=${encodeURIComponent(categoryFor(langCode, page.category))}#quote">${escapeHtml(copy.machine.request)}</a>
         </div>
       </article>
     </main>
@@ -911,6 +1206,23 @@ function homeJsonLd(langCode) {
         url: absoluteUrl(langCode, "/"),
         email: "sales@premadepouchmachines.com",
         description: copy.home.description,
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "sales",
+            email: "sales@premadepouchmachines.com",
+            availableLanguage: LANGUAGES.map((lang) => lang.label),
+          },
+        ],
+        makesOffer: PILLAR_PAGES.map((page) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Product",
+            name: categoryFor(langCode, page.category),
+            category: categoryFor(langCode, page.category),
+            url: absoluteUrl(langCode, page.path),
+          },
+        })),
       },
       {
         "@type": "WebSite",
@@ -967,12 +1279,65 @@ function homePage(langCode) {
             <span>${escapeHtml(categoryFor(langCode, "Filling, cartoning and case lines"))}</span>
           </div>
         </div>
+        <aside class="hero-console" aria-label="${escapeAttr(copy.machine.technical)}">
+          <div class="console-header">
+            <span>${escapeHtml(copy.machine.technical)}</span>
+            <strong>RFQ</strong>
+          </div>
+          <div class="console-metrics">
+            <div><span>${escapeHtml(copy.machine.snapshotLabels[2])}</span><strong>60</strong><small>bags/min</small></div>
+            <div><span>${escapeHtml(copy.machine.snapshotLabels[1])}</span><strong>6</strong><small>${escapeHtml(copy.home.catalogDepth[1])}</small></div>
+            <div><span>${escapeHtml(copy.machine.snapshotLabels[3])}</span><strong>4</strong><small>scale / auger / pump / cup</small></div>
+          </div>
+          <div class="console-flow">
+            <span>${escapeHtml(copy.machine.configuration)}</span>
+            <ol>
+              <li>${escapeHtml(copy.home.catalogDepth[0])}</li>
+              <li>${escapeHtml(copy.machine.technical)}</li>
+              <li>${escapeHtml(copy.nav.quote)}</li>
+            </ol>
+          </div>
+        </aside>
       </section>
 
       <section class="proof-strip" aria-label="Factory proof points">
         ${proofMetrics.map(
           (metric, index) => `<div><strong>${metric}</strong><span>${escapeHtml(copy.home.proof[index])}</span></div>`,
         ).join("")}
+      </section>
+
+      <section class="section selector-section" id="selector" aria-labelledby="selector-title">
+        <div class="selector-shell">
+          <div class="selector-copy">
+            <p class="section-kicker">${escapeHtml(copy.nav.guide)}</p>
+            <h2 id="selector-title">${escapeHtml(copy.home.guideTitle)}</h2>
+            <p>${escapeHtml(copy.home.guideText)}</p>
+            <div class="selector-route">
+              <span>${escapeHtml(copy.machine.rfqProducts)}</span>
+              <strong>${escapeHtml(copy.machine.rfqPackage)}</strong>
+              <strong>${escapeHtml(copy.machine.rfqOptions)}</strong>
+            </div>
+          </div>
+          <div class="selector-stack">
+            <div class="selector-media">
+              <img src="/public/assets/brochure/compact-premade-pouch.jpg" alt="${escapeAttr(categoryFor(langCode, "Premade pouch machines"))}" />
+              <div><strong>RFQ</strong><span>${escapeHtml(copy.machine.rfqEvidence)}</span></div>
+            </div>
+            <div class="selector-panel" aria-label="${escapeAttr(copy.machine.technical)}">
+              <div class="selector-tabs" role="tablist">
+                <button class="spec-tab is-active" data-spec="pouch" type="button" role="tab" aria-selected="true">${escapeHtml(categoryFor(langCode, "Premade pouch machines"))}</button>
+                <button class="spec-tab" data-spec="vffs" type="button" role="tab" aria-selected="false">VFFS</button>
+                <button class="spec-tab" data-spec="specialty" type="button" role="tab" aria-selected="false">${escapeHtml(categoryFor(langCode, "Tea and coffee packaging machines"))}</button>
+              </div>
+              <div class="selector-specs">
+                <div><span>${escapeHtml(copy.machine.snapshotLabels[2])}</span><strong data-spec-field="speed">Up to 60 bags/min</strong></div>
+                <div><span>${escapeHtml(copy.machine.snapshotLabels[1])}</span><strong data-spec-field="size">W100-350mm, L150-480mm</strong></div>
+                <div><span>${escapeHtml(copy.machine.snapshotLabels[3])}</span><strong data-spec-field="fill">1.5kg to 5kg range by model</strong></div>
+                <div><span>${escapeHtml(copy.machine.applications)}</span><strong data-spec-field="fit">Granules, powders, liquids and sauces</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="section products-section" id="products" aria-labelledby="products-title">
@@ -984,38 +1349,25 @@ function homePage(langCode) {
           <p>${escapeHtml(copy.home.portfolioText)}</p>
         </div>
         <div class="product-grid">
-          ${PILLAR_PAGES.map((page) => {
+          ${PILLAR_PAGES.map((page, index) => {
             const [summary] = PILLAR_TEXT[page.key][langCode] || PILLAR_TEXT[page.key].en;
             const card = HOME_CARDS.find((item) => item.key === page.key);
-            return `<a class="product-card" href="${localizedHref(langCode, page.path)}">
+            return `<a class="product-card${index === 0 ? " product-card-primary" : ""}" href="${localizedHref(langCode, page.path)}">
             <div class="product-media">
-              <img src="/${escapeAttr(page.image)}" alt="${escapeAttr(categoryFor(langCode, page.category))}" />
+              <img src="/${escapeAttr(heroImageFor(page.image))}" alt="${escapeAttr(categoryFor(langCode, page.category))}" />
             </div>
             <div class="product-body">
               <span class="product-tag">${escapeHtml(card.metric)}</span>
               <h3>${escapeHtml(categoryFor(langCode, page.category))}</h3>
               <p>${escapeHtml(summary)}</p>
+              <div class="product-options">${card.options.map((option) => `<span>${escapeHtml(option)}</span>`).join("")}</div>
             </div>
           </a>`;
           }).join("\n          ")}
         </div>
       </section>
 
-      <section class="section catalog-section" id="catalog" aria-labelledby="catalog-title">
-        <div class="section-heading compact">
-          <p class="section-kicker">${escapeHtml(copy.nav.seoLibrary)}</p>
-          <h2 id="catalog-title">${escapeHtml(copy.home.catalogTitle)}</h2>
-          <p>${escapeHtml(copy.home.catalogText)}</p>
-          <a class="button button-primary" href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.catalog)}</a>
-        </div>
-        <div class="catalog-depth">
-          <div><strong>${MACHINE_PAGES.length}</strong><span>${escapeHtml(copy.home.catalogDepth[0])}</span></div>
-          <div><strong>${new Set(MACHINE_PAGES.map((item) => item.category)).size}</strong><span>${escapeHtml(copy.home.catalogDepth[1])}</span></div>
-          <div><strong>7</strong><span>${escapeHtml(copy.home.catalogDepth[2])}</span></div>
-        </div>
-      </section>
-
-      <section class="section guide-section" id="guide" aria-labelledby="guide-title">
+      <section class="section line-section" id="guide" aria-labelledby="guide-title">
         <div class="section-heading">
           <div>
             <p class="section-kicker">${escapeHtml(copy.nav.guide)}</p>
@@ -1023,7 +1375,23 @@ function homePage(langCode) {
           </div>
           <p>${escapeHtml(copy.home.guideText)}</p>
         </div>
-        <div class="guide-grid">
+        <div class="line-system">
+          <div class="line-visual">
+            <img src="/public/assets/brochure/granule-filling-line-cropped.jpg" alt="${escapeAttr(copy.home.portfolioTitle)}" />
+            <div class="line-visual-note">
+              <span>${escapeHtml(copy.machine.configuration)}</span>
+              <strong>${escapeHtml(copy.home.portfolioText)}</strong>
+            </div>
+          </div>
+          <div class="line-flow" aria-label="${escapeAttr(copy.machine.configuration)}">
+            ${LINE_FLOW_STEPS.map((item) => `<article>
+              <span>${escapeHtml(item.step)}</span>
+              <h3>${escapeHtml(item.title)}</h3>
+              <p>${escapeHtml(item.text)}</p>
+            </article>`).join("\n            ")}
+          </div>
+        </div>
+        <div class="guide-grid procurement-grid">
           ${homeDetail.guideCards.map(
             (card, index) => `<article>
             <span>${String(index + 1).padStart(2, "0")}</span>
@@ -1034,29 +1402,82 @@ function homePage(langCode) {
         </div>
       </section>
 
-      <section class="section applications-section" id="applications" aria-labelledby="applications-title">
-        <div class="section-heading compact">
-          <p class="section-kicker">${escapeHtml(copy.nav.applications)}</p>
-          <h2 id="applications-title">${escapeHtml(copy.home.portfolioTitle)}</h2>
+      <section class="mid-rfq-strip" aria-label="${escapeAttr(copy.nav.quote)}">
+        <div>
+          <span>RFQ</span>
+          <strong>${escapeHtml(copy.home.quoteTitle)}</strong>
+          <p>${escapeHtml(copy.home.quoteText)}</p>
         </div>
-        <div class="application-grid">
+        <a class="button button-primary" href="#quote">${escapeHtml(copy.nav.quote)}</a>
+      </section>
+
+      <section class="section applications-section" id="applications" aria-labelledby="applications-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">${escapeHtml(copy.nav.applications)}</p>
+            <h2 id="applications-title">${escapeHtml(copy.home.portfolioTitle)}</h2>
+          </div>
+          <p>${escapeHtml(copy.home.portfolioText)}</p>
+        </div>
+        <div class="solution-grid">
           ${homeDetail.applicationClusters.map(
-            (item) => `<article>
-            <h3>${escapeHtml(item.title || item[0])}</h3>
-            <p>${escapeHtml(item.text || item[1])}</p>
-          </article>`,
+            (item, index) => {
+              const visual = APPLICATION_VISUALS[index] || APPLICATION_VISUALS[0];
+              return `<article class="solution-card">
+            <div class="solution-media">
+              <img src="/${escapeAttr(heroImageFor(visual.image))}" alt="${escapeAttr(item.title || item[0])}" />
+            </div>
+            <div class="solution-copy">
+              <span>${escapeHtml(visual.fit)}</span>
+              <h3>${escapeHtml(item.title || item[0])}</h3>
+              <p>${escapeHtml(item.text || item[1])}</p>
+              <a href="${localizedHref(langCode, visual.href)}">${escapeHtml(copy.home.secondaryCta)}</a>
+            </div>
+          </article>`;
+            }
           ).join("\n          ")}
         </div>
       </section>
 
       <section class="section specs-section" id="specs" aria-labelledby="specs-title">
-        <div class="section-heading compact">
-          <p class="section-kicker">${escapeHtml(copy.nav.specs)}</p>
-          <h2 id="specs-title">${escapeHtml(copy.home.specsTitle)}</h2>
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">${escapeHtml(copy.nav.specs)}</p>
+            <h2 id="specs-title">${escapeHtml(copy.home.specsTitle)}</h2>
+          </div>
+          <p>${escapeHtml(copy.machine.rfqEvidence)}</p>
         </div>
-        <div class="article-table">
-          <div class="row head"><span>${escapeHtml(copy.machine.parameter)}</span><span>${escapeHtml(copy.machine.value)}</span></div>
-          ${homeDetail.specReferenceLines.map(([label, value]) => `<div class="row"><span>${escapeHtml(label)}</span><span>${escapeHtml(value)}</span></div>`).join("\n          ")}
+        <div class="spec-matrix">
+          ${homeDetail.specReferenceLines.map(([label, value], index) => `<article>
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <h3>${escapeHtml(label)}</h3>
+            <p>${escapeHtml(value)}</p>
+          </article>`).join("\n          ")}
+        </div>
+      </section>
+
+      <section class="section catalog-section" id="catalog" aria-labelledby="catalog-title">
+        <div class="catalog-layout">
+          <div class="catalog-copy">
+            <p class="section-kicker">${escapeHtml(copy.nav.seoLibrary)}</p>
+            <h2 id="catalog-title">${escapeHtml(copy.home.catalogTitle)}</h2>
+            <p>${escapeHtml(copy.home.catalogText)}</p>
+            <a class="button button-primary" href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.catalog)}</a>
+          </div>
+          <div class="catalog-preview">
+            ${PILLAR_PAGES.map((page) => {
+              const count = MACHINE_PAGES.filter((item) => item.category === page.category).length;
+              return `<a href="${localizedHref(langCode, page.path)}">
+                <span>${count || "+"}</span>
+                <strong>${escapeHtml(categoryFor(langCode, page.category))}</strong>
+              </a>`;
+            }).join("\n            ")}
+          </div>
+          <div class="catalog-depth">
+            <div><strong>${MACHINE_PAGES.length}</strong><span>${escapeHtml(copy.home.catalogDepth[0])}</span></div>
+            <div><strong>${new Set(MACHINE_PAGES.map((item) => item.category)).size}</strong><span>${escapeHtml(copy.home.catalogDepth[1])}</span></div>
+            <div><strong>7</strong><span>${escapeHtml(copy.home.catalogDepth[2])}</span></div>
+          </div>
         </div>
       </section>
 
@@ -1066,7 +1487,7 @@ function homePage(langCode) {
           <h2 id="faq-title">${escapeHtml(copy.home.faqTitle)}</h2>
         </div>
         <div class="faq-grid">
-          ${copy.machine.checklistItems.slice(0, 4).map((item) => `<article><h3>${escapeHtml(copy.machine.checklist)}</h3><p>${escapeHtml(item)}</p></article>`).join("")}
+          ${FAQ_ITEMS.map(([question, answer]) => `<article><h3>${escapeHtml(question)}</h3><p>${escapeHtml(answer)}</p></article>`).join("")}
         </div>
       </section>
 
