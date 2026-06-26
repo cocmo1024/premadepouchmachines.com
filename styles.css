@@ -4754,6 +4754,15 @@ body {
   color: #75e0ad;
 }
 
+.chat-hint {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
 .contact-chat {
   background:
     linear-gradient(135deg, rgba(29, 154, 108, 0.32), rgba(31, 122, 192, 0.16)),
@@ -4799,6 +4808,25 @@ body {
 
 .copy-email-inline.is-copied small {
   color: #75e0ad;
+}
+
+.instant-chat-inline {
+  background: rgba(29, 154, 108, 0.14);
+}
+
+.instant-chat-inline span {
+  color: var(--amber);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.instant-chat-inline strong {
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 900;
+  line-height: 1.1;
 }
 
 .mobile-contact-bar {

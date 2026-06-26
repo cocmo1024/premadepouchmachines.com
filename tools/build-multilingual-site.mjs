@@ -17,11 +17,12 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260626x";
+const ASSET_VERSION = "20260626y";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const CONTACT_EMAIL = "info@szcomo.com";
 const WHATSAPP_NUMBER = "8615301541312";
+const INSTANT_CHAT_DISPLAY = "+86 15301541312";
 const DISALLOWED = [
   ["Q", "i", "n", "d", "i", "a", "n"].join(""),
   String.fromCharCode(0x94a6, 0x5178),
@@ -520,7 +521,10 @@ function footer(langCode) {
             <span>${CONTACT_EMAIL}</span>
             <small data-copy-status>Copy</small>
           </a>
-          <a href="${whatsappHref(contactMessage())}" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="instant-chat-inline" href="${whatsappHref(contactMessage())}" target="_blank" rel="noopener" aria-label="Instant chat ${INSTANT_CHAT_DISPLAY}">
+            <span>Instant chat</span>
+            <strong>${INSTANT_CHAT_DISPLAY}</strong>
+          </a>
         </div>
       </div>
       <div class="footer-links">
@@ -534,7 +538,7 @@ function footer(langCode) {
 
 function mobileContactBar(langCode, title = "packaging machine") {
   return `<div class="mobile-contact-bar" aria-label="Quick contact">
-      <a class="chat" href="${whatsappHref(contactMessage(title))}" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="chat" href="${whatsappHref(contactMessage(title))}" target="_blank" rel="noopener" aria-label="Instant chat ${INSTANT_CHAT_DISPLAY}">Chat</a>
       <a href="${mailtoHref(`RFQ: ${title}`, contactMessage(title))}" data-copy-email="${CONTACT_EMAIL}">Email</a>
       <a href="${localizedHref(langCode, "/", "#quote")}">RFQ</a>
     </div>`;
@@ -786,6 +790,7 @@ function machineJsonLd(item, related, langCode) {
             "@type": "ContactPoint",
             contactType: "sales",
             email: CONTACT_EMAIL,
+            telephone: INSTANT_CHAT_DISPLAY,
             availableLanguage: LANGUAGES.map((lang) => lang.label),
           },
         ],
@@ -1243,6 +1248,7 @@ function homeJsonLd(langCode) {
             "@type": "ContactPoint",
             contactType: "sales",
             email: CONTACT_EMAIL,
+            telephone: INSTANT_CHAT_DISPLAY,
             availableLanguage: LANGUAGES.map((lang) => lang.label),
           },
         ],
@@ -1536,7 +1542,8 @@ function homePage(langCode) {
             </a>
             <a class="contact-pill contact-chat" href="${whatsappHref(contactMessage(copy.home.quoteTitle))}" target="_blank" rel="noopener">
               <span>Instant chat</span>
-              <strong>WhatsApp</strong>
+              <strong>${INSTANT_CHAT_DISPLAY}</strong>
+              <small class="chat-hint">WhatsApp</small>
             </a>
           </div>
         </div>
