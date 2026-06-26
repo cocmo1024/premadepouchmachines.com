@@ -9,6 +9,7 @@ const statusEl = document.querySelector("[data-form-status]");
 const mobileRfq = document.querySelector(".mobile-rfq");
 const mobileContactBar = document.querySelector(".mobile-contact-bar");
 const languageSwitchers = document.querySelectorAll("[data-language-switcher]");
+const emailCopyTriggers = document.querySelectorAll("[data-copy-email]");
 
 const specs = {
   pouch: {
@@ -159,6 +160,76 @@ function buildMailto(data) {
 
   return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
 }
+
+async function copyTextToClipboard(text) {
+  const input = document.createElement("textarea");
+  input.value = text;
+  input.setAttribute("readonly", "");
+  input.style.position = "fixed";
+  input.style.top = "-999px";
+  document.body.appendChild(input);
+  input.select();
+  const copied = document.execCommand("copy");
+  input.remove();
+
+  if (copied) return;
+
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch (error) {
+      // Surface a visible blocked state below when every copy method fails.
+    }
+  }
+
+  throw new Error("Clipboard copy failed");
+}
+
+function setCopyFeedback(trigger, text) {
+  const status = trigger.querySelector("[data-copy-status]");
+  trigger.classList.add("is-copied");
+
+  if (status) {
+    status.textContent = text;
+    return;
+  }
+
+  if (!trigger.dataset.copyOriginalText) {
+    trigger.dataset.copyOriginalText = trigger.textContent;
+  }
+  trigger.textContent = text === "Copy blocked" ? "Blocked" : text;
+}
+
+function resetCopyFeedback(trigger) {
+  const status = trigger.querySelector("[data-copy-status]");
+  trigger.classList.remove("is-copied");
+
+  if (status) {
+    status.textContent = status.classList.contains("copy-hint") ? "Click to copy" : "Copy";
+    return;
+  }
+
+  if (trigger.dataset.copyOriginalText) {
+    trigger.textContent = trigger.dataset.copyOriginalText;
+  }
+}
+
+emailCopyTriggers.forEach((trigger) => {
+  trigger.addEventListener("click", async (event) => {
+    const email = trigger.dataset.copyEmail || CONTACT_EMAIL;
+    event.preventDefault();
+
+    try {
+      await copyTextToClipboard(email);
+      setCopyFeedback(trigger, "Copied");
+      window.setTimeout(() => resetCopyFeedback(trigger), 1600);
+    } catch (error) {
+      setCopyFeedback(trigger, "Copy blocked");
+      window.setTimeout(() => resetCopyFeedback(trigger), 2200);
+    }
+  });
+});
 
 function applyRfqContext() {
   if (!form) return;

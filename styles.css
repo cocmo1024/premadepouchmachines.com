@@ -4720,7 +4720,8 @@ body {
 }
 
 .contact-pill:hover,
-.contact-pill:focus {
+.contact-pill:focus,
+.contact-pill.is-copied {
   border-color: rgba(84, 212, 255, 0.42);
   transform: translateY(-1px);
 }
@@ -4740,6 +4741,19 @@ body {
   overflow-wrap: anywhere;
 }
 
+.copy-hint {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.contact-pill.is-copied .copy-hint {
+  color: #75e0ad;
+}
+
 .contact-chat {
   background:
     linear-gradient(135deg, rgba(29, 154, 108, 0.32), rgba(31, 122, 192, 0.16)),
@@ -4757,6 +4771,7 @@ body {
 .footer-contact a {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   min-height: 34px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
@@ -4768,9 +4783,22 @@ body {
 }
 
 .footer-contact a:hover,
-.footer-contact a:focus {
+.footer-contact a:focus,
+.footer-contact a.is-copied {
   border-color: rgba(250, 177, 25, 0.48);
   color: #ffffff;
+}
+
+.copy-email-inline small {
+  color: var(--amber);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.copy-email-inline.is-copied small {
+  color: #75e0ad;
 }
 
 .mobile-contact-bar {
@@ -4805,6 +4833,11 @@ body {
 }
 
 .mobile-contact-bar a.chat {
+  color: #ffffff;
+  background: #1d9a6c;
+}
+
+.mobile-contact-bar a.is-copied {
   color: #ffffff;
   background: #1d9a6c;
 }

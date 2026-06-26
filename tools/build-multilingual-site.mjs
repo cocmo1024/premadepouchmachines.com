@@ -17,7 +17,7 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260626u";
+const ASSET_VERSION = "20260626x";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const CONTACT_EMAIL = "info@szcomo.com";
@@ -516,7 +516,10 @@ function footer(langCode) {
         <strong>Premade Pouch Machines</strong>
         <p>${escapeHtml(copy.home.description)}</p>
         <div class="footer-contact">
-          <a href="${mailtoHref()}">${CONTACT_EMAIL}</a>
+          <a class="copy-email-inline" href="${mailtoHref()}" data-copy-email="${CONTACT_EMAIL}" aria-label="Copy email address">
+            <span>${CONTACT_EMAIL}</span>
+            <small data-copy-status>Copy</small>
+          </a>
           <a href="${whatsappHref(contactMessage())}" target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
@@ -532,7 +535,7 @@ function footer(langCode) {
 function mobileContactBar(langCode, title = "packaging machine") {
   return `<div class="mobile-contact-bar" aria-label="Quick contact">
       <a class="chat" href="${whatsappHref(contactMessage(title))}" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="${mailtoHref(`RFQ: ${title}`, contactMessage(title))}">Email</a>
+      <a href="${mailtoHref(`RFQ: ${title}`, contactMessage(title))}" data-copy-email="${CONTACT_EMAIL}">Email</a>
       <a href="${localizedHref(langCode, "/", "#quote")}">RFQ</a>
     </div>`;
 }
@@ -1526,9 +1529,10 @@ function homePage(langCode) {
           <h2 id="quote-title">${escapeHtml(copy.home.quoteTitle)}</h2>
           <p>${escapeHtml(copy.home.quoteText)}</p>
           <div class="quote-contact" aria-label="Direct contact channels">
-            <a class="contact-pill contact-mail" href="${mailtoHref(`RFQ: ${copy.home.quoteTitle}`, contactMessage(copy.home.quoteTitle))}">
-              <span>Email</span>
+            <a class="contact-pill contact-mail" href="${mailtoHref(`RFQ: ${copy.home.quoteTitle}`, contactMessage(copy.home.quoteTitle))}" data-copy-email="${CONTACT_EMAIL}" aria-label="Copy email address">
+              <span>Copy email</span>
               <strong>${CONTACT_EMAIL}</strong>
+              <small class="copy-hint" data-copy-status>Click to copy</small>
             </a>
             <a class="contact-pill contact-chat" href="${whatsappHref(contactMessage(copy.home.quoteTitle))}" target="_blank" rel="noopener">
               <span>Instant chat</span>
