@@ -1,4 +1,4 @@
-const CONTACT_EMAIL = window.CONTACT_EMAIL || "sales@premadepouchmachines.com";
+const CONTACT_EMAIL = window.CONTACT_EMAIL || "info@szcomo.com";
 const LEAD_ENDPOINT = window.LEAD_ENDPOINT || "";
 
 const header = document.querySelector("[data-header]");
@@ -7,6 +7,7 @@ const nav = document.querySelector("[data-nav]");
 const form = document.querySelector("[data-lead-form]");
 const statusEl = document.querySelector("[data-form-status]");
 const mobileRfq = document.querySelector(".mobile-rfq");
+const mobileContactBar = document.querySelector(".mobile-contact-bar");
 const languageSwitchers = document.querySelectorAll("[data-language-switcher]");
 
 const specs = {
@@ -33,6 +34,7 @@ const specs = {
 function setHeaderState() {
   header?.classList.toggle("is-scrolled", window.scrollY > 12);
   mobileRfq?.classList.toggle("is-visible", window.scrollY > 620);
+  mobileContactBar?.classList.toggle("is-visible", window.scrollY > 360);
 }
 
 function closeMenu() {

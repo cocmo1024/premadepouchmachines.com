@@ -17,9 +17,11 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260626t";
+const ASSET_VERSION = "20260626u";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
+const CONTACT_EMAIL = "info@szcomo.com";
+const WHATSAPP_NUMBER = "8615301541312";
 const DISALLOWED = [
   ["Q", "i", "n", "d", "i", "a", "n"].join(""),
   String.fromCharCode(0x94a6, 0x5178),
@@ -443,6 +445,19 @@ function localizedHref(langCode, routePath, hash = "") {
   return `${localizedPath(langCode, routePath)}${hash}`;
 }
 
+function mailtoHref(subject = "Packaging machine RFQ", body = "") {
+  const query = new URLSearchParams({ subject, body });
+  return `mailto:${CONTACT_EMAIL}?${query.toString()}`;
+}
+
+function whatsappHref(message = "Hello, I would like to discuss a packaging machine RFQ.") {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+function contactMessage(title = "packaging machine") {
+  return `Hello, I would like to discuss a ${title} RFQ. I can share product photos, pack size, target output, voltage and project requirements.`;
+}
+
 function alternateTags(routePath) {
   return [
     ...LANGUAGES.map((lang) => `    <link rel="alternate" hreflang="${lang.hreflang}" href="${absoluteUrl(lang.code, routePath)}" />`),
@@ -500,6 +515,10 @@ function footer(langCode) {
       <div>
         <strong>Premade Pouch Machines</strong>
         <p>${escapeHtml(copy.home.description)}</p>
+        <div class="footer-contact">
+          <a href="${mailtoHref()}">${CONTACT_EMAIL}</a>
+          <a href="${whatsappHref(contactMessage())}" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
       </div>
       <div class="footer-links">
         <a href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.seoLibrary)}</a>
@@ -508,6 +527,14 @@ function footer(langCode) {
         <a href="${localizedHref(langCode, "/", "#quote")}">RFQ</a>
       </div>
     </footer>`;
+}
+
+function mobileContactBar(langCode, title = "packaging machine") {
+  return `<div class="mobile-contact-bar" aria-label="Quick contact">
+      <a class="chat" href="${whatsappHref(contactMessage(title))}" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="${mailtoHref(`RFQ: ${title}`, contactMessage(title))}">Email</a>
+      <a href="${localizedHref(langCode, "/", "#quote")}">RFQ</a>
+    </div>`;
 }
 
 function pageHead({ langCode, routePath, title, description, image = DEFAULT_SOCIAL_IMAGE, type = "website", jsonLd = null }) {
@@ -750,12 +777,12 @@ function machineJsonLd(item, related, langCode) {
         "@id": `${home}#organization`,
         name: "Premade Pouch Machines",
         url: home,
-        email: "sales@premadepouchmachines.com",
+        email: CONTACT_EMAIL,
         contactPoint: [
           {
             "@type": "ContactPoint",
             contactType: "sales",
-            email: "sales@premadepouchmachines.com",
+            email: CONTACT_EMAIL,
             availableLanguage: LANGUAGES.map((lang) => lang.label),
           },
         ],
@@ -1047,6 +1074,7 @@ function machinePage(item, langCode) {
       </article>
     </main>
     ${footer(langCode)}
+    ${mobileContactBar(langCode, localized.title)}
     <script src="/script.js?v=${ASSET_VERSION}"></script>
   </body>
 </html>`;
@@ -1189,6 +1217,7 @@ function pillarPage(page, langCode) {
       </article>
     </main>
     ${footer(langCode)}
+    ${mobileContactBar(langCode, categoryFor(langCode, page.category))}
     <script src="/script.js?v=${ASSET_VERSION}"></script>
   </body>
 </html>`;
@@ -1204,13 +1233,13 @@ function homeJsonLd(langCode) {
         "@id": `${absoluteUrl(langCode, "/")}#organization`,
         name: "Premade Pouch Machines",
         url: absoluteUrl(langCode, "/"),
-        email: "sales@premadepouchmachines.com",
+        email: CONTACT_EMAIL,
         description: copy.home.description,
         contactPoint: [
           {
             "@type": "ContactPoint",
             contactType: "sales",
-            email: "sales@premadepouchmachines.com",
+            email: CONTACT_EMAIL,
             availableLanguage: LANGUAGES.map((lang) => lang.label),
           },
         ],
@@ -1496,6 +1525,16 @@ function homePage(langCode) {
           <p class="section-kicker">RFQ</p>
           <h2 id="quote-title">${escapeHtml(copy.home.quoteTitle)}</h2>
           <p>${escapeHtml(copy.home.quoteText)}</p>
+          <div class="quote-contact" aria-label="Direct contact channels">
+            <a class="contact-pill contact-mail" href="${mailtoHref(`RFQ: ${copy.home.quoteTitle}`, contactMessage(copy.home.quoteTitle))}">
+              <span>Email</span>
+              <strong>${CONTACT_EMAIL}</strong>
+            </a>
+            <a class="contact-pill contact-chat" href="${whatsappHref(contactMessage(copy.home.quoteTitle))}" target="_blank" rel="noopener">
+              <span>Instant chat</span>
+              <strong>WhatsApp</strong>
+            </a>
+          </div>
         </div>
         <form class="quote-form" data-lead-form>
           <label><span>${escapeHtml(homeDetail.form[0])}</span><input name="name" type="text" required /></label>
@@ -1511,7 +1550,7 @@ function homePage(langCode) {
       </section>
     </main>
     ${footer(langCode)}
-    <a class="mobile-rfq" href="#quote">RFQ</a>
+    ${mobileContactBar(langCode, "packaging machine")}
     <script src="/script.js?v=${ASSET_VERSION}"></script>
   </body>
 </html>`;
@@ -1578,6 +1617,7 @@ function hubPage(langCode) {
       </section>
     </main>
     ${footer(langCode)}
+    ${mobileContactBar(langCode, copy.hub.title)}
     <script src="/script.js?v=${ASSET_VERSION}"></script>
   </body>
 </html>`;
