@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { SEO_TOPIC_HUBS, SEO_TOPIC_PAGES } from "../content/seo-clusters.mjs";
 import { MACHINE_PAGES, STATIC_SEO_PAGES } from "../content/seo-machines.mjs";
 import { localizedMachine } from "../content/machine-localization.mjs";
 import {
@@ -17,7 +18,7 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260626y";
+const ASSET_VERSION = "20260630a";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const CONTACT_EMAIL = "info@szcomo.com";
@@ -32,11 +33,24 @@ const DISALLOWED = [
 const NON_DEFAULT_LANGUAGES = LANGUAGES.filter((lang) => lang.code !== "en");
 const REMOVED_LOCALE_DIRS = [String.fromCharCode(0x7a, 0x68)];
 const ROUTES = [
-  ...STATIC_SEO_PAGES,
+  ...STATIC_SEO_PAGES.map((entry) => ({ ...entry, languages: LANGUAGES.map((lang) => lang.code) })),
   ...MACHINE_PAGES.map((item) => ({
     path: `/machines/${item.slug}.html`,
     priority: "0.78",
     changefreq: "monthly",
+    languages: LANGUAGES.map((lang) => lang.code),
+  })),
+  ...SEO_TOPIC_HUBS.map((page) => ({
+    path: page.path,
+    priority: page.priority,
+    changefreq: page.changefreq,
+    languages: ["en"],
+  })),
+  ...SEO_TOPIC_PAGES.map((page) => ({
+    path: page.path,
+    priority: page.priority,
+    changefreq: page.changefreq,
+    languages: ["en"],
   })),
 ];
 
@@ -459,23 +473,44 @@ function contactMessage(title = "packaging machine") {
   return `Hello, I would like to discuss a ${title} RFQ. I can share product photos, pack size, target output, voltage and project requirements.`;
 }
 
+function routeLanguageCodes(routePath) {
+  const normalized = normalizePath(routePath);
+  const route = ROUTES.find((entry) => normalizePath(entry.path) === normalized);
+  return route?.languages || LANGUAGES.map((lang) => lang.code);
+}
+
+function routeLanguages(routePath) {
+  const codes = routeLanguageCodes(routePath);
+  return LANGUAGES.filter((lang) => codes.includes(lang.code));
+}
+
 function alternateTags(routePath) {
+  const languages = routeLanguages(routePath);
+  const defaultLang = languages.find((lang) => lang.code === "en") || languages[0];
   return [
-    ...LANGUAGES.map((lang) => `    <link rel="alternate" hreflang="${lang.hreflang}" href="${absoluteUrl(lang.code, routePath)}" />`),
-    `    <link rel="alternate" hreflang="x-default" href="${absoluteUrl("en", routePath)}" />`,
+    ...languages.map((lang) => `    <link rel="alternate" hreflang="${lang.hreflang}" href="${absoluteUrl(lang.code, routePath)}" />`),
+    `    <link rel="alternate" hreflang="x-default" href="${absoluteUrl(defaultLang.code, routePath)}" />`,
   ].join("\n");
 }
 
 function languageSwitcher(langCode, routePath) {
   const current = LANGUAGES.find((lang) => lang.code === langCode) || LANGUAGES[0];
   const copy = copyFor(langCode);
+  const languages = routeLanguages(routePath);
+  if (languages.length < 2) {
+    return `<div class="language-switcher language-switcher-single">
+          <span class="language-toggle language-static" aria-label="${escapeAttr(copy.nav.language)}">
+            <span class="language-code">${escapeHtml(current.short)}</span>
+          </span>
+        </div>`;
+  }
   return `<div class="language-switcher" data-language-switcher>
           <button class="language-toggle" type="button" aria-label="${escapeAttr(copy.nav.language)}" aria-haspopup="true" aria-expanded="false" data-language-toggle>
             <span class="language-code">${escapeHtml(current.short)}</span>
             <span class="language-chevron" aria-hidden="true"></span>
           </button>
           <div class="language-menu" data-language-menu>
-            ${LANGUAGES.map(
+            ${languages.map(
               (lang) => `<a href="${localizedHref(lang.code, routePath)}" hreflang="${lang.hreflang}" lang="${lang.htmlLang || lang.code}"${lang.code === langCode ? ' aria-current="true" class="is-active"' : ""}>
               <span>${escapeHtml(lang.nativeName)}</span>
               <small>${escapeHtml(lang.short)}</small>
@@ -502,6 +537,9 @@ function nav(langCode, routePath) {
         <a href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.catalog)}</a>
         <a href="${localizedHref(langCode, "/", "#guide")}">${escapeHtml(copy.nav.guide)}</a>
         <a href="${localizedHref(langCode, "/", "#applications")}">${escapeHtml(copy.nav.applications)}</a>
+        ${langCode === "en" ? '<a href="/insights/index.html">Insights</a>' : ""}
+        ${langCode === "en" ? '<a href="/industries/index.html">Industries</a>' : ""}
+        ${langCode === "en" ? '<a href="/technologies/index.html">Tech</a>' : ""}
         <a href="${localizedHref(langCode, "/", "#specs")}">${escapeHtml(copy.nav.specs)}</a>
         <a href="${localizedHref(langCode, "/", "#faq")}">${escapeHtml(copy.nav.faq)}</a>
         <a href="${localizedHref(langCode, "/", "#quote")}" class="nav-quote">${escapeHtml(copy.nav.quote)}</a>
@@ -529,6 +567,11 @@ function footer(langCode) {
       </div>
       <div class="footer-links">
         <a href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.seoLibrary)}</a>
+        ${
+          langCode === "en"
+            ? SEO_TOPIC_HUBS.map((hub) => `<a href="${hub.path}">${escapeHtml(hub.label)}</a>`).join("\n        ")
+            : ""
+        }
         <a href="${localizedHref(langCode, "/premade-pouch-packaging-machine.html")}">${escapeHtml(categoryFor(langCode, "Premade pouch machines"))}</a>
         <a href="${localizedHref(langCode, "/vertical-form-fill-seal-machine.html")}">VFFS</a>
         <a href="${localizedHref(langCode, "/", "#quote")}">RFQ</a>
@@ -712,6 +755,41 @@ function comparisonLinksFor(item, langCode) {
   ].slice(0, 6);
 }
 
+function machineBySlug(slug) {
+  return MACHINE_PAGES.find((item) => item.slug === slug);
+}
+
+function topicPagesForMachine(item) {
+  return SEO_TOPIC_PAGES.filter((page) => page.machineSlugs.includes(item.slug)).slice(0, 8);
+}
+
+function relatedTopicsFor(page) {
+  const machineSet = new Set(page.machineSlugs);
+  const scored = SEO_TOPIC_PAGES.filter((candidate) => candidate.path !== page.path).map((candidate) => {
+    let score = candidate.group === page.group ? 2 : 0;
+    score += candidate.machineSlugs.filter((slug) => machineSet.has(slug)).length * 3;
+    score += candidate.searchTerms.filter((term) => page.searchTerms.includes(term)).length;
+    return { candidate, score };
+  });
+  return scored
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score || a.candidate.title.localeCompare(b.candidate.title))
+    .map((entry) => entry.candidate)
+    .slice(0, 6);
+}
+
+function topicHubFor(group) {
+  return SEO_TOPIC_HUBS.find((hub) => hub.group === group) || SEO_TOPIC_HUBS[0];
+}
+
+function topicTitleFor(page) {
+  return `${page.title} | Machine Selection, Specs and RFQ Guide`;
+}
+
+function topicPageCount(group) {
+  return SEO_TOPIC_PAGES.filter((page) => page.group === group).length;
+}
+
 function snapshotFor(item, langCode) {
   const labels = copyFor(langCode).machine.snapshotLabels || COPY.en.machine.snapshotLabels;
   const defaults = defaultFor(item);
@@ -890,6 +968,7 @@ function machinePage(item, langCode) {
   const source = sourceFor(item);
   const acceptanceChecks = acceptanceChecksFor(item);
   const comparisonLinks = comparisonLinksFor(item, langCode);
+  const topicLinks = langCode === "en" ? topicPagesForMachine(item) : [];
   const quoteHref = quoteHrefFor(langCode, item);
 
   return `<!doctype html>
@@ -1059,6 +1138,24 @@ function machinePage(item, langCode) {
             })
             .join("\n          ")}
         </div>
+
+        ${
+          topicLinks.length
+            ? `<h2>Related buyer search pages</h2>
+        <div class="seo-page-grid compact-topic-grid">
+          ${topicLinks
+            .map(
+              (topic) => `<a class="content-card seo-page-card" href="${topic.path}">
+            <span>${escapeHtml(topic.groupLabel)}</span>
+            <h3>${escapeHtml(topic.title)}</h3>
+            <p>${escapeHtml(topic.description)}</p>
+            <small>${escapeHtml(topic.searchTerms.slice(0, 3).join(" | "))}</small>
+          </a>`,
+            )
+            .join("\n          ")}
+        </div>`
+            : ""
+        }
 
         <h2>${escapeHtml(fallbackMachineLabel(copy, "internalLinks", "Compare nearby machine paths"))}</h2>
         <div class="seo-link-grid">
@@ -1282,6 +1379,47 @@ function homeJsonLd(langCode) {
       },
     ],
   };
+}
+
+function topicDiscoverySection(langCode, variant = "section") {
+  if (langCode !== "en") return "";
+  const featuredTopics = [
+    ...SEO_TOPIC_PAGES.filter((page) => page.group === "applications").slice(0, 6),
+    ...SEO_TOPIC_PAGES.filter((page) => page.group === "formats").slice(0, 4),
+    ...SEO_TOPIC_PAGES.filter((page) => page.group === "guides").slice(0, 4),
+    ...SEO_TOPIC_PAGES.filter((page) => page.group === "insights").slice(0, 4),
+    ...SEO_TOPIC_PAGES.filter((page) => page.group === "industries").slice(0, 4),
+    ...SEO_TOPIC_PAGES.filter((page) => page.group === "technologies").slice(0, 4),
+  ];
+  const wrapperClass = variant === "article" ? "topic-library-block article-topic-block" : "section topic-library-block";
+  return `<section class="${wrapperClass}" id="keyword-library" aria-labelledby="keyword-library-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">SEO library</p>
+            <h2 id="keyword-library-title">Application, format, industry, technology, buying-intent and market-intelligence pages for long-tail search.</h2>
+          </div>
+          <p>These pages expand the site beyond machine names into the searches buyers actually use: products to pack, buyer industries, pouch formats, dosing choices, sealing and control technologies, RFQ evidence, line-planning questions, market trends and compliance-driven research.</p>
+        </div>
+        <div class="topic-hub-row" aria-label="SEO topic hubs">
+          ${SEO_TOPIC_HUBS.map((hub) => `<a class="topic-hub-card" href="${hub.path}">
+            <span>${escapeHtml(hub.label)}</span>
+            <strong>${topicPageCount(hub.group)}</strong>
+            <small>${escapeHtml(hub.description)}</small>
+          </a>`).join("\n          ")}
+        </div>
+        <div class="seo-page-grid topic-feature-grid">
+          ${featuredTopics
+            .map(
+              (page) => `<a class="content-card seo-page-card" href="${page.path}">
+            <span>${escapeHtml(page.groupLabel)}</span>
+            <h3>${escapeHtml(page.title)}</h3>
+            <p>${escapeHtml(page.description)}</p>
+            <small>${escapeHtml(page.searchTerms.slice(0, 3).join(" | "))}</small>
+          </a>`,
+            )
+            .join("\n          ")}
+        </div>
+      </section>`;
 }
 
 function homePage(langCode) {
@@ -1519,6 +1657,8 @@ function homePage(langCode) {
         </div>
       </section>
 
+      ${topicDiscoverySection(langCode)}
+
       <section class="section faq-section" id="faq" aria-labelledby="faq-title">
         <div class="section-heading compact">
           <p class="section-kicker">${escapeHtml(copy.nav.faq)}</p>
@@ -1606,6 +1746,8 @@ function hubPage(langCode) {
         </div>
       </section>
 
+      ${topicDiscoverySection(langCode, "article")}
+
       <section class="article-body">
         ${groups
           .map(
@@ -1634,18 +1776,367 @@ function hubPage(langCode) {
 </html>`;
 }
 
+function topicJsonLd(page, relatedTopics, relatedMachines) {
+  const url = absoluteUrl("en", page.path);
+  const home = absoluteUrl("en", "/");
+  const hub = absoluteUrl("en", page.hubPath);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${home}#organization`,
+        name: "Premade Pouch Machines",
+        url: home,
+        email: CONTACT_EMAIL,
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "sales",
+            email: CONTACT_EMAIL,
+            telephone: INSTANT_CHAT_DISPLAY,
+            availableLanguage: LANGUAGES.map((lang) => lang.label),
+          },
+        ],
+      },
+      {
+        "@type": "TechArticle",
+        "@id": `${url}#article`,
+        url,
+        headline: page.h1,
+        name: page.title,
+        description: page.description,
+        inLanguage: "en",
+        image: `${BASE_URL}/${heroImageFor(page.image)}`,
+        about: page.searchTerms.map((term) => ({ "@type": "Thing", name: term })),
+        ...(page.sourceNotes?.length ? { citation: page.sourceNotes.map((source) => source.url).filter(Boolean) } : {}),
+        publisher: { "@id": `${home}#organization` },
+        mainEntityOfPage: `${url}#webpage`,
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: page.title,
+        description: page.description,
+        inLanguage: "en",
+        isPartOf: { "@id": `${home}#website` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumbs`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: home },
+          { "@type": "ListItem", position: 2, name: page.groupLabel, item: hub },
+          { "@type": "ListItem", position: 3, name: page.title, item: url },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${url}#faq`,
+        mainEntity: page.faq.map(([question, answer]) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: { "@type": "Answer", text: answer },
+        })),
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${url}#recommended-machines`,
+        name: "Recommended machine paths",
+        itemListElement: relatedMachines.map((machine, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: machine.title,
+          url: absoluteUrl("en", `/machines/${machine.slug}.html`),
+        })),
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${url}#related-search-pages`,
+        name: "Related buyer search pages",
+        itemListElement: relatedTopics.map((topic, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: topic.title,
+          url: absoluteUrl("en", topic.path),
+        })),
+      },
+    ],
+  };
+}
+
+function topicHubJsonLd(hub, pages) {
+  const url = absoluteUrl("en", hub.path);
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${url}#page`,
+        url,
+        name: hub.title,
+        description: hub.description,
+        inLanguage: "en",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumbs`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("en", "/") },
+          { "@type": "ListItem", position: 2, name: hub.label, item: url },
+        ],
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${url}#topic-pages`,
+        name: hub.label,
+        itemListElement: pages.map((page, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: page.title,
+          url: absoluteUrl("en", page.path),
+        })),
+      },
+    ],
+  };
+}
+
+function topicHubPage(hub) {
+  const pages = SEO_TOPIC_PAGES.filter((page) => page.group === hub.group);
+  const machineLinks = uniqueList(pages.flatMap((page) => page.machineSlugs)).map(machineBySlug).filter(Boolean).slice(0, 12);
+  return `<!doctype html>
+<html lang="en" dir="ltr">
+  ${pageHead({ langCode: "en", routePath: hub.path, title: hub.title, description: hub.description, image: DEFAULT_SOCIAL_IMAGE, type: "article", jsonLd: topicHubJsonLd(hub, pages) })}
+  <body>
+    ${nav("en", hub.path)}
+    <main class="article-main">
+      <section class="article-hero seo-library-hero topic-hub-hero">
+        <div class="article-hero-copy">
+          <p class="section-kicker">${escapeHtml(hub.label)}</p>
+          <h1>${escapeHtml(hub.h1)}</h1>
+          <p>${escapeHtml(hub.lede)}</p>
+        </div>
+        <div class="seo-library-panel" aria-label="${escapeAttr(hub.label)} statistics">
+          <div><strong>${pages.length}</strong><span>topic pages</span></div>
+          <div><strong>${machineLinks.length}</strong><span>linked machines</span></div>
+          <div><strong>${uniqueList(pages.flatMap((page) => page.searchTerms)).length}</strong><span>target terms</span></div>
+        </div>
+      </section>
+
+      <section class="article-body topic-body">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span>/</span>
+          <span>${escapeHtml(hub.label)}</span>
+        </nav>
+        <p class="article-lede">${escapeHtml(hub.description)}</p>
+        <div class="seo-page-grid topic-index-grid">
+          ${pages
+            .map(
+              (page) => `<a class="content-card seo-page-card" href="${page.path}">
+            <span>${escapeHtml(page.groupLabel)}</span>
+            <h3>${escapeHtml(page.title)}</h3>
+            <p>${escapeHtml(page.description)}</p>
+            <small>${escapeHtml(page.searchTerms.slice(0, 4).join(" | "))}</small>
+          </a>`,
+            )
+            .join("\n          ")}
+        </div>
+
+        <h2>Machine families linked from this hub</h2>
+        <div class="seo-link-grid">
+          ${machineLinks
+            .map(
+              (machine) => `<a href="/machines/${machine.slug}.html">
+            <strong>${escapeHtml(machine.title)}</strong>
+            <span>${escapeHtml(machine.summary)}</span>
+          </a>`,
+            )
+            .join("\n          ")}
+        </div>
+      </section>
+    </main>
+    ${footer("en")}
+    ${mobileContactBar("en", hub.label)}
+    <script src="/script.js?v=${ASSET_VERSION}"></script>
+  </body>
+</html>`;
+}
+
+function topicPage(page) {
+  const hub = topicHubFor(page.group);
+  const relatedMachines = page.machineSlugs.map(machineBySlug).filter(Boolean);
+  const relatedTopics = relatedTopicsFor(page);
+  const leadMachine = relatedMachines[0] || MACHINE_PAGES[0];
+  const quoteHref = `/?machine=${encodeURIComponent(page.title)}&product=${encodeURIComponent(page.products.slice(0, 4).join(", "))}&source=${encodeURIComponent(page.slug)}#quote`;
+
+  return `<!doctype html>
+<html lang="en" dir="ltr">
+  ${pageHead({ langCode: "en", routePath: page.path, title: topicTitleFor(page), description: page.description, image: heroImageFor(page.image || leadMachine.image), type: "article", jsonLd: topicJsonLd(page, relatedTopics, relatedMachines) })}
+  <body>
+    ${nav("en", page.path)}
+    <main class="article-main">
+      <section class="article-hero topic-hero">
+        <div class="article-hero-copy">
+          <p class="section-kicker">${escapeHtml(page.groupLabel)}</p>
+          <h1>${escapeHtml(page.h1)}</h1>
+          <p>${escapeHtml(page.description)}</p>
+        </div>
+        <div class="article-hero-media">
+          <img src="/${escapeAttr(heroImageFor(page.image || leadMachine.image))}" alt="${escapeAttr(page.title)}" />
+        </div>
+      </section>
+
+      <article class="article-body topic-body">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span>/</span>
+          <a href="${hub.path}">${escapeHtml(hub.label)}</a>
+          <span>/</span>
+          <span>${escapeHtml(page.title)}</span>
+        </nav>
+
+        <p class="article-lede">${escapeHtml(page.intent)}</p>
+
+        <div class="keyword-cloud" aria-label="Target search terms">
+          ${page.searchTerms.map((keyword) => `<span>${escapeHtml(keyword)}</span>`).join("\n          ")}
+        </div>
+
+        <div class="machine-snapshot topic-snapshot" aria-label="Search intent snapshot">
+          <div><span>Products</span><strong>${escapeHtml(page.products.slice(0, 5).join(", ") || page.title)}</strong></div>
+          <div><span>Package formats</span><strong>${escapeHtml(page.formats.slice(0, 4).join(", ") || "Project-specific")}</strong></div>
+          <div><span>Machine paths</span><strong>${relatedMachines.length}</strong></div>
+          <div><span>RFQ focus</span><strong>samples, size, output, options</strong></div>
+        </div>
+
+        <h2>What this search intent usually means</h2>
+        <div class="article-card-grid three">
+          ${page.painPoints
+            .map(
+              (point, index) => `<div class="content-card evidence-card">
+            <span>${String(index + 1).padStart(2, "0")}</span>
+            <p>${escapeHtml(point)}</p>
+          </div>`,
+            )
+            .join("\n          ")}
+        </div>
+
+        ${
+          page.contentSections?.length
+            ? `<h2>Buyer analysis</h2>
+        <div class="insight-section-stack">
+          ${page.contentSections
+            .map(
+              (section) => `<section class="insight-section">
+            <h3>${escapeHtml(section.heading)}</h3>
+            <p>${escapeHtml(section.body)}</p>
+          </section>`,
+            )
+            .join("\n          ")}
+        </div>`
+            : ""
+        }
+
+        ${
+          page.sourceNotes?.length
+            ? `<h2>Market and compliance signals used</h2>
+        <div class="source-note-grid">
+          ${page.sourceNotes
+            .map(
+              (source) => `<a class="source-note-card" href="${escapeAttr(source.url)}" target="_blank" rel="noopener noreferrer">
+            <span>${escapeHtml(source.label)}</span>
+            <p>${escapeHtml(source.note)}</p>
+          </a>`,
+            )
+            .join("\n          ")}
+        </div>`
+            : ""
+        }
+
+        <h2>Recommended machine paths</h2>
+        <div class="category-machine-grid">
+          ${relatedMachines
+            .map(
+              (machine) => `<a class="category-machine-card" href="/machines/${machine.slug}.html">
+            <img src="/${escapeAttr(heroImageFor(machine.image))}" alt="${escapeAttr(machine.title)}" loading="lazy" />
+            <div>
+              <span>${escapeHtml(machine.category)}</span>
+              <h3>${escapeHtml(machine.title)}</h3>
+              <p>${escapeHtml(machine.summary)}</p>
+            </div>
+          </a>`,
+            )
+            .join("\n          ")}
+        </div>
+
+        <h2>Specification signals to confirm</h2>
+        <div class="article-table">
+          <div class="row head">
+            <span>Specification</span>
+            <span>Why it matters</span>
+          </div>
+          ${page.specFocus
+            .map(
+              (line) => `<div class="row">
+            <span>${escapeHtml(line.split(".")[0])}</span>
+            <span>${escapeHtml(line)}</span>
+          </div>`,
+            )
+            .join("\n          ")}
+        </div>
+
+        <h2>RFQ checklist for this page</h2>
+        <div class="rfq-detail-grid">
+          ${page.rfqChecklist.map((line) => `<p>${escapeHtml(line)}</p>`).join("\n          ")}
+        </div>
+
+        <h2>Frequently asked questions</h2>
+        <div class="faq-grid topic-faq-grid">
+          ${page.faq.map(([question, answer]) => `<article><h3>${escapeHtml(question)}</h3><p>${escapeHtml(answer)}</p></article>`).join("")}
+        </div>
+
+        <h2>Related long-tail pages</h2>
+        <div class="seo-page-grid compact-topic-grid">
+          ${relatedTopics
+            .map(
+              (topic) => `<a class="content-card seo-page-card" href="${topic.path}">
+            <span>${escapeHtml(topic.groupLabel)}</span>
+            <h3>${escapeHtml(topic.title)}</h3>
+            <p>${escapeHtml(topic.description)}</p>
+          </a>`,
+            )
+            .join("\n          ")}
+        </div>
+
+        <div class="article-cta">
+          <div>
+            <h2>Turn this search into a practical RFQ.</h2>
+            <p>Send product photos, pack samples, fill weight, target output, voltage and required options. The first reply can focus on a realistic machine path instead of a generic price.</p>
+          </div>
+          <a class="button button-primary" href="${quoteHref}">Request proposal</a>
+        </div>
+      </article>
+    </main>
+    ${footer("en")}
+    ${mobileContactBar("en", page.title)}
+    <script src="/script.js?v=${ASSET_VERSION}"></script>
+  </body>
+</html>`;
+}
+
 function sitemap() {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${ROUTES.flatMap((entry) =>
-  LANGUAGES.map(
+  routeLanguages(entry.path).map(
     (lang) => `  <url>
     <loc>${absoluteUrl(lang.code, entry.path)}</loc>
     <lastmod>${LASTMOD}</lastmod>
     <changefreq>${entry.changefreq}</changefreq>
     <priority>${entry.priority}</priority>
-${LANGUAGES.map((alternate) => `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${absoluteUrl(alternate.code, entry.path)}" />`).join("\n")}
-    <xhtml:link rel="alternate" hreflang="x-default" href="${absoluteUrl("en", entry.path)}" />
+${routeLanguages(entry.path).map((alternate) => `    <xhtml:link rel="alternate" hreflang="${alternate.hreflang}" href="${absoluteUrl(alternate.code, entry.path)}" />`).join("\n")}
+    <xhtml:link rel="alternate" hreflang="x-default" href="${absoluteUrl(routeLanguages(entry.path).find((alternate) => alternate.code === "en")?.code || routeLanguages(entry.path)[0].code, entry.path)}" />
   </url>`,
   ),
 ).join("\n")}
@@ -1664,14 +2155,19 @@ function validateNoDisallowed(filePath, html) {
 function writeRoute(langCode, routePath, html) {
   const filePath = routeToFile(langCode, routePath);
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  validateNoDisallowed(filePath, html);
-  fs.writeFileSync(filePath, html, "utf8");
+  const cleanHtml = html.replace(/[ \t]+$/gm, "");
+  validateNoDisallowed(filePath, cleanHtml);
+  fs.writeFileSync(filePath, cleanHtml, "utf8");
   return filePath;
 }
 
 function removeOldLocaleDirs() {
   const englishMachineDir = path.join(ROOT, "machines");
   if (fs.existsSync(englishMachineDir)) fs.rmSync(englishMachineDir, { recursive: true, force: true });
+  for (const hub of SEO_TOPIC_HUBS) {
+    const dir = path.join(ROOT, hub.path.split("/").filter(Boolean)[0]);
+    if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true });
+  }
   for (const lang of NON_DEFAULT_LANGUAGES) {
     const dir = path.join(ROOT, lang.code);
     if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true });
@@ -1691,11 +2187,13 @@ function build() {
     for (const page of PILLAR_PAGES) writeRoute(lang.code, page.path, pillarPage(page, lang.code));
     for (const item of MACHINE_PAGES) writeRoute(lang.code, `/machines/${item.slug}.html`, machinePage(item, lang.code));
   }
+  for (const hub of SEO_TOPIC_HUBS) writeRoute("en", hub.path, topicHubPage(hub));
+  for (const page of SEO_TOPIC_PAGES) writeRoute("en", page.path, topicPage(page));
 
   const sitemapPath = path.join(ROOT, "sitemap.xml");
   fs.writeFileSync(sitemapPath, sitemap(), "utf8");
 
-  const generatedCount = ROUTES.length * LANGUAGES.length;
+  const generatedCount = ROUTES.reduce((count, route) => count + routeLanguageCodes(route.path).length, 0);
   console.log(`Generated ${generatedCount} multilingual pages and sitemap.xml`);
 }
 

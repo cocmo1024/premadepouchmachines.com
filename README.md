@@ -4,10 +4,15 @@ Integrated multilingual packaging machine website for `premadepouchmachines.com`
 
 Current build output:
 
-- 476 generated HTML pages with matching `sitemap.xml` entries
+- 573 generated HTML pages with matching `sitemap.xml` entries
 - 60 machine intent pages, generated in 7 public language versions
+- 91 English long-tail buyer-intent pages across applications, packaging formats, buying guides, industry insights, buyer-industry playbooks and packaging technologies
+- 6 English SEO topic hubs for applications, formats, procurement guides, industry intelligence, buyer industries and packaging technologies
+- 17 industry-insight pages covering AI, automation, robotics, PPWR, sustainable packaging, 2D barcodes, flexible packaging markets, trade-show trends, supplier comparison, ROI, food safety, reusable packaging, digitalization, export readiness, contract packers and buying-team roles
+- 12 buyer-industry playbooks for coffee roasters, tea brands, supplement and nutrition powders, spice factories, pet food, rice and grain processors, snack brands, sauce producers, frozen food, hardware kits, cosmetics/daily chemicals and bakery/confectionery flow wrap projects
+- 12 packaging-technology guides for servo control, multi-head weighing, auger filling, pump filling, ultrasonic sealing, film heat-seal windows, vacuum/nitrogen, changeover, OEE, 2D barcode verification, HMI/PLC/remote support and cartoning/case integration
 - 15 machine categories across premade pouch, VFFS, sachet, tea, coffee, vacuum, flow wrap, filling, cartoning and downstream lines
-- 476 JSON-LD blocks with canonical URLs, hreflang alternates and page-specific schema
+- Page-specific JSON-LD with canonical URLs, hreflang alternates, FAQ, Breadcrumb, ItemList, citation and product/article schema
 - 49 cleaned brochure image assets used as the primary machine visual library
 
 ## Files
@@ -19,6 +24,7 @@ Current build output:
 - `content/seo-machines.mjs` - source data for generated machine pages
 - `content/brochure-machines.mjs` - brochure-derived long-tail machines, image mappings and rich SEO fields
 - `content/i18n.mjs` - language metadata, hreflang rules and localized buyer copy
+- `content/seo-clusters.mjs` - long-tail application, format, buying-guide, industry-insight, buyer-industry and technology pages for broader search coverage
 - `tools/build-multilingual-site.mjs` - multilingual page and sitemap generator
 - `tools/build-seo-pages.mjs` - compatibility entrypoint that runs the multilingual generator
 - `premade-pouch-packaging-machine.html` - rotary premade pouch machine content page
@@ -35,10 +41,10 @@ Current build output:
 
 ## Contact configuration
 
-The RFQ form uses `sales@premadepouchmachines.com` as the email fallback by default. To change it, edit `script.js`:
+The RFQ form and visible contact blocks use `info@szcomo.com` as the email fallback by default. To change it, edit `script.js` and `tools/build-multilingual-site.mjs`:
 
 ```js
-const CONTACT_EMAIL = window.CONTACT_EMAIL || "sales@premadepouchmachines.com";
+const CONTACT_EMAIL = window.CONTACT_EMAIL || "info@szcomo.com";
 ```
 
 For production campaigns, connect the form to a CRM, Formspree, Make, Zapier, Cloudflare Worker or your own API by setting:
