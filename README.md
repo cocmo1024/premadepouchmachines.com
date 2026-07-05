@@ -4,13 +4,14 @@ Integrated multilingual packaging machine website for `premadepouchmachines.com`
 
 Current build output:
 
-- 573 generated HTML pages with matching `sitemap.xml` entries
+- 620 generated HTML pages with matching `sitemap.xml` entries
 - 60 machine intent pages, generated in 7 public language versions
-- 91 English long-tail buyer-intent pages across applications, packaging formats, buying guides, industry insights, buyer-industry playbooks and packaging technologies
+- 138 English long-tail buyer-intent pages across applications, packaging formats, buying guides, industry insights, buyer-industry playbooks and packaging technologies
 - 6 English SEO topic hubs for applications, formats, procurement guides, industry intelligence, buyer industries and packaging technologies
-- 17 industry-insight pages covering AI, automation, robotics, PPWR, sustainable packaging, 2D barcodes, flexible packaging markets, trade-show trends, supplier comparison, ROI, food safety, reusable packaging, digitalization, export readiness, contract packers and buying-team roles
-- 12 buyer-industry playbooks for coffee roasters, tea brands, supplement and nutrition powders, spice factories, pet food, rice and grain processors, snack brands, sauce producers, frozen food, hardware kits, cosmetics/daily chemicals and bakery/confectionery flow wrap projects
-- 12 packaging-technology guides for servo control, multi-head weighing, auger filling, pump filling, ultrasonic sealing, film heat-seal windows, vacuum/nitrogen, changeover, OEE, 2D barcode verification, HMI/PLC/remote support and cartoning/case integration
+- 596 mapped target search terms across product, format, cost, supplier, compliance, trend and technical-intent pages
+- 25 industry-insight pages covering AI, automation, robotics, PPWR, sustainable packaging, 2D barcodes, flexible packaging markets, trade-show trends, market outlook, labor shortage, traceability, private label, ecommerce readiness, data governance and buying-team roles
+- 20 buyer-industry playbooks for coffee roasters, tea brands, supplement and nutrition powders, spice factories, pet food, rice and grain processors, snack brands, sauce producers, frozen food, hardware kits, cosmetics/daily chemicals, bakery/confectionery, private-label food, powder co-packers, beverage powders, seed processors, meal kits, cleaning products and ecommerce consumer goods
+- 21 packaging-technology guides for servo control, multi-head weighing, auger filling, pump filling, ultrasonic sealing, film heat-seal windows, vacuum/nitrogen, changeover, OEE, 2D barcode verification, HMI/PLC/remote support, cartoning/case integration, vision inspection, coding, recyclable mono-material film, robotic feeding, hygienic design, recipe management, OPC/data collection, residual oxygen testing and end-of-line palletizing
 - 15 machine categories across premade pouch, VFFS, sachet, tea, coffee, vacuum, flow wrap, filling, cartoning and downstream lines
 - Page-specific JSON-LD with canonical URLs, hreflang alternates, FAQ, Breadcrumb, ItemList, citation and product/article schema
 - 49 cleaned brochure image assets used as the primary machine visual library
