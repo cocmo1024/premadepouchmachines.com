@@ -2298,14 +2298,22 @@ textarea {
 }
 
 @media (max-width: 520px) {
+  .brand {
+    gap: 10px;
+  }
+
   .brand-mark {
     width: 38px;
     height: 38px;
   }
 
   .brand-text {
-    max-width: 144px;
-    font-size: 0.93rem;
+    max-width: min(50vw, 198px);
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    font-size: 0.84rem;
+    line-height: 1.05;
   }
 
   .hero h1 {

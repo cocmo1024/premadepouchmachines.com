@@ -1,5 +1,5 @@
 export const BASE_URL = "https://premadepouchmachines.com";
-export const LASTMOD = "2026-07-05";
+export const LASTMOD = "2026-07-08";
 
 export const LANGUAGES = [
   { code: "en", hreflang: "en", label: "English", nativeName: "English", short: "EN", dir: "ltr", pathPrefix: "" },

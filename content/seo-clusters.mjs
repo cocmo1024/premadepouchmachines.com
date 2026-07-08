@@ -25,6 +25,11 @@ const SOURCE = {
   oshaCombustibleDust: "https://www.osha.gov/combustible-dust",
   oshaCombustibleDustGuidance: "https://www.osha.gov/publications/3371combustible-dust",
   fdaTraceabilityList: "https://www.fda.gov/food/food-safety-modernization-act-fsma/food-traceability-list",
+  euMachineryRegulation: "https://eur-lex.europa.eu/EN/legal-content/summary/machinery-safety-requirements.html",
+  euCyberResilienceAct: "https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act",
+  fdaFoodTraceabilityFaq:
+    "https://www.fda.gov/food/food-safety-modernization-act-fsma/frequently-asked-questions-fsma-food-traceability-rule",
+  gs1Standards: "https://www.gs1.org/standards",
 };
 
 function sourceNote(label, url, note) {
@@ -5584,6 +5589,927 @@ const secondWaveTechnologies = [
   }),
 ];
 
+const thirdWaveApplications = [
+  topic("applications", "baby-food-pouch-filling-machine", {
+    title: "Baby Food Pouch Filling Machine",
+    description:
+      "Baby food pouch filling machine guide for puree pouches, spout pouches, pump filling, capping, leak testing and food safety documentation.",
+    intent:
+      "Baby food buyers need careful filling, seal integrity, hygienic contact parts and documentation because pouch leaks or poor cleaning carry high commercial risk.",
+    image: `${A}/stand-up-pouch-filling-capping.jpg`,
+    machineSlugs: ["stand-up-pouch-filling-capping-machine", "automatic-liquid-filling-production-line", "sauce-liquid-premade-bag-packing-machine"],
+    products: ["baby food puree", "fruit puree", "vegetable puree", "smooth food paste", "spout pouch products"],
+    formats: ["spout pouch", "stand-up pouch", "capped pouch", "carton", "case"],
+    searchTerms: ["baby food pouch filling machine", "baby food pouch packing machine", "spout pouch filling capping machine", "puree pouch filling machine", "baby food packaging line"],
+    contentSections: [
+      {
+        heading: "Baby food pouches need conservative validation",
+        body:
+          "The machine scope should include product viscosity, filling temperature, pump design, cap handling, seal quality, leak testing and cleaning workflow. Use final pouch and cap samples before accepting a quote.",
+      },
+      {
+        heading: "Separate filling from processing",
+        body:
+          "A pouch filling machine handles filling, sealing or capping. Any upstream cooking, sterilization or downstream process validation should be scoped separately by the buyer.",
+      },
+    ],
+  }),
+  topic("applications", "honey-stick-pack-machine", {
+    title: "Honey Stick Pack Machine",
+    description:
+      "Honey stick pack machine guide for viscous liquid portion packs, pump filling, anti-drip control, sealing and foodservice cartons.",
+    intent:
+      "Honey stick pack searches are high-intent because the buyer already knows the format and needs viscosity handling, clean seals and portion-pack output.",
+    image: `${A}/sauce-liquid-sachet.jpg`,
+    machineSlugs: ["sauce-liquid-sachet-packing-machine", "multi-line-granule-liquid-powder-packing-machine", "round-corner-sauce-liquid-packing-machine"],
+    products: ["honey", "syrup", "liquid sugar", "sweetener", "viscous liquid"],
+    formats: ["stick pack", "sachet", "single-serve packet", "carton"],
+    searchTerms: ["honey stick pack machine", "honey sachet packing machine", "honey packaging machine", "syrup stick pack machine", "viscous liquid stick pack machine"],
+    contentSections: [
+      {
+        heading: "Viscosity drives filling design",
+        body:
+          "Honey needs the right pump, heated hopper if required, anti-drip nozzle and seal-area protection. Speed promises should be tested at the intended filling temperature.",
+      },
+      {
+        heading: "Single-serve packs need clean cartons",
+        body:
+          "Foodservice honey sticks are often counted into boxes or cartons. Counting, rejects, sticky residue and carton loading should be considered with the primary machine.",
+      },
+    ],
+  }),
+  topic("applications", "jam-jelly-sachet-packaging-machine", {
+    title: "Jam and Jelly Sachet Packaging Machine",
+    description:
+      "Jam and jelly sachet machine guide for fruit paste, jelly, preserves and single-serve spread packets with pump filling and leak control.",
+    intent:
+      "Jam and jelly projects need filling systems that handle viscosity, fruit particles, clean seals and portion-pack presentation.",
+    image: `${A}/round-corner-liquid.jpg`,
+    machineSlugs: ["sauce-liquid-sachet-packing-machine", "round-corner-sauce-liquid-packing-machine", "sauce-liquid-premade-bag-packing-machine"],
+    products: ["jam", "jelly", "fruit paste", "preserves", "spread"],
+    formats: ["sachet", "round-corner sachet", "stand-up pouch", "portion pack"],
+    searchTerms: ["jam sachet packaging machine", "jelly sachet packing machine", "fruit jam packing machine", "single serve jam packet machine", "viscous sauce sachet machine"],
+    contentSections: [
+      {
+        heading: "Particles and viscosity change the pump",
+        body:
+          "Fruit pieces, gel structure and filling temperature affect pump selection, nozzle design and anti-drip behavior. Real product tests are essential.",
+      },
+      {
+        heading: "Leak testing protects the brand",
+        body:
+          "Single-serve jam packets are often packed into cartons. Small leaks can contaminate many packs, so seal strength and reject handling should be part of FAT.",
+      },
+    ],
+  }),
+  topic("applications", "frozen-dumpling-packaging-machine", {
+    title: "Frozen Dumpling Packaging Machine",
+    description:
+      "Frozen dumpling packaging machine guide for VFFS bags, premade pouches, weighing, cold-room handling and moisture-resistant film tracking.",
+    intent:
+      "Frozen dumpling buyers need gentle handling, cold-environment reliability, accurate weighing and strong seals despite condensation risk.",
+    image: `${A}/electronic-scale-vffs.jpg`,
+    machineSlugs: ["electronic-scale-granule-vffs-machine", "granule-premade-bag-packing-machine", "full-automatic-electronic-scale-packing-machine"],
+    products: ["frozen dumplings", "frozen wontons", "frozen prepared food", "frozen pasta", "frozen snacks"],
+    formats: ["pillow bag", "gusset bag", "stand-up pouch", "case"],
+    searchTerms: ["frozen dumpling packaging machine", "frozen dumpling packing machine", "frozen wonton packing machine", "frozen food VFFS machine", "frozen prepared food packaging machine"],
+    contentSections: [
+      {
+        heading: "Frozen products need stable feeding",
+        body:
+          "The line should handle product fragility, surface moisture, cold-room conditions and weighing accuracy. Conveyor and elevator design should avoid product damage.",
+      },
+      {
+        heading: "Film tracking and seal quality",
+        body:
+          "Condensation and low temperatures can affect film tracking and seals. Final film samples and cold-condition product tests reduce commissioning risk.",
+      },
+    ],
+  }),
+  topic("applications", "chocolate-bar-flow-wrapping-machine", {
+    title: "Chocolate Bar Flow Wrapping Machine",
+    description:
+      "Chocolate bar flow wrapping machine guide for bars, wafers, biscuits, regular solids, high-speed pillow packs and cartoning.",
+    intent:
+      "Chocolate bar searches usually point to horizontal flow wrapping, product infeed design, temperature control and downstream carton or case packing.",
+    image: `${A}/high-speed-pillow-system.jpg`,
+    machineSlugs: ["high-speed-pillow-packing-machine", "reciprocating-pillow-packing-machine", "automatic-cartoning-machine"],
+    products: ["chocolate bars", "wafers", "snack bars", "biscuits", "regular solids"],
+    formats: ["flow wrap", "pillow pack", "carton", "case"],
+    searchTerms: ["chocolate bar flow wrapping machine", "chocolate bar packing machine", "wafer flow wrap machine", "snack bar packaging machine", "horizontal flow wrapper for chocolate"],
+    contentSections: [
+      {
+        heading: "Regular product flow is the key",
+        body:
+          "Chocolate bars need stable spacing, orientation and film control. Product temperature, surface condition and infeed timing can affect seal quality and appearance.",
+      },
+      {
+        heading: "Connect flow wrap to cartoning",
+        body:
+          "High-speed bar wrapping often needs counting, grouping, cartoning and case packing. The downstream line should be balanced with wrapper output.",
+      },
+    ],
+  }),
+  topic("applications", "seafood-meat-vacuum-packaging-machine", {
+    title: "Seafood and Meat Vacuum Packaging Machine",
+    description:
+      "Seafood and meat vacuum packaging guide for vertical vacuum packs, stretch film vacuum systems, tray packs and leak-control planning.",
+    intent:
+      "Seafood and meat buyers need vacuum packaging choices that protect product quality, seal integrity and downstream logistics.",
+    image: `${A}/stretch-film-vacuum.jpg`,
+    machineSlugs: ["stretch-film-vacuum-packaging-machine", "vertical-vacuum-packing-machine", "automatic-carton-case-packing-line"],
+    products: ["seafood", "meat portions", "frozen seafood", "ready-to-cook meat", "vacuum packs"],
+    formats: ["vacuum pack", "stretch film pack", "brick pack", "tray pack", "case"],
+    searchTerms: ["seafood vacuum packaging machine", "meat vacuum packing machine", "stretch film vacuum packaging machine", "fish vacuum packaging machine", "vacuum skin packaging machine"],
+    contentSections: [
+      {
+        heading: "Vacuum format depends on product and logistics",
+        body:
+          "Seafood and meat can use chamber vacuum, vertical vacuum or stretch film systems depending on product shape, moisture, output and distribution requirements.",
+      },
+      {
+        heading: "Seal integrity is the buying risk",
+        body:
+          "Moisture, product edges and temperature can affect seal reliability. Leak testing and final material trials should be included before acceptance.",
+      },
+    ],
+  }),
+];
+
+const thirdWaveFormats = [
+  topic("formats", "rollstock-form-fill-seal-machine", {
+    title: "Rollstock Form Fill Seal Machine",
+    description:
+      "Rollstock form fill seal machine guide comparing VFFS, sachet, stretch film and flow wrap systems for roll-film packaging projects.",
+    intent:
+      "Rollstock searches indicate buyers want lower material cost or continuous production and need to choose the correct roll-film machine family.",
+    image: `${A}/electronic-scale-vffs.jpg`,
+    machineSlugs: ["electronic-scale-granule-vffs-machine", "multi-line-granule-liquid-powder-packing-machine", "stretch-film-vacuum-packaging-machine"],
+    products: ["granules", "powders", "liquids", "vacuum packs", "regular solids"],
+    formats: ["rollstock bag", "VFFS bag", "sachet", "flow wrap", "stretch film pack"],
+    searchTerms: ["rollstock form fill seal machine", "roll stock packaging machine", "form fill seal rollstock", "roll film packaging machine", "rollstock pouch machine"],
+    contentSections: [
+      {
+        heading: "Rollstock is not one machine type",
+        body:
+          "VFFS, sachet, flow wrap and stretch film vacuum systems all use roll material but serve different products and package formats. The buyer should start with product behavior and final pack style.",
+      },
+      {
+        heading: "Material economy versus presentation",
+        body:
+          "Rollstock can reduce packaging material cost, while premade pouches may improve shelf presentation. The right choice depends on annual volume, SKU count and retail requirements.",
+      },
+    ],
+  }),
+  topic("formats", "thermoforming-stretch-film-vacuum-packaging-machine", {
+    title: "Thermoforming Stretch Film Vacuum Packaging Machine",
+    description:
+      "Thermoforming and stretch film vacuum packaging guide for meat, seafood, prepared food and high-output vacuum pack lines.",
+    intent:
+      "Thermoforming vacuum searches are high-value because buyers are comparing a full rollstock vacuum line rather than a simple chamber machine.",
+    image: `${A}/stretch-film-vacuum.jpg`,
+    machineSlugs: ["stretch-film-vacuum-packaging-machine", "vertical-vacuum-packing-machine", "automatic-carton-case-packing-line"],
+    products: ["meat", "seafood", "prepared food", "vacuum packs", "retail protein packs"],
+    formats: ["thermoformed pack", "stretch film vacuum pack", "vacuum skin pack", "case"],
+    searchTerms: ["thermoforming vacuum packaging machine", "stretch film vacuum packaging machine", "rollstock vacuum packaging machine", "vacuum skin packaging machine", "meat thermoforming packaging line"],
+    contentSections: [
+      {
+        heading: "Stretch film systems are line projects",
+        body:
+          "A thermoforming vacuum line forms the package, loads product, seals, cuts and discharges packs. The RFQ should include product size, film structure, forming depth and output target.",
+      },
+      {
+        heading: "Downstream handling matters",
+        body:
+          "Vacuum packs may need labeling, weighing, metal detection, cartoning or case packing. The line should protect seal integrity after discharge.",
+      },
+    ],
+  }),
+  topic("formats", "tray-sealing-packaging-machine", {
+    title: "Tray Sealing Packaging Machine",
+    description:
+      "Tray sealing packaging guide for prepared food, ready meals, fresh food, lidding film, coding and downstream cartoning or case packing.",
+    intent:
+      "Tray sealing searches indicate buyers are comparing container-based packaging and need filling, sealing and lidding-film details.",
+    image: `${A}/cup-filling-sealing.jpg`,
+    machineSlugs: ["full-automatic-cup-filling-sealing-machine", "automatic-filling-machine", "automatic-carton-case-packing-line"],
+    products: ["ready meals", "fresh food", "cups", "trays", "portion packs"],
+    formats: ["tray", "cup", "lidding film", "carton", "case"],
+    searchTerms: ["tray sealing packaging machine", "tray sealer machine", "ready meal tray sealing machine", "lidding film packaging machine", "food tray sealing line"],
+    contentSections: [
+      {
+        heading: "Tray sealing starts with the container",
+        body:
+          "Tray material, rim design, lidding film, fill height and product temperature determine sealing method and acceptance testing.",
+      },
+      {
+        heading: "Consider coding and secondary packing",
+        body:
+          "Tray packs often need date coding, labeling, checkweighing and case packing. These modules should be part of line layout planning.",
+      },
+    ],
+  }),
+  topic("formats", "print-apply-label-case-packaging-line", {
+    title: "Print and Apply Label Case Packaging Line",
+    description:
+      "Print-and-apply label guide for packaging lines, covering case labels, barcode verification, carton labels, pallet handoff and traceability records.",
+    intent:
+      "Print-and-apply searches connect secondary packaging with traceability, retail compliance and warehouse scanning.",
+    image: `${A}/case-erector-sealer.jpg`,
+    machineSlugs: ["automatic-carton-case-packing-line", "automatic-box-opening-sealing-machine", "automatic-cartoning-machine"],
+    products: ["cases", "cartons", "retail packs", "warehouse-ready products"],
+    formats: ["case", "carton", "label", "pallet"],
+    searchTerms: ["print apply label packaging line", "case label applicator", "carton print and apply label machine", "case barcode labeling line", "packaging line label verification"],
+    contentSections: [
+      {
+        heading: "Labels connect production to logistics",
+        body:
+          "Case labels must match product, batch, count, barcode and destination. Wrong labels can create warehouse or retailer rejection even when the primary pack is correct.",
+      },
+      {
+        heading: "Verification closes the loop",
+        body:
+          "Barcode verification, reject handling and label data records should be planned with the case packer or case sealer layout.",
+      },
+    ],
+  }),
+  topic("formats", "cup-filling-lidding-machine", {
+    title: "Cup Filling and Lidding Machine",
+    description:
+      "Cup filling and lidding machine guide for yogurt cups, sauce cups, coffee capsules, liquid products and portion packs.",
+    intent:
+      "Cup filling searches are high-intent because the buyer already selected a container and needs filling accuracy, seal quality and cup handling.",
+    image: `${A}/cup-filling-sealing.jpg`,
+    machineSlugs: ["full-automatic-cup-filling-sealing-machine", "capsule-coffee-filling-sealing-machine", "automatic-filling-machine"],
+    products: ["yogurt cups", "sauce cups", "coffee capsules", "liquid portions", "dessert cups"],
+    formats: ["cup", "capsule", "lidding film", "carton", "case"],
+    searchTerms: ["cup filling lidding machine", "cup filling sealing machine", "yogurt cup filling machine", "sauce cup sealing machine", "automatic cup filler sealer"],
+    contentSections: [
+      {
+        heading: "Cup stability decides the filling platform",
+        body:
+          "Cup diameter, height, rim quality, lidding film and product viscosity determine indexing, filling, sealing and discharge design.",
+      },
+      {
+        heading: "Seal and lid quality matter",
+        body:
+          "Cup packs should be tested for seal peel, leakage, film alignment, coding and carton or case packing after filling.",
+      },
+    ],
+  }),
+  topic("formats", "vacuum-skin-packaging-machine", {
+    title: "Vacuum Skin Packaging Machine",
+    description:
+      "Vacuum skin packaging guide for meat, seafood, prepared foods, stretch film systems, product presentation and leak control.",
+    intent:
+      "Vacuum skin packaging searches indicate buyers care about premium presentation, shelf life and tight product conformity.",
+    image: `${A}/stretch-film-vacuum.jpg`,
+    machineSlugs: ["stretch-film-vacuum-packaging-machine", "vertical-vacuum-packing-machine", "automatic-carton-case-packing-line"],
+    products: ["meat", "seafood", "ready meals", "prepared food", "protein packs"],
+    formats: ["vacuum skin pack", "stretch film pack", "tray pack", "case"],
+    searchTerms: ["vacuum skin packaging machine", "VSP packaging machine", "meat vacuum skin packaging", "seafood vacuum skin pack machine", "skin pack packaging line"],
+    contentSections: [
+      {
+        heading: "Skin pack value is presentation plus protection",
+        body:
+          "Vacuum skin packaging can improve product visibility and product hold-down, but film, tray, product height and vacuum settings must be validated together.",
+      },
+      {
+        heading: "Protect seals after packing",
+        body:
+          "Downstream labeling, weighing and case packing should not damage the formed pack or weaken the seal.",
+      },
+    ],
+  }),
+];
+
+const thirdWaveGuides = [
+  topic("guides", "fat-vs-sat-packaging-machine-commissioning-guide", {
+    title: "FAT vs SAT Packaging Machine Commissioning Guide",
+    description:
+      "Guide to FAT, SAT and commissioning for packaging machines, covering test samples, acceptance criteria, installation, training and production ramp-up.",
+    intent:
+      "FAT and SAT searches come from buyers close to purchase who need to avoid surprises between supplier testing and factory start-up.",
+    image: `${A}/unmanned-packaging-line.jpg`,
+    machineSlugs: ["full-automatic-unmanned-packaging-production-line", "granule-premade-bag-packing-machine", "automatic-carton-case-packing-line"],
+    products: ["pouches", "VFFS bags", "sachets", "cartons", "case-packed goods"],
+    formats: ["pouch", "VFFS bag", "sachet", "carton", "case"],
+    searchTerms: ["packaging machine FAT SAT", "packaging machine commissioning", "factory acceptance test packaging machine", "site acceptance test packaging line", "packing machine installation checklist"],
+    contentSections: [
+      {
+        heading: "FAT proves scope before shipment",
+        body:
+          "FAT should use real product, final packaging material, agreed speed, reject checks and operator workflows. It is the best moment to find tooling or material problems.",
+      },
+      {
+        heading: "SAT proves factory fit",
+        body:
+          "SAT confirms utilities, layout, operator access, upstream feeding, downstream packing and training after installation. It should not repeat every FAT item without reason.",
+      },
+    ],
+  }),
+  topic("guides", "packaging-material-trial-protocol-guide", {
+    title: "Packaging Material Trial Protocol Guide",
+    description:
+      "Guide to packaging material trials for pouch, roll film, sachet film, lidding film and recyclable structures before machine purchase.",
+    intent:
+      "Material trial searches are high-value because film or pouch mismatch is a common reason packaging projects fail after quotation.",
+    image: `${A}/transparent-overwrapper.jpg`,
+    machineSlugs: ["electronic-scale-granule-vffs-machine", "granule-premade-bag-packing-machine", "multi-line-granule-liquid-powder-packing-machine"],
+    products: ["pouches", "roll film", "sachets", "lidding film", "recyclable packs"],
+    formats: ["stand-up pouch", "VFFS bag", "sachet", "cup", "carton"],
+    searchTerms: ["packaging material trial protocol", "film trial packaging machine", "pouch sample testing packaging machine", "roll film test packing machine", "packaging machine material test"],
+    contentSections: [
+      {
+        heading: "Material trials should be structured",
+        body:
+          "Trial data should include film tracking, seal temperature window, registration, bag shape, leak rate, waste, speed and operator adjustments.",
+      },
+      {
+        heading: "Use final or representative materials",
+        body:
+          "A machine that runs one film may fail with another. Final pouch or roll film samples reduce the risk of rework after shipment.",
+      },
+    ],
+  }),
+  topic("guides", "packaging-machine-utilities-checklist", {
+    title: "Packaging Machine Utilities Checklist",
+    description:
+      "Utilities checklist for packaging machines, including voltage, compressed air, vacuum, nitrogen, drainage, floor space, network and environmental conditions.",
+    intent:
+      "Utilities checklist searches come from engineers preparing the factory before installation.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["full-automatic-unmanned-packaging-production-line", "servo-premade-bag-packing-machine", "automatic-liquid-filling-production-line"],
+    products: ["automated packaging lines", "pouches", "sachets", "cups", "cases"],
+    formats: ["pouch", "VFFS bag", "sachet", "cup", "case"],
+    searchTerms: ["packaging machine utilities checklist", "packing machine installation requirements", "packaging machine voltage compressed air", "packaging line utility requirements", "packaging machine factory preparation"],
+    contentSections: [
+      {
+        heading: "Utilities must be ready before installation",
+        body:
+          "Confirm voltage, phase, compressed air pressure, air quality, nitrogen, vacuum, drainage, floor capacity, ceiling height and network access before the machine arrives.",
+      },
+      {
+        heading: "Hidden utility gaps slow commissioning",
+        body:
+          "Incorrect voltage, weak compressed air, missing drainage or poor layout access can delay start-up even when the machine itself is ready.",
+      },
+    ],
+  }),
+  topic("guides", "packaging-machine-documentation-handover-guide", {
+    title: "Packaging Machine Documentation Handover Guide",
+    description:
+      "Documentation handover guide for packaging machines, covering manuals, electrical drawings, spare parts, PLC backups, FAT records and training files.",
+    intent:
+      "Documentation searches come from serious buyers, maintenance teams and quality teams who need support after installation.",
+    image: `${A}/case-erector-sealer.jpg`,
+    machineSlugs: ["full-automatic-unmanned-packaging-production-line", "automatic-carton-case-packing-line", "servo-premade-bag-packing-machine"],
+    products: ["packaging lines", "pouches", "cartons", "cases", "multi-SKU products"],
+    formats: ["pouch", "VFFS bag", "sachet", "carton", "case"],
+    searchTerms: ["packaging machine documentation", "packing machine manual handover", "packaging machine electrical drawings", "packaging machine PLC backup", "packaging machine spare parts documentation"],
+    contentSections: [
+      {
+        heading: "Documents are part of the machine",
+        body:
+          "Manuals, drawings, pneumatic diagrams, parameter lists, spare-parts lists and FAT records make maintenance and troubleshooting possible after delivery.",
+      },
+      {
+        heading: "Ask before shipment",
+        body:
+          "Documentation gaps are harder to fix later. Define handover language, file formats and backup requirements before final payment or shipment.",
+      },
+    ],
+  }),
+  topic("guides", "ce-marking-eu-machinery-compliance-packaging-machine-guide", {
+    title: "CE Marking and EU Machinery Compliance Packaging Machine Guide",
+    description:
+      "Guide to CE marking, EU Machinery Regulation readiness, documentation, risk assessment and buyer questions for packaging machines.",
+    intent:
+      "CE and EU machinery compliance searches are high-value for export buyers and European importers evaluating machine documentation.",
+    image: `${A}/unmanned-packaging-line.jpg`,
+    machineSlugs: ["full-automatic-unmanned-packaging-production-line", "high-speed-pillow-packing-machine", "automatic-carton-case-packing-line"],
+    products: ["export packaging machines", "pouch lines", "flow wrap lines", "case packing lines"],
+    formats: ["pouch", "VFFS bag", "flow wrap", "carton", "case"],
+    searchTerms: ["CE marking packaging machine", "EU machinery regulation packaging machine", "packaging machine compliance Europe", "packaging machine risk assessment", "packaging machine declaration of conformity"],
+    contentSections: [
+      {
+        heading: "Compliance is documentation plus design",
+        body:
+          "European buyers should ask for risk assessment support, manuals, electrical documentation, guarding details and declaration documents relevant to the supplied machine scope.",
+      },
+      {
+        heading: "2027 changes increase attention",
+        body:
+          "The EU Machinery Regulation becomes fully applicable from 20 January 2027, so connected and safety-related machine requirements deserve early review in export projects.",
+      },
+    ],
+    sourceNotes: [
+      sourceNote("EU machinery safety summary", SOURCE.euMachineryRegulation, "EUR-Lex states Regulation (EU) 2023/1230 applies from 20 January 2027 with several provisions applying earlier."),
+    ],
+    priority: "0.8",
+  }),
+  topic("guides", "packaging-machine-sample-test-plan", {
+    title: "Packaging Machine Sample Test Plan",
+    description:
+      "Sample test plan for packaging machine buyers, covering product samples, film or pouch samples, output target, rejects, leak checks and acceptance records.",
+    intent:
+      "Sample test searches show buyers are ready to move from generic quote to evidence-based machine selection.",
+    image: `${A}/rotary-premade-line.jpg`,
+    machineSlugs: ["granule-premade-bag-packing-machine", "electronic-scale-granule-vffs-machine", "sauce-liquid-sachet-packing-machine"],
+    products: ["powders", "granules", "liquids", "snacks", "pouches"],
+    formats: ["pouch", "VFFS bag", "sachet", "stick pack"],
+    searchTerms: ["packaging machine sample test", "packing machine test plan", "packaging machine product sample testing", "packaging machine acceptance samples", "packaging machine trial run"],
+    contentSections: [
+      {
+        heading: "Good samples make quotes more accurate",
+        body:
+          "Send real product, density or viscosity data, final pouch or film samples, target fill weight and output target. Photos alone are not enough for difficult products.",
+      },
+      {
+        heading: "Record what matters",
+        body:
+          "During testing, record speed, rejects, seal quality, weight accuracy, film waste, cleaning issues and operator adjustments. These observations prevent vague acceptance.",
+      },
+    ],
+  }),
+];
+
+const thirdWaveInsights = [
+  topic("insights", "eu-machinery-regulation-2027-packaging-machine-readiness", {
+    title: "EU Machinery Regulation 2027 Packaging Machine Readiness",
+    description:
+      "Guide to EU Machinery Regulation 2027 readiness for packaging machines, covering documentation, risk review, digital elements and buyer questions.",
+    intent:
+      "EU Machinery Regulation searches are timely and high-value for European buyers, importers and suppliers planning machine purchases before 2027.",
+    image: `${A}/unmanned-packaging-line.jpg`,
+    machineSlugs: ["full-automatic-unmanned-packaging-production-line", "automatic-carton-case-packing-line", "high-speed-pillow-packing-machine"],
+    products: ["export packaging machines", "food packs", "consumer goods", "case-packed goods"],
+    formats: ["pouch", "VFFS bag", "flow wrap", "carton", "case"],
+    searchTerms: ["EU Machinery Regulation 2027 packaging machine", "Regulation EU 2023/1230 packaging machinery", "packaging machine EU compliance 2027", "EU machinery regulation CE packaging", "packaging machinery safety requirements Europe"],
+    contentSections: [
+      {
+        heading: "2027 is a planning deadline",
+        body:
+          "Packaging machine buyers serving the EU should discuss documentation, guarding, risk assessment, digital elements and support files early rather than treating compliance as a shipping detail.",
+      },
+      {
+        heading: "Ask practical supplier questions",
+        body:
+          "Ask what documentation is included, how safety functions are described, what software or digital elements are present and what support is available for the importer's technical file.",
+      },
+    ],
+    sourceNotes: [
+      sourceNote("EUR-Lex machinery safety requirements", SOURCE.euMachineryRegulation, "EUR-Lex summarizes Regulation (EU) 2023/1230 and states it applies from 20 January 2027."),
+    ],
+    priority: "0.84",
+    changefreq: "weekly",
+  }),
+  topic("insights", "cyber-resilience-act-connected-packaging-machines", {
+    title: "Cyber Resilience Act and Connected Packaging Machines",
+    description:
+      "Guide to the EU Cyber Resilience Act for connected packaging machines, remote support, software updates, cybersecurity documentation and buyer review.",
+    intent:
+      "Connected machine cybersecurity searches are growing because factories want remote support and line data without creating avoidable cyber risk.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["full-automatic-unmanned-packaging-production-line", "servo-premade-bag-packing-machine", "automatic-carton-case-packing-line"],
+    products: ["connected packaging lines", "food packs", "consumer goods", "case-packed products"],
+    formats: ["pouch", "VFFS bag", "sachet", "carton", "case"],
+    searchTerms: ["Cyber Resilience Act packaging machine", "connected packaging machine cybersecurity", "remote support packaging machine CRA", "EU CRA machinery cybersecurity", "packaging machine software updates"],
+    contentSections: [
+      {
+        heading: "Connected machines need cybersecurity scope",
+        body:
+          "Remote support, software updates, user accounts, network access and data export should be part of machine review, especially for factories using connected line dashboards.",
+      },
+      {
+        heading: "Cybersecurity is becoming a buying question",
+        body:
+          "Buyers should ask how remote access is controlled, how updates are handled, what documentation exists and what the plant IT team must approve before commissioning.",
+      },
+    ],
+    sourceNotes: [
+      sourceNote("EU Cyber Resilience Act", SOURCE.euCyberResilienceAct, "The European Commission describes the Cyber Resilience Act as addressing cybersecurity for products with digital elements."),
+      sourceNote("NIST Cybersecurity Framework", SOURCE.nistCyberFramework, "NIST describes the Cybersecurity Framework as a way to manage cybersecurity risk."),
+    ],
+    priority: "0.8",
+    changefreq: "weekly",
+  }),
+  topic("insights", "food-traceability-july-2028-packaging-line-data", {
+    title: "Food Traceability July 2028 Packaging Line Data Guide",
+    description:
+      "Updated FSMA food traceability guide for packaging-line data, lot codes, 2D codes, verification, batch records and July 2028 readiness.",
+    intent:
+      "Food traceability timing searches are current and high-value because food manufacturers need packaging-line data readiness before enforcement resumes.",
+    image: `${A}/automatic-granular.jpg`,
+    machineSlugs: ["full-automatic-unmanned-packaging-production-line", "automatic-carton-case-packing-line", "high-speed-automatic-packing-machine"],
+    products: ["traceable foods", "ready meals", "fresh food packs", "cartons", "cases"],
+    formats: ["pouch", "carton", "case", "label", "2D code"],
+    searchTerms: ["food traceability July 2028 packaging line", "FSMA 204 July 2028 packaging", "food traceability lot code packaging", "packaging line traceability data", "FSMA traceability packaging machine"],
+    contentSections: [
+      {
+        heading: "Compliance date changes do not remove the machine need",
+        body:
+          "Even when enforcement timing moves, packaging lines still need reliable lot coding, verification and data records if the product requires traceability.",
+      },
+      {
+        heading: "Packaging data must be usable",
+        body:
+          "A printed code is only useful if it matches the batch, stays readable and can be connected to the buyer's traceability workflow.",
+      },
+    ],
+    sourceNotes: [
+      sourceNote("FDA Food Traceability Rule FAQ", SOURCE.fdaFoodTraceabilityFaq, "FDA states it proposed extending the Food Traceability Rule compliance date by 30 months to July 20, 2028 and intends to comply with a directive not to enforce before that date."),
+      sourceNote("FDA Food Traceability List", SOURCE.fdaTraceabilityList, "FDA identifies foods for which additional traceability records are required."),
+    ],
+    priority: "0.84",
+    changefreq: "weekly",
+  }),
+  topic("insights", "retail-2d-barcode-pos-readiness-packaging-line", {
+    title: "Retail 2D Barcode POS Readiness Packaging Line Guide",
+    description:
+      "Guide to retail 2D barcode POS readiness, GS1 standards, packaging artwork, coding, verification and line-level barcode quality.",
+    intent:
+      "Retail 2D barcode searches connect brand packaging, retailer scanner readiness and packaging-line code verification.",
+    image: `${A}/automatic-granular.jpg`,
+    machineSlugs: ["high-speed-automatic-packing-machine", "automatic-cartoning-machine", "automatic-carton-case-packing-line"],
+    products: ["retail packs", "food packs", "consumer goods", "cartons", "cases"],
+    formats: ["pouch", "flow wrap", "carton", "label", "case"],
+    searchTerms: ["retail 2D barcode readiness", "GS1 2D barcode packaging line", "POS 2D barcode packaging", "barcode verification retail packaging", "GS1 Digital Link packaging machine"],
+    contentSections: [
+      {
+        heading: "Retail readiness reaches the production line",
+        body:
+          "Packaging artwork, printer selection, code location, camera verification and reject logic all affect whether a 2D code remains usable at checkout and downstream handling.",
+      },
+      {
+        heading: "Brands need a test plan",
+        body:
+          "Test code size, contrast, placement, film reflection, pack curvature and verification at production speed before changing all SKUs.",
+      },
+    ],
+    sourceNotes: [
+      sourceNote("GS1 standards context", SOURCE.gs1Standards, "GS1 describes its standards as a common foundation for identifying, capturing and sharing supply-chain data."),
+      sourceNote("GS1 Sunrise 2027", SOURCE.gs1Sunrise2027, "GS1 US describes industry preparation for 2D barcodes on packaging."),
+    ],
+    priority: "0.82",
+    changefreq: "weekly",
+  }),
+  topic("insights", "packaging-operator-training-skills-gap-guide", {
+    title: "Packaging Operator Training and Skills Gap Guide",
+    description:
+      "Guide to packaging operator training, skills gaps, HMI workflow, changeover, maintenance handoff and automation ramp-up.",
+    intent:
+      "Operator training searches connect labor shortage and automation projects to practical production results after installation.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["full-automatic-unmanned-packaging-production-line", "servo-premade-bag-packing-machine", "high-speed-pillow-packing-machine"],
+    products: ["automated packaging lines", "multi-SKU products", "food packs", "consumer goods"],
+    formats: ["pouch", "VFFS bag", "sachet", "flow wrap", "case"],
+    searchTerms: ["packaging operator training", "packaging machine training", "packaging automation skills gap", "packing line operator training", "packaging machine changeover training"],
+    contentSections: [
+      {
+        heading: "Training is part of automation ROI",
+        body:
+          "A strong machine can underperform if operators cannot change recipes, recover faults, clean parts or interpret alarms. Training should be planned with commissioning.",
+      },
+      {
+        heading: "Use real scenarios",
+        body:
+          "Training should cover start-up, film change, product change, jam clearing, reject response, sanitation and handoff to maintenance.",
+      },
+    ],
+    sourceNotes: [
+      sourceNote("PMMI automation trend context", SOURCE.pmmiTrends, "PMMI links automation and AI to labor and knowledge-sharing challenges in packaging and processing."),
+    ],
+  }),
+  topic("insights", "packaging-material-supplier-collaboration-guide", {
+    title: "Packaging Material Supplier Collaboration Guide",
+    description:
+      "Guide to collaboration between packaging machine suppliers, film suppliers, pouch suppliers and brand teams during material trials.",
+    intent:
+      "Material supplier collaboration searches appear when brands redesign packaging and need machine performance plus material performance to align.",
+    image: `${A}/transparent-overwrapper.jpg`,
+    machineSlugs: ["electronic-scale-granule-vffs-machine", "granule-premade-bag-packing-machine", "multi-line-granule-liquid-powder-packing-machine"],
+    products: ["pouches", "roll film", "sachets", "recyclable materials", "retail packs"],
+    formats: ["stand-up pouch", "VFFS bag", "sachet", "lidding film"],
+    searchTerms: ["packaging material supplier collaboration", "film supplier packaging machine trial", "pouch supplier machine test", "packaging machine material validation", "recyclable film machine trial"],
+    contentSections: [
+      {
+        heading: "Machine and material teams need one test plan",
+        body:
+          "Film structure, pouch stiffness, seal layer, zipper and print registration affect machine performance. The material supplier should be part of early testing.",
+      },
+      {
+        heading: "Avoid blaming the wrong variable",
+        body:
+          "When a trial fails, the cause may be machine settings, film structure, product behavior or package design. A shared test protocol prevents vague conclusions.",
+      },
+    ],
+    sourceNotes: [
+      sourceNote("EU packaging waste objective", SOURCE.euPackagingWasteOfficial, "EU packaging policy emphasizes recyclability and lower use of primary raw materials, increasing the importance of material trials."),
+    ],
+  }),
+];
+
+const thirdWaveIndustries = [
+  topic("industries", "foodservice-portion-packaging-line", {
+    title: "Foodservice Portion Packaging Line",
+    description:
+      "Packaging line playbook for foodservice portion packs, condiment sachets, honey sticks, sauce packets, sugar sticks and carton-ready output.",
+    intent:
+      "Foodservice portion-pack buyers need high-output small packs, counting, clean seals and cartons that can move through distribution.",
+    image: `${A}/multi-line-sachet.jpg`,
+    machineSlugs: ["multi-line-granule-liquid-powder-packing-machine", "sauce-liquid-sachet-packing-machine", "granule-sachet-packing-machine"],
+    products: ["condiment sachets", "honey sticks", "sugar sticks", "sauce packets", "seasoning packets"],
+    formats: ["sachet", "stick pack", "carton", "case"],
+    searchTerms: ["foodservice portion packaging line", "condiment portion pack machine", "foodservice sachet packing line", "honey stick pack line", "single serve packet packaging line"],
+    contentSections: [
+      {
+        heading: "Portion packs need count accuracy",
+        body:
+          "Foodservice buyers often need primary packs counted into cartons. Count accuracy, reject handling and carton cleanliness matter as much as primary pack speed.",
+      },
+      {
+        heading: "Different products need different dosing",
+        body:
+          "Sugar, honey, ketchup and seasoning powder need different dosing modules. A flexible portion-pack line should be scoped by product family.",
+      },
+    ],
+  }),
+  topic("industries", "bakery-snack-bar-flow-wrap-line", {
+    title: "Bakery and Snack Bar Flow Wrap Line",
+    description:
+      "Packaging line playbook for bakery bars, chocolate bars, wafers, biscuits, cookies and regular solids using horizontal flow wrapping.",
+    intent:
+      "Bakery and bar manufacturers need continuous infeed, film control, seal quality and downstream cartoning or case packing.",
+    image: `${A}/high-speed-pillow-system.jpg`,
+    machineSlugs: ["high-speed-pillow-packing-machine", "reciprocating-pillow-packing-machine", "automatic-cartoning-machine"],
+    products: ["snack bars", "wafers", "biscuits", "cookies", "bakery products"],
+    formats: ["flow wrap", "pillow pack", "carton", "case"],
+    searchTerms: ["bakery flow wrap line", "snack bar packaging line", "cookie flow wrapping machine", "wafer flow wrap machine", "bar packaging machine"],
+    contentSections: [
+      {
+        heading: "Infeed design decides flow-wrap stability",
+        body:
+          "Regular spacing, product orientation and gentle handling prevent jams and poor seals. The infeed should be tested with real products and production spacing.",
+      },
+      {
+        heading: "Secondary packing is often the bottleneck",
+        body:
+          "High-speed wrappers can exceed manual cartoning capacity. Counting, grouping, cartoning and case packing should be reviewed with wrapper speed.",
+      },
+    ],
+  }),
+  topic("industries", "seafood-meat-vacuum-packaging-line", {
+    title: "Seafood and Meat Vacuum Packaging Line",
+    description:
+      "Packaging line playbook for seafood, meat portions, vacuum packs, stretch film systems, labeling and case packing.",
+    intent:
+      "Seafood and meat processors need vacuum packaging lines that protect seal integrity, product appearance and cold-chain distribution.",
+    image: `${A}/stretch-film-vacuum.jpg`,
+    machineSlugs: ["stretch-film-vacuum-packaging-machine", "vertical-vacuum-packing-machine", "automatic-carton-case-packing-line"],
+    products: ["seafood", "meat", "fish", "frozen seafood", "protein portions"],
+    formats: ["vacuum pack", "stretch film pack", "skin pack", "case"],
+    searchTerms: ["seafood vacuum packaging line", "meat vacuum packaging line", "fish vacuum packing machine", "stretch film vacuum packing line", "protein vacuum packaging machine"],
+    contentSections: [
+      {
+        heading: "Vacuum format depends on product shape",
+        body:
+          "Portion size, moisture, bones, product height and retail presentation decide whether stretch film vacuum, vertical vacuum or another vacuum format fits.",
+      },
+      {
+        heading: "Cold-chain handling affects packaging",
+        body:
+          "Labels, cases, pallets and leak control should be considered with the vacuum system because downstream handling can damage packs.",
+      },
+    ],
+  }),
+  topic("industries", "frozen-dumpling-prepared-food-packaging-line", {
+    title: "Frozen Dumpling and Prepared Food Packaging Line",
+    description:
+      "Packaging line playbook for frozen dumplings, prepared foods, frozen snacks and retail bags with VFFS, premade pouch and case packing.",
+    intent:
+      "Frozen prepared food buyers need cold-compatible feeding, weighing, seal quality and case packing that protects product shape.",
+    image: `${A}/electronic-scale-vffs.jpg`,
+    machineSlugs: ["electronic-scale-granule-vffs-machine", "granule-premade-bag-packing-machine", "automatic-carton-case-packing-line"],
+    products: ["frozen dumplings", "frozen snacks", "prepared food", "frozen vegetables", "frozen meals"],
+    formats: ["VFFS bag", "stand-up pouch", "carton", "case"],
+    searchTerms: ["frozen dumpling packaging line", "frozen prepared food packing line", "frozen food bagging machine", "frozen snack packaging line", "frozen food case packing line"],
+    contentSections: [
+      {
+        heading: "Cold conditions change normal packaging assumptions",
+        body:
+          "Surface moisture, product breakage and cold-room operation can affect feeding, weighing, film tracking and sealing. Test at realistic conditions.",
+      },
+      {
+        heading: "Case packing should protect product shape",
+        body:
+          "Frozen packs should be counted and cased without crushing product shape or damaging seals.",
+      },
+    ],
+  }),
+  topic("industries", "honey-jam-condiment-copacker-line", {
+    title: "Honey, Jam and Condiment Co-Packer Line",
+    description:
+      "Packaging line playbook for co-packers filling honey sticks, jam sachets, sauce packets, condiment pouches and foodservice cartons.",
+    intent:
+      "Condiment co-packers need flexible pump filling, cleaning, formula changeover, counting and documentation across many customer products.",
+    image: `${A}/sauce-liquid-sachet.jpg`,
+    machineSlugs: ["sauce-liquid-sachet-packing-machine", "round-corner-sauce-liquid-packing-machine", "automatic-cartoning-machine"],
+    products: ["honey", "jam", "ketchup", "mayonnaise", "condiment sauces"],
+    formats: ["stick pack", "sachet", "round-corner sachet", "carton", "case"],
+    searchTerms: ["condiment co packer packaging line", "honey stick co packing machine", "jam sachet co packing line", "sauce packet co packer machine", "foodservice condiment packing line"],
+    contentSections: [
+      {
+        heading: "Co-packing needs fast product changeover",
+        body:
+          "Different viscosities, flavors and allergens require cleaning access, recipe control and documented changeover before the next customer SKU.",
+      },
+      {
+        heading: "Counting and cartons protect margins",
+        body:
+          "Small portion packs must be counted into cartons accurately. Counting errors, sticky residue and carton rework damage co-packer margins.",
+      },
+    ],
+  }),
+  topic("industries", "sustainable-packaging-brand-automation-playbook", {
+    title: "Sustainable Packaging Brand Automation Playbook",
+    description:
+      "Packaging automation playbook for brands moving toward recyclable films, mono-material pouches, source reduction and documented material trials.",
+    intent:
+      "Sustainability-focused brands need packaging automation that can validate new materials without sacrificing seal quality, output or shelf life.",
+    image: `${A}/transparent-overwrapper.jpg`,
+    machineSlugs: ["electronic-scale-granule-vffs-machine", "granule-premade-bag-packing-machine", "transparent-film-overwrapping-machine"],
+    products: ["recyclable pouches", "snack packs", "powder packs", "daily chemical pouches", "consumer goods"],
+    formats: ["mono-material pouch", "VFFS bag", "sachet", "overwrap", "carton"],
+    searchTerms: ["sustainable packaging automation", "recyclable pouch packaging line", "mono material packaging machine", "sustainable packaging machine", "source reduction packaging automation"],
+    contentSections: [
+      {
+        heading: "Sustainability claims need production evidence",
+        body:
+          "New materials should be tested for seal strength, tracking, waste, leak rate and product protection before the brand commits to scale.",
+      },
+      {
+        heading: "Machine settings become part of material validation",
+        body:
+          "Temperature, dwell time, pressure, speed and package stiffness should be recorded during trials so the brand and material supplier can improve the structure.",
+      },
+    ],
+    sourceNotes: [
+      sourceNote("EU packaging waste objective", SOURCE.euPackagingWasteOfficial, "EU packaging policy emphasizes waste reduction, recyclability and lower use of primary raw materials."),
+    ],
+  }),
+];
+
+const thirdWaveTechnologies = [
+  topic("technologies", "predictive-maintenance-sensors-packaging-machine-guide", {
+    title: "Predictive Maintenance Sensors Packaging Machine Guide",
+    description:
+      "Guide to predictive maintenance sensors for packaging machines, covering vibration, temperature, air pressure, alarms, OEE and maintenance planning.",
+    intent:
+      "Predictive maintenance searches come from maintenance and plant teams trying to reduce downtime on automated packaging lines.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["full-automatic-unmanned-packaging-production-line", "servo-premade-bag-packing-machine", "high-speed-pillow-packing-machine"],
+    products: ["automated packaging lines", "pouches", "flow wraps", "cartons", "case-packed goods"],
+    formats: ["pouch", "flow wrap", "carton", "case"],
+    searchTerms: ["predictive maintenance packaging machine", "packaging machine sensors", "packaging line downtime prediction", "packaging machine condition monitoring", "packing machine OEE sensors"],
+    contentSections: [
+      {
+        heading: "Sensors need a maintenance workflow",
+        body:
+          "Vibration, temperature, pressure and alarm data only help if maintenance teams know what threshold triggers action and who owns the response.",
+      },
+      {
+        heading: "Start with high-value failure points",
+        body:
+          "Focus first on sealing systems, drive components, compressed air, vacuum and reject stations that create frequent downtime or quality issues.",
+      },
+    ],
+    sourceNotes: [
+      sourceNote("PMMI AI report", SOURCE.pmmiAiReport, "PMMI highlights AI and data use for predictive maintenance and workforce support in packaging equipment."),
+    ],
+  }),
+  topic("technologies", "remote-fat-video-packaging-machine-guide", {
+    title: "Remote FAT and Video Acceptance Packaging Machine Guide",
+    description:
+      "Guide to remote FAT, video acceptance, sample runs, live checks, recorded evidence and buyer review for packaging machines.",
+    intent:
+      "Remote FAT searches are useful for overseas buyers who need acceptance evidence without traveling to the factory.",
+    image: `${A}/rotary-premade-line.jpg`,
+    machineSlugs: ["granule-premade-bag-packing-machine", "full-automatic-unmanned-packaging-production-line", "automatic-carton-case-packing-line"],
+    products: ["pouches", "VFFS bags", "sachets", "cartons", "case-packed goods"],
+    formats: ["pouch", "VFFS bag", "sachet", "carton", "case"],
+    searchTerms: ["remote FAT packaging machine", "video FAT packing machine", "packaging machine remote acceptance", "packaging machine factory acceptance video", "remote commissioning packaging machine"],
+    contentSections: [
+      {
+        heading: "Remote FAT needs a script",
+        body:
+          "Define what will be shown live, what will be recorded, what product and material will be used, and how speed, rejects and seal quality will be documented.",
+      },
+      {
+        heading: "Do not rely on edited highlight clips",
+        body:
+          "A useful remote FAT includes start-up, continuous running, rejects, changeover steps and close views of finished packs.",
+      },
+    ],
+  }),
+  topic("technologies", "cip-clean-in-place-filling-line-guide", {
+    title: "CIP Clean-in-Place Filling Line Guide",
+    description:
+      "Guide to CIP and clean-in-place considerations for liquid filling lines, sauce pouches, pumps, tanks, piping and hygienic packaging projects.",
+    intent:
+      "CIP searches come from liquid and sauce manufacturers that need cleaning workflow, product-contact control and reduced changeover downtime.",
+    image: `${A}/liquid-filling-line-system.jpg`,
+    machineSlugs: ["automatic-liquid-filling-production-line", "sauce-liquid-premade-bag-packing-machine", "stand-up-pouch-filling-capping-machine"],
+    products: ["sauce", "liquid food", "detergent", "puree", "viscous products"],
+    formats: ["pouch", "spout pouch", "bottle", "cup"],
+    searchTerms: ["CIP filling line", "clean in place filling machine", "CIP liquid filling machine", "sauce filling line cleaning", "hygienic pouch filling machine CIP"],
+    contentSections: [
+      {
+        heading: "CIP scope must be explicit",
+        body:
+          "Not every filling machine is designed for full CIP. Define which tanks, pumps, pipes and nozzles are included and what cleaning process the plant expects.",
+      },
+      {
+        heading: "Product viscosity changes cleaning",
+        body:
+          "Sticky sauces, oils and purees may require different cleaning access and contact-part design than water-like liquids.",
+      },
+    ],
+  }),
+  topic("technologies", "anti-drip-nozzle-liquid-filling-guide", {
+    title: "Anti-Drip Nozzle Liquid Filling Guide",
+    description:
+      "Technical guide to anti-drip nozzles for sauce, oil, shampoo, honey and viscous liquid packaging machines.",
+    intent:
+      "Anti-drip nozzle searches indicate buyers are trying to solve seal contamination, messy packs and inaccurate liquid filling.",
+    image: `${A}/sauce-liquid-sachet.jpg`,
+    machineSlugs: ["sauce-liquid-sachet-packing-machine", "sauce-liquid-premade-bag-packing-machine", "automatic-liquid-filling-production-line"],
+    products: ["sauce", "oil", "honey", "shampoo", "viscous liquids"],
+    formats: ["sachet", "pouch", "bottle", "cup"],
+    searchTerms: ["anti drip nozzle filling machine", "liquid filling anti drip nozzle", "sauce filling nozzle", "viscous liquid filling machine", "pouch filling nozzle anti drip"],
+    contentSections: [
+      {
+        heading: "Drips create seal failures",
+        body:
+          "Liquid or sauce residue at the seal area can cause leaks and dirty packs. Nozzle design, timing, filling height and product temperature all matter.",
+      },
+      {
+        heading: "Test with the real product",
+        body:
+          "Honey, oil, ketchup and shampoo behave differently. The anti-drip design should be validated with the final product and target speed.",
+      },
+    ],
+  }),
+  topic("technologies", "nitrogen-generator-packaging-line-guide", {
+    title: "Nitrogen Generator Packaging Line Guide",
+    description:
+      "Guide to nitrogen generator integration for packaging lines, including flow rate, purity, residual oxygen, gas flushing and line validation.",
+    intent:
+      "Nitrogen generator searches come from factories comparing bottled nitrogen, bulk nitrogen and onsite generation for modified-atmosphere packaging.",
+    image: `${A}/rotary-premade-line.jpg`,
+    machineSlugs: ["granule-premade-bag-packing-machine", "electronic-scale-granule-vffs-machine", "drip-coffee-inner-outer-bag-packing-machine"],
+    products: ["coffee", "nuts", "snacks", "milk powder", "tea"],
+    formats: ["stand-up pouch", "VFFS bag", "sachet", "drip coffee bag"],
+    searchTerms: ["nitrogen generator packaging line", "nitrogen flushing with nitrogen generator", "MAP packaging nitrogen generator", "residual oxygen packaging line", "nitrogen packaging machine gas flow"],
+    contentSections: [
+      {
+        heading: "Generator sizing depends on the packaging line",
+        body:
+          "Flow rate, purity, line speed, bag volume and target residual oxygen determine whether a nitrogen generator can support the application.",
+      },
+      {
+        heading: "Validate residual oxygen",
+        body:
+          "Measure residual oxygen with final product, film and speed. Nitrogen hardware alone does not prove shelf-life performance.",
+      },
+    ],
+  }),
+  topic("technologies", "case-label-verification-packaging-line-guide", {
+    title: "Case Label Verification Packaging Line Guide",
+    description:
+      "Guide to case label verification, barcode checking, print-and-apply labels, reject handling and warehouse-ready packaging lines.",
+    intent:
+      "Case label verification searches indicate brands need secondary-pack accuracy for retailers, warehouses and traceability systems.",
+    image: `${A}/case-erector-sealer.jpg`,
+    machineSlugs: ["automatic-carton-case-packing-line", "automatic-box-opening-sealing-machine", "automatic-cartoning-machine"],
+    products: ["cases", "cartons", "retail packs", "food packs", "consumer goods"],
+    formats: ["case", "carton", "label", "pallet"],
+    searchTerms: ["case label verification packaging line", "case barcode verification", "print apply label verification", "warehouse label verification packaging", "case labeling packaging line"],
+    contentSections: [
+      {
+        heading: "Wrong case labels create downstream failure",
+        body:
+          "A case with the wrong barcode, count or lot can be rejected by a warehouse or retailer even when the product inside is correct.",
+      },
+      {
+        heading: "Verification should trigger action",
+        body:
+          "The line should verify the printed label and reject or stop when the label is missing, unreadable or mismatched.",
+      },
+    ],
+  }),
+];
+
 export const SEO_TOPIC_HUBS = Object.entries(GROUPS).map(([group, data]) => ({
   group,
   ...data,
@@ -5609,4 +6535,10 @@ export const SEO_TOPIC_PAGES = [
   ...secondWaveInsights,
   ...secondWaveIndustries,
   ...secondWaveTechnologies,
+  ...thirdWaveApplications,
+  ...thirdWaveFormats,
+  ...thirdWaveGuides,
+  ...thirdWaveInsights,
+  ...thirdWaveIndustries,
+  ...thirdWaveTechnologies,
 ];
