@@ -10,6 +10,10 @@ const mobileRfq = document.querySelector(".mobile-rfq");
 const mobileContactBar = document.querySelector(".mobile-contact-bar");
 const languageSwitchers = document.querySelectorAll("[data-language-switcher]");
 const emailCopyTriggers = document.querySelectorAll("[data-copy-email]");
+const catalogSearch = document.querySelector("[data-catalog-search]");
+const catalogSearchInput = document.querySelector("[data-catalog-search-input]");
+const catalogSearchStatus = document.querySelector("[data-catalog-search-status]");
+const catalogCards = document.querySelectorAll("[data-catalog-card]");
 
 const specs = {
   pouch: {
@@ -262,6 +266,53 @@ function applyRfqContext() {
 }
 
 applyRfqContext();
+
+function normalizeSearchTerm(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function applyCatalogSearch(query) {
+  if (!catalogSearchInput || !catalogCards.length) return;
+  const term = normalizeSearchTerm(query);
+  let visible = 0;
+
+  catalogCards.forEach((card) => {
+    const haystack = card.dataset.search || card.textContent.toLowerCase();
+    const match = !term || haystack.includes(term);
+    card.hidden = !match;
+    if (match) visible += 1;
+  });
+
+  if (catalogSearchStatus) {
+    catalogSearchStatus.textContent = term
+      ? `${visible} matching machine pages for "${query}".`
+      : `${catalogCards.length} machine pages available.`;
+  }
+}
+
+if (catalogSearch && catalogSearchInput) {
+  const params = new URLSearchParams(window.location.search);
+  const initialQuery = params.get("q") || "";
+  catalogSearchInput.value = initialQuery;
+  applyCatalogSearch(initialQuery);
+
+  catalogSearchInput.addEventListener("input", () => {
+    applyCatalogSearch(catalogSearchInput.value);
+  });
+
+  catalogSearch.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const query = catalogSearchInput.value.trim();
+    const url = new URL(window.location.href);
+    if (query) {
+      url.searchParams.set("q", query);
+    } else {
+      url.searchParams.delete("q");
+    }
+    window.history.replaceState({}, "", url);
+    applyCatalogSearch(query);
+  });
+}
 
 if (form && statusEl) {
   form.addEventListener("submit", async (event) => {

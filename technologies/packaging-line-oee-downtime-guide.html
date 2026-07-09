@@ -28,6 +28,7 @@
       "@id": "https://premadepouchmachines.com/#organization",
       "name": "Premade Pouch Machines",
       "url": "https://premadepouchmachines.com/",
+      "logo": "https://premadepouchmachines.com/favicon.ico",
       "email": "info@szcomo.com",
       "contactPoint": [
         {
@@ -48,6 +49,20 @@
       ]
     },
     {
+      "@type": "WebSite",
+      "@id": "https://premadepouchmachines.com/#website",
+      "url": "https://premadepouchmachines.com/",
+      "name": "Premade Pouch Machines",
+      "publisher": {
+        "@id": "https://premadepouchmachines.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://premadepouchmachines.com/machine-index.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
       "@type": "TechArticle",
       "@id": "https://premadepouchmachines.com/technologies/packaging-line-oee-downtime-guide.html#article",
       "url": "https://premadepouchmachines.com/technologies/packaging-line-oee-downtime-guide.html",
@@ -56,6 +71,8 @@
       "description": "Technical guide to packaging line OEE, downtime, reject tracking, speed loss, maintenance planning and good packs per shift.",
       "inLanguage": "en",
       "image": "https://premadepouchmachines.com/public/assets/brochure/hero/unmanned-packaging-line.jpg",
+      "dateModified": "2026-07-09",
+      "keywords": "packaging line OEE, packaging machine downtime, packaging line output calculation, good packs per shift packaging, packaging machine speed loss",
       "about": [
         {
           "@type": "Thing",
@@ -95,6 +112,12 @@
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://premadepouchmachines.com/#website"
+      },
+      "primaryImageOfPage": "https://premadepouchmachines.com/public/assets/brochure/hero/unmanned-packaging-line.jpg",
+      "potentialAction": {
+        "@type": "Action",
+        "name": "Request a packaging machine proposal",
+        "target": "https://premadepouchmachines.com/?machine=Packaging%20Line%20OEE%20and%20Downtime%20Guide&source=packaging-line-oee-downtime-guide#quote"
       }
     },
     {
@@ -221,7 +244,7 @@
     }
   ]
 }</script>
-    <link rel="stylesheet" href="/styles.css?v=20260630a" />
+    <link rel="stylesheet" href="/styles.css?v=20260709a" />
   </head>
   <body>
     <header class="site-header" data-header>
@@ -387,6 +410,25 @@
           <p>Downstream bottleneck review.</p>
         </div>
 
+        <h2>RFQ conversion path</h2>
+        <div class="conversion-path-grid">
+          <article>
+            <span>01</span>
+            <h3>Send the evidence that changes machine selection</h3>
+            <p>Current output and reject data. Target output after automation.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Compare the closest machine families</h3>
+            <p>Full Automatic Unmanned Packaging Production Line, Automatic Carton Case Packing Line, High Speed Automatic Packing Machine</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Lock the acceptance test before price comparison</h3>
+            <p>Define output, accuracy, seal quality, reject logic, utilities, sample test criteria and documentation before comparing supplier quotes.</p>
+          </article>
+        </div>
+
         <h2>Frequently asked questions</h2>
         <div class="faq-grid topic-faq-grid">
           <article><h3>Why not buy based on maximum speed?</h3><p>Maximum speed ignores product behavior, rejects, changeover and downstream limits.</p></article><article><h3>What OEE data helps suppliers?</h3><p>Current output, downtime reasons, reject rates, changeover time and staffing pattern help scope the machine line.</p></article><article><h3>Can OEE be improved with inspection?</h3><p>Yes, when inspection reduces quality escapes and creates useful reject data without excessive false rejects.</p></article>
@@ -468,6 +510,6 @@
       <a href="mailto:info@szcomo.com?subject=RFQ%3A+Packaging+Line+OEE+and+Downtime+Guide&body=Hello%2C+I+would+like+to+discuss+a+Packaging+Line+OEE+and+Downtime+Guide+RFQ.+I+can+share+product+photos%2C+pack+size%2C+target+output%2C+voltage+and+project+requirements." data-copy-email="info@szcomo.com">Email</a>
       <a href="/#quote">RFQ</a>
     </div>
-    <script src="/script.js?v=20260630a"></script>
+    <script src="/script.js?v=20260709a"></script>
   </body>
 </html>

@@ -28,6 +28,7 @@
       "@id": "https://premadepouchmachines.com/#organization",
       "name": "Premade Pouch Machines",
       "url": "https://premadepouchmachines.com/",
+      "logo": "https://premadepouchmachines.com/favicon.ico",
       "email": "info@szcomo.com",
       "contactPoint": [
         {
@@ -48,6 +49,20 @@
       ]
     },
     {
+      "@type": "WebSite",
+      "@id": "https://premadepouchmachines.com/#website",
+      "url": "https://premadepouchmachines.com/",
+      "name": "Premade Pouch Machines",
+      "publisher": {
+        "@id": "https://premadepouchmachines.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://premadepouchmachines.com/machine-index.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
       "@type": "TechArticle",
       "@id": "https://premadepouchmachines.com/industries/coffee-roaster-packaging-line.html#article",
       "url": "https://premadepouchmachines.com/industries/coffee-roaster-packaging-line.html",
@@ -56,6 +71,8 @@
       "description": "Industry playbook for coffee roasters comparing drip coffee bags, ground coffee sachets, premade pouches, nitrogen options and capsule filling paths.",
       "inLanguage": "en",
       "image": "https://premadepouchmachines.com/public/assets/brochure/hero/drip-coffee-inner-outer.jpg",
+      "dateModified": "2026-07-09",
+      "keywords": "coffee roaster packaging line, coffee packaging machine for roasters, drip coffee bag machine for roasters, ground coffee pouch filling machine, coffee packaging automation",
       "about": [
         {
           "@type": "Thing",
@@ -96,6 +113,12 @@
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://premadepouchmachines.com/#website"
+      },
+      "primaryImageOfPage": "https://premadepouchmachines.com/public/assets/brochure/hero/drip-coffee-inner-outer.jpg",
+      "potentialAction": {
+        "@type": "Action",
+        "name": "Request a packaging machine proposal",
+        "target": "https://premadepouchmachines.com/?machine=Coffee%20Roaster%20Packaging%20Line&source=coffee-roaster-packaging-line#quote"
       }
     },
     {
@@ -222,7 +245,7 @@
     }
   ]
 }</script>
-    <link rel="stylesheet" href="/styles.css?v=20260630a" />
+    <link rel="stylesheet" href="/styles.css?v=20260709a" />
   </head>
   <body>
     <header class="site-header" data-header>
@@ -392,6 +415,25 @@
           <p>Acceptance test for weight accuracy, seal quality and pack appearance.</p>
         </div>
 
+        <h2>RFQ conversion path</h2>
+        <div class="conversion-path-grid">
+          <article>
+            <span>01</span>
+            <h3>Send the evidence that changes machine selection</h3>
+            <p>Coffee sample by roast and grind size. Target dose, pack size, daily output and retail channel.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Compare the closest machine families</h3>
+            <p>Drip Coffee Bag Inner and Outer Packing Machine, Powder Premade Bag Packing Machine, Capsule Coffee Filling and Sealing Machine</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Lock the acceptance test before price comparison</h3>
+            <p>Define output, accuracy, seal quality, reject logic, utilities, sample test criteria and documentation before comparing supplier quotes.</p>
+          </article>
+        </div>
+
         <h2>Frequently asked questions</h2>
         <div class="faq-grid topic-faq-grid">
           <article><h3>What machine should a coffee roaster quote first?</h3><p>Quote based on the first commercial format: drip coffee machine, powder pouch machine, powder sachet machine or capsule filling machine.</p></article><article><h3>Is nitrogen required for coffee packaging?</h3><p>It is common when aroma protection and shelf life matter, but the RFQ should define film barrier, residual oxygen target and test method.</p></article><article><h3>Can one coffee line run drip coffee and retail pouches?</h3><p>Usually no. The formats use different mechanics, so buyers often plan separate machines or a phased investment path.</p></article>
@@ -473,6 +515,6 @@
       <a href="mailto:info@szcomo.com?subject=RFQ%3A+Coffee+Roaster+Packaging+Line&body=Hello%2C+I+would+like+to+discuss+a+Coffee+Roaster+Packaging+Line+RFQ.+I+can+share+product+photos%2C+pack+size%2C+target+output%2C+voltage+and+project+requirements." data-copy-email="info@szcomo.com">Email</a>
       <a href="/#quote">RFQ</a>
     </div>
-    <script src="/script.js?v=20260630a"></script>
+    <script src="/script.js?v=20260709a"></script>
   </body>
 </html>

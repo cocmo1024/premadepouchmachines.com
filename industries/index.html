@@ -24,12 +24,32 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://premadepouchmachines.com/#organization",
+      "name": "Premade Pouch Machines",
+      "url": "https://premadepouchmachines.com/",
+      "logo": "https://premadepouchmachines.com/favicon.ico",
+      "email": "info@szcomo.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://premadepouchmachines.com/#website",
+      "url": "https://premadepouchmachines.com/",
+      "name": "Premade Pouch Machines",
+      "publisher": {
+        "@id": "https://premadepouchmachines.com/#organization"
+      }
+    },
+    {
       "@type": "CollectionPage",
       "@id": "https://premadepouchmachines.com/industries/index.html#page",
       "url": "https://premadepouchmachines.com/industries/index.html",
       "name": "Packaging Machine Industry Playbooks | Food, Coffee, Tea, Supplements, Pet Food and Consumer Goods",
       "description": "Industry-specific packaging automation pages for coffee roasters, tea brands, supplement companies, spice factories, rice mills, snack brands, pet food, sauce producers, frozen food plants, hardware kits and consumer goods.",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://premadepouchmachines.com/#website"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -245,12 +265,30 @@
           "position": 32,
           "name": "Sustainable Packaging Brand Automation Playbook",
           "url": "https://premadepouchmachines.com/industries/sustainable-packaging-brand-automation-playbook.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 33,
+          "name": "Startup Food Brand Packaging Line Guide",
+          "url": "https://premadepouchmachines.com/industries/startup-food-brand-packaging-line-guide.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 34,
+          "name": "Private Label Sauce Packaging Line",
+          "url": "https://premadepouchmachines.com/industries/private-label-sauce-packaging-line.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 35,
+          "name": "Protein Powder Brand Packaging Line",
+          "url": "https://premadepouchmachines.com/industries/protein-powder-brand-packaging-line.html"
         }
       ]
     }
   ]
 }</script>
-    <link rel="stylesheet" href="/styles.css?v=20260630a" />
+    <link rel="stylesheet" href="/styles.css?v=20260709a" />
   </head>
   <body>
     <header class="site-header" data-header>
@@ -289,9 +327,9 @@
           <p>These pages target searches where the buyer describes their business rather than a single product or machine. Each playbook maps industry constraints to the closest machine families, test evidence and RFQ path.</p>
         </div>
         <div class="seo-library-panel" aria-label="Industry playbooks statistics">
-          <div><strong>32</strong><span>topic pages</span></div>
+          <div><strong>35</strong><span>topic pages</span></div>
           <div><strong>12</strong><span>linked machines</span></div>
-          <div><strong>155</strong><span>target terms</span></div>
+          <div><strong>168</strong><span>target terms</span></div>
         </div>
       </section>
 
@@ -495,6 +533,24 @@
             <p>Packaging automation playbook for brands moving toward recyclable films, mono-material pouches, source reduction and documented material trials.</p>
             <small>sustainable packaging automation | recyclable pouch packaging line | mono material packaging machine | sustainable packaging machine</small>
           </a>
+          <a class="content-card seo-page-card" href="/industries/startup-food-brand-packaging-line-guide.html">
+            <span>Industry playbooks</span>
+            <h3>Startup Food Brand Packaging Line Guide</h3>
+            <p>Packaging line guide for startup food brands choosing between co-packers, semi-auto fillers, premade pouch machines, sachets and VFFS systems.</p>
+            <small>startup food packaging machine | small food brand packaging line | food startup packing machine | first packaging machine for food business</small>
+          </a>
+          <a class="content-card seo-page-card" href="/industries/private-label-sauce-packaging-line.html">
+            <span>Industry playbooks</span>
+            <h3>Private Label Sauce Packaging Line</h3>
+            <p>Packaging automation playbook for private-label sauce, condiment, dressing and paste products in sachets, pouches, cups, bottles and cartons.</p>
+            <small>private label sauce packaging line | sauce co packing machine | condiment packaging automation | sauce sachet filling machine</small>
+          </a>
+          <a class="content-card seo-page-card" href="/industries/protein-powder-brand-packaging-line.html">
+            <span>Industry playbooks</span>
+            <h3>Protein Powder Brand Packaging Line</h3>
+            <p>Packaging line playbook for protein powder brands using jars, cans, premade pouches, sample sachets and stick packs.</p>
+            <small>protein powder packaging line | protein powder filling machine | protein powder pouch packing machine | supplement powder packaging line</small>
+          </a>
         </div>
 
         <h2>Machine families linked from this hub</h2>
@@ -583,6 +639,6 @@
       <a href="mailto:info@szcomo.com?subject=RFQ%3A+Industry+playbooks&body=Hello%2C+I+would+like+to+discuss+a+Industry+playbooks+RFQ.+I+can+share+product+photos%2C+pack+size%2C+target+output%2C+voltage+and+project+requirements." data-copy-email="info@szcomo.com">Email</a>
       <a href="/#quote">RFQ</a>
     </div>
-    <script src="/script.js?v=20260630a"></script>
+    <script src="/script.js?v=20260709a"></script>
   </body>
 </html>

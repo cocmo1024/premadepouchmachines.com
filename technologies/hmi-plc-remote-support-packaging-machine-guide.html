@@ -28,6 +28,7 @@
       "@id": "https://premadepouchmachines.com/#organization",
       "name": "Premade Pouch Machines",
       "url": "https://premadepouchmachines.com/",
+      "logo": "https://premadepouchmachines.com/favicon.ico",
       "email": "info@szcomo.com",
       "contactPoint": [
         {
@@ -48,6 +49,20 @@
       ]
     },
     {
+      "@type": "WebSite",
+      "@id": "https://premadepouchmachines.com/#website",
+      "url": "https://premadepouchmachines.com/",
+      "name": "Premade Pouch Machines",
+      "publisher": {
+        "@id": "https://premadepouchmachines.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://premadepouchmachines.com/machine-index.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
       "@type": "TechArticle",
       "@id": "https://premadepouchmachines.com/technologies/hmi-plc-remote-support-packaging-machine-guide.html#article",
       "url": "https://premadepouchmachines.com/technologies/hmi-plc-remote-support-packaging-machine-guide.html",
@@ -56,6 +71,8 @@
       "description": "Guide to HMI, PLC, alarm history, remote support, recipe management, data export and operator workflow in packaging machines.",
       "inLanguage": "en",
       "image": "https://premadepouchmachines.com/public/assets/brochure/hero/high-speed-automatic.jpg",
+      "dateModified": "2026-07-09",
+      "keywords": "packaging machine HMI PLC, remote support packaging machine, packaging machine alarm history, packaging machine recipe management, packaging line data export",
       "about": [
         {
           "@type": "Thing",
@@ -95,6 +112,12 @@
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://premadepouchmachines.com/#website"
+      },
+      "primaryImageOfPage": "https://premadepouchmachines.com/public/assets/brochure/hero/high-speed-automatic.jpg",
+      "potentialAction": {
+        "@type": "Action",
+        "name": "Request a packaging machine proposal",
+        "target": "https://premadepouchmachines.com/?machine=HMI%2C%20PLC%20and%20Remote%20Support%20Packaging%20Machine%20Guide&source=hmi-plc-remote-support-packaging-machine-guide#quote"
       }
     },
     {
@@ -221,7 +244,7 @@
     }
   ]
 }</script>
-    <link rel="stylesheet" href="/styles.css?v=20260630a" />
+    <link rel="stylesheet" href="/styles.css?v=20260709a" />
   </head>
   <body>
     <header class="site-header" data-header>
@@ -387,6 +410,25 @@
           <p>Include operator training and fault-recovery scenarios in FAT.</p>
         </div>
 
+        <h2>RFQ conversion path</h2>
+        <div class="conversion-path-grid">
+          <article>
+            <span>01</span>
+            <h3>Send the evidence that changes machine selection</h3>
+            <p>State PLC/HMI brand preferences if required. Define recipe, alarm and reporting needs.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Compare the closest machine families</h3>
+            <p>Full Automatic Unmanned Packaging Production Line, Servo Premade Bag Packing Machine, Automatic Carton Case Packing Line</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Lock the acceptance test before price comparison</h3>
+            <p>Define output, accuracy, seal quality, reject logic, utilities, sample test criteria and documentation before comparing supplier quotes.</p>
+          </article>
+        </div>
+
         <h2>Frequently asked questions</h2>
         <div class="faq-grid topic-faq-grid">
           <article><h3>Is remote support always available?</h3><p>Only if network access, permissions, hardware and service agreement are planned.</p></article><article><h3>Why does HMI design matter?</h3><p>Operators use it during start-up, changeover, faults and cleaning. Poor workflow increases downtime.</p></article><article><h3>Should PLC brand be specified?</h3><p>Specify it when the plant has maintenance standards or spare-parts requirements.</p></article>
@@ -468,6 +510,6 @@
       <a href="mailto:info@szcomo.com?subject=RFQ%3A+HMI%2C+PLC+and+Remote+Support+Packaging+Machine+Guide&body=Hello%2C+I+would+like+to+discuss+a+HMI%2C+PLC+and+Remote+Support+Packaging+Machine+Guide+RFQ.+I+can+share+product+photos%2C+pack+size%2C+target+output%2C+voltage+and+project+requirements." data-copy-email="info@szcomo.com">Email</a>
       <a href="/#quote">RFQ</a>
     </div>
-    <script src="/script.js?v=20260630a"></script>
+    <script src="/script.js?v=20260709a"></script>
   </body>
 </html>

@@ -18,12 +18,14 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260630a";
+const ASSET_VERSION = "20260709a";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const CONTACT_EMAIL = "info@szcomo.com";
 const WHATSAPP_NUMBER = "8615301541312";
 const INSTANT_CHAT_DISPLAY = "+86 15301541312";
+const SITE_NAME = "Premade Pouch Machines";
+const SITE_LOGO = `${BASE_URL}/favicon.ico`;
 const DISALLOWED = [
   ["Q", "i", "n", "d", "i", "a", "n"].join(""),
   String.fromCharCode(0x94a6, 0x5178),
@@ -1330,14 +1332,16 @@ function pillarPage(page, langCode) {
 
 function homeJsonLd(langCode) {
   const copy = copyFor(langCode);
+  const home = absoluteUrl(langCode, "/");
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
-        "@id": `${absoluteUrl(langCode, "/")}#organization`,
-        name: "Premade Pouch Machines",
-        url: absoluteUrl(langCode, "/"),
+        "@id": `${home}#organization`,
+        name: SITE_NAME,
+        url: home,
+        logo: SITE_LOGO,
         email: CONTACT_EMAIL,
         description: copy.home.description,
         contactPoint: [
@@ -1358,13 +1362,32 @@ function homeJsonLd(langCode) {
             url: absoluteUrl(langCode, page.path),
           },
         })),
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Packaging machine RFQ catalog",
+          itemListElement: PILLAR_PAGES.map((page) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Product",
+              name: categoryFor(langCode, page.category),
+              category: categoryFor(langCode, page.category),
+              url: absoluteUrl(langCode, page.path),
+            },
+          })),
+        },
       },
       {
         "@type": "WebSite",
-        "@id": `${absoluteUrl(langCode, "/")}#website`,
-        url: absoluteUrl(langCode, "/"),
-        name: "Premade Pouch Machines",
+        "@id": `${home}#website`,
+        url: home,
+        name: SITE_NAME,
         inLanguage: copy.htmlLang,
+        publisher: { "@id": `${home}#organization` },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${home}machine-index.html?q={search_term_string}`,
+          "query-input": "required name=search_term_string",
+        },
       },
       {
         "@type": "ItemList",
@@ -1749,6 +1772,14 @@ function hubPage(langCode) {
       ${topicDiscoverySection(langCode, "article")}
 
       <section class="article-body">
+        <form class="catalog-search" role="search" action="${localizedHref(langCode, "/machine-index.html")}" data-catalog-search>
+          <label for="catalog-search-input">${escapeHtml(copy.nav.catalog)}</label>
+          <div>
+            <input id="catalog-search-input" name="q" type="search" placeholder="Search machine, product, format or application" autocomplete="off" data-catalog-search-input />
+            <button class="button button-primary" type="submit">Search</button>
+          </div>
+          <p data-catalog-search-status>${MACHINE_PAGES.length} machine pages available.</p>
+        </form>
         ${groups
           .map(
             (group) => `<h2>${escapeHtml(categoryFor(langCode, group.category))}</h2>
@@ -1756,7 +1787,8 @@ function hubPage(langCode) {
           ${group.items
             .map((item) => {
               const localized = localizedItemFor(item, langCode);
-              return `<a class="content-card seo-page-card" href="${localizedHref(langCode, `/machines/${item.slug}.html`)}">
+              const searchText = [localized.title, localized.summary, item.category, ...(item.keywords || []), ...(item.applications || []), ...(item.options || [])].join(" ");
+              return `<a class="content-card seo-page-card" href="${localizedHref(langCode, `/machines/${item.slug}.html`)}" data-catalog-card data-search="${escapeAttr(searchText.toLowerCase())}">
             <span>${escapeHtml(categoryFor(langCode, item.category))}</span>
             <h3>${escapeHtml(localized.title)}</h3>
             <p>${escapeHtml(localized.summary)}</p>
@@ -1780,14 +1812,16 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
   const url = absoluteUrl("en", page.path);
   const home = absoluteUrl("en", "/");
   const hub = absoluteUrl("en", page.hubPath);
+  const quoteUrl = `${home}?machine=${encodeURIComponent(page.title)}&source=${encodeURIComponent(page.slug)}#quote`;
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
         "@id": `${home}#organization`,
-        name: "Premade Pouch Machines",
+        name: SITE_NAME,
         url: home,
+        logo: SITE_LOGO,
         email: CONTACT_EMAIL,
         contactPoint: [
           {
@@ -1800,6 +1834,18 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
         ],
       },
       {
+        "@type": "WebSite",
+        "@id": `${home}#website`,
+        url: home,
+        name: SITE_NAME,
+        publisher: { "@id": `${home}#organization` },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${home}machine-index.html?q={search_term_string}`,
+          "query-input": "required name=search_term_string",
+        },
+      },
+      {
         "@type": "TechArticle",
         "@id": `${url}#article`,
         url,
@@ -1808,6 +1854,8 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
         description: page.description,
         inLanguage: "en",
         image: `${BASE_URL}/${heroImageFor(page.image)}`,
+        dateModified: LASTMOD,
+        keywords: page.searchTerms.join(", "),
         about: page.searchTerms.map((term) => ({ "@type": "Thing", name: term })),
         ...(page.sourceNotes?.length ? { citation: page.sourceNotes.map((source) => source.url).filter(Boolean) } : {}),
         publisher: { "@id": `${home}#organization` },
@@ -1821,6 +1869,12 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
         description: page.description,
         inLanguage: "en",
         isPartOf: { "@id": `${home}#website` },
+        primaryImageOfPage: `${BASE_URL}/${heroImageFor(page.image)}`,
+        potentialAction: {
+          "@type": "Action",
+          name: "Request a packaging machine proposal",
+          target: quoteUrl,
+        },
       },
       {
         "@type": "BreadcrumbList",
@@ -1868,9 +1922,25 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
 
 function topicHubJsonLd(hub, pages) {
   const url = absoluteUrl("en", hub.path);
+  const home = absoluteUrl("en", "/");
   return {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${home}#organization`,
+        name: SITE_NAME,
+        url: home,
+        logo: SITE_LOGO,
+        email: CONTACT_EMAIL,
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${home}#website`,
+        url: home,
+        name: SITE_NAME,
+        publisher: { "@id": `${home}#organization` },
+      },
       {
         "@type": "CollectionPage",
         "@id": `${url}#page`,
@@ -1878,6 +1948,7 @@ function topicHubJsonLd(hub, pages) {
         name: hub.title,
         description: hub.description,
         inLanguage: "en",
+        isPartOf: { "@id": `${home}#website` },
       },
       {
         "@type": "BreadcrumbList",
@@ -2089,6 +2160,25 @@ function topicPage(page) {
         <h2>RFQ checklist for this page</h2>
         <div class="rfq-detail-grid">
           ${page.rfqChecklist.map((line) => `<p>${escapeHtml(line)}</p>`).join("\n          ")}
+        </div>
+
+        <h2>RFQ conversion path</h2>
+        <div class="conversion-path-grid">
+          <article>
+            <span>01</span>
+            <h3>Send the evidence that changes machine selection</h3>
+            <p>${escapeHtml(page.rfqChecklist.slice(0, 2).join(" "))}</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Compare the closest machine families</h3>
+            <p>${escapeHtml(relatedMachines.slice(0, 3).map((machine) => machine.title).join(", ") || "Premade pouch, VFFS, sachet, flow wrap or filling systems are matched by product behavior and pack format.")}</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Lock the acceptance test before price comparison</h3>
+            <p>Define output, accuracy, seal quality, reject logic, utilities, sample test criteria and documentation before comparing supplier quotes.</p>
+          </article>
         </div>
 
         <h2>Frequently asked questions</h2>

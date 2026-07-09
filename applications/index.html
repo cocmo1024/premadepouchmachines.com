@@ -24,12 +24,32 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://premadepouchmachines.com/#organization",
+      "name": "Premade Pouch Machines",
+      "url": "https://premadepouchmachines.com/",
+      "logo": "https://premadepouchmachines.com/favicon.ico",
+      "email": "info@szcomo.com"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://premadepouchmachines.com/#website",
+      "url": "https://premadepouchmachines.com/",
+      "name": "Premade Pouch Machines",
+      "publisher": {
+        "@id": "https://premadepouchmachines.com/#organization"
+      }
+    },
+    {
       "@type": "CollectionPage",
       "@id": "https://premadepouchmachines.com/applications/index.html#page",
       "url": "https://premadepouchmachines.com/applications/index.html",
       "name": "Packaging Machine Applications | Product-Specific Equipment Guide",
       "description": "Product-specific packaging machine pages for rice, powder, snacks, tea, coffee, sauce, hardware, cups, cartons and end-of-line packing projects.",
-      "inLanguage": "en"
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://premadepouchmachines.com/#website"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -328,7 +348,7 @@
     }
   ]
 }</script>
-    <link rel="stylesheet" href="/styles.css?v=20260630a" />
+    <link rel="stylesheet" href="/styles.css?v=20260709a" />
   </head>
   <body>
     <header class="site-header" data-header>
@@ -739,6 +759,6 @@
       <a href="mailto:info@szcomo.com?subject=RFQ%3A+Packaging+applications&body=Hello%2C+I+would+like+to+discuss+a+Packaging+applications+RFQ.+I+can+share+product+photos%2C+pack+size%2C+target+output%2C+voltage+and+project+requirements." data-copy-email="info@szcomo.com">Email</a>
       <a href="/#quote">RFQ</a>
     </div>
-    <script src="/script.js?v=20260630a"></script>
+    <script src="/script.js?v=20260709a"></script>
   </body>
 </html>

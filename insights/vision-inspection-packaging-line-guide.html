@@ -28,6 +28,7 @@
       "@id": "https://premadepouchmachines.com/#organization",
       "name": "Premade Pouch Machines",
       "url": "https://premadepouchmachines.com/",
+      "logo": "https://premadepouchmachines.com/favicon.ico",
       "email": "info@szcomo.com",
       "contactPoint": [
         {
@@ -48,6 +49,20 @@
       ]
     },
     {
+      "@type": "WebSite",
+      "@id": "https://premadepouchmachines.com/#website",
+      "url": "https://premadepouchmachines.com/",
+      "name": "Premade Pouch Machines",
+      "publisher": {
+        "@id": "https://premadepouchmachines.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://premadepouchmachines.com/machine-index.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
       "@type": "TechArticle",
       "@id": "https://premadepouchmachines.com/insights/vision-inspection-packaging-line-guide.html#article",
       "url": "https://premadepouchmachines.com/insights/vision-inspection-packaging-line-guide.html",
@@ -56,6 +71,8 @@
       "description": "Machine vision inspection guide for packaging lines, including date code checks, barcode verification, label presence, seal inspection and reject logic.",
       "inLanguage": "en",
       "image": "https://premadepouchmachines.com/public/assets/brochure/hero/high-speed-automatic.jpg",
+      "dateModified": "2026-07-09",
+      "keywords": "vision inspection packaging line, packaging machine vision system, date code inspection packaging, barcode verification packaging line, seal inspection packaging machine",
       "about": [
         {
           "@type": "Thing",
@@ -95,6 +112,12 @@
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://premadepouchmachines.com/#website"
+      },
+      "primaryImageOfPage": "https://premadepouchmachines.com/public/assets/brochure/hero/high-speed-automatic.jpg",
+      "potentialAction": {
+        "@type": "Action",
+        "name": "Request a packaging machine proposal",
+        "target": "https://premadepouchmachines.com/?machine=Vision%20Inspection%20Packaging%20Line%20Guide&source=vision-inspection-packaging-line-guide#quote"
       }
     },
     {
@@ -221,7 +244,7 @@
     }
   ]
 }</script>
-    <link rel="stylesheet" href="/styles.css?v=20260630a" />
+    <link rel="stylesheet" href="/styles.css?v=20260709a" />
   </head>
   <body>
     <header class="site-header" data-header>
@@ -387,6 +410,25 @@
           <p>Include inspection validation in the FAT.</p>
         </div>
 
+        <h2>RFQ conversion path</h2>
+        <div class="conversion-path-grid">
+          <article>
+            <span>01</span>
+            <h3>Send the evidence that changes machine selection</h3>
+            <p>Send good and bad sample images. Define which side of the pack must be inspected.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Compare the closest machine families</h3>
+            <p>High Speed Automatic Packing Machine, Full Automatic Unmanned Packaging Production Line, Automatic Carton Case Packing Line</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Lock the acceptance test before price comparison</h3>
+            <p>Define output, accuracy, seal quality, reject logic, utilities, sample test criteria and documentation before comparing supplier quotes.</p>
+          </article>
+        </div>
+
         <h2>Frequently asked questions</h2>
         <div class="faq-grid topic-faq-grid">
           <article><h3>Can vision inspection check every packaging defect?</h3><p>No. It works best on visible, repeatable defects with controlled presentation and lighting.</p></article><article><h3>Where should the camera be installed?</h3><p>At a point where the pack is stable, separated and oriented. The best location depends on machine type and reject timing.</p></article><article><h3>Does vision inspection replace a checkweigher or metal detector?</h3><p>No. It complements weighing and contamination inspection; each system checks a different risk.</p></article>
@@ -468,6 +510,6 @@
       <a href="mailto:info@szcomo.com?subject=RFQ%3A+Vision+Inspection+Packaging+Line+Guide&body=Hello%2C+I+would+like+to+discuss+a+Vision+Inspection+Packaging+Line+Guide+RFQ.+I+can+share+product+photos%2C+pack+size%2C+target+output%2C+voltage+and+project+requirements." data-copy-email="info@szcomo.com">Email</a>
       <a href="/#quote">RFQ</a>
     </div>
-    <script src="/script.js?v=20260630a"></script>
+    <script src="/script.js?v=20260709a"></script>
   </body>
 </html>

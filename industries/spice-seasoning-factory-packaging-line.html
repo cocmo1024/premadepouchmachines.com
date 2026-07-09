@@ -28,6 +28,7 @@
       "@id": "https://premadepouchmachines.com/#organization",
       "name": "Premade Pouch Machines",
       "url": "https://premadepouchmachines.com/",
+      "logo": "https://premadepouchmachines.com/favicon.ico",
       "email": "info@szcomo.com",
       "contactPoint": [
         {
@@ -48,6 +49,20 @@
       ]
     },
     {
+      "@type": "WebSite",
+      "@id": "https://premadepouchmachines.com/#website",
+      "url": "https://premadepouchmachines.com/",
+      "name": "Premade Pouch Machines",
+      "publisher": {
+        "@id": "https://premadepouchmachines.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://premadepouchmachines.com/machine-index.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
       "@type": "TechArticle",
       "@id": "https://premadepouchmachines.com/industries/spice-seasoning-factory-packaging-line.html#article",
       "url": "https://premadepouchmachines.com/industries/spice-seasoning-factory-packaging-line.html",
@@ -56,6 +71,8 @@
       "description": "Packaging automation playbook for spice factories, seasoning powder, soup powder, instant noodle sachets and food additive packs.",
       "inLanguage": "en",
       "image": "https://premadepouchmachines.com/public/assets/brochure/hero/powder-stick-pack.jpg",
+      "dateModified": "2026-07-09",
+      "keywords": "spice factory packaging line, seasoning powder sachet machine, instant noodle seasoning packing machine, spice powder packaging automation, multi lane seasoning sachet machine",
       "about": [
         {
           "@type": "Thing",
@@ -95,6 +112,12 @@
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://premadepouchmachines.com/#website"
+      },
+      "primaryImageOfPage": "https://premadepouchmachines.com/public/assets/brochure/hero/powder-stick-pack.jpg",
+      "potentialAction": {
+        "@type": "Action",
+        "name": "Request a packaging machine proposal",
+        "target": "https://premadepouchmachines.com/?machine=Spice%20and%20Seasoning%20Factory%20Packaging%20Line&source=spice-seasoning-factory-packaging-line#quote"
       }
     },
     {
@@ -196,32 +219,32 @@
         {
           "@type": "ListItem",
           "position": 3,
+          "name": "Auger Filler vs Volumetric Cup Packing Guide",
+          "url": "https://premadepouchmachines.com/insights/auger-filler-vs-volumetric-cup-packing-guide.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
           "name": "Chemical Powder Packaging Machine",
           "url": "https://premadepouchmachines.com/applications/chemical-powder-packaging-machine.html"
         },
         {
           "@type": "ListItem",
-          "position": 4,
+          "position": 5,
           "name": "How to Choose a Powder Packaging Machine",
           "url": "https://premadepouchmachines.com/guides/how-to-choose-powder-packaging-machine.html"
         },
         {
           "@type": "ListItem",
-          "position": 5,
+          "position": 6,
           "name": "Instant Noodle Seasoning Sachet Machine",
           "url": "https://premadepouchmachines.com/applications/instant-noodle-seasoning-sachet-machine.html"
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "name": "Sample Packet Packaging Machine",
-          "url": "https://premadepouchmachines.com/formats/sample-packet-packaging-machine.html"
         }
       ]
     }
   ]
 }</script>
-    <link rel="stylesheet" href="/styles.css?v=20260630a" />
+    <link rel="stylesheet" href="/styles.css?v=20260709a" />
   </head>
   <body>
     <header class="site-header" data-header>
@@ -387,6 +410,25 @@
           <p>Required coding, counting, cartoning or case packing.</p>
         </div>
 
+        <h2>RFQ conversion path</h2>
+        <div class="conversion-path-grid">
+          <article>
+            <span>01</span>
+            <h3>Send the evidence that changes machine selection</h3>
+            <p>Powder samples for each product type. Target sachet size, dose and lanes.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Compare the closest machine families</h3>
+            <p>Powder Sachet Packing Machine, Multi-Line Granule Liquid Powder Packing Machine, Full Automatic Powder VFFS Packing Machine</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Lock the acceptance test before price comparison</h3>
+            <p>Define output, accuracy, seal quality, reject logic, utilities, sample test criteria and documentation before comparing supplier quotes.</p>
+          </article>
+        </div>
+
         <h2>Frequently asked questions</h2>
         <div class="faq-grid topic-faq-grid">
           <article><h3>Why do seasoning sachets often use multi-lane machines?</h3><p>Small dose and high output requirements make multi-lane systems efficient when product and film are stable.</p></article><article><h3>Can oily seasoning powder run on an auger filler?</h3><p>Often yes, but flow behavior, residue and cleaning must be tested.</p></article><article><h3>What should be checked during FAT?</h3><p>Dose accuracy, seal cleanliness, cut quality, lane consistency, coding and changeover workflow.</p></article>
@@ -404,6 +446,11 @@
             <h3>Beverage Powder Packaging Line</h3>
             <p>Packaging line playbook for instant coffee, solid beverage powder, drink mix, tea powder and nutrition beverage products.</p>
           </a>
+          <a class="content-card seo-page-card" href="/insights/auger-filler-vs-volumetric-cup-packing-guide.html">
+            <span>Industry insights</span>
+            <h3>Auger Filler vs Volumetric Cup Packing Guide</h3>
+            <p>Compare auger fillers and volumetric cup dosing for powder, granule and small-dose packaging machines.</p>
+          </a>
           <a class="content-card seo-page-card" href="/applications/chemical-powder-packaging-machine.html">
             <span>Packaging applications</span>
             <h3>Chemical Powder Packaging Machine</h3>
@@ -418,11 +465,6 @@
             <span>Packaging applications</span>
             <h3>Instant Noodle Seasoning Sachet Machine</h3>
             <p>Instant noodle seasoning sachet machine guide for powder, granule, oil and sauce packets with single-lane or multi-lane packing options.</p>
-          </a>
-          <a class="content-card seo-page-card" href="/formats/sample-packet-packaging-machine.html">
-            <span>Packaging formats</span>
-            <h3>Sample Packet Packaging Machine</h3>
-            <p>Sample packet packaging guide for cosmetic, food, powder, liquid and promotional sample packs in sachets, stick packs and small pouches.</p>
           </a>
         </div>
 
@@ -468,6 +510,6 @@
       <a href="mailto:info@szcomo.com?subject=RFQ%3A+Spice+and+Seasoning+Factory+Packaging+Line&body=Hello%2C+I+would+like+to+discuss+a+Spice+and+Seasoning+Factory+Packaging+Line+RFQ.+I+can+share+product+photos%2C+pack+size%2C+target+output%2C+voltage+and+project+requirements." data-copy-email="info@szcomo.com">Email</a>
       <a href="/#quote">RFQ</a>
     </div>
-    <script src="/script.js?v=20260630a"></script>
+    <script src="/script.js?v=20260709a"></script>
   </body>
 </html>

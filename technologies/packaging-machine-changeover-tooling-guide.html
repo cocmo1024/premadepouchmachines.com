@@ -28,6 +28,7 @@
       "@id": "https://premadepouchmachines.com/#organization",
       "name": "Premade Pouch Machines",
       "url": "https://premadepouchmachines.com/",
+      "logo": "https://premadepouchmachines.com/favicon.ico",
       "email": "info@szcomo.com",
       "contactPoint": [
         {
@@ -48,6 +49,20 @@
       ]
     },
     {
+      "@type": "WebSite",
+      "@id": "https://premadepouchmachines.com/#website",
+      "url": "https://premadepouchmachines.com/",
+      "name": "Premade Pouch Machines",
+      "publisher": {
+        "@id": "https://premadepouchmachines.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://premadepouchmachines.com/machine-index.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
       "@type": "TechArticle",
       "@id": "https://premadepouchmachines.com/technologies/packaging-machine-changeover-tooling-guide.html#article",
       "url": "https://premadepouchmachines.com/technologies/packaging-machine-changeover-tooling-guide.html",
@@ -56,6 +71,8 @@
       "description": "Guide to packaging machine changeover, tooling, forming parts, sealing jaws, recipes, cleaning parts and multi-SKU line planning.",
       "inLanguage": "en",
       "image": "https://premadepouchmachines.com/public/assets/brochure/hero/compact-premade-pouch.jpg",
+      "dateModified": "2026-07-09",
+      "keywords": "packaging machine changeover, packaging machine tooling guide, multi SKU packaging machine, quick changeover packaging line, packaging machine recipe settings",
       "about": [
         {
           "@type": "Thing",
@@ -95,6 +112,12 @@
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://premadepouchmachines.com/#website"
+      },
+      "primaryImageOfPage": "https://premadepouchmachines.com/public/assets/brochure/hero/compact-premade-pouch.jpg",
+      "potentialAction": {
+        "@type": "Action",
+        "name": "Request a packaging machine proposal",
+        "target": "https://premadepouchmachines.com/?machine=Packaging%20Machine%20Changeover%20and%20Tooling%20Guide&source=packaging-machine-changeover-tooling-guide#quote"
       }
     },
     {
@@ -221,7 +244,7 @@
     }
   ]
 }</script>
-    <link rel="stylesheet" href="/styles.css?v=20260630a" />
+    <link rel="stylesheet" href="/styles.css?v=20260709a" />
   </head>
   <body>
     <header class="site-header" data-header>
@@ -387,6 +410,25 @@
           <p>Include a changeover demonstration in FAT when SKU variety is high.</p>
         </div>
 
+        <h2>RFQ conversion path</h2>
+        <div class="conversion-path-grid">
+          <article>
+            <span>01</span>
+            <h3>Send the evidence that changes machine selection</h3>
+            <p>Provide a SKU matrix with product, pack size and material. Ask for changeover steps and estimated time.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Compare the closest machine families</h3>
+            <p>Servo Premade Bag Packing Machine, Multi-Line Granule Liquid Powder Packing Machine, Automatic Cartoning Machine</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Lock the acceptance test before price comparison</h3>
+            <p>Define output, accuracy, seal quality, reject logic, utilities, sample test criteria and documentation before comparing supplier quotes.</p>
+          </article>
+        </div>
+
         <h2>Frequently asked questions</h2>
         <div class="faq-grid topic-faq-grid">
           <article><h3>What is the difference between recipe change and tooling change?</h3><p>Recipe changes are settings stored in the control system. Tooling changes require physical parts such as jaws, guides, forming parts or feeders.</p></article><article><h3>Can one machine run many SKUs?</h3><p>Often yes within a defined range, but the quote should state change parts, changeover steps and limitations.</p></article><article><h3>Why does changeover affect ROI?</h3><p>Downtime, cleaning, scrap and operator time can outweigh headline speed in multi-SKU factories.</p></article>
@@ -468,6 +510,6 @@
       <a href="mailto:info@szcomo.com?subject=RFQ%3A+Packaging+Machine+Changeover+and+Tooling+Guide&body=Hello%2C+I+would+like+to+discuss+a+Packaging+Machine+Changeover+and+Tooling+Guide+RFQ.+I+can+share+product+photos%2C+pack+size%2C+target+output%2C+voltage+and+project+requirements." data-copy-email="info@szcomo.com">Email</a>
       <a href="/#quote">RFQ</a>
     </div>
-    <script src="/script.js?v=20260630a"></script>
+    <script src="/script.js?v=20260709a"></script>
   </body>
 </html>
