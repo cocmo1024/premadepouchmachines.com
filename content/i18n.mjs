@@ -592,9 +592,14 @@ export function localizedPath(langCode, routePath) {
   const lang = LANGUAGES.find((item) => item.code === langCode);
   if (!lang) throw new Error(`Unknown language: ${langCode}`);
   const normalized = normalizePath(routePath);
-  if (lang.code === "en") return normalized;
-  if (normalized === "/") return `${lang.pathPrefix}/`;
-  return `${lang.pathPrefix}${normalized}`;
+  const publicPath = normalized.endsWith("/index.html")
+    ? normalized.slice(0, -"index.html".length)
+    : normalized.endsWith(".html")
+      ? normalized.slice(0, -".html".length)
+      : normalized;
+  if (lang.code === "en") return publicPath;
+  if (publicPath === "/") return `${lang.pathPrefix}/`;
+  return `${lang.pathPrefix}${publicPath}`;
 }
 
 export function absoluteUrl(langCode, routePath) {

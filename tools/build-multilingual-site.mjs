@@ -18,7 +18,7 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260711d";
+const ASSET_VERSION = "20260711e";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const CONTACT_EMAIL = "info@szcomo.com";
@@ -590,9 +590,9 @@ function nav(langCode, routePath) {
         <a href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.catalog)}</a>
         <a href="${localizedHref(langCode, "/", "#guide")}">${escapeHtml(copy.nav.guide)}</a>
         <a href="${localizedHref(langCode, "/", "#applications")}">${escapeHtml(copy.nav.applications)}</a>
-        ${langCode === "en" ? '<a href="/insights/index.html">Insights</a>' : ""}
-        ${langCode === "en" ? '<a href="/industries/index.html">Industries</a>' : ""}
-        ${langCode === "en" ? '<a href="/technologies/index.html">Tech</a>' : ""}
+        ${langCode === "en" ? `<a href="${localizedHref("en", "/insights/index.html")}">Insights</a>` : ""}
+        ${langCode === "en" ? `<a href="${localizedHref("en", "/industries/index.html")}">Industries</a>` : ""}
+        ${langCode === "en" ? `<a href="${localizedHref("en", "/technologies/index.html")}">Tech</a>` : ""}
         <a href="${localizedHref(langCode, "/", "#specs")}">${escapeHtml(copy.nav.specs)}</a>
         <a href="${localizedHref(langCode, "/", "#faq")}">${escapeHtml(copy.nav.faq)}</a>
         <a href="${localizedHref(langCode, "/", "#quote")}" class="nav-quote">${escapeHtml(copy.nav.quote)}</a>
@@ -622,9 +622,9 @@ function footer(langCode) {
         <a href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.seoLibrary)}</a>
         ${
           langCode === "en"
-            ? `${SEO_TOPIC_HUBS.map((hub) => `<a href="${hub.path}">${escapeHtml(hub.label)}</a>`).join("\n        ")}
-        <a href="/about.html">About</a>
-        <a href="/editorial-policy.html">Editorial policy</a>`
+            ? `${SEO_TOPIC_HUBS.map((hub) => `<a href="${localizedHref("en", hub.path)}">${escapeHtml(hub.label)}</a>`).join("\n        ")}
+        <a href="${localizedHref("en", "/about.html")}">About</a>
+        <a href="${localizedHref("en", "/editorial-policy.html")}">Editorial policy</a>`
             : ""
         }
         <a href="${localizedHref(langCode, "/premade-pouch-packaging-machine.html")}">${escapeHtml(categoryFor(langCode, "Premade pouch machines"))}</a>
@@ -1186,7 +1186,7 @@ function machinePage(item, langCode) {
         <div class="seo-page-grid compact-topic-grid">
           ${topicLinks
             .map(
-              (topic) => `<a class="content-card seo-page-card" href="${topic.path}">
+              (topic) => `<a class="content-card seo-page-card" href="${localizedHref("en", topic.path)}">
             <span>${escapeHtml(topic.groupLabel)}</span>
             <h3>${escapeHtml(topic.title)}</h3>
             <p>${escapeHtml(topic.description)}</p>
@@ -1436,7 +1436,7 @@ function homeJsonLd(langCode) {
         publisher: { "@id": `${home}#organization` },
         potentialAction: {
           "@type": "SearchAction",
-          target: `${home}machine-index.html?q={search_term_string}`,
+          target: `${absoluteUrl(langCode, "/machine-index.html")}?q={search_term_string}`,
           "query-input": "required name=search_term_string",
         },
       },
@@ -1476,7 +1476,7 @@ function topicDiscoverySection(langCode, variant = "section") {
           <p>Start from the decision in front of you. Compare products to pack, package formats, dosing and sealing technologies, line-planning requirements, current industry constraints and symptom-led troubleshooting checks.</p>
         </div>
         <div class="topic-hub-row" aria-label="Packaging decision hubs">
-          ${SEO_TOPIC_HUBS.map((hub) => `<a class="topic-hub-card" href="${hub.path}">
+          ${SEO_TOPIC_HUBS.map((hub) => `<a class="topic-hub-card" href="${localizedHref("en", hub.path)}">
             <span>${escapeHtml(hub.label)}</span>
             <strong>${topicPageCount(hub.group)}</strong>
             <small>${escapeHtml(hub.description)}</small>
@@ -1485,7 +1485,7 @@ function topicDiscoverySection(langCode, variant = "section") {
         <div class="seo-page-grid topic-feature-grid">
           ${featuredTopics
             .map(
-              (page) => `<a class="content-card seo-page-card" href="${page.path}">
+              (page) => `<a class="content-card seo-page-card" href="${localizedHref("en", page.path)}">
             <span>${escapeHtml(page.groupLabel)}</span>
             <h3>${escapeHtml(page.title)}</h3>
             <p>${escapeHtml(page.description)}</p>
@@ -1893,7 +1893,7 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
         publisher: { "@id": `${home}#organization` },
         potentialAction: {
           "@type": "SearchAction",
-          target: `${home}machine-index.html?q={search_term_string}`,
+          target: `${absoluteUrl("en", "/machine-index.html")}?q={search_term_string}`,
           "query-input": "required name=search_term_string",
         },
       },
@@ -2046,7 +2046,7 @@ function topicHubPage(hub) {
           <span>${escapeHtml(hub.label)}</span>
         </nav>
         <p class="article-lede">${escapeHtml(hub.description)}</p>
-        <form class="catalog-search topic-search" role="search" action="${hub.path}" data-topic-search>
+        <form class="catalog-search topic-search" role="search" action="${localizedHref("en", hub.path)}" data-topic-search>
           <label for="topic-search-${escapeAttr(hub.group)}">Find a packaging topic</label>
           <div>
             <input id="topic-search-${escapeAttr(hub.group)}" name="q" type="search" placeholder="Search product, package, machine or production problem" autocomplete="off" data-topic-search-input />
@@ -2059,7 +2059,7 @@ function topicHubPage(hub) {
             .map(
               (page) => {
                 const searchText = [page.title, page.description, page.groupLabel, ...(page.products || []), ...(page.formats || []), ...(page.searchTerms || [])].join(" ");
-                return `<a class="content-card seo-page-card" href="${page.path}" data-topic-card data-search="${escapeAttr(searchText.toLowerCase())}">
+                return `<a class="content-card seo-page-card" href="${localizedHref("en", page.path)}" data-topic-card data-search="${escapeAttr(searchText.toLowerCase())}">
             <span>${escapeHtml(page.groupLabel)}</span>
             <h3>${escapeHtml(page.title)}</h3>
             <p>${escapeHtml(page.description)}</p>
@@ -2074,7 +2074,7 @@ function topicHubPage(hub) {
         <div class="seo-link-grid">
           ${machineLinks
             .map(
-              (machine) => `<a href="/machines/${machine.slug}.html">
+              (machine) => `<a href="${localizedHref("en", `/machines/${machine.slug}.html`)}">
             <strong>${escapeHtml(machine.title)}</strong>
             <span>${escapeHtml(machine.summary)}</span>
           </a>`,
@@ -2125,7 +2125,7 @@ function topicPage(page) {
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="/">Home</a>
           <span>/</span>
-          <a href="${hub.path}">${escapeHtml(hub.label)}</a>
+          <a href="${localizedHref("en", hub.path)}">${escapeHtml(hub.label)}</a>
           <span>/</span>
           <span>${escapeHtml(page.title)}</span>
         </nav>
@@ -2136,7 +2136,7 @@ function topicPage(page) {
           <div><span>Decision intent</span><strong>${escapeHtml(page.intentType)}</strong></div>
           <div><span>Capability basis</span><strong>Authorized brochure and machine data</strong></div>
           <div><span>Reviewed</span><strong><time datetime="${LASTMOD}">${escapeHtml(REVIEW_DATE)}</time></strong></div>
-          <a href="/editorial-policy.html">Editorial method and reference limits</a>
+          <a href="${localizedHref("en", "/editorial-policy.html")}">Editorial method and reference limits</a>
         </div>
 
         <div class="machine-snapshot topic-snapshot" aria-label="Project decision snapshot">
@@ -2216,7 +2216,7 @@ function topicPage(page) {
         <div class="category-machine-grid">
           ${relatedMachines
             .map(
-              (machine) => `<a class="category-machine-card" href="/machines/${machine.slug}.html">
+              (machine) => `<a class="category-machine-card" href="${localizedHref("en", `/machines/${machine.slug}.html`)}">
             <img src="/${escapeAttr(heroImageFor(machine.image))}" alt="${escapeAttr(machine.title)}" loading="lazy" />
             <div>
               <span>${escapeHtml(machine.category)}</span>
@@ -2238,7 +2238,7 @@ function topicPage(page) {
           ${relatedMachines
             .map(
               (machine) => `<div class="row">
-            <span><a href="/machines/${machine.slug}.html">${escapeHtml(machine.title)}</a></span>
+            <span><a href="${localizedHref("en", `/machines/${machine.slug}.html`)}">${escapeHtml(machine.title)}</a></span>
             <span>${escapeHtml(machine.specs.slice(0, 3).map(([label, value]) => `${label}: ${value}`).join("; "))} Stated applications include ${escapeHtml(machine.applications.slice(0, 4).join(", "))}.</span>
           </div>`,
             )
@@ -2294,7 +2294,7 @@ function topicPage(page) {
         <div class="seo-page-grid compact-topic-grid">
           ${relatedTopics
             .map(
-              (topic) => `<a class="content-card seo-page-card" href="${topic.path}">
+              (topic) => `<a class="content-card seo-page-card" href="${localizedHref("en", topic.path)}">
             <span>${escapeHtml(topic.groupLabel)}</span>
             <h3>${escapeHtml(topic.title)}</h3>
             <p>${escapeHtml(topic.description)}</p>
@@ -2410,6 +2410,12 @@ function validateNoDisallowed(filePath, html) {
     if (html.includes(token)) {
       throw new Error(`Disallowed token "${token}" found in ${filePath}`);
     }
+  }
+
+  const legacyInternalUrl = html.match(/(?:href|action)="(?:https:\/\/premadepouchmachines\.com)?\/[^"#?]*\.html(?:["#?])/i);
+  const legacyStructuredUrl = html.match(/https:\/\/premadepouchmachines\.com\/[^"\s]*\.html(?:["#?\s])/i);
+  if (legacyInternalUrl || legacyStructuredUrl) {
+    throw new Error(`Legacy .html public URL found in ${filePath}: ${(legacyInternalUrl || legacyStructuredUrl)[0]}`);
   }
 }
 
