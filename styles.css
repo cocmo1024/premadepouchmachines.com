@@ -5114,6 +5114,73 @@ body {
   background: #1d9a6c;
 }
 
+.article-review {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: hidden;
+  margin: 22px 0 30px;
+  border: 1px solid rgba(16, 20, 27, 0.1);
+  border-radius: 8px;
+  background: #f6f9fb;
+}
+
+.article-review > * {
+  min-width: 0;
+  border-right: 1px solid rgba(16, 20, 27, 0.09);
+  padding: 15px 17px;
+}
+
+.article-review > *:last-child {
+  border-right: 0;
+}
+
+.article-review div {
+  display: grid;
+  gap: 5px;
+}
+
+.article-review span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.article-review strong,
+.article-review time {
+  color: var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.article-review > a {
+  display: flex;
+  align-items: center;
+  color: var(--blue-strong);
+  font-size: 0.86rem;
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.diagnostic-table .row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.table-note {
+  max-width: 900px;
+  margin: -4px 0 20px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.capability-reference-table a {
+  color: var(--blue-strong);
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 119, 200, 0.24);
+  text-underline-offset: 3px;
+}
+
 @media (max-width: 760px) {
   body {
     padding-bottom: 84px;
@@ -5121,6 +5188,48 @@ body {
 
   .quote-contact {
     grid-template-columns: 1fr;
+  }
+
+  .article-review,
+  .diagnostic-table .row {
+    grid-template-columns: 1fr;
+  }
+
+  .diagnostic-table .row.head {
+    display: none;
+  }
+
+  .diagnostic-table .row:not(.head) {
+    border-bottom: 8px solid var(--line);
+  }
+
+  .diagnostic-table .row:not(.head):last-child {
+    border-bottom: 0;
+  }
+
+  .diagnostic-table .row:not(.head) span {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+  }
+
+  .diagnostic-table .row:not(.head) span::before {
+    content: attr(data-label);
+    color: var(--blue-strong);
+    font-size: 0.68rem;
+    font-weight: 900;
+    line-height: 1.55;
+    text-transform: uppercase;
+  }
+
+  .article-review > * {
+    border-right: 0;
+    border-bottom: 1px solid rgba(16, 20, 27, 0.09);
+  }
+
+  .article-review > *:last-child {
+    border-bottom: 0;
   }
 
   .mobile-contact-bar {

@@ -18,7 +18,7 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260711b";
+const ASSET_VERSION = "20260711d";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const CONTACT_EMAIL = "info@szcomo.com";
@@ -26,6 +26,7 @@ const WHATSAPP_NUMBER = "8615301541312";
 const INSTANT_CHAT_DISPLAY = "+86 15301541312";
 const SITE_NAME = "Premade Pouch Machines";
 const SITE_LOGO = `${BASE_URL}/favicon.ico`;
+const REVIEW_DATE = new Intl.DateTimeFormat("en", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }).format(new Date(`${LASTMOD}T00:00:00Z`));
 const DISALLOWED = [
   ["Q", "i", "n", "d", "i", "a", "n"].join(""),
   String.fromCharCode(0x94a6, 0x5178),
@@ -172,12 +173,13 @@ const TRUST_PAGES = [
     kicker: "Editorial policy",
     title: "Editorial and Technical Content Policy",
     description: "Editorial policy for machine specifications, industry sources, standards coverage, updates, corrections and commercial RFQ content on Premade Pouch Machines.",
-    h1: "How technical and SEO content is produced and reviewed.",
-    lede: "The site's purpose is to help industrial buyers make better packaging-equipment decisions. Search visibility is pursued through useful topic coverage, crawlable internal links and transparent sourcing, not unsupported performance, affiliation or certification claims.",
+    h1: "How technical content is researched, produced and reviewed.",
+    lede: "The site's purpose is to help industrial buyers make better packaging-equipment decisions. A page is published only when it serves a distinct product, format, engineering, procurement or troubleshooting task and can be connected to relevant equipment capability.",
     sections: [
       ["Machine specification policy", "Published dimensions, speeds, weights, utilities and model references are treated as brochure-derived reference ranges. Pages repeatedly direct buyers to confirm final scope with samples, drawings, factory utilities and acceptance tests."],
       ["Research and source policy", "Standards, regulations and time-sensitive industry claims use direct links to official bodies or recognized industry organizations. Source notes are visible on the same page as the claim and are not hidden only in structured data."],
-      ["Authorship and automation", "Content is assembled from structured brochure data, application mapping and source research using an automated publishing workflow. Automation supports consistency and internal linking; it does not replace buyer-specific engineering validation or professional compliance advice."],
+      ["Authorship and structured publishing", "Content is assembled from structured brochure data, application mapping and source research. The publishing system supports consistency and relevant internal linking; it does not justify repeated keyword variants or replace buyer-specific engineering validation and professional compliance advice."],
+      ["Troubleshooting and safety boundary", "Diagnostic pages organize symptoms, evidence and controlled checks. They do not replace the machine manual, trained maintenance personnel, risk assessment, isolation of energy, lockout/tagout or manufacturer-approved repair procedures."],
       ["Corrections and updates", "Material changes update the page and sitemap date. If a specification, source statement or link needs correction, contact info@szcomo.com with the page URL and the evidence to review."],
       ["Commercial independence and trademarks", "Third-party company names may appear only in neutral market-comparison context. The site does not claim affiliation with those companies and avoids reproducing third-party logos or implying approval."],
     ],
@@ -475,6 +477,18 @@ function escapeAttr(value) {
   return escapeHtml(value).replaceAll("'", "&#39;");
 }
 
+function conciseMetaDescription(value, maxLength = 180) {
+  const text = String(value).replace(/\s+/g, " ").trim();
+  if (text.length <= maxLength) return text;
+
+  const window = text.slice(0, maxLength);
+  const sentenceEnd = Math.max(window.lastIndexOf(". "), window.lastIndexOf("? "), window.lastIndexOf("! "));
+  if (sentenceEnd >= 110) return window.slice(0, sentenceEnd + 1);
+
+  const wordEnd = window.lastIndexOf(" ");
+  return `${window.slice(0, wordEnd > 110 ? wordEnd : maxLength - 1).replace(/[,:;.\s]+$/, "")}.`;
+}
+
 function heroImageFor(imagePath) {
   if (!imagePath.startsWith("public/assets/brochure/")) return imagePath;
   return imagePath.replace("public/assets/brochure/", "public/assets/brochure/hero/");
@@ -621,7 +635,7 @@ function footer(langCode) {
 }
 
 function mobileContactBar(langCode, title = "packaging machine") {
-  return `<div class="mobile-contact-bar" aria-label="Quick contact">
+  return `<div class="mobile-contact-bar" aria-label="Quick contact" data-nosnippet>
       <a class="chat" href="${whatsappHref(contactMessage(title))}" target="_blank" rel="noopener" aria-label="Instant chat ${INSTANT_CHAT_DISPLAY}">Chat</a>
       <a href="${mailtoHref(`RFQ: ${title}`, contactMessage(title))}" data-copy-email="${CONTACT_EMAIL}">Email</a>
       <a href="${localizedHref(langCode, "/", "#quote")}">RFQ</a>
@@ -632,24 +646,25 @@ function pageHead({ langCode, routePath, title, description, image = DEFAULT_SOC
   const copy = copyFor(langCode);
   const canonical = absoluteUrl(langCode, routePath);
   const imageUrl = image.startsWith("http") ? image : `${BASE_URL}/${image}`;
+  const metaDescription = conciseMetaDescription(description);
   return `<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${escapeHtml(title)}</title>
-    <meta name="description" content="${escapeAttr(description.slice(0, 300))}" />
-    <meta name="robots" content="index,follow" />
+    <meta name="description" content="${escapeAttr(metaDescription)}" />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
     <link rel="canonical" href="${canonical}" />
 ${alternateTags(routePath)}
     <link rel="preload" as="image" href="/${escapeAttr(image)}" />
     <meta property="og:locale" content="${escapeAttr(copy.locale)}" />
     <meta property="og:title" content="${escapeAttr(title)}" />
-    <meta property="og:description" content="${escapeAttr(description.slice(0, 300))}" />
+    <meta property="og:description" content="${escapeAttr(metaDescription)}" />
     <meta property="og:type" content="${type}" />
     <meta property="og:url" content="${canonical}" />
     <meta property="og:image" content="${imageUrl}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeAttr(title)}" />
-    <meta name="twitter:description" content="${escapeAttr(description.slice(0, 220))}" />
+    <meta name="twitter:description" content="${escapeAttr(metaDescription)}" />
     <meta name="twitter:image" content="${imageUrl}" />
     ${jsonLd ? `<script type="application/ld+json">${json(jsonLd)}</script>` : ""}
     <link rel="stylesheet" href="/styles.css?v=${ASSET_VERSION}" />
@@ -833,7 +848,13 @@ function topicHubFor(group) {
 }
 
 function topicTitleFor(page) {
-  return `${page.title} | Machine Selection, Specs and RFQ Guide`;
+  const candidate = `${page.title} | ${page.titleSuffix}`;
+  return candidate.length <= 72 ? candidate : page.title;
+}
+
+function topicCardDetail(page) {
+  const details = uniqueList([...(page.products || []).slice(0, 2), ...(page.formats || []).slice(0, 2)]);
+  return details.slice(0, 4).join(" | ") || page.intentType;
 }
 
 function topicPageCount(group) {
@@ -898,12 +919,6 @@ function machineJsonLd(item, related, langCode) {
   const localized = localizedItemFor(item, langCode);
   const source = sourceFor(item);
   const acceptanceChecks = acceptanceChecksFor(item);
-  const questions =
-    localized.faqQuestions || {
-      products: `What products fit ${localized.title}?`,
-      options: `What options can be added to ${localized.title}?`,
-      rfq: `What information is needed before quoting ${localized.title}?`,
-    };
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -941,7 +956,7 @@ function machineJsonLd(item, related, langCode) {
         mpn: source.model,
         model: source.model,
         category: categoryFor(langCode, item.category),
-        description: `${localized.summary} ${copy.machine.descriptionSuffix}`,
+        description: localized.summary,
         image: gallery.map((image) => `${BASE_URL}/${heroImageFor(image)}`),
         brand: { "@type": "Brand", name: "Premade Pouch Machines" },
         manufacturer: { "@id": `${home}#organization` },
@@ -965,27 +980,6 @@ function machineJsonLd(item, related, langCode) {
         ],
       },
       {
-        "@type": "FAQPage",
-        "@id": `${url}#faq`,
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: questions.products,
-            acceptedAnswer: { "@type": "Answer", text: localized.summary },
-          },
-          {
-            "@type": "Question",
-            name: questions.options,
-            acceptedAnswer: { "@type": "Answer", text: localized.options.join(", ") },
-          },
-          {
-            "@type": "Question",
-            name: questions.rfq,
-            acceptedAnswer: { "@type": "Answer", text: rfqDetailsFor(localized, langCode).join(" ") },
-          },
-        ],
-      },
-      {
         "@type": "ItemList",
         "@id": `${url}#related-machines`,
         name: copy.machine.related,
@@ -1006,8 +1000,9 @@ function machinePage(item, langCode) {
   const related = relatedFor(item);
   const localizedCategory = categoryFor(langCode, item.category);
   const localized = localizedItemFor(item, langCode);
-  const title = `${localized.title} | ${copy.machine.titleSuffix}`;
-  const description = `${localized.summary} ${copy.machine.descriptionSuffix}`;
+  const titleCandidate = `${localized.title} | ${copy.machine.titleSuffix}`;
+  const title = titleCandidate.length <= 72 ? titleCandidate : localized.title;
+  const description = localized.summary;
   const gallery = galleryFor(item);
   const snapshot = snapshotFor(localized, langCode);
   const workflow = localized.workflow;
@@ -1048,10 +1043,6 @@ function machinePage(item, langCode) {
         </nav>
 
         <p class="article-lede">${escapeHtml(copy.machine.lede)}</p>
-
-        <div class="keyword-cloud" aria-label="${escapeAttr(copy.machine.keywordLabel)}">
-          ${item.keywords.map((keyword) => `<span>${escapeHtml(keyword)}</span>`).join("\n          ")}
-        </div>
 
         <div class="machine-snapshot" aria-label="${escapeAttr(copy.machine.overview)}">
           ${snapshot
@@ -1191,7 +1182,7 @@ function machinePage(item, langCode) {
 
         ${
           topicLinks.length
-            ? `<h2>Related buyer search pages</h2>
+            ? `<h2>Related application and engineering guides</h2>
         <div class="seo-page-grid compact-topic-grid">
           ${topicLinks
             .map(
@@ -1199,7 +1190,7 @@ function machinePage(item, langCode) {
             <span>${escapeHtml(topic.groupLabel)}</span>
             <h3>${escapeHtml(topic.title)}</h3>
             <p>${escapeHtml(topic.description)}</p>
-            <small>${escapeHtml(topic.searchTerms.slice(0, 3).join(" | "))}</small>
+            <small>${escapeHtml(topicCardDetail(topic))}</small>
           </a>`,
             )
             .join("\n          ")}
@@ -1238,7 +1229,19 @@ function machinePage(item, langCode) {
 function pillarPage(page, langCode) {
   const copy = copyFor(langCode);
   const routePath = page.path;
-  const title = `${categoryFor(langCode, page.category)} | ${copy.machine.titleSuffix}`;
+  const category = categoryFor(langCode, page.category);
+  const fullTitle = `${category} | ${copy.machine.titleSuffix}`;
+  const shortSuffix = {
+    en: "Specs & RFQ Guide",
+    es: "Especificaciones y RFQ",
+    fr: "Spécifications et RFQ",
+    de: "Technik & RFQ",
+    pt: "Especificações e RFQ",
+    ru: "Характеристики и RFQ",
+    ar: "المواصفات وRFQ",
+  }[langCode];
+  const shortTitle = `${category} | ${shortSuffix}`;
+  const title = fullTitle.length <= 72 ? fullTitle : shortTitle.length <= 72 ? shortTitle : category;
   const [summary, secondary] = PILLAR_TEXT[page.key][langCode] || PILLAR_TEXT[page.key].en;
   const related = MACHINE_PAGES.filter((item) => item.image === page.image || item.category === page.category);
   const adjacentCategories = PILLAR_PAGES.filter((candidate) => candidate.path !== page.path).slice(0, 5);
@@ -1461,17 +1464,18 @@ function topicDiscoverySection(langCode, variant = "section") {
     ...SEO_TOPIC_PAGES.filter((page) => page.group === "insights").slice(0, 4),
     ...SEO_TOPIC_PAGES.filter((page) => page.group === "industries").slice(0, 4),
     ...SEO_TOPIC_PAGES.filter((page) => page.group === "technologies").slice(0, 4),
+    ...SEO_TOPIC_PAGES.filter((page) => page.group === "troubleshooting").slice(0, 4),
   ];
   const wrapperClass = variant === "article" ? "topic-library-block article-topic-block" : "section topic-library-block";
-  return `<section class="${wrapperClass}" id="keyword-library" aria-labelledby="keyword-library-title">
+  return `<section class="${wrapperClass}" id="decision-library" aria-labelledby="decision-library-title">
         <div class="section-heading">
           <div>
-            <p class="section-kicker">SEO library</p>
-            <h2 id="keyword-library-title">Application, format, industry, technology, buying-intent and market-intelligence pages for long-tail search.</h2>
+            <p class="section-kicker">Decision library</p>
+            <h2 id="decision-library-title">Find the right packaging path by product, format, industry, technology or operating problem.</h2>
           </div>
-          <p>These pages expand the site beyond machine names into the searches buyers actually use: products to pack, buyer industries, pouch formats, dosing choices, sealing and control technologies, RFQ evidence, line-planning questions, market trends and compliance-driven research.</p>
+          <p>Start from the decision in front of you. Compare products to pack, package formats, dosing and sealing technologies, line-planning requirements, current industry constraints and symptom-led troubleshooting checks.</p>
         </div>
-        <div class="topic-hub-row" aria-label="SEO topic hubs">
+        <div class="topic-hub-row" aria-label="Packaging decision hubs">
           ${SEO_TOPIC_HUBS.map((hub) => `<a class="topic-hub-card" href="${hub.path}">
             <span>${escapeHtml(hub.label)}</span>
             <strong>${topicPageCount(hub.group)}</strong>
@@ -1485,7 +1489,7 @@ function topicDiscoverySection(langCode, variant = "section") {
             <span>${escapeHtml(page.groupLabel)}</span>
             <h3>${escapeHtml(page.title)}</h3>
             <p>${escapeHtml(page.description)}</p>
-            <small>${escapeHtml(page.searchTerms.slice(0, 3).join(" | "))}</small>
+            <small>${escapeHtml(topicCardDetail(page))}</small>
           </a>`,
             )
             .join("\n          ")}
@@ -1509,7 +1513,7 @@ function homePage(langCode) {
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-machine" aria-hidden="true">
-          <img src="/${escapeAttr(HERO_IMAGE)}" alt="" width="1406" height="794" />
+          <img src="/${escapeAttr(HERO_IMAGE)}" alt="${escapeAttr(categoryFor(langCode, "Premade pouch machines"))}" width="1406" height="794" />
         </div>
         <div class="hero-panel" aria-hidden="true"></div>
         <div class="hero-content">
@@ -1840,7 +1844,7 @@ function hubPage(langCode) {
             <span>${escapeHtml(categoryFor(langCode, item.category))}</span>
             <h3>${escapeHtml(localized.title)}</h3>
             <p>${escapeHtml(localized.summary)}</p>
-            <small>${escapeHtml(item.keywords.slice(0, 3).join(" | "))}</small>
+            <small>${escapeHtml(localized.applications.slice(0, 3).join(" | "))}</small>
           </a>`;
             })
             .join("\n          ")}
@@ -1903,8 +1907,8 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
         inLanguage: "en",
         image: `${BASE_URL}/${heroImageFor(page.image)}`,
         dateModified: LASTMOD,
-        keywords: page.searchTerms.join(", "),
-        about: page.searchTerms.map((term) => ({ "@type": "Thing", name: term })),
+        about: uniqueList([...(page.products || []), ...(page.formats || [])]).slice(0, 12).map((item) => ({ "@type": "Thing", name: item })),
+        mentions: relatedMachines.map((machine) => ({ "@type": "Product", name: machine.title, url: absoluteUrl("en", `/machines/${machine.slug}.html`) })),
         ...(page.sourceNotes?.length ? { citation: page.sourceNotes.map((source) => source.url).filter(Boolean) } : {}),
         author: { "@id": `${home}#organization` },
         publisher: { "@id": `${home}#organization` },
@@ -1935,15 +1939,6 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
         ],
       },
       {
-        "@type": "FAQPage",
-        "@id": `${url}#faq`,
-        mainEntity: page.faq.map(([question, answer]) => ({
-          "@type": "Question",
-          name: question,
-          acceptedAnswer: { "@type": "Answer", text: answer },
-        })),
-      },
-      {
         "@type": "ItemList",
         "@id": `${url}#recommended-machines`,
         name: "Recommended machine paths",
@@ -1956,8 +1951,8 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
       },
       {
         "@type": "ItemList",
-        "@id": `${url}#related-search-pages`,
-        name: "Related buyer search pages",
+        "@id": `${url}#related-decisions`,
+        name: "Related packaging decisions",
         itemListElement: relatedTopics.map((topic, index) => ({
           "@type": "ListItem",
           position: index + 1,
@@ -2040,7 +2035,7 @@ function topicHubPage(hub) {
         <div class="seo-library-panel" aria-label="${escapeAttr(hub.label)} statistics">
           <div><strong>${pages.length}</strong><span>topic pages</span></div>
           <div><strong>${machineLinks.length}</strong><span>linked machines</span></div>
-          <div><strong>${uniqueList(pages.flatMap((page) => page.searchTerms)).length}</strong><span>target terms</span></div>
+          <div><strong>${uniqueList(pages.flatMap((page) => page.formats || [])).length}</strong><span>package formats</span></div>
         </div>
       </section>
 
@@ -2068,7 +2063,7 @@ function topicHubPage(hub) {
             <span>${escapeHtml(page.groupLabel)}</span>
             <h3>${escapeHtml(page.title)}</h3>
             <p>${escapeHtml(page.description)}</p>
-            <small>${escapeHtml(page.searchTerms.slice(0, 4).join(" | "))}</small>
+            <small>${escapeHtml(topicCardDetail(page))}</small>
           </a>`;
               },
             )
@@ -2100,7 +2095,14 @@ function topicPage(page) {
   const relatedMachines = page.machineSlugs.map(machineBySlug).filter(Boolean);
   const relatedTopics = relatedTopicsFor(page);
   const leadMachine = relatedMachines[0] || MACHINE_PAGES[0];
+  const isTroubleshooting = page.group === "troubleshooting";
+  const productScope = page.products.slice(0, 3).join(", ") || "the target product";
+  const formatScope = page.formats.slice(0, 2).join(", ") || "the proposed package";
   const quoteHref = `/?machine=${encodeURIComponent(page.title)}&product=${encodeURIComponent(page.products.slice(0, 4).join(", "))}&source=${encodeURIComponent(page.slug)}#quote`;
+  const quoteHeading = isTroubleshooting ? "Send the fault evidence for a practical machine review." : "Turn this decision into a practical RFQ.";
+  const quoteText = isTroubleshooting
+    ? "Send a full-cycle video, good and failed packs, current settings, material details, alarms and measured utilities. The review can focus on the first process deviation instead of guessing from the final defect."
+    : `For ${page.title}, send representative ${productScope} samples, ${formatScope} samples, fill range, target output, voltage and required options. This lets the first reply identify a testable machine path instead of quoting a generic frame.`;
 
   return `<!doctype html>
 <html lang="en" dir="ltr">
@@ -2130,18 +2132,21 @@ function topicPage(page) {
 
         <p class="article-lede">${escapeHtml(page.intent)}</p>
 
-        <div class="keyword-cloud" aria-label="Target search terms">
-          ${page.searchTerms.map((keyword) => `<span>${escapeHtml(keyword)}</span>`).join("\n          ")}
+        <div class="article-review" aria-label="Content review and capability basis">
+          <div><span>Decision intent</span><strong>${escapeHtml(page.intentType)}</strong></div>
+          <div><span>Capability basis</span><strong>Authorized brochure and machine data</strong></div>
+          <div><span>Reviewed</span><strong><time datetime="${LASTMOD}">${escapeHtml(REVIEW_DATE)}</time></strong></div>
+          <a href="/editorial-policy.html">Editorial method and reference limits</a>
         </div>
 
-        <div class="machine-snapshot topic-snapshot" aria-label="Search intent snapshot">
+        <div class="machine-snapshot topic-snapshot" aria-label="Project decision snapshot">
           <div><span>Products</span><strong>${escapeHtml(page.products.slice(0, 5).join(", ") || page.title)}</strong></div>
           <div><span>Package formats</span><strong>${escapeHtml(page.formats.slice(0, 4).join(", ") || "Project-specific")}</strong></div>
+          <div><span>Decision stage</span><strong>${escapeHtml(page.intentType)}</strong></div>
           <div><span>Machine paths</span><strong>${relatedMachines.length}</strong></div>
-          <div><span>RFQ focus</span><strong>samples, size, output, options</strong></div>
         </div>
 
-        <h2>What this search intent usually means</h2>
+        <h2>${isTroubleshooting ? "What the symptom can indicate" : "What the project must solve"}</h2>
         <div class="article-card-grid three">
           ${page.painPoints
             .map(
@@ -2170,8 +2175,30 @@ function topicPage(page) {
         }
 
         ${
+          page.diagnosticMatrix?.length
+            ? `<h2>Symptom-to-action diagnostic matrix</h2>
+        <div class="article-table diagnostic-table">
+          <div class="row head">
+            <span>Observed pattern</span>
+            <span>Evidence to check</span>
+            <span>Controlled next action</span>
+          </div>
+          ${page.diagnosticMatrix
+            .map(
+              ([symptom, check, action]) => `<div class="row">
+            <span data-label="Symptom">${escapeHtml(symptom)}</span>
+            <span data-label="Check">${escapeHtml(check)}</span>
+            <span data-label="Action">${escapeHtml(action)}</span>
+          </div>`,
+            )
+            .join("\n          ")}
+        </div>`
+            : ""
+        }
+
+        ${
           page.sourceNotes?.length
-            ? `<h2>Market and compliance signals used</h2>
+            ? `<h2>Sources and standards</h2>
         <div class="source-note-grid">
           ${page.sourceNotes
             .map(
@@ -2201,16 +2228,33 @@ function topicPage(page) {
             .join("\n          ")}
         </div>
 
+        <h2>Brochure-grounded capability references</h2>
+        <p class="table-note">The rows below connect ${escapeHtml(page.title)} to published machine ranges and stated applications. Use them for shortlisting only; final output, accuracy and package quality require testing with the actual product, package material and line conditions.</p>
+        <div class="article-table capability-reference-table">
+          <div class="row head">
+            <span>Machine path</span>
+            <span>Selected brochure reference data</span>
+          </div>
+          ${relatedMachines
+            .map(
+              (machine) => `<div class="row">
+            <span><a href="/machines/${machine.slug}.html">${escapeHtml(machine.title)}</a></span>
+            <span>${escapeHtml(machine.specs.slice(0, 3).map(([label, value]) => `${label}: ${value}`).join("; "))} Stated applications include ${escapeHtml(machine.applications.slice(0, 4).join(", "))}.</span>
+          </div>`,
+            )
+            .join("\n          ")}
+        </div>
+
         <h2>Specification signals to confirm</h2>
         <div class="article-table">
           <div class="row head">
-            <span>Specification</span>
-            <span>Why it matters</span>
+            <span>Project input</span>
+            <span>Why it changes the decision</span>
           </div>
           ${page.specFocus
             .map(
-              (line) => `<div class="row">
-            <span>${escapeHtml(line.split(".")[0])}</span>
+              (line, index) => `<div class="row">
+            <span>Check ${String(index + 1).padStart(2, "0")}</span>
             <span>${escapeHtml(line)}</span>
           </div>`,
             )
@@ -2222,31 +2266,31 @@ function topicPage(page) {
           ${page.rfqChecklist.map((line) => `<p>${escapeHtml(line)}</p>`).join("\n          ")}
         </div>
 
-        <h2>RFQ conversion path</h2>
+        <h2>From evidence to a machine decision</h2>
         <div class="conversion-path-grid">
           <article>
             <span>01</span>
-            <h3>Send the evidence that changes machine selection</h3>
+            <h3>Capture the evidence that changes the decision</h3>
             <p>${escapeHtml(page.rfqChecklist.slice(0, 2).join(" "))}</p>
           </article>
           <article>
             <span>02</span>
-            <h3>Compare the closest machine families</h3>
+            <h3>${isTroubleshooting ? "Trace the first process deviation" : "Compare the closest machine families"}</h3>
             <p>${escapeHtml(relatedMachines.slice(0, 3).map((machine) => machine.title).join(", ") || "Premade pouch, VFFS, sachet, flow wrap or filling systems are matched by product behavior and pack format.")}</p>
           </article>
           <article>
             <span>03</span>
-            <h3>Lock the acceptance test before price comparison</h3>
-            <p>Define output, accuracy, seal quality, reject logic, utilities, sample test criteria and documentation before comparing supplier quotes.</p>
+            <h3>${isTroubleshooting ? "Verify the correction under normal variation" : "Lock the acceptance test before price comparison"}</h3>
+            <p>${isTroubleshooting ? "Run the corrected process with normal product, material and utility variation. Confirm reject rate and pack quality before making the new setting a standard." : `Set acceptance criteria for ${escapeHtml(page.title)}: usable output, accuracy, seal quality, reject logic, utilities, sample tests and documentation. Compare price only after suppliers accept the same test basis.`}</p>
           </article>
         </div>
 
-        <h2>Frequently asked questions</h2>
+        ${page.faq?.length ? `<h2>Common decision questions</h2>
         <div class="faq-grid topic-faq-grid">
           ${page.faq.map(([question, answer]) => `<article><h3>${escapeHtml(question)}</h3><p>${escapeHtml(answer)}</p></article>`).join("")}
-        </div>
+        </div>` : ""}
 
-        <h2>Related long-tail pages</h2>
+        <h2>Related packaging decisions</h2>
         <div class="seo-page-grid compact-topic-grid">
           ${relatedTopics
             .map(
@@ -2261,10 +2305,10 @@ function topicPage(page) {
 
         <div class="article-cta">
           <div>
-            <h2>Turn this search into a practical RFQ.</h2>
-            <p>Send product photos, pack samples, fill weight, target output, voltage and required options. The first reply can focus on a realistic machine path instead of a generic price.</p>
+            <h2>${escapeHtml(quoteHeading)}</h2>
+            <p>${escapeHtml(quoteText)}</p>
           </div>
-          <a class="button button-primary" href="${quoteHref}">Request proposal</a>
+          <a class="button button-primary" href="${quoteHref}">${isTroubleshooting ? "Request review" : "Request proposal"}</a>
         </div>
       </article>
     </main>

@@ -6713,6 +6713,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/technologies/index.html" />
   </url>
   <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/index.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.83</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/index.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/index.html" />
+  </url>
+  <url>
     <loc>https://premadepouchmachines.com/applications/rice-packaging-machine.html</loc>
     <lastmod>2026-07-11</lastmod>
     <changefreq>monthly</changefreq>
@@ -9007,6 +9015,238 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/3d-printer-filament-shrink-packaging-machine.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/3d-printer-filament-shrink-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/dusty-fine-powder-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/dusty-fine-powder-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/dusty-fine-powder-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/hygroscopic-powder-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/hygroscopic-powder-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/hygroscopic-powder-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/abrasive-powder-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/abrasive-powder-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/abrasive-powder-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/high-viscosity-sauce-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/high-viscosity-sauce-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/high-viscosity-sauce-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/foaming-liquid-filling-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/foaming-liquid-filling-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/foaming-liquid-filling-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/liquid-refill-pouch-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/liquid-refill-pouch-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/liquid-refill-pouch-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/fragile-product-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/fragile-product-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/fragile-product-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/sticky-product-weighing-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/sticky-product-weighing-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/sticky-product-weighing-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/mixed-component-kit-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/mixed-component-kit-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/mixed-component-kit-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/oxygen-sensitive-food-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/oxygen-sensitive-food-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/oxygen-sensitive-food-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/applications/1kg-5kg-powder-pouch-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/applications/1kg-5kg-powder-pouch-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/applications/1kg-5kg-powder-pouch-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/premade-pouch-not-opening-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/premade-pouch-not-opening-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/premade-pouch-not-opening-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/premade-pouch-feeding-jam-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/premade-pouch-feeding-jam-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/premade-pouch-feeding-jam-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/pouch-seal-leak-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/pouch-seal-leak-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/pouch-seal-leak-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/powder-in-seal-area-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/powder-in-seal-area-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/powder-in-seal-area-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/inconsistent-fill-weight-packaging-machine.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/inconsistent-fill-weight-packaging-machine.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/inconsistent-fill-weight-packaging-machine.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/vffs-film-tracking-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/vffs-film-tracking-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/vffs-film-tracking-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/vffs-bag-length-print-mark-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/vffs-bag-length-print-mark-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/vffs-bag-length-print-mark-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/liquid-filler-dripping-foaming-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/liquid-filler-dripping-foaming-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/liquid-filler-dripping-foaming-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/auger-filler-powder-bridging-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/auger-filler-powder-bridging-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/auger-filler-powder-bridging-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/multihead-weigher-sticky-product-accuracy.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/multihead-weigher-sticky-product-accuracy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/multihead-weigher-sticky-product-accuracy.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/zipper-pouch-opening-sealing-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/zipper-pouch-opening-sealing-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/zipper-pouch-opening-sealing-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/nitrogen-flush-high-residual-oxygen-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/nitrogen-flush-high-residual-oxygen-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/nitrogen-flush-high-residual-oxygen-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/vacuum-package-loses-vacuum-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/vacuum-package-loses-vacuum-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/vacuum-package-loses-vacuum-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/flow-wrapper-empty-pack-missed-product.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/flow-wrapper-empty-pack-missed-product.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/flow-wrapper-empty-pack-missed-product.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/packaging-machine-static-electricity-troubleshooting.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/packaging-machine-static-electricity-troubleshooting.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/packaging-machine-static-electricity-troubleshooting.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/packaging-line-bottleneck-diagnosis.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/packaging-line-bottleneck-diagnosis.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/packaging-line-bottleneck-diagnosis.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/packaging-machine-changeover-time-reduction.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/packaging-machine-changeover-time-reduction.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/packaging-machine-changeover-time-reduction.html" />
+  </url>
+  <url>
+    <loc>https://premadepouchmachines.com/troubleshooting/compressed-air-pressure-packaging-machine-problems.html</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.72</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://premadepouchmachines.com/troubleshooting/compressed-air-pressure-packaging-machine-problems.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://premadepouchmachines.com/troubleshooting/compressed-air-pressure-packaging-machine-problems.html" />
   </url>
   <url>
     <loc>https://premadepouchmachines.com/about.html</loc>

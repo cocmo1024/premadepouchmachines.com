@@ -1,3 +1,5 @@
+import { APPLICATION_BEHAVIOR_TOPICS, LEGACY_CONTENT_ENRICHMENTS, TROUBLESHOOTING_TOPICS } from "./search-intent-expansion.mjs";
+
 const A = "public/assets/brochure";
 
 const SOURCE = {
@@ -58,6 +60,8 @@ const GROUPS = {
       "Product-specific packaging machine guides for food, beverages, medical consumables, household goods, hospitality supplies, industrial parts, stationery and processing materials.",
     lede:
       "Start with the item you need to pack, from pasta, bread and drink powder to gloves, bearings, cable ties, straws, cards and resin. Each page maps product behavior, package format, feeding or dosing method and RFQ evidence to the closest machine path.",
+    intentType: "Product-fit research",
+    titleSuffix: "Equipment, Specs and RFQ Guide",
     priority: "0.84",
   },
   formats: {
@@ -65,11 +69,13 @@ const GROUPS = {
     dir: "formats",
     label: "Packaging formats",
     title: "Packaging Formats | Pouch, Sachet, VFFS, Tea Bag and Carton Guide",
-    h1: "Packaging format pages for long-tail machine selection.",
+    h1: "Packaging format guides for practical machine selection.",
     description:
       "Format-specific packaging pages for stand-up pouch, zipper pouch, pillow bag, stick pack, sachet, tea bag, vacuum, shrink, overwrap, cup and carton projects.",
     lede:
       "Use these pages when the buyer searches by pack style. Each page explains when the format fits, which machine family usually applies and what specifications must be confirmed before quotation.",
+    intentType: "Format-fit research",
+    titleSuffix: "Format, Equipment and RFQ Guide",
     priority: "0.8",
   },
   guides: {
@@ -82,45 +88,151 @@ const GROUPS = {
       "Practical packaging machine guides for premade pouch vs VFFS, powder dosing, liquid filling, tea and coffee lines, RFQ checklists, speed calculation and factory acceptance testing.",
     lede:
       "These guides target comparison and procurement searches. They turn catalog knowledge into decision criteria, specification checks and RFQ inputs that make inquiries more complete.",
+    intentType: "Commercial investigation",
+    titleSuffix: "Buyer Guide and RFQ Checklist",
     priority: "0.78",
   },
   insights: {
     path: "/insights/index.html",
     dir: "insights",
     label: "Industry insights",
-    title: "Packaging Machinery Industry Insights | AI, Automation, Sustainability and Market Trends",
-    h1: "Packaging machinery industry insights for high-intent buyer research.",
+    title: "Packaging Machinery Trends | AI, Automation and Sustainability",
+    h1: "Packaging machinery industry analysis for practical planning.",
     description:
       "Strategic packaging machinery intelligence covering AI automation, robotics, recyclable packaging rules, flexible packaging demand, trade-show trends, inspection, traceability and export planning.",
     lede:
       "Use these pages when the search is broader than one machine model. Each insight connects current packaging-market signals to practical equipment choices, RFQ evidence and internal machine paths.",
+    intentType: "Industry research",
+    titleSuffix: "Packaging Industry Analysis",
     priority: "0.82",
   },
   industries: {
     path: "/industries/index.html",
     dir: "industries",
     label: "Industry playbooks",
-    title: "Packaging Machine Industry Playbooks | Food, Coffee, Tea, Supplements, Pet Food and Consumer Goods",
+    title: "Packaging Machines by Industry | Buyer Playbooks and Line Planning",
     h1: "Packaging machine playbooks by buyer industry.",
     description:
       "Industry-specific packaging automation pages for coffee roasters, tea brands, supplement companies, spice factories, rice mills, snack brands, pet food, sauce producers, frozen food plants, hardware kits and consumer goods.",
     lede:
       "These pages target searches where the buyer describes their business rather than a single product or machine. Each playbook maps industry constraints to the closest machine families, test evidence and RFQ path.",
+    intentType: "Line planning",
+    titleSuffix: "Equipment, Layout and RFQ Guide",
     priority: "0.82",
   },
   technologies: {
     path: "/technologies/index.html",
     dir: "technologies",
     label: "Packaging technologies",
-    title: "Packaging Machine Technologies | Servo, Weighing, Filling, Sealing, Coding and OEE Guides",
+    title: "Packaging Machine Technology | Engineering and Integration Guides",
     h1: "Packaging machine technologies buyers should understand before RFQ.",
     description:
       "Technical packaging machine guides for servo control, multi-head weighing, auger filling, pump filling, ultrasonic sealing, heat-seal windows, nitrogen, vacuum, coding, changeover, OEE and line integration.",
     lede:
       "These pages target technical searches from engineers, plant managers and procurement teams. Each guide explains the technology, the machine families affected and the RFQ evidence needed to avoid vague quotations.",
+    intentType: "Technical evaluation",
+    titleSuffix: "Engineering Guide and RFQ Questions",
     priority: "0.82",
   },
+  troubleshooting: {
+    path: "/troubleshooting/index.html",
+    dir: "troubleshooting",
+    label: "Troubleshooting",
+    title: "Packaging Machine Troubleshooting | Causes and Corrective Checks",
+    h1: "Packaging machine troubleshooting by symptom and process.",
+    description:
+      "Diagnostic packaging-machine guides for pouch feeding, opening, sealing, filling accuracy, film tracking, nitrogen, vacuum, flow wrapping, static, compressed air and line bottlenecks.",
+    lede:
+      "Start with the observed symptom. Each guide separates likely causes, inspection evidence and controlled corrective actions, then links the issue to relevant machine capabilities and RFQ data.",
+    intentType: "Problem diagnosis",
+    titleSuffix: "Causes, Checks and Corrective Actions",
+    priority: "0.83",
+  },
 };
+
+const TROUBLESHOOTING_SPEC_FOCUS = [
+  "Exact symptom, first occurrence, frequency and the machine step where it begins.",
+  "Product, pouch or film lot, SKU, recipe and environmental conditions during the fault.",
+  "Alarm history, setpoints, actual utility readings and maintenance work completed before the issue.",
+  "Good and failed samples, time-ordered production data and video of the full cycle at normal speed.",
+];
+
+const TROUBLESHOOTING_RFQ_CHECKLIST = [
+  "A short video showing the complete machine cycle before, during and after the fault.",
+  "Photos of good and failed packs with the defect location marked.",
+  "Current recipe, setpoints, alarms, line speed and dynamic air or vacuum readings where relevant.",
+  "Product, pouch or film samples from both good and failed lots.",
+  "Recent change parts, maintenance actions, material changes and the measured reject rate.",
+];
+
+function naturalList(values, fallback, limit = 3) {
+  const items = [...new Set((values || []).filter(Boolean))].slice(0, limit);
+  if (!items.length) return fallback;
+  if (items.length === 1) return items[0];
+  if (items.length === 2) return `${items[0]} and ${items[1]}`;
+  return `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
+}
+
+function contextualPainPoints(group, { title, products, formats }) {
+  const productScope = naturalList(products, "the target product");
+  const formatScope = naturalList(formats, "the proposed package", 2);
+  const byGroup = {
+    applications: [
+      `Test ${productScope} under production-like conditions; flow, aeration, breakage, stickiness or viscosity can change feeder choice and usable output.`,
+      `Validate opening, filling and sealing with ${formatScope}; record seal contamination, trapped air and presentation defects at the target speed.`,
+      `Compare machine paths for ${title} against SKU range, changeover work, cleaning, inspection and downstream packing.`,
+    ],
+    formats: [
+      `Freeze dimensions and material structure for ${formatScope}; opening force, friction, stiffness and seal window can change machine handling.`,
+      `Run ${productScope} through the complete pack cycle to verify fill behavior, headspace, presentation and seal cleanliness.`,
+      `Set acceptance limits for ${title}, including pack dimensions, seal strength, code quality, usable output and changeover time.`,
+    ],
+    guides: [
+      `Use ${title} to make one defined decision: document current constraints, candidate machine paths and the evidence that would rule each option in or out.`,
+      `Use ${productScope} and ${formatScope} samples to test assumptions about dosing, handling, sealing and line speed.`,
+      `Compare proposals on measured acceptance criteria, change parts, utilities, cleaning, documentation and support rather than headline speed alone.`,
+    ],
+    insights: [
+      `Translate ${title} into a plant-level question: identify which SKU, labor, material, compliance or uptime constraint would actually change.`,
+      `Check the implication against ${productScope} and ${formatScope} using current production data, trials or supplier evidence rather than treating a broad trend as a purchase case.`,
+      `Separate near-term controls and integration requirements from optional future capability so the resulting RFQ remains testable.`,
+    ],
+    industries: [
+      `Map the SKU mix for ${productScope}; fill range, cleaning, package formats, batch sizes and seasonal peaks determine the line architecture.`,
+      `Test ${formatScope} across representative materials and product lots, including start-up, changeover and end-of-run conditions.`,
+      `Define traceability, inspection, coding, secondary packing and staffing boundaries before comparing throughput claims for ${title}.`,
+    ],
+    technologies: [
+      `For ${title}, define the measurable process variable, baseline and acceptance limit before specifying hardware or software.`,
+      `Test the technology with ${productScope} in ${formatScope}, including normal variation in product, material, utilities and operator actions.`,
+      `Record failure modes, bypass rules, alarms, data ownership and maintenance responsibility so the feature remains useful after commissioning.`,
+    ],
+  };
+  return byGroup[group] || byGroup.guides;
+}
+
+function contextualSpecFocus({ title, products, formats }) {
+  const productScope = naturalList(products, "the target product");
+  const formatScope = naturalList(formats, "the proposed package", 2);
+  return [
+    `Representative samples of ${productScope}, including normal lot variation that can affect feeding, dosing or handling.`,
+    `Package samples covering ${formatScope}, with dimensions, material structure, opening behavior and seal requirements.`,
+    `Decision target for ${title}: fill range, accuracy, usable output, SKU count and allowable reject rate.`,
+    "Required utilities, coding, inspection, downstream integration, changeover method and acceptance-test evidence.",
+  ];
+}
+
+function contextualRfqChecklist({ title, products, formats }) {
+  const productScope = naturalList(products, "the target product");
+  const formatScope = naturalList(formats, "the proposed package", 2);
+  return [
+    `Product photos, specification sheet and representative samples for ${productScope}.`,
+    `Package samples covering ${formatScope}, with dimensions, material structure and seal expectations.`,
+    `Target fill range, usable output, tolerance and SKU count for ${title}.`,
+    "Required feeding or dosing, coding, inspection, reject handling and downstream packing scope.",
+    "Factory voltage, compressed air, available footprint, cleaning needs and acceptance-test expectations.",
+  ];
+}
 
 function topic(group, slug, data) {
   const groupData = GROUPS[group];
@@ -138,6 +250,8 @@ function topic(group, slug, data) {
     h1: data.h1 || title,
     description: data.description,
     intent: data.intent,
+    intentType: data.intentType || groupData.intentType,
+    titleSuffix: data.titleSuffix || groupData.titleSuffix,
     image: data.image,
     machineSlugs: machines,
     relatedSlugs: data.relatedSlugs || [],
@@ -151,32 +265,22 @@ function topic(group, slug, data) {
         `${title.toLowerCase()} manufacturer`,
         `${title.toLowerCase()} supplier`,
       ],
-    painPoints: data.painPoints || [
-      "Confirm product flow, density, particle size or viscosity before choosing the machine frame.",
-      "Match the pack format to shelf presentation, film cost, output target and changeover frequency.",
-      "Protect the seal area from product residue, trapped air, dust or liquid dripping before acceptance testing.",
-    ],
-    specFocus: data.specFocus || [
-      "Target fill weight or volume and acceptable filling tolerance.",
-      "Package width, length, material structure and finished sample quality.",
-      "Required bags per minute, factory voltage, compressed air and available footprint.",
-      "Add-ons such as coding, nitrogen, vacuum, checkweigher, metal detector, cartoning or case sealing.",
-    ],
-    rfqChecklist: data.rfqChecklist || [
-      "Product photos and physical samples.",
-      "Target pack size, fill weight, output and accuracy requirement.",
-      "Film, pouch, cup, bottle, carton or case samples.",
-      "Required options and downstream packing layout.",
-      "Voltage, compressed air, plant space and acceptance test expectations.",
-    ],
+    painPoints: data.painPoints || contextualPainPoints(group, { title, products, formats }),
+    specFocus:
+      data.specFocus ||
+      (group === "troubleshooting"
+        ? TROUBLESHOOTING_SPEC_FOCUS
+        : contextualSpecFocus({ title, products, formats })),
+    rfqChecklist:
+      data.rfqChecklist ||
+      (group === "troubleshooting"
+        ? TROUBLESHOOTING_RFQ_CHECKLIST
+        : contextualRfqChecklist({ title, products, formats })),
     contentSections: data.contentSections || [],
-    sourceNotes: data.sourceNotes || [],
-    faq: data.faq || [
-      [`Which machine is usually quoted first for ${title.toLowerCase()}?`, data.intent],
-      ["What information makes the quote accurate?", "Send real product samples, package samples, fill weight, target output, voltage, air supply and required add-ons before final quotation."],
-      ["Can the same line run multiple SKUs?", "Usually yes when the products share similar flow behavior, package dimensions and dosing method. Tooling, filling parts and sealing jaws define the changeover boundary."],
-    ],
-    priority: data.priority || (group === "applications" ? "0.7" : "0.68"),
+    diagnosticMatrix: data.diagnosticMatrix || [],
+    sourceNotes: (data.sourceNotes || []).filter((source) => !source.url.includes("developers.google.com/search")),
+    faq: data.faq || [],
+    priority: data.priority || (group === "applications" ? "0.7" : group === "troubleshooting" ? "0.72" : "0.68"),
     changefreq: data.changefreq || "monthly",
   };
 }
@@ -7810,13 +7914,16 @@ const everythingPackagingApplications = [
   }),
 ];
 
+const applicationBehaviorTopics = APPLICATION_BEHAVIOR_TOPICS.map(({ slug, ...data }) => topic("applications", slug, data));
+const troubleshootingTopics = TROUBLESHOOTING_TOPICS.map(({ slug, ...data }) => topic("troubleshooting", slug, data));
+
 export const SEO_TOPIC_HUBS = Object.entries(GROUPS).map(([group, data]) => ({
   group,
   ...data,
   changefreq: "weekly",
 }));
 
-export const SEO_TOPIC_PAGES = [
+const ALL_TOPIC_PAGES = [
   ...applications,
   ...formats,
   ...guides,
@@ -7850,4 +7957,11 @@ export const SEO_TOPIC_PAGES = [
   ...fifthWaveInsights,
   ...fifthWaveTechnologies,
   ...everythingPackagingApplications,
+  ...applicationBehaviorTopics,
+  ...troubleshootingTopics,
 ];
+
+export const SEO_TOPIC_PAGES = ALL_TOPIC_PAGES.map((page) => {
+  const enrichment = LEGACY_CONTENT_ENRICHMENTS[page.slug];
+  return enrichment ? { ...page, contentSections: [...(page.contentSections || []), ...enrichment] } : page;
+});

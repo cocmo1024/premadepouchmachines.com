@@ -74,7 +74,7 @@ export const COPY = {
       homeLabel: "Premade Pouch Machines home",
     },
     home: {
-      title: "Premade Pouch Machines | Rotary, VFFS, Sachet, Tea, Coffee and Packing Lines",
+      title: "Premade Pouch Machines | Rotary, VFFS, Sachet and Packing Lines",
       description:
         "Industrial packaging machine catalog for premade pouch, VFFS, sachet, tea, coffee, vacuum, flow wrap, filling, cartoning and complete packing lines.",
       eyebrow: "Rotary premade pouch packaging systems",
@@ -113,10 +113,8 @@ export const COPY = {
     },
     machine: {
       titleSuffix: "Specs, Applications and RFQ Guide",
-      descriptionSuffix: "Compare applications, reference specifications, options, buyer checklist and RFQ inputs.",
       lede:
         "Use this page to qualify the machine by product behavior, pack format, reference range, options and quotation data.",
-      keywordLabel: "Target keywords",
       overview: "Machine overview",
       applications: "Best-fit applications",
       configuration: "Configuration path",
@@ -168,7 +166,7 @@ export const COPY = {
     locale: "es_ES",
     nav: { machines: "Máquinas", catalog: "Catálogo", guide: "Guía", applications: "Aplicaciones", specs: "Ficha técnica", faq: "FAQ", quote: "Cotizar", seoLibrary: "Catálogo de máquinas", language: "Idioma", openNav: "Abrir navegación", homeLabel: "Inicio de Premade Pouch Machines" },
     home: {
-      title: "Máquinas de envasado | Bolsas prefabricadas, VFFS, sobres y líneas completas",
+      title: "Máquinas de envasado | Bolsas prefabricadas, VFFS y líneas",
       description: "Catálogo multilingüe de máquinas de envasado para bolsas prefabricadas, VFFS, té, café, sachets, vacío, flow pack, llenado, sellado y encartonado.",
       eyebrow: "Sistemas rotativos para bolsas prefabricadas",
       h1: "Líneas globales de envasado configuradas alrededor de su producto.",
@@ -192,9 +190,7 @@ export const COPY = {
     hub: { title: "Catálogo de máquinas de envasado", description: "Páginas de máquinas para bolsas prefabricadas, VFFS, sachets, té, café, vacío, flow pack, llenado y encartonado.", h1: "Catálogo de máquinas para compradores industriales.", lede: "Cada página resuelve una tarea de compra: aplicaciones, referencias técnicas, opciones, máquinas relacionadas y datos para RFQ.", statPages: "páginas de máquinas", statCategories: "categorías", statIntent: "términos de compra" },
     machine: {
       titleSuffix: "Especificaciones, aplicaciones y guía RFQ",
-      descriptionSuffix: "Compare aplicaciones, referencias técnicas, opciones, checklist de compra y requisitos para cotizar.",
       lede: "Página creada para equipos de compra que comparan máquinas industriales. Convierte datos del catálogo en aplicaciones, parámetros, opciones y preguntas de cotización.",
-      keywordLabel: "Palabras clave objetivo",
       overview: "Resumen de la máquina",
       applications: "Aplicaciones recomendadas",
       configuration: "Ruta de configuración",
@@ -240,7 +236,7 @@ export const COPY = {
     locale: "fr_FR",
     nav: { machines: "Machines", catalog: "Catalogue", guide: "Guide", applications: "Applications", specs: "Spécifications", faq: "FAQ", quote: "Devis", seoLibrary: "Catalogue machines", language: "Langue", openNav: "Ouvrir la navigation", homeLabel: "Accueil Premade Pouch Machines" },
     home: {
-      title: "Machines d'emballage | Sachets préformés, VFFS, dosettes et lignes complètes",
+      title: "Machines d'emballage | Sachets préformés, VFFS et lignes",
       description: "Catalogue multilingue pour machines d'emballage: sachets préformés, VFFS, thé, café, sachets, vide, flow pack, remplissage et encaissage.",
       eyebrow: "Systèmes rotatifs pour sachets préformés",
       h1: "Des lignes d'emballage internationales construites autour de votre produit.",
@@ -264,9 +260,7 @@ export const COPY = {
     hub: { title: "Catalogue de machines d'emballage", description: "Pages machines pour sachets préformés, VFFS, dosettes, thé, café, vide, flow pack, remplissage et cartonnage.", h1: "Catalogue machines pour acheteurs industriels.", lede: "Chaque page traite une tâche d'achat: applications, références techniques, options, machines liées et données RFQ.", statPages: "pages machines", statCategories: "catégories", statIntent: "termes longue traîne" },
     machine: {
       titleSuffix: "Spécifications, applications et guide RFQ",
-      descriptionSuffix: "Comparez applications, références techniques, options, checklist acheteur et exigences de devis.",
       lede: "Page conçue pour les équipes achats qui comparent des machines industrielles. Elle transforme le catalogue en applications, paramètres, options et questions de devis.",
-      keywordLabel: "Mots-clés ciblés",
       overview: "Vue d'ensemble",
       applications: "Applications adaptées",
       configuration: "Parcours de configuration",
@@ -312,7 +306,7 @@ export const COPY = {
     locale: "de_DE",
     nav: { machines: "Maschinen", catalog: "Katalog", guide: "Leitfaden", applications: "Anwendungen", specs: "Daten", faq: "FAQ", quote: "Anfragen", seoLibrary: "Maschinenkatalog", language: "Sprache", openNav: "Navigation öffnen", homeLabel: "Premade Pouch Machines Startseite" },
     home: {
-      title: "Verpackungsmaschinen | Standbodenbeutel, VFFS, Sachets und komplette Linien",
+      title: "Verpackungsmaschinen | Fertigbeutel, VFFS, Sachets und Linien",
       description: "Mehrsprachiger Katalog für Verpackungsmaschinen: vorgefertigte Beutel, VFFS, Tee, Kaffee, Sachets, Vakuum, Flowpack, Abfüllung und Kartonierung.",
       eyebrow: "Rotative Systeme für vorgefertigte Beutel",
       h1: "Globale Verpackungslinien rund um Ihr Produkt.",
@@ -336,9 +330,7 @@ export const COPY = {
     hub: { title: "Verpackungsmaschinen-Katalog", description: "Maschinenseiten für Beutel, VFFS, Sachets, Tee, Kaffee, Vakuum, Flowpack, Abfüllung und Kartonierung.", h1: "Maschinenkatalog für industrielle Käufer.", lede: "Jede Seite beantwortet eine Einkaufsaufgabe: Anwendungen, Referenzdaten, Optionen, verwandte Maschinen und RFQ-Angaben.", statPages: "Maschinenseiten", statCategories: "Kategorien", statIntent: "Käuferbegriffe" },
     machine: {
       titleSuffix: "Spezifikationen, Anwendungen und RFQ-Leitfaden",
-      descriptionSuffix: "Vergleichen Sie Anwendungen, technische Referenzen, Optionen, Einkaufsliste und Angebotsanforderungen.",
       lede: "Diese Seite unterstützt Einkaufsteams beim Vergleich industrieller Verpackungsmaschinen und übersetzt Katalogdaten in Anwendungen, Parameter, Optionen und Angebotsfragen.",
-      keywordLabel: "Ziel-Keywords",
       overview: "Maschinenübersicht",
       applications: "Geeignete Anwendungen",
       configuration: "Konfigurationspfad",
@@ -408,9 +400,7 @@ export const COPY = {
     hub: { title: "Catálogo de máquinas de embalagem", description: "Páginas de máquinas para pouches, VFFS, sachês, chá, café, vácuo, flow pack, envase e cartuchamento.", h1: "Catálogo de máquinas para compradores industriais.", lede: "Cada página resolve uma tarefa de compra: aplicações, referências técnicas, opções, máquinas relacionadas e dados para RFQ.", statPages: "páginas de máquinas", statCategories: "categorias", statIntent: "termos de compra" },
     machine: {
       titleSuffix: "Especificações, aplicações e guia RFQ",
-      descriptionSuffix: "Compare aplicações, referências técnicas, opções, checklist de compra e requisitos de cotação.",
       lede: "Página para equipes de compras que comparam máquinas industriais. Transforma dados de catálogo em aplicações, parâmetros, opções e perguntas de cotação.",
-      keywordLabel: "Palavras-chave alvo",
       overview: "Visão geral da máquina",
       applications: "Aplicações recomendadas",
       configuration: "Caminho de configuração",
@@ -480,9 +470,7 @@ export const COPY = {
     hub: { title: "Каталог упаковочных машин", description: "Страницы оборудования для готовых пакетов, VFFS, саше, чая, кофе, вакуума, flow pack, фасовки и коробов.", h1: "Каталог машин для промышленных покупателей.", lede: "Каждая страница решает закупочную задачу: применения, референсные данные, опции, связанные машины и данные для RFQ.", statPages: "страниц машин", statCategories: "категорий", statIntent: "закупочные запросы" },
     machine: {
       titleSuffix: "Характеристики, применения и RFQ-гид",
-      descriptionSuffix: "Сравните применения, технические данные, опции, чеклист закупки и требования к запросу.",
       lede: "Страница для закупочных команд, сравнивающих промышленное упаковочное оборудование. Данные каталога превращены в применения, параметры, опции и вопросы для запроса.",
-      keywordLabel: "Целевые ключевые слова",
       overview: "Обзор машины",
       applications: "Подходящие применения",
       configuration: "Путь конфигурации",
@@ -552,9 +540,7 @@ export const COPY = {
     hub: { title: "كتالوج آلات التعبئة", description: "صفحات آلات للأكياس الجاهزة، VFFS، الساشيه، الشاي، القهوة، الفاكيوم، فلو باك، التعبئة والكرتنة.", h1: "كتالوج آلات للمشترين الصناعيين.", lede: "كل صفحة تعالج مهمة شراء محددة: التطبيقات، المراجع الفنية، الخيارات، الآلات ذات الصلة وبيانات RFQ.", statPages: "صفحات آلات", statCategories: "فئات", statIntent: "مصطلحات شراء" },
     machine: {
       titleSuffix: "المواصفات والتطبيقات ودليل RFQ",
-      descriptionSuffix: "قارن التطبيقات، المراجع التقنية، الخيارات، قائمة الشراء ومتطلبات طلب العرض.",
       lede: "صفحة مخصصة لفرق الشراء التي تقارن آلات التعبئة الصناعية. تحول بيانات الكتالوج إلى تطبيقات ومعايير وخيارات وأسئلة عرض سعر.",
-      keywordLabel: "الكلمات المفتاحية المستهدفة",
       overview: "نظرة عامة على الآلة",
       applications: "أفضل التطبيقات",
       configuration: "مسار التكوين",

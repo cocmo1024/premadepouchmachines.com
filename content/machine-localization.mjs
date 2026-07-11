@@ -396,7 +396,7 @@ const MACHINE_TITLES = {
     fr: "Machine multifonction dos soudé, triangle et trois soudures",
     de: "Multifunktionsmaschine für Rückennaht, Dreieck und Dreiseitennaht",
     pt: "Máquina multifuncional para solda traseira, triangular e três lados",
-    ru: "Многофункциональная машина для заднего шва, треугольного и трехстороннего пакета",
+    ru: "Машина для заднего шва, треугольного и трехстороннего пакета",
     ar: "آلة متعددة الوظائف للختم الخلفي والمثلث وثلاثة جوانب",
   },
   "high-speed-automatic-packing-machine": {
@@ -486,7 +486,7 @@ const LOCAL_MACHINE_COPY = {
     and: " y ",
     h1: "{title}.",
     summary:
-      "Sistema industrial de {category} basado en {title}, con selección de dosificación, formato, material, sellado y salida según el producto real.",
+      "{title}: guía industrial para validar la dosificación, el formato, el material, el sellado y la salida con el producto real.",
     behavior:
       "La selección debe validar fluidez, polvo, viscosidad, estabilidad del envase, calidad de sello, cambio de formato y conexión con equipos posteriores.",
     lineFit:
@@ -500,7 +500,7 @@ const LOCAL_MACHINE_COPY = {
     and: " et ",
     h1: "{title}.",
     summary:
-      "Système industriel de {category} basé sur {title}, avec dosage, format, matériau, scellage et sortie définis selon le produit réel.",
+      "{title} : guide industriel pour valider le dosage, le format, le matériau, le scellage et la sortie avec le produit réel.",
     behavior:
       "La sélection doit valider écoulement, poussière, viscosité, tenue du pack, qualité de soudure, changement de format et intégration aval.",
     lineFit:
@@ -514,7 +514,7 @@ const LOCAL_MACHINE_COPY = {
     and: " und ",
     h1: "{title}.",
     summary:
-      "Industrielles System der Kategorie {category} auf Basis von {title}, mit Dosierung, Packformat, Material, Siegelung und Auslauf nach realem Produkt.",
+      "{title}: Technischer Leitfaden zur Prüfung von Dosierung, Packformat, Material, Siegelung und Auslauf mit dem realen Produkt.",
     behavior:
       "Die Auswahl sollte Fließverhalten, Staub, Viskosität, Packstabilität, Siegelqualität, Formatwechsel und nachgelagerte Integration prüfen.",
     lineFit:
@@ -528,7 +528,7 @@ const LOCAL_MACHINE_COPY = {
     and: " e ",
     h1: "{title}.",
     summary:
-      "Sistema industrial de {category} baseado em {title}, com dosagem, formato, material, selagem e saída definidos conforme o produto real.",
+      "{title}: guia industrial para validar dosagem, formato, material, selagem e saída com o produto real.",
     behavior:
       "A seleção deve validar fluidez, poeira, viscosidade, estabilidade do pack, qualidade da selagem, troca de formato e integração posterior.",
     lineFit:
@@ -542,7 +542,7 @@ const LOCAL_MACHINE_COPY = {
     and: " и ",
     h1: "{title}.",
     summary:
-      "Промышленное решение категории {category} на базе {title}: дозирование, формат упаковки, материал, запайка и выход линии подбираются по реальному продукту.",
+      "{title}: технический обзор дозирования, формата, материала, запайки и выхода с проверкой на реальном продукте.",
     behavior:
       "При выборе нужно проверить сыпучесть, пыль, вязкость, устойчивость упаковки, качество шва, переналадку формата и подключение последующих узлов.",
     lineFit:
@@ -556,7 +556,7 @@ const LOCAL_MACHINE_COPY = {
     and: " و",
     h1: "{title}.",
     summary:
-      "حل صناعي من فئة {category} مبني على {title} مع اختيار الجرعات، شكل العبوة، المادة، اللحام ومخرج الخط حسب المنتج الفعلي.",
+      "{title}: دليل صناعي للتحقق من الجرعات والشكل والمواد والإغلاق والمخرج باستخدام المنتج الفعلي.",
     behavior:
       "يجب التحقق من تدفق المنتج، الغبار، اللزوجة، ثبات العبوة، جودة اللحام، تغيير المقاس والربط مع المعدات اللاحقة.",
     lineFit:
@@ -779,7 +779,7 @@ export function localizedMachine(item, langCode, localizedCategory) {
   return {
     title,
     h1: format(local.h1, { title, applications }),
-    summary: format(local.summary, { category: localizedCategory, applications }),
+    summary: format(local.summary, { title, applications }),
     productBehavior: local.behavior,
     lineFit: local.lineFit,
     applications: localizedList(item.applications, langCode),
