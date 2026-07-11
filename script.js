@@ -14,6 +14,10 @@ const catalogSearch = document.querySelector("[data-catalog-search]");
 const catalogSearchInput = document.querySelector("[data-catalog-search-input]");
 const catalogSearchStatus = document.querySelector("[data-catalog-search-status]");
 const catalogCards = document.querySelectorAll("[data-catalog-card]");
+const topicSearch = document.querySelector("[data-topic-search]");
+const topicSearchInput = document.querySelector("[data-topic-search-input]");
+const topicSearchStatus = document.querySelector("[data-topic-search-status]");
+const topicCards = document.querySelectorAll("[data-topic-card]");
 
 const specs = {
   pouch: {
@@ -290,6 +294,25 @@ function applyCatalogSearch(query) {
   }
 }
 
+function applyTopicSearch(query) {
+  if (!topicSearchInput || !topicCards.length) return;
+  const term = normalizeSearchTerm(query);
+  let visible = 0;
+
+  topicCards.forEach((card) => {
+    const haystack = card.dataset.search || card.textContent.toLowerCase();
+    const match = !term || haystack.includes(term);
+    card.hidden = !match;
+    if (match) visible += 1;
+  });
+
+  if (topicSearchStatus) {
+    topicSearchStatus.textContent = term
+      ? `${visible} matching topic pages for "${query}".`
+      : `${topicCards.length} topic pages available.`;
+  }
+}
+
 if (catalogSearch && catalogSearchInput) {
   const params = new URLSearchParams(window.location.search);
   const initialQuery = params.get("q") || "";
@@ -311,6 +334,30 @@ if (catalogSearch && catalogSearchInput) {
     }
     window.history.replaceState({}, "", url);
     applyCatalogSearch(query);
+  });
+}
+
+if (topicSearch && topicSearchInput) {
+  const params = new URLSearchParams(window.location.search);
+  const initialQuery = params.get("q") || "";
+  topicSearchInput.value = initialQuery;
+  applyTopicSearch(initialQuery);
+
+  topicSearchInput.addEventListener("input", () => {
+    applyTopicSearch(topicSearchInput.value);
+  });
+
+  topicSearch.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const query = topicSearchInput.value.trim();
+    const url = new URL(window.location.href);
+    if (query) {
+      url.searchParams.set("q", query);
+    } else {
+      url.searchParams.delete("q");
+    }
+    window.history.replaceState({}, "", url);
+    applyTopicSearch(query);
   });
 }
 

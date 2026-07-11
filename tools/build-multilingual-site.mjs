@@ -18,7 +18,7 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260711a";
+const ASSET_VERSION = "20260711b";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const CONTACT_EMAIL = "info@szcomo.com";
@@ -2051,15 +2051,26 @@ function topicHubPage(hub) {
           <span>${escapeHtml(hub.label)}</span>
         </nav>
         <p class="article-lede">${escapeHtml(hub.description)}</p>
+        <form class="catalog-search topic-search" role="search" action="${hub.path}" data-topic-search>
+          <label for="topic-search-${escapeAttr(hub.group)}">Find a packaging topic</label>
+          <div>
+            <input id="topic-search-${escapeAttr(hub.group)}" name="q" type="search" placeholder="Search product, package, machine or production problem" autocomplete="off" data-topic-search-input />
+            <button class="button button-primary" type="submit">Search</button>
+          </div>
+          <p aria-live="polite" data-topic-search-status>${pages.length} topic pages available.</p>
+        </form>
         <div class="seo-page-grid topic-index-grid">
           ${pages
             .map(
-              (page) => `<a class="content-card seo-page-card" href="${page.path}">
+              (page) => {
+                const searchText = [page.title, page.description, page.groupLabel, ...(page.products || []), ...(page.formats || []), ...(page.searchTerms || [])].join(" ");
+                return `<a class="content-card seo-page-card" href="${page.path}" data-topic-card data-search="${escapeAttr(searchText.toLowerCase())}">
             <span>${escapeHtml(page.groupLabel)}</span>
             <h3>${escapeHtml(page.title)}</h3>
             <p>${escapeHtml(page.description)}</p>
             <small>${escapeHtml(page.searchTerms.slice(0, 4).join(" | "))}</small>
-          </a>`,
+          </a>`;
+              },
             )
             .join("\n          ")}
         </div>
