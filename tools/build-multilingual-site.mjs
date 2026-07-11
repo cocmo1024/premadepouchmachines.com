@@ -18,7 +18,7 @@ import {
 } from "../content/i18n.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const ASSET_VERSION = "20260709a";
+const ASSET_VERSION = "20260711a";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line-hero.png";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const CONTACT_EMAIL = "info@szcomo.com";
@@ -34,6 +34,10 @@ const DISALLOWED = [
 
 const NON_DEFAULT_LANGUAGES = LANGUAGES.filter((lang) => lang.code !== "en");
 const REMOVED_LOCALE_DIRS = [String.fromCharCode(0x7a, 0x68)];
+const TRUST_ROUTES = [
+  { path: "/about.html", priority: "0.7", changefreq: "monthly", languages: ["en"] },
+  { path: "/editorial-policy.html", priority: "0.64", changefreq: "monthly", languages: ["en"] },
+];
 const ROUTES = [
   ...STATIC_SEO_PAGES.map((entry) => ({ ...entry, languages: LANGUAGES.map((lang) => lang.code) })),
   ...MACHINE_PAGES.map((item) => ({
@@ -54,6 +58,7 @@ const ROUTES = [
     changefreq: page.changefreq,
     languages: ["en"],
   })),
+  ...TRUST_ROUTES,
 ];
 
 const HOME_CARDS = [
@@ -145,6 +150,38 @@ const FAQ_ITEMS = [
   ["What affects lead time and final price?", "Machine family, dosing accuracy, material contact parts, print/coding, nitrogen, vacuum, dust control, checkweighing, cartoning, case packing and local compliance requirements."],
   ["How do we compare pouch, VFFS and sachet cost?", "Compare finished pack value, film or pouch cost, output, waste rate, operator count and changeover frequency. The lowest machine price is rarely the lowest line cost."],
   ["What prevents rework after quotation?", "Confirm product behavior, target speed, bag dimensions, filling tolerance, voltage, compressed air, footprint, conveyor direction and acceptance samples before final machine configuration."],
+];
+
+const TRUST_PAGES = [
+  {
+    path: "/about.html",
+    kicker: "About this catalog",
+    title: "About Premade Pouch Machines",
+    description: "How this buyer-focused packaging machine catalog turns authorized brochure specifications, application knowledge and official industry sources into RFQ-ready guidance.",
+    h1: "A packaging machine catalog built around buyer evidence.",
+    lede: "Premade Pouch Machines is a buyer-oriented equipment catalog and technical research library. It helps factories, brands, co-packers, engineers and procurement teams move from a search query to a realistic machine shortlist and RFQ package.",
+    sections: [
+      ["What the site covers", "The catalog covers premade pouch, VFFS, sachet, tea, coffee, vacuum, flow wrap, filling, cartoning and case-packing systems. Application and technology pages connect product behavior, package format, dosing, sealing, inspection, utilities and acceptance testing."],
+      ["Where machine information comes from", "Machine families, reference models, specifications and primary images are derived from a manufacturer-authorized product brochure. Reference ranges are presented as starting points, not universal guarantees. Final performance depends on product samples, packaging materials, options, utilities and testing."],
+      ["How current topics are handled", "Regulatory, safety, traceability and market pages cite official or authoritative sources where available. The site translates those signals into buyer questions and RFQ checks instead of presenting legal, certification or market claims as automatic machine guarantees."],
+      ["How to use the catalog", "Start with the product or pack-format page, compare linked machine families, review specification signals, then send product photos, pack samples, fill weight, target output, voltage and required options through the RFQ contact path."],
+    ],
+  },
+  {
+    path: "/editorial-policy.html",
+    kicker: "Editorial policy",
+    title: "Editorial and Technical Content Policy",
+    description: "Editorial policy for machine specifications, industry sources, standards coverage, updates, corrections and commercial RFQ content on Premade Pouch Machines.",
+    h1: "How technical and SEO content is produced and reviewed.",
+    lede: "The site's purpose is to help industrial buyers make better packaging-equipment decisions. Search visibility is pursued through useful topic coverage, crawlable internal links and transparent sourcing, not unsupported performance, affiliation or certification claims.",
+    sections: [
+      ["Machine specification policy", "Published dimensions, speeds, weights, utilities and model references are treated as brochure-derived reference ranges. Pages repeatedly direct buyers to confirm final scope with samples, drawings, factory utilities and acceptance tests."],
+      ["Research and source policy", "Standards, regulations and time-sensitive industry claims use direct links to official bodies or recognized industry organizations. Source notes are visible on the same page as the claim and are not hidden only in structured data."],
+      ["Authorship and automation", "Content is assembled from structured brochure data, application mapping and source research using an automated publishing workflow. Automation supports consistency and internal linking; it does not replace buyer-specific engineering validation or professional compliance advice."],
+      ["Corrections and updates", "Material changes update the page and sitemap date. If a specification, source statement or link needs correction, contact info@szcomo.com with the page URL and the evidence to review."],
+      ["Commercial independence and trademarks", "Third-party company names may appear only in neutral market-comparison context. The site does not claim affiliation with those companies and avoids reproducing third-party logos or implying approval."],
+    ],
+  },
 ];
 
 const BROCHURE_SOURCE_BY_SLUG = {
@@ -571,7 +608,9 @@ function footer(langCode) {
         <a href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.seoLibrary)}</a>
         ${
           langCode === "en"
-            ? SEO_TOPIC_HUBS.map((hub) => `<a href="${hub.path}">${escapeHtml(hub.label)}</a>`).join("\n        ")
+            ? `${SEO_TOPIC_HUBS.map((hub) => `<a href="${hub.path}">${escapeHtml(hub.label)}</a>`).join("\n        ")}
+        <a href="/about.html">About</a>
+        <a href="/editorial-policy.html">Editorial policy</a>`
             : ""
         }
         <a href="${localizedHref(langCode, "/premade-pouch-packaging-machine.html")}">${escapeHtml(categoryFor(langCode, "Premade pouch machines"))}</a>
@@ -762,13 +801,22 @@ function machineBySlug(slug) {
 }
 
 function topicPagesForMachine(item) {
-  return SEO_TOPIC_PAGES.filter((page) => page.machineSlugs.includes(item.slug)).slice(0, 8);
+  const matches = SEO_TOPIC_PAGES.filter((page) => page.machineSlugs.includes(item.slug));
+  const newest = matches.slice(-6).reverse();
+  const core = matches.slice(0, 6);
+  return uniqueList([...newest, ...core].map((page) => page.path))
+    .map((pagePath) => matches.find((page) => page.path === pagePath))
+    .filter(Boolean)
+    .slice(0, 10);
 }
 
 function relatedTopicsFor(page) {
   const machineSet = new Set(page.machineSlugs);
+  const explicitRelated = new Set(page.relatedSlugs || []);
   const scored = SEO_TOPIC_PAGES.filter((candidate) => candidate.path !== page.path).map((candidate) => {
     let score = candidate.group === page.group ? 2 : 0;
+    if (explicitRelated.has(candidate.slug)) score += 20;
+    if ((candidate.relatedSlugs || []).includes(page.slug)) score += 12;
     score += candidate.machineSlugs.filter((slug) => machineSet.has(slug)).length * 3;
     score += candidate.searchTerms.filter((term) => page.searchTerms.includes(term)).length;
     return { candidate, score };
@@ -1858,6 +1906,7 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
         keywords: page.searchTerms.join(", "),
         about: page.searchTerms.map((term) => ({ "@type": "Thing", name: term })),
         ...(page.sourceNotes?.length ? { citation: page.sourceNotes.map((source) => source.url).filter(Boolean) } : {}),
+        author: { "@id": `${home}#organization` },
         publisher: { "@id": `${home}#organization` },
         mainEntityOfPage: `${url}#webpage`,
       },
@@ -2215,6 +2264,73 @@ function topicPage(page) {
 </html>`;
 }
 
+function trustPageJsonLd(page) {
+  const url = absoluteUrl("en", page.path);
+  const home = absoluteUrl("en", "/");
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: page.title,
+        description: page.description,
+        inLanguage: "en",
+        dateModified: LASTMOD,
+        isPartOf: { "@id": `${home}#website` },
+        about: { "@id": `${home}#organization` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumbs`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: home },
+          { "@type": "ListItem", position: 2, name: page.title, item: url },
+        ],
+      },
+    ],
+  };
+}
+
+function trustPage(page) {
+  return `<!doctype html>
+<html lang="en" dir="ltr">
+  ${pageHead({ langCode: "en", routePath: page.path, title: page.title, description: page.description, image: DEFAULT_SOCIAL_IMAGE, type: "article", jsonLd: trustPageJsonLd(page) })}
+  <body>
+    ${nav("en", page.path)}
+    <main class="article-main">
+      <section class="article-hero seo-library-hero trust-hero">
+        <div class="article-hero-copy">
+          <p class="section-kicker">${escapeHtml(page.kicker)}</p>
+          <h1>${escapeHtml(page.h1)}</h1>
+          <p>${escapeHtml(page.lede)}</p>
+        </div>
+        <div class="seo-library-panel" aria-label="Content trust signals">
+          <div><strong>60</strong><span>machine pages</span></div>
+          <div><strong>${SEO_TOPIC_PAGES.length}</strong><span>buyer topics</span></div>
+          <div><strong>${LASTMOD}</strong><span>current review date</span></div>
+        </div>
+      </section>
+      <article class="article-body topic-body trust-body">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><span>${escapeHtml(page.title)}</span></nav>
+        <p class="article-lede">${escapeHtml(page.lede)}</p>
+        <div class="insight-section-stack">
+          ${page.sections.map(([heading, body]) => `<section class="insight-section"><h2>${escapeHtml(heading)}</h2><p>${escapeHtml(body)}</p></section>`).join("\n          ")}
+        </div>
+        <div class="article-cta">
+          <div><h2>Need a machine recommendation?</h2><p>Send product photos, package samples, fill weight, output target, voltage and required options for an RFQ-focused machine shortlist.</p></div>
+          <a class="button button-primary" href="/#quote">Start an RFQ</a>
+        </div>
+      </article>
+    </main>
+    ${footer("en")}
+    ${mobileContactBar("en", page.title)}
+    <script src="/script.js?v=${ASSET_VERSION}"></script>
+  </body>
+</html>`;
+}
+
 function sitemap() {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
@@ -2279,6 +2395,7 @@ function build() {
   }
   for (const hub of SEO_TOPIC_HUBS) writeRoute("en", hub.path, topicHubPage(hub));
   for (const page of SEO_TOPIC_PAGES) writeRoute("en", page.path, topicPage(page));
+  for (const page of TRUST_PAGES) writeRoute("en", page.path, trustPage(page));
 
   const sitemapPath = path.join(ROOT, "sitemap.xml");
   fs.writeFileSync(sitemapPath, sitemap(), "utf8");

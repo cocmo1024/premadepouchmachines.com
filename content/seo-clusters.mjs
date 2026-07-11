@@ -30,6 +30,17 @@ const SOURCE = {
   fdaFoodTraceabilityFaq:
     "https://www.fda.gov/food/food-safety-modernization-act-fsma/frequently-asked-questions-fsma-food-traceability-rule",
   gs1Standards: "https://www.gs1.org/standards",
+  iso12100: "https://www.iso.org/standard/51528.html",
+  iso13849: "https://www.iso.org/standard/73481.html",
+  iso14119: "https://www.iso.org/standard/75942.html",
+  iso13850: "https://www.iso.org/standard/59970.html",
+  iso14120: "https://www.iso.org/standard/59545.html",
+  oshaMachineGuarding: "https://www.osha.gov/etools/machine-guarding/introduction/general-requirements",
+  ul508a: "https://www.ul.com/services/industrial-control-panels-and-panel-shop-program",
+  fdaFoodContact: "https://www.fda.gov/food/food-ingredients-packaging/food-packaging-other-substances-come-contact-food-information-consumers",
+  ehedgHygienicDesign: "https://www.ehedg.org/guidelines-working-groups/guidelines/guidelines/guidelines/detail/hygienic-design-principles",
+  pmmiComplexityCapability: "https://www.pmmi.org/report/2026-from-complexity-to-capability",
+  euAiHighRiskGuidelines: "https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-high-risk-systems",
 };
 
 function sourceNote(label, url, note) {
@@ -129,6 +140,7 @@ function topic(group, slug, data) {
     intent: data.intent,
     image: data.image,
     machineSlugs: machines,
+    relatedSlugs: data.relatedSlugs || [],
     products,
     formats,
     searchTerms:
@@ -6957,6 +6969,394 @@ const fourthWaveTechnologies = [
   }),
 ];
 
+const fifthWaveApplications = [
+  topic("applications", "water-sachet-packaging-machine", {
+    title: "Water Sachet Packaging Machine",
+    description:
+      "Machine selection guide for drinking water and low-viscosity liquid sachets using single-film and multi-lane filling-sealing systems.",
+    intent:
+      "Water sachet buyers need clean liquid handling, stable film tracking, leak-resistant seals and realistic output based on sachet volume and lane count.",
+    image: `${A}/single-film-liquid.jpg`,
+    machineSlugs: ["single-film-liquid-packing-machine", "multi-line-granule-liquid-powder-packing-machine", "sauce-liquid-sachet-packing-machine"],
+    relatedSlugs: ["single-serve-sachet-packaging-machine", "anti-drip-nozzle-liquid-filling-guide", "leak-detection-pouch-packaging-guide"],
+    products: ["drinking water", "flavored water", "low-viscosity beverages", "liquid samples"],
+    formats: ["three-side seal sachet", "back-seal sachet", "single-film liquid pack"],
+    searchTerms: ["water sachet packaging machine", "water pouch packing machine", "liquid sachet filling machine", "automatic water packing machine", "drinking water sachet machine"],
+    contentSections: [
+      { heading: "Seal integrity is the first acceptance point", body: "Thin liquids expose weak seals quickly. The trial should use final film, actual fill volume and line-speed leak checks rather than an empty-film demonstration." },
+      { heading: "Hygiene scope must be stated", body: "Define product-contact material, tank design, cleaning method, water treatment interface and whether the filling path must be enclosed or sanitized between shifts." },
+    ],
+  }),
+  topic("applications", "laundry-detergent-powder-packaging-machine", {
+    title: "Laundry Detergent Powder Packaging Machine",
+    description:
+      "Packaging machine guide for laundry detergent powder in VFFS bags, premade pouches, sachets and larger retail packs.",
+    intent:
+      "Detergent powder projects need dust control, corrosion-aware contact design, stable dosing and seals protected from fine powder contamination.",
+    image: `${A}/powder-vffs-line.jpg`,
+    machineSlugs: ["full-automatic-powder-vffs-packing-machine", "powder-premade-bag-packing-machine", "automatic-powder-filling-production-line"],
+    relatedSlugs: ["chemical-powder-packaging-machine", "combustible-dust-powder-packaging-safety-guide", "auger-filling-packaging-machine-guide"],
+    products: ["laundry detergent powder", "washing powder", "cleaning powder", "chemical powder"],
+    formats: ["pillow bag", "gusset bag", "stand-up pouch", "sachet"],
+    searchTerms: ["laundry detergent powder packaging machine", "washing powder packing machine", "detergent powder filling machine", "automatic detergent packaging machine", "washing powder pouch machine"],
+    contentSections: [
+      { heading: "Dust changes the whole line", body: "Powder escape can contaminate seals, sensors and the work area. The RFQ should cover auger design, extraction points, enclosure, cleaning access and product-contact compatibility." },
+      { heading: "Bulk density affects every quoted speed", body: "Send representative powder from each formula because density, flow aids and fragrance additives can change auger tooling, hopper agitation and achievable accuracy." },
+    ],
+  }),
+  topic("applications", "wet-wipes-flow-wrapping-machine", {
+    title: "Wet Wipes Flow Wrapping Machine",
+    description:
+      "Flow wrapping guide for individual and grouped wet wipes, moist tissues and personal-care packs with coding and cartoning options.",
+    intent:
+      "Wet-wipe projects need controlled infeed, moisture-compatible film and seals, registration accuracy and downstream grouping matched to the product presentation.",
+    image: `${A}/high-speed-pillow-system.jpg`,
+    machineSlugs: ["high-speed-pillow-packing-machine", "reciprocating-pillow-packing-machine", "automatic-cartoning-machine"],
+    relatedSlugs: ["medical-consumable-flow-wrap-machine", "flow-wrap-packaging-machine", "personal-care-sample-packaging-line"],
+    products: ["wet wipes", "moist tissues", "alcohol wipes", "personal-care wipes"],
+    formats: ["flow wrap", "pillow pack", "carton", "multipack"],
+    searchTerms: ["wet wipes packaging machine", "wet tissue packing machine", "single wet wipe packaging machine", "alcohol wipe packing machine", "wet wipes flow wrapper"],
+    contentSections: [
+      { heading: "Product moisture affects seal design", body: "The wipe, lotion loading, fold, pack thickness and film seal layer should be tested together because contamination or liquid migration can weaken end seals." },
+      { heading: "Infeed stability determines real output", body: "Manual or automatic wipe delivery, spacing and orientation should be included in the scope; wrapper speed alone does not define good packs per minute." },
+    ],
+  }),
+  topic("applications", "soap-bar-flow-wrap-machine", {
+    title: "Soap Bar Flow Wrap Machine",
+    description:
+      "Machine selection guide for soap bars in pillow packs, flow wrap, shrink bundles, transparent overwrap and retail cartons.",
+    intent:
+      "Soap bar packaging needs stable product spacing, film tracking, clean end seals and optional cartoning or multipacking for retail distribution.",
+    image: `${A}/high-speed-pillow-system.jpg`,
+    machineSlugs: ["high-speed-pillow-packing-machine", "reciprocating-pillow-packing-machine", "heat-shrink-sealing-cutting-machine"],
+    relatedSlugs: ["flow-wrap-packaging-machine", "shrink-wrapping-machine", "cartoning-machine-line"],
+    products: ["soap bars", "laundry soap", "beauty soap", "solid cleaning bars"],
+    formats: ["pillow pack", "flow wrap", "shrink bundle", "carton"],
+    searchTerms: ["soap bar packaging machine", "soap wrapping machine", "soap flow pack machine", "automatic soap packing machine", "soap bar pillow packing machine"],
+    contentSections: [
+      { heading: "Surface condition affects film movement", body: "Fresh, soft or dusty soap bars can drag on guides and mark film. Final product samples should be tested at the temperature and cure condition used in production." },
+      { heading: "Secondary packing may become the bottleneck", body: "If bars are cartoned or bundled after wrapping, define group pattern, carton dimensions and good packs per minute for the complete line." },
+    ],
+  }),
+  topic("applications", "toothbrush-flow-wrap-cartoning-machine", {
+    title: "Toothbrush Flow Wrap and Cartoning Machine",
+    description:
+      "Packaging line guide for toothbrushes and similar personal-care products using flow wrap, counting, cartoning and case packing.",
+    intent:
+      "Toothbrush packaging buyers need stable long-product feeding, print registration, clean seals and retail carton or multipack integration.",
+    image: `${A}/pillow-production-line.jpg`,
+    machineSlugs: ["pillow-packing-machine-paper-from-bottom", "high-speed-pillow-packing-machine", "automatic-cartoning-machine"],
+    relatedSlugs: ["medical-consumable-flow-wrap-machine", "cartoning-machine-line", "flow-wrap-packaging-machine"],
+    products: ["toothbrushes", "dental tools", "personal-care tools", "long consumer products"],
+    formats: ["flow wrap", "pillow pack", "carton", "multipack"],
+    searchTerms: ["toothbrush packaging machine", "toothbrush flow wrap machine", "automatic toothbrush packing machine", "toothbrush cartoning machine", "toothbrush pillow packing machine"],
+    contentSections: [
+      { heading: "Long products need controlled pitch", body: "Handle shape, bristle orientation, product length and infeed spacing determine whether manual loading, chain infeed or automatic feeding is practical." },
+      { heading: "Retail presentation defines downstream scope", body: "State whether the primary wrap is the final retail pack or whether the line must load cartons, bundles or cases after wrapping." },
+    ],
+  }),
+  topic("applications", "ice-pop-liquid-packing-machine", {
+    title: "Ice Pop Liquid Packing Machine",
+    description:
+      "Liquid packing guide for ice pops, frozen juice sticks and similar low-viscosity products in tube film and sealed liquid sachets.",
+    intent:
+      "Ice-pop projects need accurate liquid dosing, strong longitudinal and end seals, clean cutting and film suitable for freezing and distribution.",
+    image: `${A}/single-film-liquid.jpg`,
+    machineSlugs: ["single-film-liquid-packing-machine", "tube-film-packing-machine", "multi-line-granule-liquid-powder-packing-machine"],
+    relatedSlugs: ["water-sachet-packaging-machine", "single-serve-sachet-packaging-machine", "leak-detection-pouch-packaging-guide"],
+    products: ["ice pop liquid", "frozen juice", "flavored water", "liquid concentrate"],
+    formats: ["tube film pack", "stick-shaped liquid sachet", "back-seal liquid pack"],
+    searchTerms: ["ice pop packing machine", "ice lolly packing machine", "liquid ice pop filling machine", "frozen juice stick packaging machine", "ice candy packing machine"],
+    contentSections: [
+      { heading: "Freezing exposes weak packs", body: "The sample test should include actual product, final film, target fill volume, seal checks and a freeze-thaw review where required by the buyer." },
+      { heading: "Film width and cut length define the format", body: "Send the finished pack drawing and film structure so the supplier can confirm forming, filling, sealing and cutting dimensions before quotation." },
+    ],
+  }),
+  topic("applications", "jerky-meat-pouch-vacuum-packaging-machine", {
+    title: "Jerky and Meat Pouch Vacuum Packaging Machine",
+    description:
+      "Machine selection guide for jerky, dried meat and meat snacks in vacuum packs, premade pouches and retail flow-wrap formats.",
+    intent:
+      "Jerky packaging needs product-specific feeding, oxygen and moisture control, reliable seals and a pack format matched to shelf life and retail presentation.",
+    image: `${A}/stretch-film-vacuum.jpg`,
+    machineSlugs: ["stretch-film-vacuum-packaging-machine", "vertical-vacuum-packing-machine", "granule-premade-bag-packing-machine"],
+    relatedSlugs: ["seafood-meat-vacuum-packaging-machine", "vacuum-skin-packaging-machine", "residual-oxygen-testing-nitrogen-packaging-guide"],
+    products: ["beef jerky", "dried meat", "meat snacks", "seasoned meat pieces"],
+    formats: ["vacuum pouch", "stand-up pouch", "flat pouch", "thermoformed pack"],
+    searchTerms: ["jerky packaging machine", "beef jerky packing machine", "meat pouch packaging machine", "jerky vacuum packaging machine", "meat snack pouch machine"],
+    contentSections: [
+      { heading: "Shelf-life targets drive the pack path", body: "Vacuum, nitrogen, barrier pouch and seal validation should be selected against the product's moisture, oil, oxygen sensitivity and distribution conditions." },
+      { heading: "Irregular pieces need real feeding tests", body: "Piece length, stickiness, seasoning residue and target weight affect manual loading, weighing and pouch-filling consistency." },
+    ],
+  }),
+  topic("applications", "pickles-vegetables-pouch-filling-machine", {
+    title: "Pickles and Vegetables Pouch Filling Machine",
+    description:
+      "Pouch filling guide for pickles, vegetables in brine, kimchi-style products and particulate sauces in premade or spouted pouches.",
+    intent:
+      "Pickle and vegetable pouch projects combine solid pieces with liquid, making dosing sequence, drip control, seal cleanliness and cleaning access critical.",
+    image: `${A}/rotary-premade-line.jpg`,
+    machineSlugs: ["sauce-liquid-premade-bag-packing-machine", "stand-up-pouch-filling-capping-machine", "automatic-liquid-filling-production-line"],
+    relatedSlugs: ["ready-meal-retort-pouch-packaging-machine", "anti-drip-nozzle-liquid-filling-guide", "cip-clean-in-place-filling-line-guide"],
+    products: ["pickles", "vegetables in brine", "kimchi-style vegetables", "particulate sauces"],
+    formats: ["flat pouch", "stand-up pouch", "spout pouch", "retort-compatible pouch"],
+    searchTerms: ["pickle pouch filling machine", "vegetable pouch packing machine", "kimchi packaging machine", "pickles packing machine", "particulate sauce pouch filling machine"],
+    contentSections: [
+      { heading: "Solids and liquid may need separate dosing", body: "Piece size, brine ratio, fill temperature and target drained weight determine whether the line uses sequential solid and liquid filling stations." },
+      { heading: "Seal contamination must be controlled", body: "Pouch mouth protection, anti-drip filling, headspace and cleaning access should be tested with final product and pouch samples." },
+    ],
+  }),
+];
+
+const fifthWaveGuides = [
+  topic("guides", "iso-12100-packaging-machine-risk-assessment-guide", {
+    title: "ISO 12100 Packaging Machine Risk Assessment Guide",
+    description:
+      "Buyer guide to ISO 12100 machinery risk assessment for packaging equipment, covering hazards, risk reduction, guarding, documentation and RFQ review.",
+    intent:
+      "ISO 12100 searches come from engineering, EHS and compliance teams evaluating whether a packaging machine supplier can document safety decisions.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["granule-premade-bag-packing-machine", "high-speed-automatic-packing-machine", "automatic-carton-case-packing-line"],
+    relatedSlugs: ["packaging-machine-safety-guarding-trends", "iso-13849-packaging-machine-safety-control-guide", "iso-14119-guard-interlock-packaging-machine-guide"],
+    products: ["packaging machines", "filling lines", "cartoning lines", "case packing systems"],
+    formats: ["machine risk assessment", "safety file", "guarding review", "acceptance documentation"],
+    searchTerms: ["ISO 12100 packaging machine", "packaging machine risk assessment", "machinery safety risk assessment", "packing machine safety assessment", "ISO 12100 machine supplier"],
+    contentSections: [
+      { heading: "Risk assessment should follow the machine lifecycle", body: "Review intended use, foreseeable misuse, operation, cleaning, changeover, jam clearing, maintenance, transport and decommissioning rather than only normal production." },
+      { heading: "Ask for evidence, not a generic compliance sentence", body: "The RFQ can request the risk-assessment method, identified residual risks, protective measures, validation records and safety information included with the machine." },
+    ],
+    sourceNotes: [sourceNote("ISO 12100:2010", SOURCE.iso12100, "ISO describes the current published standard as a methodology for machinery risk assessment and risk reduction; ISO also shows a revision is under development.")],
+  }),
+  topic("guides", "osha-lockout-tagout-packaging-machine-guide", {
+    title: "OSHA Lockout Tagout Guide for Packaging Machines",
+    description:
+      "Packaging machine LOTO guide for energy isolation, maintenance, cleaning, jam clearing, training and buyer review of isolation points.",
+    intent:
+      "LOTO searches come from U.S. plants and EHS teams planning safe servicing of packaging and processing machinery.",
+    image: `${A}/case-erector-sealer.jpg`,
+    machineSlugs: ["high-speed-pillow-packing-machine", "automatic-cartoning-machine", "automatic-carton-case-packing-line"],
+    relatedSlugs: ["iso-12100-packaging-machine-risk-assessment-guide", "packaging-machine-safety-guarding-trends", "packaging-machine-maintenance-spare-parts-guide"],
+    products: ["packaging lines", "flow wrappers", "cartoners", "case packers"],
+    formats: ["energy isolation", "maintenance procedure", "jam clearing", "cleaning procedure"],
+    searchTerms: ["packaging machine lockout tagout", "packing machine LOTO", "OSHA packaging machine safety", "packaging line energy isolation", "machine guarding lockout tagout"],
+    contentSections: [
+      { heading: "List every hazardous energy source", body: "Electrical, pneumatic, hydraulic, gravity, spring, vacuum, heat and stored mechanical energy may require isolation or dissipation before service." },
+      { heading: "Design choices affect plant procedures", body: "Main disconnects, air dump valves, lockable isolation points, bleed-down visibility and access around maintenance zones should be reviewed before purchase." },
+    ],
+    sourceNotes: [sourceNote("OSHA machine guarding and LOTO", SOURCE.oshaMachineGuarding, "OSHA states that machine guarding protects workers from moving-part hazards and that employers must establish energy-control procedures, training and periodic inspection for servicing work.")],
+  }),
+  topic("guides", "ul-508a-packaging-machine-control-panel-guide", {
+    title: "UL 508A Packaging Machine Control Panel Guide",
+    description:
+      "Buyer guide to UL 508A industrial control panels for packaging machinery, including panel scope, components, SCCR, labeling and supplier questions.",
+    intent:
+      "UL 508A searches indicate North American buyers are checking electrical-panel requirements before importing or specifying packaging equipment.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["granule-premade-bag-packing-machine", "automatic-liquid-filling-production-line", "automatic-carton-case-packing-line"],
+    relatedSlugs: ["ce-vs-ul-packaging-machine-electrical-compliance-guide", "packaging-machine-utilities-checklist", "packaging-machine-documentation-handover-guide"],
+    products: ["packaging machines", "filling lines", "cartoners", "case packers"],
+    formats: ["industrial control panel", "electrical documentation", "SCCR", "panel label"],
+    searchTerms: ["UL 508A packaging machine", "packaging machine control panel UL", "industrial control panel packaging machine", "packaging machine SCCR", "UL listed packaging machine panel"],
+    contentSections: [
+      { heading: "Panel certification does not automatically cover the whole machine", body: "Buyers should separate the industrial control panel scope from the safety and conformity review of the complete packaging machine and connected loads." },
+      { heading: "State the requirement before electrical design freezes", body: "Destination voltage, short-circuit rating, panel labeling, component availability, disconnect arrangement and local inspection expectations belong in the first RFQ." },
+    ],
+    sourceNotes: [sourceNote("UL 508A Industrial Control Panel Shop Program", SOURCE.ul508a, "UL Solutions explains that qualified panel shops may apply UL Marks to industrial control panels built within the program scope for U.S. and Canadian markets.")],
+  }),
+  topic("guides", "fda-food-contact-material-packaging-machine-guide", {
+    title: "FDA Food Contact Material Guide for Packaging Machines",
+    description:
+      "Buyer guide to food-contact considerations for packaging-machine product-contact parts, seals, hoses, coatings, lubricants and packaging materials.",
+    intent:
+      "Food-contact searches come from quality and engineering teams that need documented material suitability for the actual food and conditions of use.",
+    image: `${A}/liquid-filling-line-system.jpg`,
+    machineSlugs: ["automatic-liquid-filling-production-line", "full-automatic-powder-vffs-packing-machine", "granule-premade-bag-packing-machine"],
+    relatedSlugs: ["washdown-hygienic-packaging-machine-design-guide", "ehedg-hygienic-design-packaging-machine-guide", "food-safety-hygienic-packaging-machine-guide"],
+    products: ["food powders", "sauces", "snacks", "beverages", "ready meals"],
+    formats: ["product-contact parts", "food-contact materials", "hoses and seals", "packaging film"],
+    searchTerms: ["FDA food contact packaging machine", "food grade packaging machine materials", "packaging machine food contact parts", "FDA compliant filling machine", "food contact material packaging equipment"],
+    contentSections: [
+      { heading: "Suitability depends on intended use", body: "The product type, temperature, contact time, cleaning chemistry and material function should be documented rather than relying only on a broad food-grade statement." },
+      { heading: "Build a product-contact material schedule", body: "Ask the supplier to list metal grades, polymers, hoses, seals, coatings and lubricants that may contact product, together with available declarations or supporting records." },
+    ],
+    sourceNotes: [sourceNote("FDA food-contact overview", SOURCE.fdaFoodContact, "FDA explains that food-contact substances can include packaging components, processing equipment and food-preparation surfaces, and that authorization depends on intended use and safety assessment.")],
+  }),
+  topic("guides", "ce-vs-ul-packaging-machine-electrical-compliance-guide", {
+    title: "CE vs UL Packaging Machine Electrical Compliance Guide",
+    description:
+      "Practical comparison guide for packaging-machine buyers reviewing EU CE requirements, North American control-panel expectations and project documentation.",
+    intent:
+      "CE versus UL searches come from international buyers trying to avoid confusing an EU machinery conformity process with a North American panel certification scope.",
+    image: `${A}/case-erector-sealer.jpg`,
+    machineSlugs: ["granule-premade-bag-packing-machine", "high-speed-automatic-packing-machine", "automatic-carton-case-packing-line"],
+    relatedSlugs: ["ce-marking-eu-machinery-compliance-packaging-machine-guide", "ul-508a-packaging-machine-control-panel-guide", "export-packaging-machine-compliance-guide"],
+    products: ["export packaging machines", "filling lines", "cartoners", "case packers"],
+    formats: ["CE documentation", "UL control panel", "electrical drawings", "destination-market review"],
+    searchTerms: ["CE vs UL packaging machine", "packaging machine electrical compliance", "UL or CE packing machine", "import packaging machine electrical standards", "packaging machine North America compliance"],
+    contentSections: [
+      { heading: "CE and UL answer different project questions", body: "A buyer should not treat a control-panel mark as proof that the complete machine meets every destination-market requirement, or treat CE documentation as a substitute for local North American electrical review." },
+      { heading: "Define the acceptance package", body: "Ask for the applicable declarations, panel scope, wiring drawings, component list, risk documentation, manuals, labels and third-party services before order confirmation." },
+    ],
+    sourceNotes: [
+      sourceNote("EU machinery safety requirements", SOURCE.euMachineryRegulation, "EUR-Lex summarizes the EU machinery safety framework and the application date of Regulation (EU) 2023/1230."),
+      sourceNote("UL industrial control panels", SOURCE.ul508a, "UL Solutions describes the scope and qualification requirements of its industrial control panel program."),
+    ],
+  }),
+  topic("guides", "ehs-manager-packaging-machine-safety-guide", {
+    title: "EHS Manager Packaging Machine Safety Guide",
+    description:
+      "Role-based guide for EHS managers reviewing packaging-machine guarding, energy isolation, ergonomics, residual risks, training and acceptance tests.",
+    intent:
+      "EHS manager searches indicate a buying committee is evaluating whether a machine can be operated, cleaned and maintained safely in the destination plant.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["high-speed-pillow-packing-machine", "automatic-cartoning-machine", "automatic-carton-case-packing-line"],
+    relatedSlugs: ["iso-12100-packaging-machine-risk-assessment-guide", "osha-lockout-tagout-packaging-machine-guide", "quality-manager-packaging-line-inspection-guide"],
+    products: ["packaging lines", "flow wrappers", "filling machines", "cartoners", "case packers"],
+    formats: ["safety review", "machine acceptance", "LOTO review", "operator training"],
+    searchTerms: ["EHS manager packaging machine", "packaging machine safety review", "packaging equipment EHS checklist", "machine safety procurement checklist", "packaging line safety acceptance"],
+    contentSections: [
+      { heading: "Review non-production tasks", body: "Cleaning, film threading, pouch loading, jam clearing, blade changes, heater work and maintenance access often create more exposure than normal automatic operation." },
+      { heading: "Translate hazards into RFQ evidence", body: "Request guarding drawings, isolation-point lists, residual-risk information, safety-function validation, training scope and plant-specific acceptance checks." },
+    ],
+    sourceNotes: [
+      sourceNote("ISO 12100 risk-assessment framework", SOURCE.iso12100, "ISO 12100 provides machinery risk-assessment and risk-reduction principles across relevant lifecycle phases."),
+      sourceNote("OSHA machine guarding", SOURCE.oshaMachineGuarding, "OSHA identifies moving-part guarding and energy control as core machinery safety concerns."),
+    ],
+  }),
+];
+
+const fifthWaveInsights = [
+  topic("insights", "eu-ai-act-industrial-packaging-machinery-guide", {
+    title: "EU AI Act and Industrial Packaging Machinery Guide",
+    description:
+      "Current guide to EU AI Act questions for packaging machinery, robotics, machine vision, predictive systems and AI used in safety-related functions.",
+    intent:
+      "AI Act searches are emerging among European machinery buyers who need to distinguish ordinary automation from AI used as a regulated safety component.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["high-speed-automatic-packing-machine", "automatic-carton-case-packing-line", "granule-premade-bag-packing-machine"],
+    relatedSlugs: ["ai-packaging-machine-guide", "packaging-ot-cybersecurity-machine-connectivity-guide", "iso-13849-packaging-machine-safety-control-guide"],
+    products: ["connected packaging lines", "robotic cells", "vision inspection", "predictive systems"],
+    formats: ["AI feature review", "safety component", "human oversight", "technical documentation"],
+    searchTerms: ["EU AI Act packaging machinery", "AI Act industrial machinery", "AI packaging machine compliance", "robotic packaging line AI Act", "machine vision packaging AI regulation"],
+    contentSections: [
+      { heading: "Not every AI feature is automatically high-risk", body: "Classification depends on intended purpose and whether the AI system is used as a safety component within regulated product scope requiring the relevant conformity assessment." },
+      { heading: "Buyers should document intended use", body: "Ask what the feature does, what data it uses, whether an operator can override it, how performance is tested and whether failure can affect safety or only production quality." },
+    ],
+    sourceNotes: [sourceNote("European Commission high-risk AI guidelines", SOURCE.euAiHighRiskGuidelines, "The Commission's July 2026 draft guidance explains high-risk classification and states that rules for AI integrated into products such as robotics and industrial machinery apply from 2 August 2028 under the current timeline.")],
+  }),
+  topic("insights", "packaging-controls-obsolescence-lifecycle-planning-guide", {
+    title: "Packaging Controls Obsolescence and Lifecycle Planning Guide",
+    description:
+      "Guide to PLC, HMI, servo, drive, sensor and industrial-network obsolescence planning for packaging machines and installed lines.",
+    intent:
+      "Controls-obsolescence searches come from plants evaluating long-term support, upgrade paths and spare-parts risk before equipment purchase.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["granule-premade-bag-packing-machine", "electronic-scale-granule-vffs-machine", "automatic-carton-case-packing-line"],
+    relatedSlugs: ["packaging-machine-spare-parts-list-guide", "hmi-plc-remote-support-packaging-machine-guide", "predictive-maintenance-sensors-packaging-machine-guide"],
+    products: ["installed packaging lines", "PLC-controlled machines", "servo systems", "inspection equipment"],
+    formats: ["controls register", "upgrade roadmap", "critical spares", "software backup"],
+    searchTerms: ["packaging machine controls obsolescence", "packaging line lifecycle planning", "PLC obsolescence packaging machine", "packaging machine upgrade roadmap", "packaging equipment obsolete parts"],
+    contentSections: [
+      { heading: "Component availability is part of total cost", body: "A low initial price can become expensive if the PLC, HMI, drive or motion platform has weak local support, short availability or no documented replacement path." },
+      { heading: "Create an installed-base record", body: "Record hardware models, firmware, software backups, network settings, safety components, critical spares and approved substitutes before production dependency grows." },
+    ],
+    sourceNotes: [sourceNote("PMMI 2026 complexity-to-capability report", SOURCE.pmmiComplexityCapability, "PMMI highlights lifecycle and obsolescence planning, workforce enablement, collaboration and data sharing as current operational-resilience priorities.")],
+  }),
+  topic("insights", "digital-work-instructions-packaging-line-guide", {
+    title: "Digital Work Instructions for Packaging Lines",
+    description:
+      "Guide to digital work instructions for packaging-line startup, changeover, cleaning, troubleshooting, quality checks and operator training.",
+    intent:
+      "Digital work-instruction searches reflect plants trying to stabilize startup, retain knowledge and reduce changeover or troubleshooting loss.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["granule-premade-bag-packing-machine", "full-automatic-powder-vffs-packing-machine", "automatic-carton-case-packing-line"],
+    relatedSlugs: ["packaging-operator-training-skills-gap-guide", "recipe-management-packaging-machine-guide", "packaging-machine-data-logging-reporting-guide"],
+    products: ["multi-SKU packaging lines", "food packs", "powder lines", "case packing systems"],
+    formats: ["startup instruction", "changeover guide", "cleaning procedure", "troubleshooting workflow"],
+    searchTerms: ["digital work instructions packaging line", "packaging machine operator instructions", "packaging line changeover instructions", "digital packaging machine training", "packaging line standard work"],
+    contentSections: [
+      { heading: "Instructions should be tied to machine states", body: "Useful guidance identifies the safe machine state, tools, verification point and escalation path for each startup, adjustment, cleaning or troubleshooting task." },
+      { heading: "Capture knowledge during FAT and commissioning", body: "Record approved settings, changeover sequence, common alarms, good-pack examples and recovery steps while supplier and plant experts are together." },
+    ],
+    sourceNotes: [sourceNote("PMMI 2026 complexity-to-capability report", SOURCE.pmmiComplexityCapability, "PMMI identifies workforce enablement, digital work guidance and standardization as areas associated with more durable packaging-line performance.")],
+  }),
+];
+
+const fifthWaveTechnologies = [
+  topic("technologies", "iso-13849-packaging-machine-safety-control-guide", {
+    title: "ISO 13849 Packaging Machine Safety Control Guide",
+    description:
+      "Technical buyer guide to ISO 13849-1:2023 safety-related control systems, safety functions, performance levels and validation evidence for packaging machinery.",
+    intent:
+      "ISO 13849 searches come from controls and safety engineers reviewing emergency stops, interlocks, safe motion and safety-controller architecture.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["high-speed-pillow-packing-machine", "automatic-cartoning-machine", "automatic-carton-case-packing-line"],
+    relatedSlugs: ["iso-12100-packaging-machine-risk-assessment-guide", "iso-14119-guard-interlock-packaging-machine-guide", "iso-13850-emergency-stop-packaging-machine-guide"],
+    products: ["packaging machines", "robotic cells", "cartoners", "case packers"],
+    formats: ["safety function", "performance level", "safety PLC", "validation record"],
+    searchTerms: ["ISO 13849 packaging machine", "packaging machine safety control system", "packaging machine performance level", "safety PLC packaging machine", "packaging machine functional safety"],
+    contentSections: [
+      { heading: "Performance level follows risk assessment", body: "The required safety-function performance should be derived from the machine's hazards and protective concept, not selected from a generic component list." },
+      { heading: "Validation must cover the implemented system", body: "Ask for the safety-function list, architecture, calculations or tool reports, wiring, fault assumptions, test procedure and final validation record where applicable." },
+    ],
+    sourceNotes: [sourceNote("ISO 13849-1:2023", SOURCE.iso13849, "ISO states that the 2023 edition provides methodology and requirements for safety-related parts of control systems, including software, across electrical, hydraulic, pneumatic and mechanical technologies.")],
+  }),
+  topic("technologies", "iso-14119-guard-interlock-packaging-machine-guide", {
+    title: "ISO 14119 Guard Interlock Guide for Packaging Machines",
+    description:
+      "Guide to ISO 14119:2024 guard interlocks for packaging machinery, including switch selection, defeat prevention, reset logic and acceptance checks.",
+    intent:
+      "Guard-interlock searches indicate an engineering or EHS team is reviewing access doors, movable guards and unexpected restart risk.",
+    image: `${A}/case-erector-sealer.jpg`,
+    machineSlugs: ["high-speed-pillow-packing-machine", "automatic-cartoning-machine", "automatic-carton-case-packing-line"],
+    relatedSlugs: ["iso-13849-packaging-machine-safety-control-guide", "packaging-line-safety-interlock-guide", "iso-12100-packaging-machine-risk-assessment-guide"],
+    products: ["flow wrappers", "cartoners", "case packers", "robotic packaging cells"],
+    formats: ["movable guard", "interlock switch", "guard locking", "manual reset"],
+    searchTerms: ["ISO 14119 packaging machine", "packaging machine guard interlock", "safety interlock packaging line", "packaging machine door switch", "guard locking packaging machine"],
+    contentSections: [
+      { heading: "Interlock selection starts with access and stopping time", body: "Frequency of access, run-down time, reach distance, process damage and foreseeable defeat influence whether a simple interlock or guard locking is appropriate." },
+      { heading: "Test the complete safety response", body: "Acceptance should check opening behavior, stop response, restart prevention, reset location, fault indication and the machine state after power or air restoration." },
+    ],
+    sourceNotes: [sourceNote("ISO 14119:2024", SOURCE.iso14119, "ISO describes the 2024 edition as covering design and selection principles for guard interlocking devices and measures to minimize reasonably foreseeable defeat.")],
+  }),
+  topic("technologies", "iso-13850-emergency-stop-packaging-machine-guide", {
+    title: "ISO 13850 Emergency Stop Guide for Packaging Machines",
+    description:
+      "Technical guide to emergency-stop functions on packaging machinery, including device location, reset behavior, stop response and RFQ validation.",
+    intent:
+      "Emergency-stop searches come from buyers validating how operators can stop packaging equipment and how the line behaves after reset.",
+    image: `${A}/high-speed-automatic.jpg`,
+    machineSlugs: ["granule-premade-bag-packing-machine", "high-speed-pillow-packing-machine", "automatic-carton-case-packing-line"],
+    relatedSlugs: ["iso-13849-packaging-machine-safety-control-guide", "iso-14119-guard-interlock-packaging-machine-guide", "packaging-machine-safety-guarding-trends"],
+    products: ["packaging machines", "filling lines", "conveyors", "cartoners", "case packers"],
+    formats: ["emergency stop", "line stop zone", "manual reset", "restart prevention"],
+    searchTerms: ["ISO 13850 packaging machine", "packaging machine emergency stop", "packing line E stop", "emergency stop function machinery", "packaging machine E stop validation"],
+    contentSections: [
+      { heading: "Emergency stop supplements protective measures", body: "It should not be used as a substitute for guarding, interlocks, safe design or routine production stopping functions." },
+      { heading: "Line boundaries must be clear", body: "For integrated lines, define which conveyor and machine zones stop together, what energy remains, how reset is authorized and whether restart requires a separate command." },
+    ],
+    sourceNotes: [sourceNote("ISO 13850:2015", SOURCE.iso13850, "ISO states that ISO 13850 specifies functional requirements and design principles for emergency-stop functions independent of the type of energy used.")],
+  }),
+  topic("technologies", "ehedg-hygienic-design-packaging-machine-guide", {
+    title: "EHEDG Hygienic Design Guide for Packaging Machines",
+    description:
+      "Buyer guide to hygienic design principles for food packaging machinery, covering cleanability, product-contact zones, drainage, access and risk-based cleaning.",
+    intent:
+      "EHEDG searches come from food factories and equipment engineers who need packaging and filling equipment that can be cleaned predictably and inspected effectively.",
+    image: `${A}/liquid-filling-line-system.jpg`,
+    machineSlugs: ["automatic-liquid-filling-production-line", "full-automatic-powder-vffs-packing-machine", "sauce-liquid-premade-bag-packing-machine"],
+    relatedSlugs: ["washdown-hygienic-packaging-machine-design-guide", "fda-food-contact-material-packaging-machine-guide", "cip-clean-in-place-filling-line-guide"],
+    products: ["food powders", "sauces", "ready meals", "beverages", "wet products"],
+    formats: ["hygienic design", "cleanable frame", "product-contact zone", "wet cleaning"],
+    searchTerms: ["EHEDG packaging machine", "hygienic design packaging equipment", "food packaging machine cleanability", "hygienic filling machine design", "sanitary packaging machine"],
+    contentSections: [
+      { heading: "Cleanability must match the hazard and cleaning method", body: "Dry powder lines, wet sauce filling and ready-meal packing need different zoning, access, drainage, surface and component choices." },
+      { heading: "Inspect the hard-to-clean details", body: "Review hollow members, fasteners, cable routes, bearings, dead spaces, horizontal ledges, drip points, removable tooling and access behind guards during design review and FAT." },
+    ],
+    sourceNotes: [sourceNote("EHEDG GL 8 Hygienic Design Principles", SOURCE.ehedgHygienicDesign, "EHEDG's fourth edition, published in December 2025, describes risk-based hygienic-design principles intended to prevent contamination and improve cleanability in food manufacturing equipment and facilities.")],
+  }),
+];
+
 export const SEO_TOPIC_HUBS = Object.entries(GROUPS).map(([group, data]) => ({
   group,
   ...data,
@@ -6992,4 +7392,8 @@ export const SEO_TOPIC_PAGES = [
   ...fourthWaveInsights,
   ...fourthWaveIndustries,
   ...fourthWaveTechnologies,
+  ...fifthWaveApplications,
+  ...fifthWaveGuides,
+  ...fifthWaveInsights,
+  ...fifthWaveTechnologies,
 ];
