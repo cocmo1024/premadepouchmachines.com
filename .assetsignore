@@ -1,0 +1,10 @@
+**/.git/**
+**/.gitignore
+**/.gitattributes
+**/.wrangler/**
+content/**
+functions/**
+tmp/**
+tools/**
+README.md
+wrangler.jsonc

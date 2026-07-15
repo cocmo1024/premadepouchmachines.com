@@ -69,6 +69,10 @@ python -m http.server 4173
 
 Then open `http://localhost:4173`.
 
+## Production routing
+
+Cloudflare Workers Static Assets publishes the repository root. The zone-level canonical redirect must send only the apex and `www` production hosts to `https://premadepouchmachines.com`, preserving the original path and query string. `_headers` adds `Strict-Transport-Security: max-age=31536000` only on the canonical host, without `includeSubDomains` or preload.
+
 ## Regenerate multilingual catalog pages
 
 After editing machine data or language copy:
