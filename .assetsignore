@@ -7,4 +7,6 @@ functions/**
 tmp/**
 tools/**
 README.md
+AGENTS.md
+CONTENT_UPDATE_GUIDE.md
 wrangler.jsonc

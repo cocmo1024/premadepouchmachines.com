@@ -2,6 +2,8 @@
 
 Integrated multilingual packaging machine website for `premadepouchmachines.com`, built for paid campaigns and organic buyer search.
 
+> **Updating content?** Read [`CONTENT_UPDATE_GUIDE.md`](CONTENT_UPDATE_GUIDE.md) first. It defines the generator-only workflow, seven-language rules, claim boundaries and required release checks.
+
 Current build output:
 
 - 801 generated HTML pages with matching `sitemap.xml` entries
