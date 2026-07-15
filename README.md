@@ -71,7 +71,7 @@ Then open `http://localhost:4173`.
 
 ## Production routing
 
-Cloudflare Workers Static Assets publishes the repository root. The zone-level canonical redirect must send only the apex and `www` production hosts to `https://premadepouchmachines.com`, preserving the original path and query string. `_headers` adds `Strict-Transport-Security: max-age=31536000` only on the canonical host, without `includeSubDomains` or preload.
+Cloudflare Workers Static Assets publishes the repository root. The zone-level canonical redirect must send only the apex and `www` production hosts to `https://premadepouchmachines.com`, preserving the original path and query string. `_headers` adds conservative security headers and `Strict-Transport-Security: max-age=31536000` only on the canonical host, without `includeSubDomains` or preload. CSS, JavaScript and public images use a seven-day browser cache with one day of stale-while-revalidate; HTML keeps the platform's revalidation-first default.
 
 ## Regenerate multilingual catalog pages
 

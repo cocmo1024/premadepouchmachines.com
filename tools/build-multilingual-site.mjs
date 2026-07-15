@@ -1489,7 +1489,7 @@ function homePage(langCode) {
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-machine" aria-hidden="true">
-          <img src="/${escapeAttr(HERO_IMAGE)}" alt="${escapeAttr(categoryFor(langCode, "Premade pouch machines"))}" width="1406" height="794" />
+          <img src="/${escapeAttr(HERO_IMAGE)}" alt="${escapeAttr(categoryFor(langCode, "Premade pouch machines"))}" width="1406" height="794" loading="eager" decoding="async" fetchpriority="high" />
         </div>
         <div class="hero-panel" aria-hidden="true"></div>
         <div class="hero-content">
@@ -1547,7 +1547,7 @@ function homePage(langCode) {
           </div>
           <div class="selector-stack">
             <div class="selector-media">
-              <img src="/public/assets/brochure/compact-premade-pouch.jpg" alt="${escapeAttr(categoryFor(langCode, "Premade pouch machines"))}" />
+              <img src="/public/assets/brochure/compact-premade-pouch.jpg" alt="${escapeAttr(categoryFor(langCode, "Premade pouch machines"))}" loading="lazy" decoding="async" />
               <div><strong>RFQ</strong><span>${escapeHtml(copy.machine.rfqEvidence)}</span></div>
             </div>
             <div class="selector-panel" aria-label="${escapeAttr(copy.machine.technical)}">
@@ -1581,7 +1581,7 @@ function homePage(langCode) {
             const card = HOME_CARDS.find((item) => item.key === page.key);
             return `<a class="product-card${index === 0 ? " product-card-primary" : ""}" href="${localizedHref(langCode, page.path)}">
             <div class="product-media">
-              <img src="/${escapeAttr(heroImageFor(page.image))}" alt="${escapeAttr(categoryFor(langCode, page.category))}" />
+              <img src="/${escapeAttr(heroImageFor(page.image))}" alt="${escapeAttr(categoryFor(langCode, page.category))}" loading="lazy" decoding="async" />
             </div>
             <div class="product-body">
               <span class="product-tag">${escapeHtml(card.metric)}</span>
@@ -1604,7 +1604,7 @@ function homePage(langCode) {
         </div>
         <div class="line-system">
           <div class="line-visual">
-            <img src="/public/assets/brochure/granule-filling-line-cropped.jpg" alt="${escapeAttr(copy.home.portfolioTitle)}" />
+            <img src="/public/assets/brochure/granule-filling-line-cropped.jpg" alt="${escapeAttr(copy.home.portfolioTitle)}" loading="lazy" decoding="async" />
             <div class="line-visual-note">
               <span>${escapeHtml(copy.machine.configuration)}</span>
               <strong>${escapeHtml(copy.home.portfolioText)}</strong>
@@ -1652,7 +1652,7 @@ function homePage(langCode) {
               const visual = APPLICATION_VISUALS[index] || APPLICATION_VISUALS[0];
               return `<article class="solution-card">
             <div class="solution-media">
-              <img src="/${escapeAttr(heroImageFor(visual.image))}" alt="${escapeAttr(item.title || item[0])}" />
+              <img src="/${escapeAttr(heroImageFor(visual.image))}" alt="${escapeAttr(item.title || item[0])}" loading="lazy" decoding="async" />
             </div>
             <div class="solution-copy">
               <span>${escapeHtml(visual.fit)}</span>
