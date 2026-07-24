@@ -4,7 +4,7 @@
 
 ## 1. 架构原则：生成器是唯一事实源
 
-这个项目不是 801 个彼此独立的手写网页。内容数据和模板生成所有公开 HTML 与 `sitemap.xml`：
+这个项目不是数百个彼此独立的手写网页。内容数据和模板生成所有公开 HTML 与 `sitemap.xml`：
 
 - 内容数据：`content/*.mjs`
 - 页面、导航、JSON-LD、canonical、hreflang 与 sitemap 模板：`tools/build-multilingual-site.mjs`
@@ -13,7 +13,9 @@
 
 **禁止直接编辑任何生成的 HTML 或 `sitemap.xml`。** 直接修改会在下一次生成时丢失，还可能造成语言版本、canonical、hreflang 和 sitemap 不一致。即使只改首页一句话，也应修改 `content/` 或 `tools/build-multilingual-site.mjs` 中的源，然后重新生成全部页面。
 
-当前基线为 **801 个 HTML、801 个 sitemap URL**。这是验收基线，不是强行维持的上限；如有意新增、合并或删除页面，两个数字必须同步变化，并更新 `README.md` 中的库存说明。
+当前已生成成品仍为 **801 个 HTML、801 个 sitemap URL**；加入隐私页的待生成目标为 **802 / 802**。这是验收基线，不是强行维持的上限；如有意新增、合并或删除页面，两个数字必须同步变化，并更新 `README.md` 中的库存说明。
+
+生成器同时保存当前 802 条 canonical 的 URL 集合指纹，防止机型 slug 或专题路径在数量不变时被静默改名。新增 URL、合并或迁移路径必须先定义旧 URL 的去向、更新库存说明，再用 `node tools/build-multilingual-site.mjs --print-route-fingerprint` 取得新指纹并显式更新生成器契约；不能为了让校验变绿而无说明地替换指纹。
 
 ## 2. 应该修改哪个文件
 
@@ -27,7 +29,7 @@
 | 修改视觉样式或交互 | `styles.css`、`script.js`；如果浏览器必须立即取得新版本，同时更新生成器中的 `ASSET_VERSION` |
 | 添加批准使用的机器图片 | `public/assets/brochure/` 或现有机器资源目录，并在内容源中引用；不要把临时提取文件放进公开目录 |
 
-不要把 `tmp/` 中的提取结果当作已经批准的公开素材。`content/`、`tools/`、`tmp/`、项目说明和部署配置都属于私有项目文件，必须继续由 `.assetsignore` 排除。
+不要把 `tmp/` 中的提取结果当作已经批准的公开素材。Cloudflare 仍以仓库根目录为资产目录，因此 `.assetsignore` 必须保持“默认拒绝、显式放行”模式：只放行固定生成目录、根级 HTML、站点运行文件和 `public/`，再在放行规则之后二次排除文档、环境变量、数据表、密钥和事务目录。新增公开文件类型或目录必须同时更新放行清单和审计器；不能通过删除首条 `/*` 来临时绕过。
 
 ## 3. 新内容立项门槛
 
@@ -71,7 +73,9 @@
 公开语言固定为：英语 `en`、西班牙语 `es`、法语 `fr`、德语 `de`、葡萄牙语 `pt`、俄语 `ru`、阿拉伯语 `ar`。
 
 - 首页、机器目录、六个 pillar 和机器详情当前均生成 7 个语言版本；英文专题 hub 与长尾专题目前仅生成英语。不要给不存在的翻译页输出 hreflang。
-- 添加到 7 语言路由的内容时，必须同步完成 `content/i18n.mjs` / `content/machine-localization.mjs` 中的所有语言文案。不能先复制英语占位再上线。
+- 添加到 7 语言路由的界面、标题、摘要与解释性正文时，必须同步完成 `content/i18n.mjs` / `content/machine-localization.mjs` 中的所有语言文案。不能先复制英语占位再上线。
+- 非英语机器页的应用、流程、材料、特征和选件列表只展示 `content/machine-localization.mjs` 中明确复核过的术语；未映射英语短语不应伪装成本地化正文。宣传册原始规格值确需保留英语时，元素必须声明 `lang="en"`，且不得把英语短语无标记地嵌入本地化句子。
+- 用 `node tools/build-multilingual-site.mjs --print-localization-coverage` 查看显式术语覆盖。新增机器内容不得降低各语言的既有显式术语数量；应先补齐并复核术语，再让它进入非英语可见列表。
 - 翻译必须由具备该语言能力的人复核：机器类别、计量方式、封口、单位、CTA 与 RFQ 字段要符合工业采购语境，不能逐字机翻。阿拉伯语同时检查 `lang="ar"`、`dir="rtl"`、标点、数字与移动布局。
 - 产品名、单位、范围和限制条件在七种语言中必须等价；翻译不能擅自提高速度、精度、认证或保证程度。
 - 生成器负责 reciprocal hreflang、`x-default`、canonical 与 sitemap alternate。不要在成品 HTML 中补标签。
@@ -100,10 +104,15 @@
 
 ```powershell
 git status --short
+node tools/build-multilingual-site.mjs --validate-only
 node tools/build-multilingual-site.mjs
 git diff --stat
 git diff --check
 ```
+
+`--validate-only` 会在内存中预渲染全部公开路由并检查页面库存、canonical、输出冲突、图片、表单与已知多语言回退，不写入任何生成文件。普通生成也会先完成同一套全量预渲染门，再把完整成品写入仓库根目录下的同盘暂存区；暂存内容逐文件核对后，旧成品进入备份，目标目录、根级 HTML 与 `sitemap.xml` 才按事务日志替换。可捕获的写盘错误会逆序撤回新成品并恢复旧成品；发现残留事务或非 HTML 目录内容时会停止，不会静默删除。
+
+普通生成会持有 `.site-build.lock`，并用追加式事务日志记录每次备份和提升。不要让生成、预览验收、Wrangler dry-run 或部署并行读取/修改同一成品树；多个顶层目录无法一次完成文件系统级原子切换。若出现 `.site-build-*`、`.site-backup-*` 或残留锁，先检查事务日志和当前成品指纹，确认是 `COMMITTED` 或已完整恢复后再清理，禁止盲删。
 
 生成后不要只看一个页面。至少人工抽查：
 
@@ -118,14 +127,14 @@ git diff --check
 本地预览：
 
 ```powershell
-python -m http.server 4173
+node tools/serve-preview.mjs
 ```
 
-浏览 `http://localhost:4173/`，不要用直接双击 HTML 的结果代替 HTTP 预览。
+浏览 `http://127.0.0.1:4173/`，不要用直接双击 HTML 的结果代替 HTTP 预览。
 
 ## 9. 必须通过的自动验收
 
-页面与 sitemap 数量必须相等；当前正常结果是 `801 / 801`：
+页面与 sitemap 数量必须相等；本轮源代码重新生成后的目标是 `802 / 802`：
 
 ```powershell
 $publicRouteRoots = @('machines','applications','formats','guides','industries','insights','technologies','troubleshooting','es','fr','de','pt','ru','ar')
@@ -149,9 +158,11 @@ if ($htmlCount -ne $sitemapCount) { throw 'HTML and sitemap counts differ' }
 检查关键 SEO 标签、私有路径排除和部署包：
 
 ```powershell
+node tools/audit-generated-site.mjs
+node tools/audit-generated-site.mjs --deployment-boundary-only
 Select-String -Path .\index.html -Pattern 'rel="canonical"','hreflang="x-default"','fetchpriority="high"'
 Select-String -Path .\ar\index.html -Pattern '<html lang="ar" dir="rtl">','hreflang="x-default"'
-Select-String -Path .\.assetsignore -Pattern '^content/','^tools/','^tmp/','^AGENTS\.md$','^CONTENT_UPDATE_GUIDE\.md$'
+Select-String -Path .\.assetsignore -Pattern '^/\*$','^!/public/\*\*$','^content/','^tools/','^outputs/','^\*\*/\*\.md$','^\*\*/\*\.csv$','^\*\*/\.env\*$','^\.site-build-\*/\*\*$'
 npx wrangler@4.111.0 deploy --dry-run
 ```
 
@@ -176,7 +187,7 @@ npx wrangler@4.111.0 deploy
 curl.exe -I https://premadepouchmachines.com/
 curl.exe -I https://premadepouchmachines.com/sitemap.xml
 curl.exe -I https://premadepouchmachines.com/styles.css
-curl.exe -I https://premadepouchmachines.com/public/assets/brochure/rotary-premade-line-hero.png
+curl.exe -I https://premadepouchmachines.com/public/assets/brochure/rotary-premade-line.jpg
 curl.exe -I https://premadepouchmachines.com/content/i18n.mjs
 curl.exe -I https://premadepouchmachines.com/tools/build-multilingual-site.mjs
 curl.exe -I https://premadepouchmachines.com/CONTENT_UPDATE_GUIDE.md
