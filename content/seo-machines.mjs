@@ -6,7 +6,7 @@ export const MACHINE_PAGES = [
     title: "Granule Premade Bag Packing Machine",
     h1: "Granule premade bag packing machine for finished retail pouches.",
     category: "Premade pouch machines",
-    image: "public/assets/machines/hero-premade-pouch-system-clean.png",
+    image: "public/assets/machines/hero-premade-pouch-system-clean.webp",
     summary:
       "A rotary premade bag packing machine for granules, tea, coffee, frozen products and other flowable goods packed in finished stand-up, zipper or shaped pouches.",
     keywords: ["granule premade bag packing machine", "stand up pouch granule packing machine", "zipper pouch filling sealing machine", "automatic premade pouch machine"],
@@ -20,7 +20,7 @@ export const MACHINE_PAGES = [
     title: "Electronic Scale Granule VFFS Packing Machine",
     h1: "Electronic scale VFFS machine for snacks, nuts, seeds and frozen food.",
     category: "Vertical form fill seal machines",
-    image: "public/assets/machines/electronic-scale-core-machine.png",
+    image: "public/assets/machines/electronic-scale-core-machine.webp",
     summary:
       "A roll-film vertical form fill seal machine paired with electronic weighing for puffed food, fruit, candy, biscuits, frozen food, melon seeds, roasted nuts and similar granules.",
     keywords: ["electronic scale packing machine", "granule VFFS machine", "snack packaging machine", "multi head scale packing machine"],
@@ -34,7 +34,7 @@ export const MACHINE_PAGES = [
     title: "Vertical Vacuum Packing Machine",
     h1: "Vertical vacuum packing machine for rice, beans and grains.",
     category: "Vacuum packaging machines",
-    image: "public/assets/machines/vertical-vacuum-core.png",
+    image: "public/assets/machines/vertical-vacuum-core.webp",
     summary:
       "A vertical vacuum packing machine for compact six-sided rice, bean and grain packages where dense presentation, oxygen reduction and standardized output matter.",
     keywords: ["vertical vacuum packing machine", "rice vacuum packing machine", "beans vacuum packaging machine", "grain vacuum packing equipment"],
@@ -48,7 +48,7 @@ export const MACHINE_PAGES = [
     title: "Full Automatic Powder VFFS Packing Machine",
     h1: "Full automatic powder VFFS machine for milk powder, protein powder and seasoning.",
     category: "Vertical form fill seal machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A vertical powder packing machine using auger dosing and roll-film bag making for milk powder, rice flour, milk tea powder, protein powder, seasoning and other powder products.",
     keywords: ["powder VFFS packing machine", "auger powder packaging machine", "protein powder packing machine", "milk powder packaging machine"],
@@ -62,7 +62,7 @@ export const MACHINE_PAGES = [
     title: "Triangle Tea Bag Packing Machine",
     h1: "Triangle tea bag packing machine for herbal tea and premium tea bags.",
     category: "Tea and coffee packaging machines",
-    image: "public/assets/machines/drip-coffee-core.png",
+    image: "public/assets/machines/drip-coffee-core.webp",
     summary:
       "A tea bag machine for three-dimensional triangle bags and flat four-corner bags, using servo film control, automatic metering, ultrasonic sealing and output counting.",
     keywords: ["triangle tea bag packing machine", "pyramid tea bag machine", "herbal tea packaging machine", "ultrasonic tea bag sealing machine"],
@@ -76,7 +76,7 @@ export const MACHINE_PAGES = [
     title: "Roll Film Outer Bag Tea Packing Machine",
     h1: "Roll film outer bag tea packing machine for inner and outer tea packs.",
     category: "Tea and coffee packaging machines",
-    image: "public/assets/machines/drip-coffee-core.png",
+    image: "public/assets/machines/drip-coffee-core.webp",
     summary:
       "A tea packaging configuration that forms inner tea bags and roll-film outer envelopes in one integrated workflow for a retail-ready beverage pack.",
     keywords: ["roll film outer bag tea packing machine", "inner outer tea bag packing machine", "tea envelope packing machine", "automatic tea bag outer wrapper"],
@@ -90,7 +90,7 @@ export const MACHINE_PAGES = [
     title: "Prefabricated Outer Bag Tea Packing Machine",
     h1: "Prefabricated outer bag tea packing machine for premium ready-made envelopes.",
     category: "Tea and coffee packaging machines",
-    image: "public/assets/machines/drip-coffee-core.png",
+    image: "public/assets/machines/drip-coffee-core.webp",
     summary:
       "A tea packing system that combines triangle tea bag production with prefabricated outer bag feeding, opening, filling and sealing.",
     keywords: ["prefabricated outer bag tea packing machine", "premade outer envelope tea machine", "tea bag with premade envelope", "triangle tea bag outer bag machine"],
@@ -104,7 +104,7 @@ export const MACHINE_PAGES = [
     title: "Tea Bag With Thread and Tag Packing Machine",
     h1: "Tea bag with thread and tag packing machine for filter paper bags.",
     category: "Tea and coffee packaging machines",
-    image: "public/assets/machines/drip-coffee-core.png",
+    image: "public/assets/machines/drip-coffee-core.webp",
     summary:
       "A tea bag packing machine for broken tea, medicinal tea, coffee, plants and similar products using tea filter paper, cotton thread and label paper.",
     keywords: ["tea bag with thread and tag packing machine", "filter paper tea bag machine", "tagged tea bag packing machine", "tea filter bag machine"],
@@ -118,7 +118,7 @@ export const MACHINE_PAGES = [
     title: "Inner and Outer Tea Bag Vacuum Packing Machine",
     h1: "Inner and outer tea bag vacuum packing machine for compact beverage packs.",
     category: "Tea and coffee packaging machines",
-    image: "public/assets/machines/vertical-vacuum-core.png",
+    image: "public/assets/machines/vertical-vacuum-core.webp",
     summary:
       "A tea vacuum packing system for small particles such as tea, medicinal tea, health tea and coffee where compact shape and aroma protection matter.",
     keywords: ["inner outer tea bag vacuum packing machine", "tea vacuum packing machine", "small particle vacuum tea packaging", "vacuum formed tea bag machine"],
@@ -132,7 +132,7 @@ export const MACHINE_PAGES = [
     title: "Tea Bag Packing Machine With Outer Envelope",
     h1: "Tea bag packing machine with outer envelope for retail beverage bags.",
     category: "Tea and coffee packaging machines",
-    image: "public/assets/machines/drip-coffee-core.png",
+    image: "public/assets/machines/drip-coffee-core.webp",
     summary:
       "A machine for disposable inner and outer bags for tea, medicinal tea and health tea roots, combining filter media, cotton thread, composite film and outer envelope packaging.",
     keywords: ["tea bag packing machine with outer envelope", "inner outer tea bag packaging machine", "tea envelope packing equipment", "herbal tea outer bag machine"],
@@ -146,7 +146,7 @@ export const MACHINE_PAGES = [
     title: "Drip Coffee Bag Inner and Outer Packing Machine",
     h1: "Drip coffee bag packing machine for ear-hanging inner bags and outer envelopes.",
     category: "Tea and coffee packaging machines",
-    image: "public/assets/machines/drip-coffee-core.png",
+    image: "public/assets/machines/drip-coffee-core.webp",
     summary:
       "A drip coffee packaging machine for coffee powder, tea leaves and herbal beverages, forming inner ear-hanging bags and heat-seal outer envelopes.",
     keywords: ["drip coffee bag packing machine", "hanging ear coffee packaging machine", "inner outer coffee bag machine", "coffee powder drip bag machine"],
@@ -160,7 +160,7 @@ export const MACHINE_PAGES = [
     title: "Granule Sachet Packing Machine",
     h1: "Granule sachet packing machine for small-dose food and daily-use packs.",
     category: "Sachet and stick pack machines",
-    image: "public/assets/machines/electronic-scale-core-machine.png",
+    image: "public/assets/machines/electronic-scale-core-machine.webp",
     summary:
       "A small-dose granule packaging machine for food, pharmaceutical, chemical and cosmetics industries, completing bag making, measuring, discharging, sealing, cutting and counting.",
     keywords: ["granule sachet packing machine", "small granule packaging machine", "automatic granule pouch machine", "3 side seal granule machine"],
@@ -174,7 +174,7 @@ export const MACHINE_PAGES = [
     title: "Powder Sachet Packing Machine",
     h1: "Powder sachet packing machine for small-dose powder products.",
     category: "Sachet and stick pack machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A powder sachet machine for food, pharmaceutical, chemical and cosmetics powders, using automatic bag making, measuring, sealing, cutting and counting.",
     keywords: ["powder sachet packing machine", "small powder packaging machine", "seasoning sachet machine", "pharmaceutical powder sachet machine"],
@@ -188,7 +188,7 @@ export const MACHINE_PAGES = [
     title: "Sauce and Liquid Sachet Packing Machine",
     h1: "Sauce and liquid sachet packing machine for paste, oil and viscous products.",
     category: "Sachet and stick pack machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A sachet machine configured with pump dosing for liquid, sauce and paste products that require controlled filling, clean seals and compact consumer packs.",
     keywords: ["sauce sachet packing machine", "liquid sachet packing machine", "paste packaging machine", "oil pouch packing machine"],
@@ -202,7 +202,7 @@ export const MACHINE_PAGES = [
     title: "Multi-Channel Counting Packing Machine",
     h1: "Multi-channel counting packing machine for hardware and mixed small parts.",
     category: "Counting and hardware machines",
-    image: "public/assets/machines/electronic-scale-core-machine.png",
+    image: "public/assets/machines/electronic-scale-core-machine.webp",
     summary:
       "A multi-channel electronic counting and packing machine for small parts, hardware accessories and mixed kits where accurate quantity control matters.",
     keywords: ["multi channel counting packing machine", "hardware counting packaging machine", "screw counting packing machine", "small parts packing machine"],
@@ -216,7 +216,7 @@ export const MACHINE_PAGES = [
     title: "Ultrasonic Non-Woven Packing Machine",
     h1: "Ultrasonic non-woven packing machine for specialty filter packs.",
     category: "Sachet and stick pack machines",
-    image: "public/assets/machines/drip-coffee-core.png",
+    image: "public/assets/machines/drip-coffee-core.webp",
     summary:
       "An ultrasonic non-woven packing machine for powder or granular items where non-woven material and ultrasonic sealing are required.",
     keywords: ["ultrasonic non woven packing machine", "non woven sachet packaging machine", "ultrasonic filter bag machine", "non woven powder packing machine"],
@@ -230,7 +230,7 @@ export const MACHINE_PAGES = [
     title: "Round Corner Granule Packing Machine",
     h1: "Round corner granule packing machine for premium small sachets.",
     category: "Sachet and stick pack machines",
-    image: "public/assets/machines/electronic-scale-core-machine.png",
+    image: "public/assets/machines/electronic-scale-core-machine.webp",
     summary:
       "A round-corner sachet machine for granular products where pack feel, safety and visual finish are important.",
     keywords: ["round corner granule packing machine", "round corner sachet machine", "granule round edge pouch machine", "premium sachet packaging machine"],
@@ -244,7 +244,7 @@ export const MACHINE_PAGES = [
     title: "Round Corner Powder Packing Machine",
     h1: "Round corner powder packing machine for fine powder sachets.",
     category: "Sachet and stick pack machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A round-corner powder sachet machine for food, pharmaceutical, chemical and cosmetics powders requiring a polished pack finish.",
     keywords: ["round corner powder packing machine", "round corner powder sachet machine", "powder sample packaging machine", "premium powder sachet equipment"],
@@ -258,7 +258,7 @@ export const MACHINE_PAGES = [
     title: "Round Corner Sauce and Liquid Packing Machine",
     h1: "Round corner sauce and liquid packing machine for portion packs.",
     category: "Sachet and stick pack machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A round-corner liquid and sauce sachet machine for portion packs that need pump filling, neat seals and consumer-friendly rounded edges.",
     keywords: ["round corner sauce packing machine", "round corner liquid sachet machine", "liquid portion pack machine", "sauce sample packing machine"],
@@ -272,7 +272,7 @@ export const MACHINE_PAGES = [
     title: "Multi-Material Packing Machine",
     h1: "Multi-material packing machine for cereal, tea blends and mixed products.",
     category: "Sachet and stick pack machines",
-    image: "public/assets/machines/electronic-scale-core-machine.png",
+    image: "public/assets/machines/electronic-scale-core-machine.webp",
     summary:
       "A combination metering packaging machine for products with different material forms, such as fruit cereal, dehydrated vegetables, whole grains, seasonings and blended tea products.",
     keywords: ["multi material packing machine", "combination material packaging machine", "cereal sachet packing machine", "mixed granule powder packaging"],
@@ -286,7 +286,7 @@ export const MACHINE_PAGES = [
     title: "Eight Treasure Tea Multi-Material Packing Machine",
     h1: "Eight treasure tea packing machine for multi-ingredient tea blends.",
     category: "Tea and coffee packaging machines",
-    image: "public/assets/machines/drip-coffee-core.png",
+    image: "public/assets/machines/drip-coffee-core.webp",
     summary:
       "A multi-material tea packaging machine for arranging and dosing several ingredients into each eight treasure tea or mixed herbal tea pack with stable ingredient ratios.",
     keywords: ["eight treasure tea packing machine", "multi material tea packaging machine", "herbal tea blend packing machine", "combination flower tea machine"],
@@ -300,7 +300,7 @@ export const MACHINE_PAGES = [
     title: "Hardware Screw Packing Machine",
     h1: "Hardware screw packing machine for fasteners and accessory kits.",
     category: "Counting and hardware machines",
-    image: "public/assets/machines/electronic-scale-core-machine.png",
+    image: "public/assets/machines/electronic-scale-core-machine.webp",
     summary:
       "An automated hardware screw packaging machine that completes bag making, counting or feeding, filling, sealing and output for small hardware kits.",
     keywords: ["hardware screw packing machine", "screw packaging machine", "fastener packing machine", "small hardware kit packing machine"],
@@ -314,7 +314,7 @@ export const MACHINE_PAGES = [
     title: "Stick Pack Granule Packing Machine",
     h1: "Stick pack granule packing machine for soup bags, desiccant and instant products.",
     category: "Sachet and stick pack machines",
-    image: "public/assets/machines/electronic-scale-core-machine.png",
+    image: "public/assets/machines/electronic-scale-core-machine.webp",
     summary:
       "A stick pack machine for instant noodle soup bags, desiccant, powder, broken tea and small particles, using automatic bag making, measuring, filling, sealing, cutting and counting.",
     keywords: ["stick pack granule packing machine", "desiccant packing machine", "soup bag packaging machine", "small particle stick pack machine"],
@@ -328,7 +328,7 @@ export const MACHINE_PAGES = [
     title: "Automatic Granular Packing Machine",
     h1: "Automatic granular packing machine with feeding, filling and film forming.",
     category: "Vertical form fill seal machines",
-    image: "public/assets/machines/electronic-scale-core-machine.png",
+    image: "public/assets/machines/electronic-scale-core-machine.webp",
     summary:
       "An automatic granular packaging machine for product measurement, feeding, filling, bag making and optional inflation or exhaust in a roll-film packing workflow.",
     keywords: ["automatic granular packing machine", "granular packaging machine", "automatic granule bagging machine", "inflation exhaust granule packing"],
@@ -342,7 +342,7 @@ export const MACHINE_PAGES = [
     title: "Multi-Line Granule Liquid Powder Packing Machine",
     h1: "Multi-line packing machine for granule, liquid, powder and sauce.",
     category: "Multi-lane packaging machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A 4-12 lane machine for granule, liquid, powder and sauce products where multiple small packs must be produced at high output.",
     keywords: ["multi line packing machine", "multi lane sachet machine", "4 lane powder packing machine", "12 lane liquid packing machine"],
@@ -356,7 +356,7 @@ export const MACHINE_PAGES = [
     title: "Single Film Liquid Packing Machine",
     h1: "Single film liquid packing machine for precise back-seal liquid packs.",
     category: "Liquid packaging machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A precision liquid packaging machine for bag making, filling, sealing, batch coding, cutting and output using single-film liquid packaging formats.",
     keywords: ["single film liquid packing machine", "liquid back seal packaging machine", "precision liquid packaging machine", "liquid pouch packing machine"],
@@ -370,7 +370,7 @@ export const MACHINE_PAGES = [
     title: "Tube Film Packing Machine",
     h1: "Tube film packing machine for PE tube-film bags up to larger finished sizes.",
     category: "Specialty packaging machines",
-    image: "public/assets/machines/high-speed-pillow-pack-machine.png",
+    image: "public/assets/machines/high-speed-pillow-pack-machine.webp",
     summary:
       "A tube film packing machine for PE tube-film bags, using PLC and touch-screen control in a compact layout that can support larger finished bag dimensions.",
     keywords: ["tube film packing machine", "PE tube film packaging machine", "tube bag packing machine", "large PE bag packing machine"],
@@ -384,7 +384,7 @@ export const MACHINE_PAGES = [
     title: "Stand-Up Pouch Filling and Capping Machine",
     h1: "Stand-up pouch filling and capping machine for spouted pouches.",
     category: "Filling and sealing machines",
-    image: "public/assets/machines/hero-premade-pouch-system-clean.png",
+    image: "public/assets/machines/hero-premade-pouch-system-clean.webp",
     summary:
       "A stand-up pouch filling and capping machine for manual bag hanging, automatic bag entry, quantitative filling, lid dropping, capping and pouch discharge.",
     keywords: ["stand up pouch filling capping machine", "spouted pouch filling machine", "pouch filling and capping machine", "liquid pouch capper"],
@@ -398,7 +398,7 @@ export const MACHINE_PAGES = [
     title: "Stretch Film Vacuum Packaging Machine",
     h1: "Full automatic stretch film vacuum packaging machine for food packs.",
     category: "Vacuum packaging machines",
-    image: "public/assets/machines/vertical-vacuum-core.png",
+    image: "public/assets/machines/vertical-vacuum-core.webp",
     summary:
       "A stretch film vacuum packaging machine for automated vacuum forming and sealing where shelf life, hygiene and tight package presentation are required.",
     keywords: ["stretch film vacuum packaging machine", "thermoforming vacuum packaging machine", "automatic vacuum packaging line", "food vacuum pack machine"],
@@ -412,7 +412,7 @@ export const MACHINE_PAGES = [
     title: "High Speed Pillow Packing Machine",
     h1: "High speed pillow packing machine for regular products and candy.",
     category: "Flow wrapping machines",
-    image: "public/assets/machines/high-speed-pillow-pack-machine.png",
+    image: "public/assets/machines/high-speed-pillow-pack-machine.webp",
     summary:
       "A high-speed automatic pillow packing machine for candies and regular objects, using servo drive, color-mark tracking and clear fault diagnosis.",
     keywords: ["high speed pillow packing machine", "automatic flow wrapper", "candy packing machine", "horizontal pillow pack machine"],
@@ -426,7 +426,7 @@ export const MACHINE_PAGES = [
     title: "Heat Shrink Packing and Sealing Cutting Machine",
     h1: "Heat shrink packing machine with full automatic sealing and cutting.",
     category: "Shrink packaging machines",
-    image: "public/assets/machines/high-speed-pillow-pack-machine.png",
+    image: "public/assets/machines/high-speed-pillow-pack-machine.webp",
     summary:
       "A heat shrink packing machine combined with automatic sealing and cutting for retail bundles, boxed products and protected secondary packs.",
     keywords: ["heat shrink packing machine", "automatic sealing cutting machine", "shrink wrapping machine", "shrink tunnel packing machine"],
@@ -440,7 +440,7 @@ export const MACHINE_PAGES = [
     title: "Adjustable Transparent Film Overwrapping Machine",
     h1: "Adjustable transparent film overwrapping machine for boxed products.",
     category: "Overwrapping machines",
-    image: "public/assets/machines/high-speed-pillow-pack-machine.png",
+    image: "public/assets/machines/high-speed-pillow-pack-machine.webp",
     summary:
       "A transparent film overwrapping machine that wraps rigid rectangular boxes with dust-proof, easy-open and anti-counterfeit style film.",
     keywords: ["transparent film overwrapping machine", "cellophane wrapping machine", "box overwrapping machine", "BOPP overwrap machine"],
@@ -454,7 +454,7 @@ export const MACHINE_PAGES = [
     title: "Transparent Film Overwrapping Machine",
     h1: "Transparent film overwrapping machine for premium retail boxes.",
     category: "Overwrapping machines",
-    image: "public/assets/machines/high-speed-pillow-pack-machine.png",
+    image: "public/assets/machines/high-speed-pillow-pack-machine.webp",
     summary:
       "A box overwrapping machine for wrapping transparent film around hard rectangular products to improve appearance, dust resistance and package value.",
     keywords: ["transparent film overwrapping machine", "box wrapping machine", "retail box overwrap machine", "clear film packaging machine"],
@@ -468,7 +468,7 @@ export const MACHINE_PAGES = [
     title: "Capsule Coffee Filling and Sealing Machine",
     h1: "Capsule coffee filling and sealing machine with nitrogen and rim cleaning.",
     category: "Filling and sealing machines",
-    image: "public/assets/machines/drip-coffee-core.png",
+    image: "public/assets/machines/drip-coffee-core.webp",
     summary:
       "A capsule coffee production machine for cup loading, nitrogen flushing, powder filling, cup rim cleaning, nitrogen into filled capsule and sealing.",
     keywords: ["capsule coffee filling sealing machine", "coffee capsule filling machine", "K cup filling sealing machine", "coffee pod packaging machine"],
@@ -482,7 +482,7 @@ export const MACHINE_PAGES = [
     title: "Full Automatic Cup Filling and Sealing Machine",
     h1: "Full automatic cup filling and sealing machine for jelly, yogurt and beverages.",
     category: "Filling and sealing machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A full automatic cup filling and sealing machine for jelly, juice, yogurt, ice cream, salad, seasoning, beverages, chocolate and other foods.",
     keywords: ["cup filling sealing machine", "automatic cup filler sealer", "yogurt cup filling machine", "jelly cup sealing machine"],
@@ -496,7 +496,7 @@ export const MACHINE_PAGES = [
     title: "Automatic Cartoning Machine",
     h1: "Automatic cartoning machine for food, medicine and daily-use products.",
     category: "Cartoning and case machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "An automatic cartoning machine that places products into cartons for retail-ready secondary packaging across food, medicine, cosmetics and daily-use industries.",
     keywords: ["automatic cartoning machine", "carton packing machine", "box cartoning machine", "food cartoning equipment"],
@@ -510,7 +510,7 @@ export const MACHINE_PAGES = [
     title: "Automatic Box Opening and Sealing Machine",
     h1: "Automatic box opening and sealing machine for cartons and shipping cases.",
     category: "Cartoning and case machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A case automation system for opening, forming and sealing cardboard boxes with tape or hot-melt adhesive for e-commerce, food and medicine operations.",
     keywords: ["automatic box opening machine", "box sealing machine", "case erector sealer", "carton opening sealing machine"],
@@ -524,7 +524,7 @@ export const MACHINE_PAGES = [
     title: "Semi-Auto Powder Filling Machine",
     h1: "Semi-auto powder filling machine for bags, bottles, cans and barrels.",
     category: "Filling and sealing machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A semi-automatic powder filling machine for containers such as cans, barrels, bottles and bags, with automatic positioning, filling and optional dust removal.",
     keywords: ["semi auto powder filling machine", "powder filler machine", "auger powder filling machine", "powder filling machine for bottles"],
@@ -538,7 +538,7 @@ export const MACHINE_PAGES = [
     title: "Semi-Auto Granule Weighing and Packing Machine",
     h1: "Semi-auto granule weighing and packing machine for seeds, grains and beans.",
     category: "Filling and sealing machines",
-    image: "public/assets/machines/electronic-scale-core-machine.png",
+    image: "public/assets/machines/electronic-scale-core-machine.webp",
     summary:
       "A semi-automatic granule weighing and packing machine for products such as seeds, rice, grains, beans, sesame, baby food and mushrooms.",
     keywords: ["semi auto granule weighing packing machine", "granule weighing machine", "seed packing machine", "rice grain weighing packing machine"],
@@ -552,7 +552,7 @@ export const MACHINE_PAGES = [
     title: "Automatic Granule Filling Production Line",
     h1: "Automatic granule filling production line for bottles, cans and custom containers.",
     category: "Complete filling lines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A customizable automatic granule filling line for quantitative filling of seeds, grains, beans, sesame, baby food and other granular products into bottles or cans.",
     keywords: ["automatic granule filling line", "granule filling production line", "seed bottle filling line", "grain filling line"],
@@ -566,7 +566,7 @@ export const MACHINE_PAGES = [
     title: "Automatic Powder Filling Production Line",
     h1: "Automatic powder filling production line for milk powder, protein powder and solid beverage.",
     category: "Complete filling lines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A powder filling production line with bottle or can sorting, sterilization, material conveying, quantitative filling, dust removal and downstream packaging modules.",
     keywords: ["automatic powder filling line", "powder filling production line", "milk powder can filling line", "protein powder bottle filling line"],
@@ -580,7 +580,7 @@ export const MACHINE_PAGES = [
     title: "Automatic Liquid Filling Production Line",
     h1: "Automatic liquid filling production line for bottles, capping and labeling.",
     category: "Complete filling lines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A liquid filling line composed of filling machines, bottle sorting, capping, aluminum foil sealing and adhesive labeling machines for high-automation liquid production.",
     keywords: ["automatic liquid filling line", "liquid filling production line", "bottle liquid filling machine", "sauce liquid filling line"],
@@ -594,7 +594,7 @@ export const MACHINE_PAGES = [
     title: "Automatic Carton Case Packing Line",
     h1: "Automatic carton case packing line for end-of-line packaging.",
     category: "Cartoning and case machines",
-    image: "public/assets/machines/powder-filling-line.png",
+    image: "public/assets/machines/powder-filling-line.webp",
     summary:
       "A carton case packing line that can combine automatic box opening, automatic sealing, automatic packaging equipment and conveyors for unmanned downstream operation.",
     keywords: ["automatic carton case packing line", "end of line packaging line", "case packing line", "box opening sealing packing line"],

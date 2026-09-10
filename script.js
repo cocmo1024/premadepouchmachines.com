@@ -3,6 +3,7 @@
 
   const CONTACT_EMAIL = window.CONTACT_EMAIL || "info@szcomo.com";
   const LEAD_ENDPOINT = window.LEAD_ENDPOINT || "";
+  const WHATSAPP_NUMBER = String(window.WHATSAPP_NUMBER || "8615301541312").replace(/\D/g, "");
   const RFQ_CONTEXT_KEY = "ppm:rfq-context:v1";
   const FIRST_TOUCH_KEY = "ppm:first-touch:v1";
   const MIN_FORM_DWELL_MS = 1500;
@@ -83,13 +84,13 @@
   };
 
   const FORM_FALLBACK_COPY = {
-    en: { idle: "Send RFQ", sending: "Preparing RFQ…", success: "RFQ received.", mailto: "Your email application is opening with the RFQ prepared. Review it and press Send.", failed: "Direct delivery is unavailable, so an email draft has been prepared.", blocked: "Please review the required fields and try again." },
-    es: { idle: "Enviar RFQ", sending: "Preparando RFQ…", success: "RFQ recibido.", mailto: "Se abre su correo con el RFQ preparado. Revíselo y pulse Enviar.", failed: "La entrega directa no está disponible; se preparó un borrador de correo.", blocked: "Revise los campos obligatorios e inténtelo de nuevo." },
-    fr: { idle: "Envoyer le RFQ", sending: "Préparation du RFQ…", success: "RFQ reçu.", mailto: "Votre messagerie s'ouvre avec le RFQ préparé. Vérifiez puis envoyez.", failed: "L'envoi direct est indisponible ; un brouillon d'e-mail a été préparé.", blocked: "Vérifiez les champs obligatoires puis réessayez." },
-    de: { idle: "RFQ senden", sending: "RFQ wird vorbereitet…", success: "RFQ empfangen.", mailto: "Ihr E-Mail-Programm öffnet den vorbereiteten RFQ. Prüfen und senden Sie ihn.", failed: "Direkte Zustellung ist nicht verfügbar; ein E-Mail-Entwurf wurde vorbereitet.", blocked: "Bitte Pflichtfelder prüfen und erneut versuchen." },
-    pt: { idle: "Enviar RFQ", sending: "Preparando RFQ…", success: "RFQ recebido.", mailto: "Seu e-mail abrirá com o RFQ preparado. Revise e envie.", failed: "A entrega direta está indisponível; um rascunho de e-mail foi preparado.", blocked: "Revise os campos obrigatórios e tente novamente." },
-    ru: { idle: "Отправить RFQ", sending: "Подготовка RFQ…", success: "RFQ получен.", mailto: "Открывается почта с подготовленным RFQ. Проверьте и отправьте.", failed: "Прямая отправка недоступна; подготовлен черновик письма.", blocked: "Проверьте обязательные поля и повторите." },
-    ar: { idle: "إرسال RFQ", sending: "جارٍ إعداد RFQ…", success: "تم استلام RFQ.", mailto: "سيُفتح بريدك مع RFQ جاهز. راجعه ثم اضغط إرسال.", failed: "الإرسال المباشر غير متاح، لذلك تم إعداد مسودة بريد.", blocked: "راجع الحقول المطلوبة وحاول مرة أخرى." },
+    en: { idle: "Send RFQ", sending: "Preparing RFQ…", success: "RFQ received.", mailto: "Your email application is opening with the RFQ prepared. Review it and press Send.", whatsapp: "WhatsApp is opening with the RFQ prepared. Review it and press Send.", failed: "Direct delivery is unavailable, so an email draft has been prepared.", blocked: "Please review the required fields and try again." },
+    es: { idle: "Enviar RFQ", sending: "Preparando RFQ…", success: "RFQ recibido.", mailto: "Se abre su correo con el RFQ preparado. Revíselo y pulse Enviar.", whatsapp: "Se abre WhatsApp con el RFQ preparado. Revíselo y pulse Enviar.", failed: "La entrega directa no está disponible; se preparó un borrador de correo.", blocked: "Revise los campos obligatorios e inténtelo de nuevo." },
+    fr: { idle: "Envoyer le RFQ", sending: "Préparation du RFQ…", success: "RFQ reçu.", mailto: "Votre messagerie s'ouvre avec le RFQ préparé. Vérifiez puis envoyez.", whatsapp: "WhatsApp s'ouvre avec le RFQ préparé. Vérifiez puis envoyez.", failed: "L'envoi direct est indisponible ; un brouillon d'e-mail a été préparé.", blocked: "Vérifiez les champs obligatoires puis réessayez." },
+    de: { idle: "RFQ senden", sending: "RFQ wird vorbereitet…", success: "RFQ empfangen.", mailto: "Ihr E-Mail-Programm öffnet den vorbereiteten RFQ. Prüfen und senden Sie ihn.", whatsapp: "WhatsApp öffnet den vorbereiteten RFQ. Prüfen und senden Sie ihn.", failed: "Direkte Zustellung ist nicht verfügbar; ein E-Mail-Entwurf wurde vorbereitet.", blocked: "Bitte Pflichtfelder prüfen und erneut versuchen." },
+    pt: { idle: "Enviar RFQ", sending: "Preparando RFQ…", success: "RFQ recebido.", mailto: "Seu e-mail abrirá com o RFQ preparado. Revise e envie.", whatsapp: "O WhatsApp abrirá com o RFQ preparado. Revise e envie.", failed: "A entrega direta está indisponível; um rascunho de e-mail foi preparado.", blocked: "Revise os campos obrigatórios e tente novamente." },
+    ru: { idle: "Отправить RFQ", sending: "Подготовка RFQ…", success: "RFQ получен.", mailto: "Открывается почта с подготовленным RFQ. Проверьте и отправьте.", whatsapp: "Открывается WhatsApp с подготовленным RFQ. Проверьте и отправьте.", failed: "Прямая отправка недоступна; подготовлен черновик письма.", blocked: "Проверьте обязательные поля и повторите." },
+    ar: { idle: "إرسال RFQ", sending: "جارٍ إعداد RFQ…", success: "تم استلام RFQ.", mailto: "سيُفتح بريدك مع RFQ جاهز. راجعه ثم اضغط إرسال.", whatsapp: "سيُفتح واتساب مع RFQ جاهز. راجعه ثم اضغط إرسال.", failed: "الإرسال المباشر غير متاح، لذلك تم إعداد مسودة بريد.", blocked: "راجع الحقول المطلوبة وحاول مرة أخرى." },
   };
   const MAILTO_COPY = {
     en: {
@@ -476,41 +477,48 @@
     return Object.fromEntries(new FormData(formElement).entries());
   }
 
-  function buildMailto(data) {
+  function buildRfqMessage(data) {
     const copy = getLanguageCopy(MAILTO_COPY);
     const [name, email, company, country, phone, machine, product, packageFormat, fill, dimensions, speed, source, page, referrer, language, privacy] = copy.fields;
-    const subject = encodeURIComponent(`${copy.subject}: ${data.machine || "Packaging machine"}${data.product ? ` - ${data.product}` : ""}`);
     const campaign = ATTRIBUTION_FIELDS
       .filter((field) => data[field])
       .map((field) => `${field}: ${data[field]}`);
-    const body = encodeURIComponent(
-      [
-        copy.heading,
-        "",
-        `${name}: ${data.name || ""}`,
-        `${email}: ${data.email || ""}`,
-        `${company}: ${data.company || ""}`,
-        `${country}: ${data.country || ""}`,
-        `${phone}: ${data.phone || ""}`,
-        `${machine}: ${data.machine || ""}`,
-        `${product}: ${data.product || ""}`,
-        `${packageFormat}: ${data.package || ""}`,
-        `${fill}: ${data.fill || ""}`,
-        `${dimensions}: ${data.dimensions || ""}`,
-        `${speed}: ${data.speed || ""}`,
-        `${source}: ${data.rfq_source || ""}`,
-        `${page}: ${data.page_url || ""}`,
-        `${referrer}: ${data.referrer || ""}`,
-        `${language}: ${data.language || documentLanguage}`,
-        `${privacy}: ${data.privacy_acknowledged === "yes" ? copy.acknowledged : ""}`,
-        ...(campaign.length ? ["", `${copy.campaign}:`, ...campaign] : []),
-        "",
-        `${copy.notes}:`,
-        data.message || "",
-      ].join("\n"),
-    );
+    return [
+      copy.heading,
+      "",
+      `${name}: ${data.name || ""}`,
+      `${email}: ${data.email || ""}`,
+      `${company}: ${data.company || ""}`,
+      `${country}: ${data.country || ""}`,
+      `${phone}: ${data.phone || ""}`,
+      `${machine}: ${data.machine || ""}`,
+      `${product}: ${data.product || ""}`,
+      `${packageFormat}: ${data.package || ""}`,
+      `${fill}: ${data.fill || ""}`,
+      `${dimensions}: ${data.dimensions || ""}`,
+      `${speed}: ${data.speed || ""}`,
+      `${source}: ${data.rfq_source || ""}`,
+      `${page}: ${data.page_url || ""}`,
+      `${referrer}: ${data.referrer || ""}`,
+      `${language}: ${data.language || documentLanguage}`,
+      `${privacy}: ${data.privacy_acknowledged === "yes" ? copy.acknowledged : ""}`,
+      ...(campaign.length ? ["", `${copy.campaign}:`, ...campaign] : []),
+      "",
+      `${copy.notes}:`,
+      data.message || "",
+    ].join("\n");
+  }
+
+  function buildMailto(data) {
+    const copy = getLanguageCopy(MAILTO_COPY);
+    const subject = encodeURIComponent(`${copy.subject}: ${data.machine || "Packaging machine"}${data.product ? ` - ${data.product}` : ""}`);
+    const body = encodeURIComponent(buildRfqMessage(data));
 
     return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  }
+
+  function buildWhatsapp(data) {
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildRfqMessage(data))}`;
   }
 
   async function copyTextToClipboard(text) {
@@ -690,12 +698,14 @@
   if (form && statusEl) {
     form.hidden = false;
     const submitButton = form.querySelector("button[type='submit']");
+    const whatsappButton = form.querySelector("[data-rfq-whatsapp]");
     const fallbackCopy = getLanguageCopy(FORM_FALLBACK_COPY);
     const formCopy = {
       idle: form.dataset.labelIdle || submitButton?.textContent || fallbackCopy.idle,
       sending: form.dataset.labelSending || fallbackCopy.sending,
       success: form.dataset.statusSuccess || fallbackCopy.success,
       mailto: form.dataset.statusMailto || fallbackCopy.mailto,
+      whatsapp: fallbackCopy.whatsapp,
       failed: form.dataset.statusFailed || fallbackCopy.failed,
       blocked: form.dataset.statusBlocked || fallbackCopy.blocked,
     };
@@ -718,21 +728,18 @@
       true,
     );
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      emitRfqStart("form_submit");
-
+    function prepareSubmission() {
       if (!form.checkValidity()) {
         statusEl.textContent = formCopy.blocked;
         form.reportValidity();
-        return;
+        return null;
       }
 
       const honeypot = form.elements.namedItem("website");
       if ((honeypot?.value || "").trim() || Date.now() - formReadyAt < MIN_FORM_DWELL_MS) {
         statusEl.textContent = formCopy.blocked;
         emitEvent("rfq_blocked", { reason: honeypot?.value ? "honeypot" : "minimum_dwell" });
-        return;
+        return null;
       }
 
       applyRfqContext();
@@ -744,6 +751,30 @@
       });
       const context = getRfqContext();
       if (!data.rfq_source) data.rfq_source = context.source;
+      return { data, context };
+    }
+
+    whatsappButton?.addEventListener("click", () => {
+      emitRfqStart("form_whatsapp");
+      const prepared = prepareSubmission();
+      if (!prepared) return;
+      statusEl.textContent = formCopy.whatsapp;
+      emitEvent("rfq_whatsapp_handoff", { delivery: "whatsapp" });
+      const target = window.open(buildWhatsapp(prepared.data), "_blank");
+      if (target) {
+        target.opener = null;
+      } else {
+        window.location.href = buildWhatsapp(prepared.data);
+      }
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      emitRfqStart("form_submit");
+
+      const prepared = prepareSubmission();
+      if (!prepared) return;
+      const { data, context } = prepared;
 
       statusEl.textContent = "";
       if (submitButton) {

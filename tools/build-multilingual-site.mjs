@@ -25,8 +25,8 @@ import {
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const BUILD_STAGE_PREFIX = ".site-build-";
 const BUILD_BACKUP_PREFIX = ".site-backup-";
-const ASSET_VERSION = "20260724a";
-const SITE_REFRESH_DATE = "2026-07-24";
+const ASSET_VERSION = "20260910a";
+const SITE_REFRESH_DATE = "2026-09-10";
 const HERO_IMAGE = "public/assets/brochure/rotary-premade-line.jpg";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const ORGANIZATION_LOGO_PATH = "public/assets/brand/premade-pouch-machines-logo.svg";
@@ -124,9 +124,7 @@ const FEATURED_TOPIC_SLUGS = [
   "frozen-food-packaging-machine",
   "pet-food-packaging-machine",
   "packaging-machine-rfq-checklist",
-  "factory-acceptance-test-packaging-machine",
   "roll-film-vs-premade-pouch-cost-guide",
-  "vision-inspection-packaging-line-guide",
   "premade-pouch-not-opening-troubleshooting",
   "nutraceutical-supplement-packaging-line",
 ];
@@ -526,7 +524,7 @@ const EXPERIENCE_COPY = {
       dimensions: "Pack dimensions",
       consent: "I understand that my inquiry details will be processed as described in the privacy notice. This is not a marketing subscription.",
       privacy: "Read the privacy notice",
-      requiredNote: "Required first-step details: product, package, fill amount, target output, country and contact.",
+      requiredNote: "Required first-step details: contact, country, product and package. Fill amount and target output can follow.",
       send: "Send RFQ",
       sending: "Preparing RFQ…",
       success: "RFQ received. Keep the reference shown for follow-up.",
@@ -545,7 +543,7 @@ const EXPERIENCE_COPY = {
       vffs: ["Film en rollo / pillow / fuelle", "Báscula, sinfín, vaso o bomba", "Economía de film y producción continua", "Estructura del film, plano de bolsa, producto y ventana de sellado"],
       specialty: ["Té, café, sachet, vacío o final de línea", "Módulos según aplicación", "Proyectos definidos por formato o proceso especial", "Proceso completo, interfaces, servicios y criterios medibles"],
     },
-    form: { country: "País / región", phone: "Teléfono / WhatsApp (opcional)", package: "Formato de pouch o empaque", fill: "Peso o volumen de llenado", dimensions: "Dimensiones del empaque", consent: "Entiendo que los datos de mi consulta se tratarán como se describe en el aviso de privacidad. No es una suscripción de marketing.", privacy: "Leer el aviso de privacidad (inglés)", requiredNote: "Datos iniciales requeridos: producto, empaque, cantidad, producción, país y contacto.", send: "Enviar RFQ", sending: "Preparando RFQ…", success: "RFQ recibido. Conserve la referencia para el seguimiento.", mailto: "Se abre su correo con el RFQ preparado. Revíselo y pulse Enviar.", failed: "La entrega directa no está disponible; se preparó un borrador de correo.", blocked: "Revise los campos obligatorios e inténtelo de nuevo." },
+    form: { country: "País / región", phone: "Teléfono / WhatsApp (opcional)", package: "Formato de pouch o empaque", fill: "Peso o volumen de llenado", dimensions: "Dimensiones del empaque", consent: "Entiendo que los datos de mi consulta se tratarán como se describe en el aviso de privacidad. No es una suscripción de marketing.", privacy: "Leer el aviso de privacidad (inglés)", requiredNote: "Datos iniciales requeridos: contacto, país, producto y empaque. La cantidad y la producción objetivo pueden enviarse después.", send: "Enviar RFQ", sending: "Preparando RFQ…", success: "RFQ recibido. Conserve la referencia para el seguimiento.", mailto: "Se abre su correo con el RFQ preparado. Revíselo y pulse Enviar.", failed: "La entrega directa no está disponible; se preparó un borrador de correo.", blocked: "Revise los campos obligatorios e inténtelo de nuevo." },
   },
   fr: {
     skip: "Aller au contenu principal", navSolutions: "Solutions", navResources: "Ressources", navAbout: "Société",
@@ -557,7 +555,7 @@ const EXPERIENCE_COPY = {
       vffs: ["Film rouleau / coussin / soufflet", "Balance, vis, godet ou pompe", "Économie de film et production continue", "Structure film, plan du sachet, produit et fenêtre de scellage"],
       specialty: ["Thé, café, sachet, vide ou fin de ligne", "Modules propres à l'application", "Projets définis par un pack ou une étape spécialisée", "Process complet, interfaces, utilités et critères mesurables"],
     },
-    form: { country: "Pays / région", phone: "Téléphone / WhatsApp (facultatif)", package: "Format du sachet ou pack", fill: "Poids ou volume de remplissage", dimensions: "Dimensions du pack", consent: "Je comprends que les données de ma demande seront traitées comme décrit dans l'avis de confidentialité. Ce n'est pas un abonnement marketing.", privacy: "Lire l'avis de confidentialité (anglais)", requiredNote: "Données initiales requises : produit, pack, dose, cadence, pays et contact.", send: "Envoyer le RFQ", sending: "Préparation du RFQ…", success: "RFQ reçu. Conservez la référence pour le suivi.", mailto: "Votre messagerie s'ouvre avec le RFQ préparé. Vérifiez puis envoyez.", failed: "L'envoi direct est indisponible ; un brouillon d'e-mail a été préparé.", blocked: "Vérifiez les champs obligatoires puis réessayez." },
+    form: { country: "Pays / région", phone: "Téléphone / WhatsApp (facultatif)", package: "Format du sachet ou pack", fill: "Poids ou volume de remplissage", dimensions: "Dimensions du pack", consent: "Je comprends que les données de ma demande seront traitées comme décrit dans l'avis de confidentialité. Ce n'est pas un abonnement marketing.", privacy: "Lire l'avis de confidentialité (anglais)", requiredNote: "Données initiales requises : contact, pays, produit et pack. La dose et la cadence cible peuvent suivre.", send: "Envoyer le RFQ", sending: "Préparation du RFQ…", success: "RFQ reçu. Conservez la référence pour le suivi.", mailto: "Votre messagerie s'ouvre avec le RFQ préparé. Vérifiez puis envoyez.", failed: "L'envoi direct est indisponible ; un brouillon d'e-mail a été préparé.", blocked: "Vérifiez les champs obligatoires puis réessayez." },
   },
   de: {
     skip: "Zum Hauptinhalt springen", navSolutions: "Lösungen", navResources: "Ressourcen", navAbout: "Unternehmen",
@@ -569,7 +567,7 @@ const EXPERIENCE_COPY = {
       vffs: ["Rollenfolie / Kissen / Seitenfalte", "Waage, Schnecke, Becher oder Pumpe", "Folienökonomie und kontinuierliche Produktion", "Folienaufbau, Beutelzeichnung, Produkt und Siegelfenster"],
       specialty: ["Tee, Kaffee, Sachet, Vakuum oder End-of-Line", "Anwendungsspezifische Module", "Projekte mit Spezialpackung oder Folgeschritt", "Gesamtprozess, Schnittstellen, Medien und messbare Abnahme"],
     },
-    form: { country: "Land / Region", phone: "Telefon / WhatsApp (optional)", package: "Beutel- oder Packungsformat", fill: "Füllgewicht oder Volumen", dimensions: "Packungsabmessungen", consent: "Ich verstehe, dass meine Anfragedaten wie im Datenschutzhinweis beschrieben verarbeitet werden. Keine Marketing-Anmeldung.", privacy: "Datenschutzhinweis lesen (Englisch)", requiredNote: "Erforderlich: Produkt, Packung, Füllmenge, Zielleistung, Land und Kontakt.", send: "RFQ senden", sending: "RFQ wird vorbereitet…", success: "RFQ empfangen. Referenz für Rückfragen aufbewahren.", mailto: "Ihr E-Mail-Programm öffnet den vorbereiteten RFQ. Prüfen und senden Sie ihn.", failed: "Direkte Zustellung ist nicht verfügbar; ein E-Mail-Entwurf wurde vorbereitet.", blocked: "Bitte Pflichtfelder prüfen und erneut versuchen." },
+    form: { country: "Land / Region", phone: "Telefon / WhatsApp (optional)", package: "Beutel- oder Packungsformat", fill: "Füllgewicht oder Volumen", dimensions: "Packungsabmessungen", consent: "Ich verstehe, dass meine Anfragedaten wie im Datenschutzhinweis beschrieben verarbeitet werden. Keine Marketing-Anmeldung.", privacy: "Datenschutzhinweis lesen (Englisch)", requiredNote: "Erforderlich: Kontakt, Land, Produkt und Packung. Füllmenge und Zielleistung können nachgereicht werden.", send: "RFQ senden", sending: "RFQ wird vorbereitet…", success: "RFQ empfangen. Referenz für Rückfragen aufbewahren.", mailto: "Ihr E-Mail-Programm öffnet den vorbereiteten RFQ. Prüfen und senden Sie ihn.", failed: "Direkte Zustellung ist nicht verfügbar; ein E-Mail-Entwurf wurde vorbereitet.", blocked: "Bitte Pflichtfelder prüfen und erneut versuchen." },
   },
   pt: {
     skip: "Ir para o conteúdo principal", navSolutions: "Soluções", navResources: "Recursos", navAbout: "Empresa",
@@ -581,7 +579,7 @@ const EXPERIENCE_COPY = {
       vffs: ["Filme em bobina / pillow / fole", "Balança, rosca, copo ou bomba", "Economia de filme e produção contínua", "Estrutura do filme, desenho, produto e janela de selagem"],
       specialty: ["Chá, café, sachê, vácuo ou final de linha", "Módulos por aplicação", "Projetos definidos por embalagem ou etapa especial", "Processo completo, interfaces, utilidades e critérios mensuráveis"],
     },
-    form: { country: "País / região", phone: "Telefone / WhatsApp (opcional)", package: "Formato do pouch ou embalagem", fill: "Peso ou volume de envase", dimensions: "Dimensões da embalagem", consent: "Entendo que os dados da minha consulta serão tratados conforme descrito no aviso de privacidade. Não é uma inscrição de marketing.", privacy: "Ler aviso de privacidade (inglês)", requiredNote: "Dados iniciais obrigatórios: produto, embalagem, quantidade, produção, país e contato.", send: "Enviar RFQ", sending: "Preparando RFQ…", success: "RFQ recebido. Guarde a referência para acompanhamento.", mailto: "Seu e-mail abrirá com o RFQ preparado. Revise e envie.", failed: "A entrega direta está indisponível; um rascunho de e-mail foi preparado.", blocked: "Revise os campos obrigatórios e tente novamente." },
+    form: { country: "País / região", phone: "Telefone / WhatsApp (opcional)", package: "Formato do pouch ou embalagem", fill: "Peso ou volume de envase", dimensions: "Dimensões da embalagem", consent: "Entendo que os dados da minha consulta serão tratados conforme descrito no aviso de privacidade. Não é uma inscrição de marketing.", privacy: "Ler aviso de privacidade (inglês)", requiredNote: "Dados iniciais obrigatórios: contato, país, produto e embalagem. A quantidade e a produção-alvo podem ser enviadas depois.", send: "Enviar RFQ", sending: "Preparando RFQ…", success: "RFQ recebido. Guarde a referência para acompanhamento.", mailto: "Seu e-mail abrirá com o RFQ preparado. Revise e envie.", failed: "A entrega direta está indisponível; um rascunho de e-mail foi preparado.", blocked: "Revise os campos obrigatórios e tente novamente." },
   },
   ru: {
     skip: "Перейти к основному содержанию", navSolutions: "Решения", navResources: "Материалы", navAbout: "О проекте",
@@ -593,7 +591,7 @@ const EXPERIENCE_COPY = {
       vffs: ["Рулонная пленка / pillow / gusset", "Весы, шнек, стакан или насос", "Экономия пленки и непрерывный выпуск", "Структура пленки, чертеж, продукт и окно запайки"],
       specialty: ["Чай, кофе, саше, вакуум или конец линии", "Модули по применению", "Проекты со специальной упаковкой или операцией", "Полный процесс, интерфейсы, ресурсы и измеримые критерии"],
     },
-    form: { country: "Страна / регион", phone: "Телефон / WhatsApp (необязательно)", package: "Формат пакета или упаковки", fill: "Вес или объем дозы", dimensions: "Размеры упаковки", consent: "Я понимаю, что данные запроса будут обработаны, как описано в уведомлении о конфиденциальности. Это не маркетинговая подписка.", privacy: "Уведомление о конфиденциальности (английский)", requiredNote: "Нужны: продукт, упаковка, доза, выпуск, страна и контакт.", send: "Отправить RFQ", sending: "Подготовка RFQ…", success: "RFQ получен. Сохраните номер для связи.", mailto: "Открывается почта с подготовленным RFQ. Проверьте и отправьте.", failed: "Прямая отправка недоступна; подготовлен черновик письма.", blocked: "Проверьте обязательные поля и повторите." },
+    form: { country: "Страна / регион", phone: "Телефон / WhatsApp (необязательно)", package: "Формат пакета или упаковки", fill: "Вес или объем дозы", dimensions: "Размеры упаковки", consent: "Я понимаю, что данные запроса будут обработаны, как описано в уведомлении о конфиденциальности. Это не маркетинговая подписка.", privacy: "Уведомление о конфиденциальности (английский)", requiredNote: "Обязательно: контакт, страна, продукт и упаковка. Дозу и целевую производительность можно сообщить позже.", send: "Отправить RFQ", sending: "Подготовка RFQ…", success: "RFQ получен. Сохраните номер для связи.", mailto: "Открывается почта с подготовленным RFQ. Проверьте и отправьте.", failed: "Прямая отправка недоступна; подготовлен черновик письма.", blocked: "Проверьте обязательные поля и повторите." },
   },
   ar: {
     skip: "الانتقال إلى المحتوى الرئيسي", navSolutions: "الحلول", navResources: "الموارد", navAbout: "عن الموقع",
@@ -605,7 +603,7 @@ const EXPERIENCE_COPY = {
       vffs: ["فيلم رول / pillow / gusset", "ميزان أو لولب أو كوب أو مضخة", "اقتصاد الفيلم والإنتاج المستمر", "تركيب الفيلم ورسم الكيس وسلوك المنتج ونافذة اللحام"],
       specialty: ["شاي أو قهوة أو ساشيه أو فاكيوم أو نهاية خط", "وحدات حسب التطبيق", "مشروعات يحددها شكل خاص أو خطوة لاحقة", "العملية الكاملة والواجهات والمرافق ومعايير قبول قابلة للقياس"],
     },
-    form: { country: "الدولة / المنطقة", phone: "الهاتف / واتساب (اختياري)", package: "شكل الكيس أو العبوة", fill: "وزن أو حجم التعبئة", dimensions: "أبعاد العبوة", consent: "أفهم أن بيانات الاستفسار ستعالج كما هو موضح في إشعار الخصوصية، وليست اشتراكاً تسويقياً.", privacy: "قراءة إشعار الخصوصية (بالإنجليزية)", requiredNote: "المطلوب أولاً: المنتج والعبوة والكمية والإنتاجية والدولة ووسيلة الاتصال.", send: "إرسال RFQ", sending: "جارٍ إعداد RFQ…", success: "تم استلام RFQ. احتفظ بالرقم للمتابعة.", mailto: "سيُفتح بريدك مع RFQ جاهز. راجعه ثم اضغط إرسال.", failed: "الإرسال المباشر غير متاح، لذلك تم إعداد مسودة بريد.", blocked: "راجع الحقول المطلوبة وحاول مرة أخرى." },
+    form: { country: "الدولة / المنطقة", phone: "الهاتف / واتساب (اختياري)", package: "شكل الكيس أو العبوة", fill: "وزن أو حجم التعبئة", dimensions: "أبعاد العبوة", consent: "أفهم أن بيانات الاستفسار ستعالج كما هو موضح في إشعار الخصوصية، وليست اشتراكاً تسويقياً.", privacy: "قراءة إشعار الخصوصية (بالإنجليزية)", requiredNote: "المطلوب أولاً: وسيلة الاتصال والدولة والمنتج والعبوة. يمكن إرسال كمية التعبئة والإنتاجية المستهدفة لاحقاً.", send: "إرسال RFQ", sending: "جارٍ إعداد RFQ…", success: "تم استلام RFQ. احتفظ بالرقم للمتابعة.", mailto: "سيُفتح بريدك مع RFQ جاهز. راجعه ثم اضغط إرسال.", failed: "الإرسال المباشر غير متاح، لذلك تم إعداد مسودة بريد.", blocked: "راجع الحقول المطلوبة وحاول مرة أخرى." },
   },
 };
 
@@ -1291,6 +1289,28 @@ function imageDimensions(imagePath) {
     const buffer = fs.readFileSync(filePath);
     if (buffer.length >= 24 && buffer.toString("ascii", 1, 4) === "PNG") {
       dimensions = { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+    } else if (
+      buffer.length >= 30 &&
+      buffer.toString("ascii", 0, 4) === "RIFF" &&
+      buffer.toString("ascii", 8, 12) === "WEBP"
+    ) {
+      const chunk = buffer.toString("ascii", 12, 16);
+      if (chunk === "VP8X") {
+        dimensions = {
+          width: 1 + buffer.readUIntLE(24, 3),
+          height: 1 + buffer.readUIntLE(27, 3),
+        };
+      } else if (chunk === "VP8 " && buffer.length >= 30) {
+        dimensions = {
+          width: buffer.readUInt16LE(26) & 0x3fff,
+          height: buffer.readUInt16LE(28) & 0x3fff,
+        };
+      } else if (chunk === "VP8L" && buffer.length >= 25 && buffer[20] === 0x2f) {
+        dimensions = {
+          width: 1 + buffer[21] + ((buffer[22] & 0x3f) << 8),
+          height: 1 + (buffer[22] >> 6) + (buffer[23] << 2) + ((buffer[24] & 0x0f) << 10),
+        };
+      }
     } else if (buffer.length >= 12 && buffer[0] === 0xff && buffer[1] === 0xd8) {
       const startOfFrame = new Set([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf]);
       let offset = 2;
@@ -2620,17 +2640,18 @@ function homeJsonLd(langCode) {
 function topicDiscoverySection(langCode, variant = "section") {
   if (langCode !== "en") return "";
   const featuredTopics = FEATURED_TOPIC_SLUGS.map((slug) => SEO_TOPIC_PAGES.find((page) => page.slug === slug)).filter(Boolean);
+  const buyerDecisionHubs = SEO_TOPIC_HUBS.filter((hub) => hub.group !== "insights");
   const wrapperClass = variant === "article" ? "topic-library-block article-topic-block" : "section topic-library-block";
   return `<section class="${wrapperClass}" id="decision-library" aria-labelledby="decision-library-title">
         <div class="section-heading">
           <div>
             <p class="section-kicker">Decision library</p>
-            <h2 id="decision-library-title">Find the right packaging path by product, format, industry, technology or operating problem.</h2>
+            <h2 id="decision-library-title">Move from product and package requirements to a testable RFQ.</h2>
           </div>
-          <p>Start from the decision in front of you. Compare products to pack, package formats, dosing and sealing technologies, line-planning requirements, current industry constraints and symptom-led troubleshooting checks.</p>
+          <p>Use product and industry pages to shortlist a machine path, then use buying, technology and troubleshooting guides to define samples, options and acceptance criteria.</p>
         </div>
         <div class="topic-hub-row" aria-label="Packaging decision hubs">
-          ${SEO_TOPIC_HUBS.map((hub) => `<a class="topic-hub-card" href="${localizedHref("en", hub.path)}">
+          ${buyerDecisionHubs.map((hub) => `<a class="topic-hub-card" href="${localizedHref("en", hub.path)}">
             <span>${escapeHtml(hub.label)}</span>
             <strong>${topicPageCount(hub.group)}</strong>
             <small>${escapeHtml(hub.description)}</small>
@@ -2701,7 +2722,7 @@ function homePage(langCode) {
         ${experience.proof.map(([number, label, detail]) => `<div><strong>${escapeHtml(number)}</strong><span>${escapeHtml(label)}</span><small>${escapeHtml(detail)}</small></div>`).join("")}
       </section>
 
-      <section class="section selector-section" id="selector" aria-labelledby="selector-title">
+      <section class="section selector-section" id="guide" aria-labelledby="selector-title">
         <div class="selector-shell">
           <div class="selector-copy">
             <p class="section-kicker">${escapeHtml(copy.nav.guide)}</p>
@@ -2735,7 +2756,7 @@ function homePage(langCode) {
         </div>
       </section>
 
-      <section class="section products-section" id="products" aria-labelledby="products-title">
+      <section class="section products-section" id="applications" aria-labelledby="products-title">
         <div class="section-heading">
           <div>
             <p class="section-kicker">${escapeHtml(copy.home.machinePortfolio)}</p>
@@ -2757,114 +2778,6 @@ function homePage(langCode) {
             </div>
           </a>`;
           }).join("\n          ")}
-        </div>
-      </section>
-
-      <section class="section line-section" id="guide" aria-labelledby="guide-title">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">${escapeHtml(copy.nav.guide)}</p>
-            <h2 id="guide-title">${escapeHtml(copy.machine.configuration)}</h2>
-          </div>
-          <p>${escapeHtml(copy.home.guideText)}</p>
-        </div>
-        <div class="line-system">
-          <div class="line-visual">
-            <img src="/public/assets/brochure/granule-filling-line-cropped.jpg" alt="${escapeAttr(copy.home.portfolioTitle)}" ${imageAttrs("public/assets/brochure/granule-filling-line-cropped.jpg")} />
-            <div class="line-visual-note">
-              <span>${escapeHtml(copy.machine.configuration)}</span>
-              <strong>${escapeHtml(copy.home.portfolioText)}</strong>
-            </div>
-          </div>
-          <div class="line-flow" aria-label="${escapeAttr(copy.machine.configuration)}">
-            ${ui.lineFlow.map((item) => `<article>
-              <span>${escapeHtml(item.step)}</span>
-              <h3>${escapeHtml(item.title)}</h3>
-              <p>${escapeHtml(item.text)}</p>
-            </article>`).join("\n            ")}
-          </div>
-        </div>
-        <div class="guide-grid procurement-grid">
-          ${homeDetail.guideCards.map(
-            (card, index) => `<article>
-            <span>${String(index + 1).padStart(2, "0")}</span>
-            <h3>${escapeHtml(card.title || card[0])}</h3>
-            <p>${escapeHtml(card.text || card[1])}</p>
-          </article>`,
-          ).join("\n          ")}
-        </div>
-      </section>
-
-      <section class="mid-rfq-strip" aria-label="${escapeAttr(copy.nav.quote)}">
-        <div>
-          <span>RFQ</span>
-          <strong>${escapeHtml(copy.home.quoteTitle)}</strong>
-          <p>${escapeHtml(copy.home.quoteText)}</p>
-        </div>
-        <a class="button button-primary" href="#quote">${escapeHtml(copy.nav.quote)}</a>
-      </section>
-
-      <section class="section applications-section" id="applications" aria-labelledby="applications-title">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">${escapeHtml(copy.nav.applications)}</p>
-            <h2 id="applications-title">${escapeHtml(copy.nav.applications)}</h2>
-          </div>
-          <p>${escapeHtml(copy.home.portfolioText)}</p>
-        </div>
-        <div class="solution-grid">
-          ${homeDetail.applicationClusters.map(
-            (item, index) => {
-              const visual = APPLICATION_VISUALS[index] || APPLICATION_VISUALS[0];
-              return `<article class="solution-card">
-            <div class="solution-media">
-              <img src="/${escapeAttr(heroImageFor(visual.image))}" alt="${escapeAttr(item.title || item[0])}" ${imageAttrs(heroImageFor(visual.image))} />
-            </div>
-            <div class="solution-copy">
-              <h3>${escapeHtml(item.title || item[0])}</h3>
-              <p>${escapeHtml(item.text || item[1])}</p>
-              <a href="${localizedHref(langCode, visual.href)}">${escapeHtml(copy.home.secondaryCta)}</a>
-            </div>
-          </article>`;
-            }
-          ).join("\n          ")}
-        </div>
-      </section>
-
-      <section class="section specs-section" id="specs" aria-labelledby="specs-title">
-        <div class="section-heading">
-          <div>
-            <p class="section-kicker">${escapeHtml(copy.nav.specs)}</p>
-            <h2 id="specs-title">${escapeHtml(copy.home.specsTitle)}</h2>
-          </div>
-          <p>${escapeHtml(copy.machine.rfqEvidence)}</p>
-        </div>
-        <div class="spec-matrix">
-          ${homeDetail.specReferenceLines.map(([label, value], index) => `<article>
-            <span>${String(index + 1).padStart(2, "0")}</span>
-            <h3>${escapeHtml(label)}</h3>
-            <p>${escapeHtml(value)}</p>
-          </article>`).join("\n          ")}
-        </div>
-      </section>
-
-      <section class="section catalog-section" id="catalog" aria-labelledby="catalog-title">
-        <div class="catalog-layout">
-          <div class="catalog-copy">
-            <p class="section-kicker">${escapeHtml(copy.nav.seoLibrary)}</p>
-            <h2 id="catalog-title">${escapeHtml(copy.home.catalogTitle)}</h2>
-            <p>${escapeHtml(copy.home.catalogText)}</p>
-            <a class="button button-primary" href="${localizedHref(langCode, "/machine-index.html")}">${escapeHtml(copy.nav.catalog)}</a>
-          </div>
-          <div class="catalog-preview">
-            ${PILLAR_PAGES.map((page) => {
-              const count = MACHINE_PAGES.filter((item) => item.category === page.category).length;
-              return `<a href="${localizedHref(langCode, page.path)}">
-                <span>${count || "+"}</span>
-                <strong>${escapeHtml(categoryFor(langCode, page.category))}</strong>
-              </a>`;
-            }).join("\n            ")}
-          </div>
         </div>
       </section>
 
@@ -2919,12 +2832,12 @@ function homePage(langCode) {
           <label><span>${escapeHtml(homeDetail.form[2])}</span><input name="company" type="text" autocomplete="organization" maxlength="180" /></label>
           <label><span>${escapeHtml(experience.form.country)}</span><input name="country" type="text" autocomplete="country-name" maxlength="120" required /></label>
           <label><span>${escapeHtml(experience.form.phone)}</span><input name="phone" type="tel" autocomplete="tel" maxlength="80" /></label>
-          <label><span>${escapeHtml(homeDetail.form[3])}</span><select name="machine" required><option value="" selected disabled>—</option>${PILLAR_PAGES.map((page) => `<option value="${escapeAttr(categoryFor(langCode, page.category))}">${escapeHtml(categoryFor(langCode, page.category))}</option>`).join("")}</select></label>
+          <label><span>${escapeHtml(homeDetail.form[3])}</span><select name="machine"><option value="" selected>—</option>${PILLAR_PAGES.map((page) => `<option value="${escapeAttr(categoryFor(langCode, page.category))}">${escapeHtml(categoryFor(langCode, page.category))}</option>`).join("")}</select></label>
           <label><span>${escapeHtml(homeDetail.form[4])}</span><input name="product" type="text" maxlength="220" required /></label>
           <label><span>${escapeHtml(experience.form.package)}</span><input name="package" type="text" maxlength="220" required /></label>
-          <label><span>${escapeHtml(experience.form.fill)}</span><input name="fill" type="text" maxlength="120" required /></label>
+          <label><span>${escapeHtml(experience.form.fill)}</span><input name="fill" type="text" maxlength="120" /></label>
           <label><span>${escapeHtml(experience.form.dimensions)}</span><input name="dimensions" type="text" maxlength="160" /></label>
-          <label><span>${escapeHtml(homeDetail.form[5])}</span><input name="speed" type="text" maxlength="120" required /></label>
+          <label><span>${escapeHtml(homeDetail.form[5])}</span><input name="speed" type="text" maxlength="120" /></label>
           <label class="full"><span>${escapeHtml(homeDetail.form[6])}</span><textarea name="message" rows="5" maxlength="4000"></textarea></label>
           <div class="privacy-consent full">
             <input id="privacy-acknowledged-${escapeAttr(langCode)}" name="privacy_acknowledged" type="checkbox" value="yes" required />
@@ -2947,7 +2860,10 @@ function homePage(langCode) {
           <input name="gclid" type="hidden" />
           <input name="gbraid" type="hidden" />
           <input name="wbraid" type="hidden" />
-          <button class="button button-primary full" type="submit">${escapeHtml(experience.form.send)}</button>
+          <div class="rfq-submit-actions full">
+            <button class="button button-primary" type="submit">${escapeHtml(experience.form.send)}</button>
+            <button class="button button-secondary" type="button" data-rfq-whatsapp>WhatsApp RFQ</button>
+          </div>
           <p class="form-status full" data-form-status role="status"></p>
         </form>
       </section>
@@ -3896,7 +3812,7 @@ function validatePreparedHtml(langCode, filePath, html) {
     if (!/\bmethod=["']post["']/i.test(opening) || !/\baction=["'][^"']+["']/i.test(opening)) {
       throw new Error(`Lead form must declare a nonempty POST action in ${filePath}`);
     }
-    const requiredFields = ["name", "email", "country", "machine", "product", "package", "fill", "speed", "privacy_acknowledged"];
+    const requiredFields = ["name", "email", "country", "product", "package", "privacy_acknowledged"];
     for (const name of requiredFields) {
       const field = leadForm[2].match(
         new RegExp(`<(?:input|select|textarea)\\b[^>]*\\bname=["']${name}["'][^>]*>`, "i"),
@@ -3909,6 +3825,9 @@ function validatePreparedHtml(langCode, filePath, html) {
       if (/<input\b[^>]*type=["']checkbox["']/i.test(label[1]) && /<a\b/i.test(label[1])) {
         throw new Error(`Privacy link is nested inside a checkbox label in ${filePath}`);
       }
+    }
+    if (!/\bdata-rfq-whatsapp\b/i.test(leadForm[2])) {
+      throw new Error(`Lead form has no structured WhatsApp handoff in ${filePath}`);
     }
     if (!/<noscript\b[^>]*>[\s\S]*?mailto:[\s\S]*?(?:wa\.me|whatsapp)/i.test(html)) {
       throw new Error(`Lead form has no noscript email and WhatsApp fallback in ${filePath}`);

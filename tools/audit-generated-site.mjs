@@ -37,7 +37,7 @@ const PUBLIC_ROUTE_ROOTS = [
 const PUBLIC_FILE_ROOTS = [...PUBLIC_ROUTE_ROOTS, "public"];
 const LOCALE_PREFIXES = new Set(["es", "fr", "de", "pt", "ru", "ar"]);
 const HTML_SCAN_SKIP_DIRS = new Set([".git", ".wrangler", "content", "docs", "functions", "node_modules", "outputs", "tmp", "tools"]);
-const BUILD_WORKSPACE_PREFIXES = [".site-build-", ".site-backup-"];
+const BUILD_WORKSPACE_PREFIXES = [".site-build-", ".site-backup-", "会话_"];
 
 const PRIVATE_PATH_PREFIXES = [
   "/.agents/",
@@ -1042,7 +1042,7 @@ function validateLeadForms(page) {
       }
     }
 
-    const requiredNames = ["name", "email", "country", "machine", "product", "package", "fill", "speed", "privacy_acknowledged"];
+    const requiredNames = ["name", "email", "country", "product", "package", "privacy_acknowledged"];
     for (const name of requiredNames) {
       const field = fields.find(({ attributes }) => String(attributes.name || "").toLowerCase() === name);
       if (!field) {
@@ -1098,6 +1098,12 @@ function validateLeadForms(page) {
     });
     if (!hasNoScriptFallback) {
       error("FORM_NOSCRIPT_FALLBACK", page.file, "Lead form page has no noscript email and WhatsApp fallback.");
+    }
+    const hasStructuredWhatsappHandoff = tagAttributes(form.body, "button").some(({ attributes }) =>
+      Object.hasOwn(attributes, "data-rfq-whatsapp"),
+    );
+    if (!hasStructuredWhatsappHandoff) {
+      error("FORM_WHATSAPP_HANDOFF", page.file, "Lead form has no structured WhatsApp handoff.");
     }
   }
 }

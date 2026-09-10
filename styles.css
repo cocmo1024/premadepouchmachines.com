@@ -1232,6 +1232,16 @@ textarea {
   width: 100%;
 }
 
+.rfq-submit-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.rfq-submit-actions .button {
+  width: 100%;
+}
+
 .form-status {
   grid-column: 1 / -1;
   min-height: 24px;
@@ -4564,6 +4574,10 @@ body {
   }
 
   .quote-form {
+    grid-template-columns: 1fr;
+  }
+
+  .rfq-submit-actions {
     grid-template-columns: 1fr;
   }
 }

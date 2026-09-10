@@ -133,7 +133,7 @@ export const COPY = {
       quoteText: "Send product details and packaging samples to receive a practical machine scope.",
       request: "Request proposal",
       snapshotLabels: ["Best-fit products", "Package formats", "Output reference", "Dosing or filling"],
-      applicationTemplate: "{application} fits this {category} when dosing method, pack size, seal style and downstream handling are defined together.",
+      applicationTemplate: "For {application}, evaluate the relevant {category} with representative product and package samples; confirm dosing, pack dimensions, seal requirements and accepted output before final selection.",
       rfqProducts: "Target products",
       rfqPackage: "Target package",
       rfqOptions: "Options to confirm",

@@ -16,3 +16,4 @@ dist/
 .site-build-*/
 .site-backup-*/
 .site-build.lock
+会话_*/

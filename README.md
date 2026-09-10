@@ -63,7 +63,7 @@ For production campaigns, connect the form to a CRM, Formspree, Make, Zapier, Cl
 const LEAD_ENDPOINT = window.LEAD_ENDPOINT || "";
 ```
 
-When `LEAD_ENDPOINT` is empty, the form opens a prepared email draft instead of silently dropping leads.
+When `LEAD_ENDPOINT` is empty, the form offers two filled handoff paths: a prepared email draft and a structured WhatsApp RFQ. These handoffs still require the visitor to press Send in the destination app; a configured endpoint is required for server-confirmed receipt.
 
 ## Local preview
 
