@@ -13,7 +13,7 @@
 
 **禁止直接编辑任何生成的 HTML 或 `sitemap.xml`。** 直接修改会在下一次生成时丢失，还可能造成语言版本、canonical、hreflang 和 sitemap 不一致。即使只改首页一句话，也应修改 `content/` 或 `tools/build-multilingual-site.mjs` 中的源，然后重新生成全部页面。
 
-当前已生成成品仍为 **801 个 HTML、801 个 sitemap URL**；加入隐私页的待生成目标为 **802 / 802**。这是验收基线，不是强行维持的上限；如有意新增、合并或删除页面，两个数字必须同步变化，并更新 `README.md` 中的库存说明。
+当前已生成成品为 **802 个 HTML、802 个 sitemap URL**，已包含隐私页。这是验收基线，不是强行维持的上限；如有意新增、合并或删除页面，两个数字必须同步变化，并更新 `README.md` 中的库存说明。
 
 生成器同时保存当前 802 条 canonical 的 URL 集合指纹，防止机型 slug 或专题路径在数量不变时被静默改名。新增 URL、合并或迁移路径必须先定义旧 URL 的去向、更新库存说明，再用 `node tools/build-multilingual-site.mjs --print-route-fingerprint` 取得新指纹并显式更新生成器契约；不能为了让校验变绿而无说明地替换指纹。
 

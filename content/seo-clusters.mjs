@@ -881,6 +881,7 @@ const guides = [
     searchTerms: ["tea coffee packaging machine guide", "tea bag machine selection", "drip coffee packing machine guide", "coffee capsule filling guide"],
   }),
   topic("guides", "packaging-machine-rfq-checklist", {
+    updatedAt: "2026-09-13",
     title: "Packaging Machine RFQ Checklist",
     description:
       "RFQ checklist for packaging machine buyers: product samples, pack dimensions, output, accuracy, add-ons, utilities, layout and acceptance tests.",
@@ -889,6 +890,25 @@ const guides = [
     image: `${A}/unmanned-packaging-line.jpg`,
     machineSlugs: ["granule-premade-bag-packing-machine", "electronic-scale-granule-vffs-machine", "automatic-carton-case-packing-line"],
     searchTerms: ["packaging machine RFQ checklist", "packaging machine quotation requirements", "packing machine inquiry checklist", "packaging line RFQ"],
+    relatedSlugs: ["premade-pouch-machine-price-rfq-guide", "packaging-machine-sample-test-plan", "factory-acceptance-test-packaging-machine"],
+    painPoints: [
+      "A first inquiry does not need a finished engineering specification. Identify the product, package, destination country and contact, and mark unknown details rather than delaying contact.",
+      "Suppliers cannot compare output or filling accuracy when the RFQ omits the SKU, commercial packaging material, measurement method or operating conditions.",
+      "A machine-only quote may exclude feeding, inspection, change parts and downstream handling. Define who supplies each interface before comparing totals.",
+    ],
+    specFocus: [
+      "One SKU row per product and package: fill target, pack dimensions, material, annual demand and required accepted output.",
+      "Product behavior that affects feeding or dosing: bulk density, dust, particle size, fragility, viscosity, temperature or foaming where relevant.",
+      "Must-have acceptance limits separated from preferences and optional equipment.",
+      "Utilities, layout, cleaning, inspection and integration responsibilities, with unresolved items clearly marked.",
+    ],
+    rfqChecklist: [
+      "Start with contact details, destination country, product and package photos or drawings; note which details are still unknown.",
+      "Add a SKU list with fill targets, dimensions and current or required accepted packs per shift when available.",
+      "List included equipment, buyer-supplied equipment, optional modules and interface owners separately.",
+      "Share sample availability and trial objectives before arranging any shipment of product or packaging material.",
+      "Request a written assumptions list, exclusions and the evidence needed to convert the initial scope into a firm proposal.",
+    ],
   }),
   topic("guides", "packaging-line-automation-guide", {
     title: "Packaging Line Automation Guide",
@@ -951,6 +971,7 @@ const guides = [
     searchTerms: ["checkweigher packaging line", "metal detector packing machine", "packaging line inspection", "checkweigher reject conveyor"],
   }),
   topic("guides", "factory-acceptance-test-packaging-machine", {
+    updatedAt: "2026-09-13",
     title: "Factory Acceptance Test for Packaging Machines",
     description:
       "Packaging machine FAT guide covering samples, speed, accuracy, seal quality, leak tests, changeover, safety and acceptance documentation.",
@@ -959,6 +980,25 @@ const guides = [
     image: `${A}/rotary-premade-line.jpg`,
     machineSlugs: ["granule-premade-bag-packing-machine", "full-automatic-powder-vffs-packing-machine", "sauce-liquid-premade-bag-packing-machine"],
     searchTerms: ["factory acceptance test packaging machine", "packaging machine FAT checklist", "packing machine acceptance test", "packaging machine testing"],
+    relatedSlugs: ["packaging-machine-sample-test-plan", "fat-vs-sat-packaging-machine-commissioning-guide", "remote-fat-video-packaging-machine-guide"],
+    painPoints: [
+      "A short demonstration at the fastest recipe does not establish sustained accepted output across the purchased SKU range.",
+      "Undefined run boundaries, sampling methods or retest rules allow the buyer and supplier to interpret the same test differently.",
+      "Passing the supplier-site FAT does not prove local utility capacity, line interfaces or operator readiness; these belong in the agreed SAT scope.",
+    ],
+    specFocus: [
+      "Signed test protocol covering the purchased configuration, representative SKUs, materials, run duration and measurement methods.",
+      "Accepted-output definition and reconciliation of attempted packs, accepted packs, rejects and unclassified output.",
+      "Fill results, seal and leak checks, code readability, changeover and recovery evidence at the agreed operating conditions.",
+      "Open-issue ownership, retest rules and shipment-release conditions agreed before the test.",
+    ],
+    rfqChecklist: [
+      "Identify the order configuration, software or recipe revision, test SKUs and commercial product and packaging lots.",
+      "Specify test boundaries, acceptance limits, sampling intervals and calibrated measurement equipment.",
+      "Agree safe supplier-led inspection and challenge procedures; never request defeated guards or unsafe live fault simulation.",
+      "Request raw counters, sample records, defect categories, settings and continuous run evidence alongside the summary.",
+      "Assign every unresolved item an owner, disposition and retest or SAT requirement before approving shipment.",
+    ],
   }),
 ];
 
@@ -4038,6 +4078,7 @@ const trafficExpansionGuides = [
     ],
   }),
   topic("guides", "roll-film-vs-premade-pouch-cost-guide", {
+    updatedAt: "2026-09-13",
     title: "Roll Film vs Premade Pouch Cost Guide",
     description:
       "Compare roll film VFFS, sachet systems and premade pouch machines by packaging material cost, shelf presentation, output and changeover.",
@@ -4048,16 +4089,37 @@ const trafficExpansionGuides = [
     products: ["snacks", "powders", "grains", "sauce", "retail pouches"],
     formats: ["roll-film bag", "premade pouch", "sachet", "stick pack", "zipper pouch"],
     searchTerms: ["roll film vs premade pouch", "VFFS vs premade pouch cost", "premade pouch vs roll stock", "roll film packaging machine cost", "premade pouch packing machine cost"],
+    relatedSlugs: ["premade-pouch-machine-vs-vffs-machine", "premade-pouch-machine-price-rfq-guide", "packaging-machine-speed-calculation"],
+    painPoints: [
+      "The purchase price of an empty pouch or roll is not the packaging cost per accepted pack; setup waste, rejects and SKU changes alter the denominator.",
+      "A cheaper material is not equivalent if barrier, shelf presentation, closure or seal performance fails the product requirement.",
+      "Annual demand and batch size can reverse a comparison based on the fastest run. Compare the same SKU mix, staffing and operating calendar.",
+    ],
     contentSections: [
       {
-        heading: "Material cost is only one part",
+        heading: "Compare equivalent packages before comparing costs",
         body:
-          "Roll film can reduce material cost and run continuously, while premade pouches can improve retail appearance and handle premium features such as zipper, shape or stronger shelf presence.",
+          "Hold net fill, usable pack volume, barrier requirement, closure, artwork and acceptance criteria constant. A simple pillow bag and a stand-up zipper pouch are not interchangeable just because they contain the same weight. Use the separate machine-architecture comparison when the format decision is still open; this page compares the economics after acceptable package alternatives have been defined.",
       },
       {
-        heading: "Where the decision changes",
+        heading: "Use consumed material per accepted pack",
         body:
-          "Small single-serve packs often favor sachet or stick systems. Commodity retail bags often favor VFFS. Premium stand-up zipper pouches often favor premade pouch machines when shelf appearance and changeover flexibility matter.",
+          "For premade pouches, include purchased pouches consumed during setup, opening failures, contaminated seals and rejected packs. For roll film, account for the production roll consumption, setup lengths, trim and discarded packs using a consistent area, length or mass basis. Divide the total consumed material cost by accepted packs, not machine cycles. Keep returned or reusable material separate so it is not counted twice.",
+      },
+      {
+        heading: "A transparent loss example, not a savings claim",
+        body:
+          "Illustration only: if a run consumes 10,000 purchased pouches and releases 9,500 accepted packs, each accepted pack carries 10,000 / 9,500 = 1.053 pouches of material cost. That is a 5.3% uplift over the unit pouch purchase price before labor or other operating costs. These numbers are not measured machine performance. Replace them with your trial counters and apply the same accounting boundary to roll film.",
+      },
+      {
+        heading: "Build one consistent annual cost model",
+        body:
+          "Compare material, paid labor, utilities, maintenance, tooling and agreed capital-cost allocation for the same annual SKU demand, then divide by annual accepted packs. Include cleaning and changeover in the operating schedule. Do not mix the full purchase price of one option with annual depreciation or financing cost for another. Report demand, material-price and reject-rate scenarios separately; avoid promising a universal payback period.",
+      },
+      {
+        heading: "Ask for a two-path trial before choosing the cheaper line",
+        body:
+          "Give both proposals the same product lots, equivalent commercial materials, fill target and accepted-output requirement. Record material consumption, good-pack counts, operator tasks and changeover work. If one path cannot meet package or product requirements, remove it from the cost comparison rather than assigning it an attractive theoretical rate. Compare the measured result with supplier quote exclusions and your expected batch schedule.",
       },
     ],
     specFocus: [
@@ -4065,6 +4127,13 @@ const trafficExpansionGuides = [
       "Shelf presentation, zipper, gusset, valve or shaped-pouch requirement.",
       "Output target, labor plan and changeover frequency.",
       "Reject rate, film waste, pouch waste and downstream automation.",
+    ],
+    rfqChecklist: [
+      "Send the two acceptable package alternatives with drawings, material structures, closure and barrier requirements.",
+      "Provide SKU-level annual demand, typical batch sizes, fill targets and the accepted-output target.",
+      "Use material supplier quotations on the same currency, delivery and quantity basis, including setup and print-run assumptions.",
+      "Request trial counters for material consumed, accepted packs, rejects, paid operator tasks and changeovers.",
+      "Ask suppliers to separate machine investment, options, tooling, consumables and exclusions; use your own operating data for the annual comparison.",
     ],
   }),
 ];
@@ -6363,6 +6432,7 @@ const thirdWaveGuides = [
     priority: "0.8",
   }),
   topic("guides", "packaging-machine-sample-test-plan", {
+    updatedAt: "2026-09-13",
     title: "Packaging Machine Sample Test Plan",
     description:
       "Sample test plan for packaging machine buyers, covering product samples, film or pouch samples, output target, rejects, leak checks and acceptance records.",
@@ -6373,17 +6443,51 @@ const thirdWaveGuides = [
     products: ["powders", "granules", "liquids", "snacks", "pouches"],
     formats: ["pouch", "VFFS bag", "sachet", "stick pack"],
     searchTerms: ["packaging machine sample test", "packing machine test plan", "packaging machine product sample testing", "packaging machine acceptance samples", "packaging machine trial run"],
+    relatedSlugs: ["packaging-machine-rfq-checklist", "factory-acceptance-test-packaging-machine", "packaging-film-and-pouch-materials-guide"],
+    painPoints: [
+      "A convenient sample can hide the actual risk: the dustiest powder, stickiest product, smallest pack or least stable packaging lot may need a different setup.",
+      "Substitute film or a visually similar empty pouch cannot establish compatibility with the final commercial material.",
+      "A successful feasibility trial supports configuration selection, not a guarantee for untested products, SKUs or sustained production conditions.",
+    ],
     contentSections: [
       {
-        heading: "Good samples make quotes more accurate",
+        heading: "Define the decision the trial must resolve",
         body:
-          "Send real product, density or viscosity data, final pouch or film samples, target fill weight and output target. Photos alone are not enough for difficult products.",
+          "A pre-order sample trial answers whether the proposed feeding, dosing, package handling and sealing path is feasible. List the unresolved questions first: bridging, product breakage, stringing, pouch opening, seal contamination or required output. A FAT later checks the delivered configuration against the agreed order. Keep these stages separate so a promising sample demonstration is not mistaken for final acceptance.",
       },
       {
-        heading: "Record what matters",
+        heading: "Build a small representative SKU and lot matrix",
         body:
-          "During testing, record speed, rejects, seal quality, weight accuracy, film waste, cleaning issues and operator adjustments. These observations prevent vague acceptance.",
+          "Select the combinations that expose different risks rather than every saleable SKU: minimum and maximum fill, difficult product behavior, relevant pack dimensions and normal material-lot variation. Label each product and packaging lot, storage condition and test combination. Where a worst-case claim is uncertain, ask engineering to identify the basis and record which combinations remain untested.",
       },
+      {
+        heading: "Agree sample quantity before shipping",
+        body:
+          "There is no universal kilogram or pouch count suitable for every trial. Estimate product required as fill mass multiplied by planned test packs, plus separate allowances for setup, refill, repeat runs and destructive checks. Request the matching commercial pouch count or roll-film quantity. Agree temperature control, storage, contamination precautions and disposal or return arrangements before any shipment; send photos and specifications for the initial review first.",
+      },
+      {
+        heading: "Record the full sequence and label every intervention",
+        body:
+          "Keep startup adjustments separate from the agreed stable-run interval. Record the SKU, lots, dosing and sealing settings, elapsed time, attempted packs, accepted packs, defect categories and operator interventions. Retain marked good and failed packs. Trial changes should follow the supplier's safe procedure; do not bypass guards or adjust protected mechanisms during operation. Weight, leak or seal checks need an agreed method rather than a visual impression alone.",
+      },
+      {
+        heading: "End with a decision and an unresolved-items list",
+        body:
+          "Classify each trial objective as demonstrated, failed or not tested. State the tested configuration and operating conditions, the options or tooling needed and any material change still required. Ask for the next evidence needed before a firm quote or FAT protocol. Do not generalize one successful product lot to the entire SKU range or treat an edited video as proof of sustained accepted output.",
+      },
+    ],
+    specFocus: [
+      "Trial objectives, representative SKU and lot combinations, and explicitly untested cases.",
+      "Commercial product and packaging samples with fill targets, dimensions and handling conditions.",
+      "Agreed sample quantities, trial boundaries, measurement methods and defect definitions.",
+      "Tested configuration, observed limitations, required changes and next approval gate.",
+    ],
+    rfqChecklist: [
+      "Send product and pack photos, target fill, dimensions and the specific compatibility question for an initial review.",
+      "Identify the difficult SKU and normal product or packaging-lot variation rather than sending only the easiest sample.",
+      "Agree the test plan, sample quantity, handling requirements and shipping arrangements before sending material.",
+      "Request labeled results, counters, settings, marked sample packs and the unresolved-items list.",
+      "Carry demonstrated conditions and remaining risks into the configuration quote and subsequent FAT protocol.",
     ],
   }),
 ];
@@ -6866,27 +6970,62 @@ const thirdWaveTechnologies = [
 
 const fourthWaveGuides = [
   topic("guides", "premade-pouch-machine-price-rfq-guide", {
+    updatedAt: "2026-09-13",
     title: "Premade Pouch Machine Price and RFQ Guide",
     description:
       "Commercial guide to premade pouch machine price drivers, including pouch size, filling system, zipper, nitrogen, inspection, commissioning and RFQ evidence.",
     intent:
       "Price searches are close to inquiry, but the useful answer is a scope framework that helps buyers send enough evidence for a comparable quote.",
     image: `${A}/rotary-premade-line.jpg`,
-    machineSlugs: ["granule-premade-bag-packing-machine", "powder-premade-bag-packing-machine", "sauce-liquid-premade-bag-packing-machine"],
+    machineSlugs: ["granule-premade-bag-packing-machine", "powder-premade-bag-packing-machine", "sauce-liquid-premade-bag-packing-machine", "stand-up-pouch-filling-capping-machine"],
     products: ["snacks", "powders", "sauce", "pet food", "coffee"],
     formats: ["stand-up pouch", "zipper pouch", "flat pouch", "spout pouch"],
     searchTerms: ["premade pouch machine price", "premade pouch packing machine cost", "pouch filling machine price", "premade pouch machine quote", "rotary pouch packing machine price"],
+    relatedSlugs: ["packaging-machine-rfq-checklist", "packaging-machine-sample-test-plan", "roll-film-vs-premade-pouch-cost-guide"],
+    painPoints: [
+      "A price for the rotary bag-handling frame is not the price of a working filling line when the dosing system, product feed or inspection is excluded.",
+      "Zipper opening, spout handling and capping are different operations. A general pouch-machine quote does not establish that every closure is supported.",
+      "An initial budgetary quote needs visible assumptions; a firm configuration and output commitment require engineering review and representative samples.",
+    ],
     contentSections: [
       {
-        heading: "Price follows machine scope, not model name",
+        heading: "Why there is no verified universal price range here",
         body:
-          "A rotary pouch machine can change significantly when the project adds auger filling, pump filling, nitrogen, zipper pouch handling, coding, checkweighing or downstream case packing.",
+          "This site does not publish a verified price list covering all pouch sizes, products and line configurations. An unsupported dollar range would conceal important exclusions. Start with a budgetary scope based on product, pack, destination and output requirements, then ask what assumptions must be confirmed before the proposal becomes firm. Quote validity, currency, delivery basis and any taxes or freight should be stated by the supplier, not inferred from a generic guide.",
       },
       {
-        heading: "A useful RFQ separates base and optional scope",
+        heading: "Separate bag handling from the filling system",
         body:
-          "Ask for the base machine, filling module, pouch tooling, options, spare parts, FAT, installation support and exclusions as separate lines so supplier quotes can be compared.",
+          "Ask for separate lines for pouch loading and handling, the selected dosing module and its product feed. A scale, auger or liquid filling path changes the contact parts, cleaning work and integration scope. Dust, particles, foam, viscosity and fill range must be tested with the actual product. Do not assume the machine-frame price includes a complete feeder, pump, hopper or weighing system.",
       },
+      {
+        heading: "Confirm the package route before pricing options",
+        body:
+          "Send the finished pouch drawing and commercial sample, including zipper, gusset, opening dimensions and seal area. Filling through an open pouch mouth and filling through a spout followed by capping can require different equipment. Use the dedicated filling-and-capping machine path for a spout project; do not treat capping as an automatic option on any rotary pouch machine. Nitrogen, seal cleaning, coding and inspection remain configuration-specific items requiring confirmation.",
+      },
+      {
+        heading: "Use the same quote schedule for every supplier",
+        body:
+          "Compare base bagger, filling and feed modules, pouch tooling, coding, inspection and reject handling, upstream or downstream conveyors, spare parts, FAT, installation and training as separate blocks. Mark each block included, optional, buyer-supplied or excluded. Require suppliers to name the tested SKU assumptions and utility requirements. A lower total is not comparable when one proposal stops at the filled pouch and another includes case packing or commissioning.",
+      },
+      {
+        heading: "Request a scoped quote without waiting for every detail",
+        body:
+          "For the first inquiry, provide contact, destination country, product and packaging photos or drawings. Add fill target, dimensions, batch sizes and accepted-output requirement if known; explicitly mark unknowns. Ask which machine path and sample checks are needed next. Final fit, accepted output, delivery and commercial terms remain subject to the reviewed configuration and written proposal. The separate packaging-cost guide compares operating economics rather than supplying an equipment price.",
+      },
+    ],
+    specFocus: [
+      "Pouch drawing, opening or spout route, zipper and seal requirements across the intended SKU range.",
+      "Dosing and feeding modules, contact parts, cleaning and product-behavior assumptions.",
+      "Included, optional, buyer-supplied and excluded modules on a common quote schedule.",
+      "Budgetary versus firm scope, sample-test requirements, utilities and commercial delivery basis.",
+    ],
+    rfqChecklist: [
+      "Start with your contact, destination country, product and finished-pack photos or drawings.",
+      "State pouch opening or spout/capping requirements, fill targets, dimensions and accepted-output needs when known.",
+      "Identify the product feed, dosing, coding, inspection and downstream scope that must be included.",
+      "Ask for separate base, option, tooling, spares, test and installation lines with exclusions and assumptions.",
+      "Arrange sample review before accepting final compatibility or output commitments; confirm terms in the written proposal.",
     ],
   }),
   topic("guides", "packaging-machine-supplier-china-guide", {

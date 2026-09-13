@@ -103,6 +103,7 @@ function isPrivateWebPath(webPath) {
 
   if (!segments.length) return false;
   if (PRIVATE_TOP_LEVEL.has(segments[0])) return true;
+  if (segments[0].startsWith("会话_")) return true;
   if (segments.some((segment) => segment.startsWith(".") && segment !== ".well-known")) return true;
 
   const fileName = segments.at(-1);
