@@ -43,6 +43,7 @@ Target output after the pending full regeneration:
 - `vacuum-flow-wrap-shrink-overwrap-machines.html` - vacuum, flow wrap, shrink and overwrap content page
 - `filling-cartoning-lines.html` - filling, sealing, cartoning and case line content page
 - `sitemap.xml` and `robots.txt` - search crawler discovery files
+- `llms.txt` - concise, curated AI-agent navigation with explicit evidence and performance boundaries; it supplements normal crawling and is not a ranking guarantee
 - `privacy.html` - generated inquiry-data notice linked directly from every RFQ form
 - `styles.css` - responsive industrial visual system
 - `script.js` - mobile navigation, catalog and topic search, spec tabs and RFQ form behavior

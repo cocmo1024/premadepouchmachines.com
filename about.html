@@ -32,17 +32,53 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebPage",
+      "@type": "Organization",
+      "@id": "https://premadepouchmachines.com/#organization",
+      "name": "Premade Pouch Machines",
+      "url": "https://premadepouchmachines.com/",
+      "email": "info@szcomo.com",
+      "description": "How this buyer-focused packaging machine catalog turns authorized brochure specifications, application knowledge and official industry sources into RFQ-ready guidance.",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://premadepouchmachines.com/#logo",
+        "url": "https://premadepouchmachines.com/public/assets/brand/premade-pouch-machines-logo.svg",
+        "contentUrl": "https://premadepouchmachines.com/public/assets/brand/premade-pouch-machines-logo.svg",
+        "width": 512,
+        "height": 512
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "info@szcomo.com",
+          "telephone": "+86 15301541312",
+          "availableLanguage": [
+            "en",
+            "es",
+            "fr",
+            "de",
+            "pt",
+            "ru",
+            "ar"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "AboutPage",
       "@id": "https://premadepouchmachines.com/about#webpage",
       "url": "https://premadepouchmachines.com/about",
       "name": "About Premade Pouch Machines",
       "description": "How this buyer-focused packaging machine catalog turns authorized brochure specifications, application knowledge and official industry sources into RFQ-ready guidance.",
       "inLanguage": "en",
-      "dateModified": "2026-09-10",
+      "dateModified": "2026-10-03",
       "isPartOf": {
         "@id": "https://premadepouchmachines.com/#website"
       },
       "about": {
+        "@id": "https://premadepouchmachines.com/#organization"
+      },
+      "mainEntity": {
         "@id": "https://premadepouchmachines.com/#organization"
       }
     },
@@ -112,6 +148,8 @@
         <div class="insight-section-stack">
           <section class="insight-section"><h2>What the site covers</h2><p>The catalog covers premade pouch, VFFS, sachet, tea, coffee, vacuum, flow wrap, filling, cartoning and case-packing systems. Application and technology pages connect product behavior, package format, dosing, sealing, inspection, utilities and acceptance testing.</p></section>
           <section class="insight-section"><h2>Where machine information comes from</h2><p>Machine families, reference models, specifications and primary images are derived from a manufacturer-authorized product brochure. Reference ranges are presented as starting points, not universal guarantees. Final performance depends on product samples, packaging materials, options, utilities and testing.</p></section>
+          <section class="insight-section"><h2>How machine paths are recommended</h2><p>Recommendations follow a consistent decision order: product behavior, package format, dosing or feeding method, sealing process, inspection, line interfaces and acceptance evidence. The site does not rank a machine only because its name matches a search phrase; unresolved fit questions are carried into the RFQ and sample-test plan.</p></section>
+          <section class="insight-section"><h2>What the site does not establish</h2><p>A published page is not a project approval, firm quotation, certification statement or performance guarantee. It cannot replace a sample trial, a reviewed machine configuration, a supplier proposal, a site risk assessment or the buyer's applicable regulatory and contractual checks.</p></section>
           <section class="insight-section"><h2>How current topics are handled</h2><p>Regulatory, safety, traceability and market pages cite official or authoritative sources where available. The site translates those signals into buyer questions and RFQ checks instead of presenting legal, certification or market claims as automatic machine guarantees.</p></section>
           <section class="insight-section"><h2>How to use the catalog</h2><p>Start with the product or pack-format page, compare linked machine families, review specification signals, then send product photos, pack samples, fill weight, target output, voltage and required options through the RFQ contact path.</p></section>
         </div>

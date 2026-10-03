@@ -251,6 +251,8 @@ function topic(group, slug, data) {
     h1: data.h1 || title,
     description: data.description,
     intent: data.intent,
+    decisionSummary: data.decisionSummary,
+    decisionFactors: data.decisionFactors || [],
     intentType: data.intentType || groupData.intentType,
     titleSuffix: data.titleSuffix || groupData.titleSuffix,
     image: data.image,
@@ -839,6 +841,7 @@ const formats = [
 
 const guides = [
   topic("guides", "premade-pouch-machine-vs-vffs-machine", {
+    updatedAt: "2026-10-03",
     title: "Premade Pouch Machine vs VFFS Machine",
     description:
       "Compare premade pouch machines and VFFS machines by package appearance, film cost, output, changeover and RFQ evidence.",
@@ -846,9 +849,42 @@ const guides = [
       "This comparison helps buyers decide whether finished pouch presentation or roll-film economy should drive the first quotation.",
     image: `${A}/rotary-premade-line.jpg`,
     machineSlugs: ["granule-premade-bag-packing-machine", "electronic-scale-granule-vffs-machine", "full-automatic-powder-vffs-packing-machine"],
+    relatedSlugs: ["roll-film-vs-premade-pouch-cost-guide", "packaging-film-and-pouch-materials-guide", "packaging-machine-sample-test-plan"],
     searchTerms: ["premade pouch machine vs VFFS", "premade pouch or VFFS", "pouch packing machine comparison", "VFFS vs premade bag packing machine"],
+    decisionSummary:
+      "Shortlist premade pouch equipment when finished-pouch features and retail presentation are mandatory; shortlist VFFS when roll-stock conversion and continuous bag making are the stronger economic drivers. Make the final choice from SKU-level accepted-pack cost and trials with the commercial product and packaging material.",
+    decisionFactors: [
+      "Required zipper, spout, shape, artwork and shelf presentation.",
+      "Annual volume by SKU, material cost, waste, labor and changeover time.",
+      "Product fall, dust, pouch opening, seal contamination and usable output during a representative run.",
+      "Availability of finished pouches or qualified roll stock and the buyer's internal packaging capability.",
+    ],
     painPoints: ["Premade pouches improve shelf appearance but require finished pouch purchasing and pouch-opening reliability.", "VFFS reduces film cost and supports continuous output but may not match premium pouch presentation.", "The best choice depends on pack value, SKU count, changeover, output, zipper or spout needs and downstream packing."],
     specFocus: ["Finished pouch width, length, zipper, spout and opening performance.", "Roll film width, bag length, forming shoulder and seal style.", "Total cost per pack including film or pouch, waste rate, labor and rework.", "Dosing method, required speed and add-ons such as nitrogen, coding and checkweighing."],
+    contentSections: [
+      {
+        heading: "Separate package architecture from the dosing system",
+        body:
+          "The same scale, auger or pump concept may feed either machine architecture, but bag making and finished-pouch handling create different risks. Compare the bag path first, then hold dosing, inspection and downstream scope constant so the quotation does not confuse package choice with filler choice.",
+      },
+      {
+        heading: "Calculate cost per accepted pack on the intended SKU mix",
+        body:
+          "Include packaging material, normal start-up and running waste, operators, change parts, cleaning, rework and expected accepted output. Weight the calculation by annual volume for each SKU. A lower material price or faster rated cycle is not an economic result until the same boundary and reject definition are used.",
+      },
+      {
+        heading: "Run a matched comparison with commercial materials",
+        body:
+          "Test the most difficult product and package combinations on each shortlisted path. Record attempted packs, accepted packs, opening or tracking failures, seal defects, product loss, interventions and elapsed time. The trial should expose which architecture remains stable under normal variation, not only which produces the fastest short video.",
+      },
+    ],
+    rfqChecklist: [
+      "SKU matrix with annual volume, fill target, finished dimensions and required package features.",
+      "Commercial finished pouches and candidate roll-stock structures, including artwork registration and seal requirements.",
+      "Representative product samples and the proposed dosing, feeding and dust or drip-control method.",
+      "Accepted-output, changeover, waste, labor and package-quality definitions for the comparison.",
+      "The same coding, inspection, gas flushing and downstream scope for both machine quotations.",
+    ],
   }),
   topic("guides", "how-to-choose-powder-packaging-machine", {
     title: "How to Choose a Powder Packaging Machine",
@@ -921,6 +957,7 @@ const guides = [
     searchTerms: ["packaging line automation guide", "automatic packaging production line", "complete packing line", "end of line packaging automation"],
   }),
   topic("guides", "packaging-machine-dosing-methods", {
+    updatedAt: "2026-10-03",
     title: "Packaging Machine Dosing Methods",
     description:
       "Compare multi-head weigher, linear scale, auger filler, volumetric cup, pump filling and counting systems for packaging machines.",
@@ -928,9 +965,54 @@ const guides = [
       "Dosing method determines accuracy, speed, product damage, cleaning work and whether the final line can meet acceptance tests.",
     image: `${A}/electronic-scale-vffs.jpg`,
     machineSlugs: ["electronic-scale-granule-vffs-machine", "full-automatic-powder-vffs-packing-machine", "multi-channel-counting-packing-machine"],
+    relatedSlugs: ["multihead-weigher-vs-linear-scale-guide", "auger-filling-packaging-machine-guide", "pump-filling-liquid-sauce-packaging-guide"],
     searchTerms: ["packaging machine dosing methods", "multihead weigher vs auger filler", "packaging machine filling system", "dosing system for packing machine"],
+    decisionSummary:
+      "Choose a dosing principle from product behavior and the required measurement result: weighing for variable pieces or granules, auger displacement for controlled powders, pumping for liquids and pastes, counting for discrete parts, and volumetric cups only where bulk-density variation is acceptable. Final accuracy and speed still require an integrated sample trial.",
+    decisionFactors: [
+      "Particle size, bulk-density change, dust, fragility, viscosity, foam or discrete-part geometry.",
+      "Dose range, tolerance, measurement method and how results are sampled during production.",
+      "Product refill, hopper residence, discharge time and synchronization with the package machine.",
+      "Cleaning, allergen or color change, retained product and contact-part requirements.",
+    ],
+    painPoints: [
+      "A dosing device can appear accurate in isolation yet miss the line target when refill, product settling or package-machine timing changes the cycle.",
+      "One accuracy percentage is not comparable without the product condition, target dose, sample method, run duration and treatment of rejected packs.",
+      "The most precise method may still be the wrong production choice if it damages product, traps residue, slows cleaning or cannot discharge within the bagger cycle.",
+    ],
+    specFocus: [
+      "Product condition and variation: size distribution, bulk density, dust, fragility, viscosity, temperature, foam or particle content.",
+      "Minimum, normal and maximum dose with tolerance, check method, sample frequency and reject rule.",
+      "Feeder, hopper, refill control and available dosing time at the required accepted output.",
+      "Contact parts, cleaning access, product recovery, changeover and integration signals to the package machine.",
+    ],
+    contentSections: [
+      {
+        heading: "Use weighing when mass must be measured directly",
+        body:
+          "Multi-head and linear weighers suit many free-flowing products, but the correct path depends on piece size, target dose, combination speed, breakage and allowable drop. Record individual results and product damage with normal infeed variation instead of accepting a static weigh test.",
+      },
+      {
+        heading: "Use displacement only with controlled product behavior",
+        body:
+          "Augers and volumetric cups infer quantity from repeatable displacement. Powder aeration, compaction, refill and bulk-density change can move the delivered mass. Trials should span start-up, hopper refill and realistic residence time, with the actual product state documented.",
+      },
+      {
+        heading: "Select pumps and nozzles as one liquid-filling system",
+        body:
+          "Viscosity at filling temperature, particles, stringing, foam and cut-off behavior determine pump, valve and nozzle design. Accuracy, dripping and seal cleanliness must be measured together because slowing the nozzle can shift the true line bottleneck.",
+      },
+    ],
+    rfqChecklist: [
+      "Representative product samples with particle, density, viscosity, temperature or part-geometry information.",
+      "Minimum, normal and maximum fill or count, tolerance and the required measurement method.",
+      "Target accepted packs per minute and the package-machine cycle available for dosing and discharge.",
+      "Upstream feed, hopper refill, low-level control and downstream reject or checkweighing scope.",
+      "Cleaning, product recovery, changeover, contact-part and documentation requirements.",
+    ],
   }),
   topic("guides", "packaging-film-and-pouch-materials-guide", {
+    updatedAt: "2026-10-03",
     title: "Packaging Film and Pouch Materials Guide",
     description:
       "Packaging film and pouch material guide for OPP/PE, PET/PE, foil laminates, filter media, non-woven, cup seals and carton materials.",
@@ -938,7 +1020,51 @@ const guides = [
       "Material choice affects seal temperature, barrier performance, machine tracking, pack stiffness and how much testing is needed before acceptance.",
     image: `${A}/transparent-overwrapper.jpg`,
     machineSlugs: ["electronic-scale-granule-vffs-machine", "granule-premade-bag-packing-machine", "transparent-film-overwrapping-machine"],
+    relatedSlugs: ["heat-sealing-window-film-guide", "recyclable-mono-material-film-sealing-guide", "packaging-machine-sample-test-plan"],
     searchTerms: ["packaging film materials guide", "pouch material for packing machine", "VFFS film guide", "premade pouch material guide"],
+    decisionSummary:
+      "Qualify packaging material by the properties the machine must control—dimensions, stiffness, friction, curl, registration and a repeatable seal window—not by a polymer name alone. Approve the commercial structure through machine trials and package-performance tests before fixing speed or acceptance claims.",
+    decisionFactors: [
+      "Roll stock or finished pouch geometry, tolerances, winding or opening behavior and print registration.",
+      "Seal initiation, dwell, pressure, hot tack, contamination tolerance and cooling needs.",
+      "Barrier and product-protection requirements established by the package owner and material supplier.",
+      "Normal variation across material lots, storage conditions, room conditions and the intended SKU range.",
+    ],
+    painPoints: [
+      "Two laminates with the same shorthand name can run differently because gauge, stiffness, slip, curl, sealant and converting quality are not equivalent.",
+      "A narrow single-setting seal result can fail when material lots, product contamination, room conditions or line speed change.",
+      "Package barrier, machinability and final seal integrity belong to one approval plan; a successful empty-film run does not establish product shelf life.",
+    ],
+    specFocus: [
+      "Full material construction and supplier data, total thickness, sealant layer and relevant regulatory declarations supplied by the package owner.",
+      "Roll width, core, winding direction, print repeat and eye-mark details, or finished-pouch drawing and opening dimensions.",
+      "Required seal-quality tests and an acceptable temperature, dwell and pressure operating window.",
+      "Commercial product, material lots and environmental conditions for the machine and package trial.",
+    ],
+    contentSections: [
+      {
+        heading: "Define the material as a converted component",
+        body:
+          "For roll stock, record structure, gauge, width, core, winding, print repeat, eye mark, splice and roll-quality limits. For premade pouches, add mouth opening, zipper or spout, gusset, seal area, stack condition and dimensional tolerances. These details describe what the machine actually handles.",
+      },
+      {
+        heading: "Separate machine sealability from shelf-life approval",
+        body:
+          "A machine trial can establish tracking, forming, opening and a stable seal process with the submitted material. Shelf life, migration, barrier and product compatibility require the package owner's defined test plan and qualified material data. Do not convert a clean seal sample into a universal product-protection claim.",
+      },
+      {
+        heading: "Control material change after acceptance",
+        body:
+          "Record the approved supplier, construction, key dimensions and machine recipe with the acceptance sample. Define what changes require notification and retrial. A film or pouch substitution can alter handling and sealing even when the commercial description remains unchanged.",
+      },
+    ],
+    rfqChecklist: [
+      "Commercial roll or pouch samples plus drawing, construction, thickness and supplier technical data.",
+      "Product sample, fill target, headspace, contamination risk and required package-performance tests.",
+      "Roll orientation and registration details or pouch opening, zipper, spout, gusset and seal-area dimensions.",
+      "Target accepted output and the seal, leak, code, appearance and dimensional acceptance methods.",
+      "Material-lot variation, storage and room conditions that must be represented in the trial.",
+    ],
   }),
   topic("guides", "nitrogen-flushing-packaging-machine-guide", {
     title: "Nitrogen Flushing Packaging Machine Guide",
@@ -951,6 +1077,7 @@ const guides = [
     searchTerms: ["nitrogen flushing packaging machine", "nitrogen packing machine", "modified atmosphere packing machine", "nitrogen pouch packing machine"],
   }),
   topic("guides", "packaging-machine-speed-calculation", {
+    updatedAt: "2026-10-03",
     title: "Packaging Machine Speed Calculation",
     description:
       "Guide to packaging machine speed calculation by bag size, dose, filling method, product behavior, lane count and downstream bottlenecks.",
@@ -958,7 +1085,51 @@ const guides = [
       "Realistic speed estimates require product testing and downstream review because the advertised maximum rarely equals the buyer's final line output.",
     image: `${A}/multi-line-sachet.jpg`,
     machineSlugs: ["multi-line-granule-liquid-powder-packing-machine", "high-speed-automatic-packing-machine", "full-automatic-electronic-scale-packing-machine"],
-    searchTerms: ["packaging machine speed calculation", "bags per minute packing machine", "packaging line output calculation", "sachet machine speed"],
+    relatedSlugs: ["packaging-line-oee-downtime-guide", "packaging-machine-sample-test-plan", "factory-acceptance-test-packaging-machine"],
+    searchTerms: ["packaging machine speed calculation", "bags per minute packing machine", "good packs per hour calculation", "sachet machine lane speed"],
+    decisionSummary:
+      "Specify speed as accepted packs divided by elapsed production time for a named SKU, material and test boundary. Rated cycles, lane count and the fastest short run are engineering inputs; they are not the purchased line result until dosing, sealing, rejects, refill, stops and downstream handling are included.",
+    decisionFactors: [
+      "SKU-specific bag dimensions, dose, product behavior, package material and enabled options.",
+      "The slowest integrated step, including feeding, dosing, sealing, inspection and downstream release.",
+      "Run duration and whether refill, normal micro-stops, interventions and rejects remain inside the clock.",
+      "Accepted-pack definition, sampling plan and reconciliation of attempted, accepted, rejected and unclassified output.",
+    ],
+    painPoints: [
+      "Mechanical cycles per minute can exceed saleable output when the filler, seal dwell, product settling or downstream equipment limits the sequence.",
+      "Multiplying lane count by nominal lane speed hides blocked lanes, unequal dosing, material tracking and common downstream bottlenecks.",
+      "A speed promise without a named SKU, test duration and accepted-pack definition cannot be compared across suppliers or verified at FAT.",
+    ],
+    specFocus: [
+      "For each SKU: product, dose, package dimensions, material, enabled options and target accepted packs per elapsed minute or hour.",
+      "Attempted, accepted, rejected and unclassified pack counters with agreed defect and sampling rules.",
+      "Dosing, refill, seal, lane, inspection, conveyor and downstream cycle times at the proposed configuration.",
+      "Test duration, normal interventions, changeover boundary and the conditions for retest or rate derating.",
+    ],
+    contentSections: [
+      {
+        heading: "Use one denominator for supplier comparisons",
+        body:
+          "Calculate accepted output as released good packs divided by the full agreed elapsed test time. State whether warm-up, planned changeover or sanitation sits outside the test, and keep normal refilling, micro-stops and operator interventions inside unless the protocol explicitly says otherwise.",
+      },
+      {
+        heading: "Build the rate from the slowest integrated operation",
+        body:
+          "The practical cycle is constrained by product feed, dosing and discharge, bag or film motion, settling, sealing, inspection spacing and downstream acceptance. Review buffers and control logic as well as individual-machine ratings; one blocked handoff can determine the whole-line rate.",
+      },
+      {
+        heading: "Plan capacity with a SKU-weighted model",
+        body:
+          "Assign each SKU its validated accepted rate, changeover time, batch size and production share. Convert demand into operating hours by SKU, then add planned cleaning, maintenance and reasonable operating allowance separately. Do not apply the fastest validated SKU rate to the full annual mix.",
+      },
+    ],
+    rfqChecklist: [
+      "SKU matrix with dose, bag dimensions, material, annual volume and required accepted output.",
+      "Product and packaging samples representing the slowest or most difficult intended combination.",
+      "Included feeding, dosing, coding, inspection, reject and downstream modules for the rate claim.",
+      "Agreed run duration, counter reconciliation, defect categories, sample checks and intervention rules.",
+      "Changeover, cleaning, refill and planned-stop assumptions used in the production-capacity model.",
+    ],
   }),
   topic("guides", "checkweigher-metal-detector-packaging-line", {
     title: "Checkweigher and Metal Detector Packaging Line Guide",
@@ -7029,6 +7200,7 @@ const fourthWaveGuides = [
     ],
   }),
   topic("guides", "packaging-machine-supplier-china-guide", {
+    updatedAt: "2026-10-03",
     title: "Packaging Machine Supplier China Guide",
     description:
       "Buyer guide for sourcing packaging machines from China, covering supplier evidence, samples, FAT, export documentation, spare parts and communication checks.",
@@ -7039,23 +7211,63 @@ const fourthWaveGuides = [
     products: ["food packs", "powder products", "sauce pouches", "snacks", "consumer goods"],
     formats: ["pouch", "VFFS bag", "sachet", "case"],
     searchTerms: ["packaging machine supplier China", "China packing machine manufacturer", "pouch packing machine supplier China", "automatic packaging machine China", "Chinese packaging machinery supplier"],
+    relatedSlugs: ["packaging-machine-rfq-checklist", "packaging-machine-sample-test-plan", "factory-acceptance-test-packaging-machine"],
+    decisionSummary:
+      "Qualify a China packaging-machine supplier against the exact seller, manufacturer or integrator role; the reviewed configuration; a representative sample test; a written FAT and documentation package; and the support plan after shipment. Catalog breadth, a factory video or the lowest quote does not establish project fit.",
+    decisionFactors: [
+      "Who designs, manufactures, integrates, invoices, receives payment and supports the purchased line.",
+      "Whether the supplier accepts the actual product, packaging material and measurable acceptance protocol.",
+      "Configuration control, component list, drawings, manuals, software backup and spare-parts deliverables.",
+      "Commercial terms, export documents, shipment protection, installation, training and escalation ownership.",
+    ],
+    painPoints: [
+      "The trading name, legal seller, manufacturing site and system integrator may be different parties, leaving ownership unclear when the line misses scope.",
+      "A general catalog or edited demonstration cannot establish performance for the buyer's product, package material, SKU range and acceptance method.",
+      "A low equipment price can omit feeders, inspection, change parts, export packing, commissioning, documentation and the spare parts needed after shipment.",
+    ],
+    specFocus: [
+      "Legal contracting party, manufacturing and integration roles, project contact, payment beneficiary and after-sales owner.",
+      "Revision-controlled configuration, component brands, scope matrix, layout, utilities, change parts and exclusions.",
+      "Representative sample plan, FAT protocol, raw results, deviation handling and shipment-release documents.",
+      "Export packing, delivery basis, manuals, drawings, backups, spare parts, installation, training and response boundaries.",
+    ],
     contentSections: [
       {
-        heading: "Evidence matters more than a broad catalog",
+        heading: "Verify the party behind each project responsibility",
         body:
-          "Ask for sample-run videos, similar product references, test packs, wiring and utility requirements, manuals, spare-parts list and FAT records before deposit.",
+          "Record the legal seller, manufacturing location, controls or line integrator, payment beneficiary and after-sales contact. Confirm these facts through independent business and banking channels before payment. Put design, test, documentation, installation and warranty responsibilities in the contract rather than assuming one brand name owns every task.",
       },
       {
-        heading: "Export planning should start before payment",
+        heading: "Make the evidence match the quoted configuration",
         body:
-          "Voltage, plug standard, documentation, wooden packing, freight terms, spare parts and remote support should be confirmed before the order becomes a shipping problem.",
+          "Ask for an unedited sample-run record, identified test materials, settings, counters and measured results for the machine revision being quoted. Similar-application references can support due diligence, but the buyer's own product and packaging trial should control compatibility and acceptance decisions.",
+      },
+      {
+        heading: "Freeze the technical and document baseline before manufacture",
+        body:
+          "Approve a configuration list, layout, utilities, product-contact parts, component schedule, interfaces, change parts and software or recipe deliverables. Require written change control. A late substitution can affect maintenance, compliance review and local spare availability even when nominal function appears unchanged.",
+      },
+      {
+        heading: "Use payment and shipment gates tied to evidence",
+        body:
+          "Define required drawings, sample approval, FAT results, deviation closure, packing evidence and document handover before each commercial milestone. Incoterms, freight, import duties, local conformity work and site installation should be assigned explicitly; this guide does not determine the legal or tax treatment for a destination country.",
+      },
+      {
+        heading: "Test the support path before shipment",
+        body:
+          "Confirm time-zone coverage, response channels, remote-access rules, software backups, English-language manuals, wear parts and local technician expectations. Run one support exercise during FAT so access, files and escalation contacts are proven before the equipment leaves the supplier.",
       },
     ],
-    sourceNotes: [
-      sourceNote("Google helpful-content baseline", SOURCE.googleHelpfulContent, "The page gives sourcing checks and buyer evidence requirements instead of a thin supplier keyword page."),
+    rfqChecklist: [
+      "Contracting, manufacturing, integration, payment and after-sales parties with their responsibilities.",
+      "Revision-controlled equipment and interface scope, included items, options, buyer-supplied items and exclusions.",
+      "Representative product and packaging samples plus a written FAT and acceptance protocol.",
+      "Electrical, utility, layout, component, drawing, manual, backup and spare-parts requirements.",
+      "Delivery basis, export packing, installation, training, warranty process and unresolved destination-country requirements.",
     ],
   }),
   topic("guides", "turnkey-packaging-line-rfq-guide", {
+    updatedAt: "2026-10-03",
     title: "Turnkey Packaging Line RFQ Guide",
     description:
       "Guide to turnkey packaging line RFQs, covering primary packing, feeding, coding, inspection, cartoning, case packing, palletizing and acceptance boundaries.",
@@ -7065,18 +7277,60 @@ const fourthWaveGuides = [
     machineSlugs: ["full-automatic-unmanned-packaging-production-line", "automatic-carton-case-packing-line", "pillow-type-full-automatic-packaging-production-line"],
     products: ["snacks", "powders", "pouches", "cartons", "cases"],
     formats: ["pouch line", "VFFS line", "carton line", "case line"],
-    searchTerms: ["turnkey packaging line", "complete packaging line supplier", "automatic packaging production line", "turnkey packing machine", "packaging line RFQ"],
+    searchTerms: ["turnkey packaging line RFQ", "integrated packaging line supplier", "complete packaging line scope", "primary secondary packaging integration", "single source packaging line"],
+    relatedSlugs: ["packaging-machine-rfq-checklist", "packaging-line-automation-guide", "factory-acceptance-test-packaging-machine"],
+    decisionSummary:
+      "A turnkey packaging-line RFQ is complete only when one responsibility matrix joins product infeed, primary packing, inspection, secondary packing, controls, utilities, safety, data, installation and line-level acceptance. One supplier name does not remove interface risk unless ownership and performance boundaries are written and tested.",
+    decisionFactors: [
+      "Battery limits: the physical, control, utility, data and commercial boundary at every line interface.",
+      "SKU-weighted accepted output, accumulation, reject recovery and behavior during starvation or blockage.",
+      "Who owns risk assessment, drawings, software, validation, installation, training and final site acceptance.",
+      "Which tests occur at the supplier, at the buyer's site and after production ramp-up.",
+    ],
+    painPoints: [
+      "A list of machines is not an integrated line scope when conveyors, controls, guarding, utilities and interface signals have no named owner.",
+      "Individual rated speeds do not prove line output; starvation, blocked discharge, reject handling and recovery can set the practical rate.",
+      "Calling a project turnkey can conceal buyer-supplied work, site readiness, validation, local compliance and ramp-up obligations unless exclusions are explicit.",
+    ],
+    specFocus: [
+      "Process flow and battery-limit drawing from product receipt through released case or pallet, including manual tasks.",
+      "SKU matrix, accepted-output target, buffer strategy, reject routes, changeovers and fault-recovery cases.",
+      "Controls architecture, interface signals, data ownership, network boundary, safety responsibility and software backups.",
+      "FAT, integrated FAT, SAT and ramp-up criteria with deliverables, deviation closure and responsible parties.",
+    ],
     contentSections: [
       {
         heading: "Define where turnkey responsibility starts and ends",
         body:
-          "The RFQ should state whether the supplier owns product feeding, primary packing, inspection, conveyors, cartoning, case packing, controls integration and layout drawings.",
+          "Use a battery-limit drawing and responsibility matrix to assign product feeding, primary packing, inspection, conveyors, cartoning, case packing, controls, utilities, guarding and layout. Mark buyer-supplied equipment and every manual handoff. A named interface owner is required even when two modules come from the same supplier.",
       },
       {
-        heading: "Line acceptance should use good packs per hour",
+        heading: "Balance the line around normal disturbances",
         body:
-          "A turnkey line should be judged by stable output, reject logic, changeover, operator workflow and downstream handoff, not only by individual machine speed.",
+          "Model the slowest SKU and expected variation in feeder, filler, package machine, inspection and downstream equipment. Define accumulation and controlled responses to starvation, blockage, reject-bin full and downstream stop. Recovery behavior can determine saleable output more than the fastest machine rating.",
       },
+      {
+        heading: "Freeze controls, data and safety ownership",
+        body:
+          "State who supplies the master line control, emergency-stop and safe-state philosophy, interface signals, remote access, user levels, recipes, production counters and backups. Site risk assessment and destination requirements remain project-specific; a turnkey label is not a certification or local approval.",
+      },
+      {
+        heading: "Separate module FAT from integrated line acceptance",
+        body:
+          "Individual modules can be tested before the complete line is available, but integrated FAT should challenge handoffs, reject logic, accumulation, recovery and line counters. SAT then verifies site utilities, upstream and downstream connections, operator readiness and agreed production conditions.",
+      },
+      {
+        heading: "Release the project with an evidence package",
+        body:
+          "Require approved drawings, configuration and software revisions, manuals, parts lists, test records, deviations, training evidence and open-action owners. Define what must close before shipment, what transfers to SAT and what remains a ramp-up target rather than treating one pass statement as the full handover.",
+      },
+    ],
+    rfqChecklist: [
+      "Product and package SKU matrix, shift demand, target accepted output and representative samples.",
+      "Process-flow and battery-limit drawing with included, optional, buyer-supplied and excluded scope.",
+      "Interface, buffer, reject, fault-recovery, controls, safety, utility and data requirements.",
+      "Site layout, access, environment, installation, commissioning, training and local-responsibility boundaries.",
+      "Module FAT, integrated FAT, SAT and ramp-up protocols with deliverables and release gates.",
     ],
   }),
   topic("guides", "packaging-machine-installation-commissioning-guide", {

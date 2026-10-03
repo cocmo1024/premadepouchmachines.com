@@ -28,6 +28,7 @@
 | 修改页面结构、导航、CTA、邮件/WhatsApp、HTML 元数据、JSON-LD、hreflang 或 sitemap 生成 | `tools/build-multilingual-site.mjs` |
 | 修改视觉样式或交互 | `styles.css`、`script.js`；如果浏览器必须立即取得新版本，同时更新生成器中的 `ASSET_VERSION` |
 | 添加批准使用的机器图片 | `public/assets/brochure/` 或现有机器资源目录，并在内容源中引用；不要把临时提取文件放进公开目录 |
+| 调整面向 AI 代理的精简站点导航 | `llms.txt`；只链接已发布 canonical，保持事实边界，并同步更新公开放行与审计契约 |
 
 不要把 `tmp/` 中的提取结果当作已经批准的公开素材。Cloudflare 仍以仓库根目录为资产目录，因此 `.assetsignore` 必须保持“默认拒绝、显式放行”模式：只放行固定生成目录、根级 HTML、站点运行文件和 `public/`，再在放行规则之后二次排除文档、环境变量、数据表、密钥和事务目录。新增公开文件类型或目录必须同时更新放行清单和审计器；不能通过删除首条 `/*` 来临时绕过。
 
@@ -185,6 +186,7 @@ npx wrangler@4.111.0 deploy
 
 ```powershell
 curl.exe -I https://premadepouchmachines.com/
+curl.exe -I https://premadepouchmachines.com/llms.txt
 curl.exe -I https://premadepouchmachines.com/sitemap.xml
 curl.exe -I https://premadepouchmachines.com/styles.css
 curl.exe -I https://premadepouchmachines.com/public/assets/brochure/rotary-premade-line.jpg
@@ -193,6 +195,6 @@ curl.exe -I https://premadepouchmachines.com/tools/build-multilingual-site.mjs
 curl.exe -I https://premadepouchmachines.com/CONTENT_UPDATE_GUIDE.md
 ```
 
-预期：首页、sitemap 和公开资源为 `200`；`content/`、`tools/` 和本指南为 `404`。公开 HTML 不应获得长期 immutable 缓存；CSS、JavaScript 和公开图片应保留当前 7 天缓存策略。再检查三种非规范主机形式均单跳到 HTTPS apex，且路径与查询参数不丢失。
+预期：首页、`llms.txt`、sitemap 和公开资源为 `200`；`content/`、`tools/` 和本指南为 `404`。`llms.txt` 是可选的精简导航，不替代 Google/Bing 的正常抓取、索引和内容质量要求，也不得写入无法在公开页面核验的资质或性能承诺。公开 HTML 不应获得长期 immutable 缓存；CSS、JavaScript 和公开图片应保留当前 7 天缓存策略。再检查三种非规范主机形式均单跳到 HTTPS apex，且路径与查询参数不丢失。
 
 最后在生产环境抽查修改页、一个非英语版本和阿拉伯语版本，确认 canonical/hreflang、JSON-LD、图片加载、RFQ CTA 与 sitemap 中的 URL 均为最终线上结果。

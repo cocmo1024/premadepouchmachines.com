@@ -83,8 +83,8 @@ const GENERATED_ROUTE_DIRS = Object.freeze([
   ...REMOVED_LOCALE_DIRS,
 ]);
 const TRUST_ROUTES = [
-  { path: "/about.html", priority: "0.7", changefreq: "monthly", languages: ["en"] },
-  { path: "/editorial-policy.html", priority: "0.64", changefreq: "monthly", languages: ["en"] },
+  { path: "/about.html", priority: "0.7", changefreq: "monthly", languages: ["en"], lastmod: "2026-10-03" },
+  { path: "/editorial-policy.html", priority: "0.64", changefreq: "monthly", languages: ["en"], lastmod: "2026-10-03" },
   { path: "/privacy.html", priority: "0.3", changefreq: "yearly", languages: ["en"], lastmod: SITE_REFRESH_DATE },
 ];
 const ROUTES = [
@@ -214,6 +214,7 @@ const FAQ_ITEMS = [
 const TRUST_PAGES = [
   {
     path: "/about.html",
+    updatedAt: "2026-10-03",
     kicker: "About this catalog",
     title: "About Premade Pouch Machines",
     description: "How this buyer-focused packaging machine catalog turns authorized brochure specifications, application knowledge and official industry sources into RFQ-ready guidance.",
@@ -222,12 +223,15 @@ const TRUST_PAGES = [
     sections: [
       ["What the site covers", "The catalog covers premade pouch, VFFS, sachet, tea, coffee, vacuum, flow wrap, filling, cartoning and case-packing systems. Application and technology pages connect product behavior, package format, dosing, sealing, inspection, utilities and acceptance testing."],
       ["Where machine information comes from", "Machine families, reference models, specifications and primary images are derived from a manufacturer-authorized product brochure. Reference ranges are presented as starting points, not universal guarantees. Final performance depends on product samples, packaging materials, options, utilities and testing."],
+      ["How machine paths are recommended", "Recommendations follow a consistent decision order: product behavior, package format, dosing or feeding method, sealing process, inspection, line interfaces and acceptance evidence. The site does not rank a machine only because its name matches a search phrase; unresolved fit questions are carried into the RFQ and sample-test plan."],
+      ["What the site does not establish", "A published page is not a project approval, firm quotation, certification statement or performance guarantee. It cannot replace a sample trial, a reviewed machine configuration, a supplier proposal, a site risk assessment or the buyer's applicable regulatory and contractual checks."],
       ["How current topics are handled", "Regulatory, safety, traceability and market pages cite official or authoritative sources where available. The site translates those signals into buyer questions and RFQ checks instead of presenting legal, certification or market claims as automatic machine guarantees."],
       ["How to use the catalog", "Start with the product or pack-format page, compare linked machine families, review specification signals, then send product photos, pack samples, fill weight, target output, voltage and required options through the RFQ contact path."],
     ],
   },
   {
     path: "/editorial-policy.html",
+    updatedAt: "2026-10-03",
     kicker: "Editorial policy",
     title: "Editorial and Technical Content Policy",
     description: "Editorial policy for machine specifications, industry sources, standards coverage, updates, corrections and commercial RFQ content on Premade Pouch Machines.",
@@ -236,7 +240,9 @@ const TRUST_PAGES = [
     sections: [
       ["Machine specification policy", "Published dimensions, speeds, weights, utilities and model references are treated as brochure-derived reference ranges. Pages repeatedly direct buyers to confirm final scope with samples, drawings, factory utilities and acceptance tests."],
       ["Research and source policy", "Standards, regulations and time-sensitive industry claims use direct links to official bodies or recognized industry organizations. Source notes are visible on the same page as the claim and are not hidden only in structured data."],
+      ["Evidence hierarchy", "Project decisions prioritize reviewed brochure data, official primary sources, commercial product and packaging samples, measured trial results and written acceptance criteria. Search demand, summaries and general industry commentary can identify a question, but they do not override project-specific evidence."],
       ["Authorship and structured publishing", "Content is assembled from structured brochure data, application mapping and source research. The publishing system supports consistency and relevant internal linking; it does not justify repeated keyword variants or replace buyer-specific engineering validation and professional compliance advice."],
+      ["Recommendation and AI-use boundary", "Machine paths are explained through visible decision criteria, limitations and evidence requests so readers and retrieval systems can interpret the same basis. The site does not use hidden claims, fabricated experience, paid rankings or special AI-only text, and it does not promise inclusion or recommendation by any search or answer engine."],
       ["Troubleshooting and safety boundary", "Diagnostic pages organize symptoms, evidence and controlled checks. They do not replace the machine manual, trained maintenance personnel, risk assessment, isolation of energy, lockout/tagout or manufacturer-approved repair procedures."],
       ["Corrections and updates", "Material changes update the page and sitemap date. If a specification, source statement or link needs correction, contact info@szcomo.com with the page URL and the evidence to review."],
       ["Commercial independence and trademarks", "Third-party company names may appear only in neutral market-comparison context. The site does not claim affiliation with those companies and avoids reproducing third-party logos or implying approval."],
@@ -934,13 +940,13 @@ const TECHNICAL_DETAILS_FALLBACK = Object.freeze({
 });
 
 const VISUAL_COPY = {
-  en: { label: "Visual evidence", pending: "Exact product visual pending", linked: "Brochure-linked machine visual", reference: "Category reference visual", title: "Visual evidence boundary", body: "The exact product image is withheld until the brochure frame and public asset can be matched without ambiguity." },
-  es: { label: "Evidencia visual", pending: "Imagen exacta pendiente", linked: "Imagen vinculada al catálogo", reference: "Imagen de referencia de categoría", title: "Límite de evidencia visual", body: "La imagen exacta se omite hasta poder vincular sin ambigüedad el equipo del catálogo con el activo público." },
-  fr: { label: "Preuve visuelle", pending: "Visuel produit exact en attente", linked: "Visuel machine lié à la brochure", reference: "Visuel de catégorie", title: "Limite de preuve visuelle", body: "Le visuel exact est retenu tant que la machine de la brochure et l'actif public ne peuvent pas être associés sans ambiguïté." },
-  de: { label: "Bildnachweis", pending: "Exaktes Produktbild ausstehend", linked: "Mit Broschüre verknüpftes Maschinenbild", reference: "Kategorie-Referenzbild", title: "Grenze des Bildnachweises", body: "Das exakte Produktbild bleibt ausgeblendet, bis Broschürenrahmen und öffentliches Asset eindeutig zugeordnet sind." },
-  pt: { label: "Evidência visual", pending: "Imagem exata pendente", linked: "Imagem vinculada ao catálogo", reference: "Imagem de referência da categoria", title: "Limite de evidência visual", body: "A imagem exata fica retida até que o equipamento do catálogo e o ativo público possam ser associados sem ambiguidade." },
-  ru: { label: "Визуальное подтверждение", pending: "Точное изображение ожидает проверки", linked: "Изображение связано с брошюрой", reference: "Изображение категории", title: "Граница визуальных доказательств", body: "Точное изображение не публикуется, пока оборудование в брошюре и публичный файл нельзя сопоставить однозначно." },
-  ar: { label: "الدليل المرئي", pending: "الصورة الدقيقة بانتظار التحقق", linked: "صورة مرتبطة بالكتيب", reference: "صورة مرجعية للفئة", title: "حدود الدليل المرئي", body: "لا تُعرض صورة المنتج الدقيقة حتى يمكن مطابقة آلة الكتيب مع الملف العام دون التباس." },
+  en: { label: "Visual evidence", pending: "Exact product visual pending", linked: "Brochure-linked machine visual", reference: "Category reference visual", galleryView: "brochure machine detail view", title: "Visual evidence boundary", body: "The exact product image is withheld until the brochure frame and public asset can be matched without ambiguity." },
+  es: { label: "Evidencia visual", pending: "Imagen exacta pendiente", linked: "Imagen vinculada al catálogo", reference: "Imagen de referencia de categoría", galleryView: "vista detallada de la máquina en el catálogo", title: "Límite de evidencia visual", body: "La imagen exacta se omite hasta poder vincular sin ambigüedad el equipo del catálogo con el activo público." },
+  fr: { label: "Preuve visuelle", pending: "Visuel produit exact en attente", linked: "Visuel machine lié à la brochure", reference: "Visuel de catégorie", galleryView: "vue détaillée de la machine dans la brochure", title: "Limite de preuve visuelle", body: "Le visuel exact est retenu tant que la machine de la brochure et l'actif public ne peuvent pas être associés sans ambiguïté." },
+  de: { label: "Bildnachweis", pending: "Exaktes Produktbild ausstehend", linked: "Mit Broschüre verknüpftes Maschinenbild", reference: "Kategorie-Referenzbild", galleryView: "Maschinendetailansicht aus der Broschüre", title: "Grenze des Bildnachweises", body: "Das exakte Produktbild bleibt ausgeblendet, bis Broschürenrahmen und öffentliches Asset eindeutig zugeordnet sind." },
+  pt: { label: "Evidência visual", pending: "Imagem exata pendente", linked: "Imagem vinculada ao catálogo", reference: "Imagem de referência da categoria", galleryView: "vista detalhada da máquina no catálogo", title: "Limite de evidência visual", body: "A imagem exata fica retida até que o equipamento do catálogo e o ativo público possam ser associados sem ambiguidade." },
+  ru: { label: "Визуальное подтверждение", pending: "Точное изображение ожидает проверки", linked: "Изображение связано с брошюрой", reference: "Изображение категории", galleryView: "детальный вид машины из брошюры", title: "Граница визуальных доказательств", body: "Точное изображение не публикуется, пока оборудование в брошюре и публичный файл нельзя сопоставить однозначно." },
+  ar: { label: "الدليل المرئي", pending: "الصورة الدقيقة بانتظار التحقق", linked: "صورة مرتبطة بالكتيب", reference: "صورة مرجعية للفئة", galleryView: "منظر تفصيلي للآلة من الكتيب", title: "حدود الدليل المرئي", body: "لا تُعرض صورة المنتج الدقيقة حتى يمكن مطابقة آلة الكتيب مع الملف العام دون التباس." },
 };
 
 function visualCopyFor(langCode) {
@@ -2273,7 +2279,7 @@ function machinePage(item, langCode) {
           ${galleryImages
             .map(
               (image, index) => `<figure>
-            <img src="/${escapeAttr(heroImageFor(image))}" alt="${escapeAttr(`${localized.title}: ${visualCopy.label}`)}" ${imageAttrs(heroImageFor(image))} />
+            <img src="/${escapeAttr(heroImageFor(image))}" alt="${escapeAttr(["es", "pt"].includes(langCode) ? `${localized.title}: ${visualCopy.galleryView} ${index + 2}` : `${localized.title}: ${visualCopy.label}`)}" ${imageAttrs(heroImageFor(image))} />
             <figcaption>${escapeHtml(visualCopy.linked)}</figcaption>
           </figure>`,
             )
@@ -2551,7 +2557,7 @@ function pillarPage(page, langCode) {
             .map((item) => {
               const relatedItem = localizedItemFor(item, langCode);
               return `<a class="category-machine-card" href="${localizedHref(langCode, `/machines/${item.slug}.html`)}">
-            <img src="/${escapeAttr(displayImageForMachine(item))}" alt="${escapeAttr(visualEvidenceFor(item).placeholder ? `${relatedItem.title} — ${visualCopyFor(langCode).reference}` : relatedItem.title)}" ${imageAttrs(displayImageForMachine(item))} />
+            <img src="/${escapeAttr(displayImageForMachine(item))}" alt="${escapeAttr(visualEvidenceFor(item).placeholder ? langCode === "en" ? `${relatedItem.title}: ${visualCopyFor(langCode).reference}; ${visualCopyFor(langCode).pending}` : `${relatedItem.title} — ${visualCopyFor(langCode).reference}` : relatedItem.title)}" ${imageAttrs(displayImageForMachine(item))} />
             <div>
               <span>${escapeHtml(publicSourceModelFor(item, langCode))}</span>
               <h3>${escapeHtml(relatedItem.title)}</h3>
@@ -3010,6 +3016,7 @@ function topicJsonLd(page, relatedTopics, relatedMachines) {
         headline: page.h1,
         name: page.title,
         description: page.description,
+        ...(page.decisionSummary ? { abstract: page.decisionSummary } : {}),
         inLanguage: "en",
         image: `${BASE_URL}/${articleImage}`,
         dateModified: effectiveModifiedDate(page.updatedAt, SITE_REFRESH_DATE),
@@ -3252,7 +3259,17 @@ function topicPage(page) {
           <div><span>Package formats</span><strong>${escapeHtml(page.formats.slice(0, 4).join(", ") || "Project-specific")}</strong></div>
           <div><span>Decision stage</span><strong>${escapeHtml(page.intentType)}</strong></div>
           <div><span>Machine paths</span><strong>${relatedMachines.length}</strong></div>
-        </div>
+        </div>${
+          page.decisionSummary
+            ? `
+
+        <section class="insight-section" aria-labelledby="decision-brief-heading">
+          <h2 id="decision-brief-heading">Decision brief</h2>
+          <p>${escapeHtml(page.decisionSummary)}</p>
+          ${page.decisionFactors?.length ? `<h3>What changes the answer</h3><ul>${page.decisionFactors.map((factor) => `<li>${escapeHtml(factor)}</li>`).join("")}</ul>` : ""}
+        </section>`
+            : ""
+        }
 
         <h2>${isTroubleshooting ? "What the symptom can indicate" : "What the project must solve"}</h2>
         <div class="article-card-grid three">
@@ -3430,11 +3447,13 @@ function topicPage(page) {
 function trustPageJsonLd(page) {
   const url = absoluteUrl("en", page.path);
   const home = absoluteUrl("en", "/");
+  const isAbout = page.path === "/about.html";
   return {
     "@context": "https://schema.org",
     "@graph": [
+      ...(isAbout ? [organizationSchema(page.description)] : []),
       {
-        "@type": "WebPage",
+        "@type": isAbout ? "AboutPage" : "WebPage",
         "@id": `${url}#webpage`,
         url,
         name: page.title,
@@ -3443,6 +3462,7 @@ function trustPageJsonLd(page) {
         dateModified: effectiveModifiedDate(page.updatedAt, SITE_REFRESH_DATE),
         isPartOf: { "@id": `${home}#website` },
         about: { "@id": ORGANIZATION_ID },
+        ...(isAbout ? { mainEntity: { "@id": ORGANIZATION_ID } } : {}),
       },
       {
         "@type": "BreadcrumbList",
@@ -3713,8 +3733,11 @@ function validateSourceModel() {
     for (const field of ["machineSlugs", "searchTerms", "painPoints", "specFocus", "rfqChecklist"]) {
       if (!Array.isArray(page[field]) || !page[field].length) problems.push(`Topic has no ${field}: ${page.slug}`);
     }
-    for (const field of ["products", "formats", "relatedSlugs", "contentSections", "diagnosticMatrix", "sourceNotes", "faq"]) {
+    for (const field of ["products", "formats", "relatedSlugs", "decisionFactors", "contentSections", "diagnosticMatrix", "sourceNotes", "faq"]) {
       if (page[field] !== undefined && !Array.isArray(page[field])) problems.push(`Topic ${field} is not an array: ${page.slug}`);
+    }
+    if (page.decisionSummary !== undefined && typeof page.decisionSummary !== "string") {
+      problems.push(`Topic decisionSummary is not a string: ${page.slug}`);
     }
     if (page.image && !fs.existsSync(path.join(ROOT, heroImageFor(page.image)))) {
       problems.push(`Missing topic image: ${page.slug} -> ${heroImageFor(page.image)}`);

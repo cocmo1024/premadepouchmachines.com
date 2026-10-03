@@ -1,0 +1,49 @@
+# Premade Pouch Machines
+
+> Premade Pouch Machines is a buyer-oriented packaging-equipment catalog and technical research library for factories, brands, co-packers, engineers, and procurement teams evaluating industrial packaging machinery.
+
+Use this file as a curated route into the public site, not as a substitute for the linked pages, `robots.txt`, or `sitemap.xml`. Published specifications are brochure-derived reference ranges, not universal performance guarantees. Final machine fit, accepted output, accuracy, packaging quality, compliance, price, and delivery require review of the actual product, commercial packaging material, utilities, configuration, and a written acceptance plan.
+
+Last reviewed: 2026-10-03.
+
+## Start here
+
+- [Machine catalog](https://premadepouchmachines.com/machine-index): Search and filter the complete public machine inventory by product, pack format, and process.
+- [About this site](https://premadepouchmachines.com/about): Site purpose, audience, content model, and commercial boundaries.
+- [Editorial and technical content policy](https://premadepouchmachines.com/editorial-policy): How specifications, evidence, sources, updates, corrections, and RFQ content are handled.
+
+## Primary machine families
+
+- [Premade pouch packaging machines](https://premadepouchmachines.com/premade-pouch-packaging-machine): Rotary and servo premade-pouch systems, dosing choices, pouch compatibility, and acceptance criteria.
+- [Vertical form-fill-seal machines](https://premadepouchmachines.com/vertical-form-fill-seal-machine): Roll-stock VFFS systems for granules, powders, liquids, and pillow or gusseted bags.
+- [Tea and coffee packaging machines](https://premadepouchmachines.com/tea-coffee-packaging-machine): Tea-bag, drip-coffee, inner-and-outer-bag, and related secondary-packaging routes.
+- [Sachet, stick-pack, and multi-lane machines](https://premadepouchmachines.com/sachet-stick-pack-machine): Small-format packaging routes and the product-feeding decisions behind them.
+- [Vacuum, flow-wrap, shrink, and overwrap machines](https://premadepouchmachines.com/vacuum-flow-wrap-shrink-overwrap-machines): Horizontal wrapping, vacuum packing, shrink, and overwrapping families.
+- [Filling, cartoning, and end-of-line systems](https://premadepouchmachines.com/filling-cartoning-lines): Filling, sealing, cartoning, case packing, and line-integration paths.
+
+## Buyer decision guides
+
+- [Premade pouch machine vs VFFS machine](https://premadepouchmachines.com/guides/premade-pouch-machine-vs-vffs-machine): Choose the packaging architecture before comparing machine models.
+- [Packaging-machine dosing methods](https://premadepouchmachines.com/guides/packaging-machine-dosing-methods): Match augers, pumps, cups, linear scales, and multihead weighers to product behavior and accuracy needs.
+- [Packaging film and pouch materials](https://premadepouchmachines.com/guides/packaging-film-and-pouch-materials-guide): Turn material structure, friction, sealing, and barrier requirements into machine inputs.
+- [Packaging-machine speed calculation](https://premadepouchmachines.com/guides/packaging-machine-speed-calculation): Convert nominal cycles into realistic good-output capacity and line assumptions.
+- [Packaging-machine supplier evaluation](https://premadepouchmachines.com/guides/packaging-machine-supplier-china-guide): Compare evidence, scope, testing, documentation, service, and commercial risk on one basis.
+- [Turnkey packaging-line RFQ guide](https://premadepouchmachines.com/guides/turnkey-packaging-line-rfq-guide): Define interfaces, ownership, utilities, controls, testing, and acceptance for integrated lines.
+- [Packaging-machine RFQ checklist](https://premadepouchmachines.com/guides/packaging-machine-rfq-checklist): Prepare the product, pack, output, facility, compliance, and project data required for a useful quotation.
+- [Packaging-machine sample test plan](https://premadepouchmachines.com/guides/packaging-machine-sample-test-plan): Build a representative sample-trial protocol before purchase.
+- [Factory acceptance test guide](https://premadepouchmachines.com/guides/factory-acceptance-test-packaging-machine): Define FAT evidence, test conditions, deviations, and sign-off criteria.
+- [Roll film vs premade pouch cost guide](https://premadepouchmachines.com/guides/roll-film-vs-premade-pouch-cost-guide): Compare total packaging economics rather than material price alone.
+
+## RFQ and evidence path
+
+- [Start an RFQ](https://premadepouchmachines.com/#quote): Share product photos, product behavior, fill range, pack dimensions, packaging material, target good-output rate, utilities, compliance needs, and acceptance criteria.
+- [Privacy notice](https://premadepouchmachines.com/privacy): How inquiry information is used and handled.
+
+## Optional
+
+- [Application library](https://premadepouchmachines.com/applications/): Product- and process-led machine selection topics.
+- [Packaging format library](https://premadepouchmachines.com/formats/): Pack-style constraints and compatible machine routes.
+- [Industry library](https://premadepouchmachines.com/industries/): Industry-specific buying and validation considerations.
+- [Technology library](https://premadepouchmachines.com/technologies/): Dosing, sealing, coding, inspection, controls, and line-engineering explainers.
+- [Troubleshooting library](https://premadepouchmachines.com/troubleshooting/): Symptom-led diagnostic pages with verification steps.
+- [XML sitemap](https://premadepouchmachines.com/sitemap.xml): Complete canonical HTML inventory for crawlers.

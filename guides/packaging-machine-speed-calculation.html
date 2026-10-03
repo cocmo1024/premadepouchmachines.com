@@ -79,9 +79,10 @@
       "headline": "Packaging Machine Speed Calculation",
       "name": "Packaging Machine Speed Calculation",
       "description": "Guide to packaging machine speed calculation by bag size, dose, filling method, product behavior, lane count and downstream bottlenecks.",
+      "abstract": "Specify speed as accepted packs divided by elapsed production time for a named SKU, material and test boundary. Rated cycles, lane count and the fastest short run are engineering inputs; they are not the purchased line result until dosing, sealing, rejects, refill, stops and downstream handling are included.",
       "inLanguage": "en",
       "image": "https://premadepouchmachines.com/public/assets/brochure/hero/multi-line-sachet.jpg",
-      "dateModified": "2026-09-10",
+      "dateModified": "2026-10-03",
       "about": [],
       "mentions": [
         {
@@ -115,7 +116,7 @@
       "name": "Packaging Machine Speed Calculation",
       "description": "Guide to packaging machine speed calculation by bag size, dose, filling method, product behavior, lane count and downstream bottlenecks.",
       "inLanguage": "en",
-      "dateModified": "2026-09-10",
+      "dateModified": "2026-10-03",
       "isPartOf": {
         "@id": "https://premadepouchmachines.com/#website"
       },
@@ -178,38 +179,38 @@
         {
           "@type": "ListItem",
           "position": 1,
+          "name": "Packaging Line OEE and Downtime Guide",
+          "url": "https://premadepouchmachines.com/technologies/packaging-line-oee-downtime-guide"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Factory Acceptance Test for Packaging Machines",
+          "url": "https://premadepouchmachines.com/guides/factory-acceptance-test-packaging-machine"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Packaging Machine Sample Test Plan",
+          "url": "https://premadepouchmachines.com/guides/packaging-machine-sample-test-plan"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
           "name": "Roll Film vs Premade Pouch Cost Guide",
           "url": "https://premadepouchmachines.com/guides/roll-film-vs-premade-pouch-cost-guide"
         },
         {
           "@type": "ListItem",
-          "position": 2,
+          "position": 5,
           "name": "1 kg to 5 kg Powder Pouch Packaging Machine",
           "url": "https://premadepouchmachines.com/applications/1kg-5kg-powder-pouch-packaging-machine"
         },
         {
           "@type": "ListItem",
-          "position": 3,
+          "position": 6,
           "name": "Packaging Line Bottleneck Diagnosis",
           "url": "https://premadepouchmachines.com/troubleshooting/packaging-line-bottleneck-diagnosis"
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "name": "Multi-Lane Sachet Machine",
-          "url": "https://premadepouchmachines.com/formats/multi-lane-sachet-machine"
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "name": "CE vs UL Packaging Machine Electrical Compliance Guide",
-          "url": "https://premadepouchmachines.com/guides/ce-vs-ul-packaging-machine-electrical-compliance-guide"
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "name": "Co-Packer Packaging Machine RFQ Guide",
-          "url": "https://premadepouchmachines.com/guides/co-packer-packaging-machine-rfq-guide"
         }
       ]
     }
@@ -272,7 +273,7 @@
         <div class="article-review" aria-label="Content review and capability basis">
           <div><span>Decision intent</span><strong>Commercial investigation</strong></div>
           <div><span>Capability basis</span><strong>Authorized brochure and machine data</strong></div>
-          <div><span>Reviewed</span><strong><time datetime="2026-09-10">September 10, 2026</time></strong></div>
+          <div><span>Reviewed</span><strong><time datetime="2026-10-03">October 3, 2026</time></strong></div>
           <a href="/editorial-policy">Editorial method and reference limits</a>
         </div>
 
@@ -283,24 +284,42 @@
           <div><span>Machine paths</span><strong>3</strong></div>
         </div>
 
+        <section class="insight-section" aria-labelledby="decision-brief-heading">
+          <h2 id="decision-brief-heading">Decision brief</h2>
+          <p>Specify speed as accepted packs divided by elapsed production time for a named SKU, material and test boundary. Rated cycles, lane count and the fastest short run are engineering inputs; they are not the purchased line result until dosing, sealing, rejects, refill, stops and downstream handling are included.</p>
+          <h3>What changes the answer</h3><ul><li>SKU-specific bag dimensions, dose, product behavior, package material and enabled options.</li><li>The slowest integrated step, including feeding, dosing, sealing, inspection and downstream release.</li><li>Run duration and whether refill, normal micro-stops, interventions and rejects remain inside the clock.</li><li>Accepted-pack definition, sampling plan and reconciliation of attempted, accepted, rejected and unclassified output.</li></ul>
+        </section>
+
         <h2>What the project must solve</h2>
         <div class="article-card-grid three">
           <div class="content-card evidence-card">
             <span>01</span>
-            <p>Use Packaging Machine Speed Calculation to make one defined decision: document current constraints, candidate machine paths and the evidence that would rule each option in or out.</p>
+            <p>Mechanical cycles per minute can exceed saleable output when the filler, seal dwell, product settling or downstream equipment limits the sequence.</p>
           </div>
           <div class="content-card evidence-card">
             <span>02</span>
-            <p>Use the target product and the proposed package samples to test assumptions about dosing, handling, sealing and line speed.</p>
+            <p>Multiplying lane count by nominal lane speed hides blocked lanes, unequal dosing, material tracking and common downstream bottlenecks.</p>
           </div>
           <div class="content-card evidence-card">
             <span>03</span>
-            <p>Compare proposals on measured acceptance criteria, change parts, utilities, cleaning, documentation and support rather than headline speed alone.</p>
+            <p>A speed promise without a named SKU, test duration and accepted-pack definition cannot be compared across suppliers or verified at FAT.</p>
           </div>
         </div>
 
         <h2>Buyer analysis</h2>
         <div class="insight-section-stack">
+          <section class="insight-section">
+            <h3>Use one denominator for supplier comparisons</h3>
+            <p>Calculate accepted output as released good packs divided by the full agreed elapsed test time. State whether warm-up, planned changeover or sanitation sits outside the test, and keep normal refilling, micro-stops and operator interventions inside unless the protocol explicitly says otherwise.</p>
+          </section>
+          <section class="insight-section">
+            <h3>Build the rate from the slowest integrated operation</h3>
+            <p>The practical cycle is constrained by product feed, dosing and discharge, bag or film motion, settling, sealing, inspection spacing and downstream acceptance. Review buffers and control logic as well as individual-machine ratings; one blocked handoff can determine the whole-line rate.</p>
+          </section>
+          <section class="insight-section">
+            <h3>Plan capacity with a SKU-weighted model</h3>
+            <p>Assign each SKU its validated accepted rate, changeover time, batch size and production share. Convert demand into operating hours by SKU, then add planned cleaning, maintenance and reasonable operating allowance separately. Do not apply the fastest validated SKU rate to the full annual mix.</p>
+          </section>
           <section class="insight-section">
             <h3>Convert cycles into accepted output</h3>
             <p>Include dosing time, rejects, refill, micro-stops, cleaning and changeover. Report good packs per operating hour rather than theoretical cycles.</p>
@@ -372,29 +391,29 @@
           </div>
           <div class="row">
             <span>Check 01</span>
-            <span>Representative samples of the target product, including normal lot variation that can affect feeding, dosing or handling.</span>
+            <span>For each SKU: product, dose, package dimensions, material, enabled options and target accepted packs per elapsed minute or hour.</span>
           </div>
           <div class="row">
             <span>Check 02</span>
-            <span>Package samples covering the proposed package, with dimensions, material structure, opening behavior and seal requirements.</span>
+            <span>Attempted, accepted, rejected and unclassified pack counters with agreed defect and sampling rules.</span>
           </div>
           <div class="row">
             <span>Check 03</span>
-            <span>Decision target for Packaging Machine Speed Calculation: fill range, accuracy, usable output, SKU count and allowable reject rate.</span>
+            <span>Dosing, refill, seal, lane, inspection, conveyor and downstream cycle times at the proposed configuration.</span>
           </div>
           <div class="row">
             <span>Check 04</span>
-            <span>Required utilities, coding, inspection, downstream integration, changeover method and acceptance-test evidence.</span>
+            <span>Test duration, normal interventions, changeover boundary and the conditions for retest or rate derating.</span>
           </div>
         </div>
 
         <h2>RFQ checklist for this page</h2>
         <div class="rfq-detail-grid">
-          <p>Product photos, specification sheet and representative samples for the target product.</p>
-          <p>Package samples covering the proposed package, with dimensions, material structure and seal expectations.</p>
-          <p>Target fill range, usable output, tolerance and SKU count for Packaging Machine Speed Calculation.</p>
-          <p>Required feeding or dosing, coding, inspection, reject handling and downstream packing scope.</p>
-          <p>Factory voltage, compressed air, available footprint, cleaning needs and acceptance-test expectations.</p>
+          <p>SKU matrix with dose, bag dimensions, material, annual volume and required accepted output.</p>
+          <p>Product and packaging samples representing the slowest or most difficult intended combination.</p>
+          <p>Included feeding, dosing, coding, inspection, reject and downstream modules for the rate claim.</p>
+          <p>Agreed run duration, counter reconciliation, defect categories, sample checks and intervention rules.</p>
+          <p>Changeover, cleaning, refill and planned-stop assumptions used in the production-capacity model.</p>
         </div>
 
         <h2>From evidence to a machine decision</h2>
@@ -402,7 +421,7 @@
           <article>
             <span>01</span>
             <h3>Capture the evidence that changes the decision</h3>
-            <p>Product photos, specification sheet and representative samples for the target product. Package samples covering the proposed package, with dimensions, material structure and seal expectations.</p>
+            <p>SKU matrix with dose, bag dimensions, material, annual volume and required accepted output. Product and packaging samples representing the slowest or most difficult intended combination.</p>
           </article>
           <article>
             <span>02</span>
@@ -420,6 +439,21 @@
 
         <h2>Related packaging decisions</h2>
         <div class="seo-page-grid compact-topic-grid">
+          <a class="content-card seo-page-card" href="/technologies/packaging-line-oee-downtime-guide">
+            <span>Packaging technologies</span>
+            <h3>Packaging Line OEE and Downtime Guide</h3>
+            <p>Technical guide to packaging line OEE, downtime, reject tracking, speed loss, maintenance planning and good packs per shift.</p>
+          </a>
+          <a class="content-card seo-page-card" href="/guides/factory-acceptance-test-packaging-machine">
+            <span>Buying guides</span>
+            <h3>Factory Acceptance Test for Packaging Machines</h3>
+            <p>Packaging machine FAT guide covering samples, speed, accuracy, seal quality, leak tests, changeover, safety and acceptance documentation.</p>
+          </a>
+          <a class="content-card seo-page-card" href="/guides/packaging-machine-sample-test-plan">
+            <span>Buying guides</span>
+            <h3>Packaging Machine Sample Test Plan</h3>
+            <p>Sample test plan for packaging machine buyers, covering product samples, film or pouch samples, output target, rejects, leak checks and acceptance records.</p>
+          </a>
           <a class="content-card seo-page-card" href="/guides/roll-film-vs-premade-pouch-cost-guide">
             <span>Buying guides</span>
             <h3>Roll Film vs Premade Pouch Cost Guide</h3>
@@ -434,21 +468,6 @@
             <span>Troubleshooting</span>
             <h3>Packaging Line Bottleneck Diagnosis</h3>
             <p>Practical method for locating packaging-line capacity losses across feeding, dosing, primary packing, inspection, cartoning, case packing and changeover.</p>
-          </a>
-          <a class="content-card seo-page-card" href="/formats/multi-lane-sachet-machine">
-            <span>Packaging formats</span>
-            <h3>Multi-Lane Sachet Machine</h3>
-            <p>Multi-lane sachet machine guide for high-output powder, granule, liquid and sauce portion packs.</p>
-          </a>
-          <a class="content-card seo-page-card" href="/guides/ce-vs-ul-packaging-machine-electrical-compliance-guide">
-            <span>Buying guides</span>
-            <h3>CE vs UL Packaging Machine Electrical Compliance Guide</h3>
-            <p>Practical comparison guide for packaging-machine buyers reviewing EU CE requirements, North American control-panel expectations and project documentation.</p>
-          </a>
-          <a class="content-card seo-page-card" href="/guides/co-packer-packaging-machine-rfq-guide">
-            <span>Buying guides</span>
-            <h3>Co-Packer Packaging Machine RFQ Guide</h3>
-            <p>RFQ guide for co-packers choosing flexible packaging machines across multiple customers, formulas, pack sizes and artwork versions.</p>
           </a>
         </div>
 

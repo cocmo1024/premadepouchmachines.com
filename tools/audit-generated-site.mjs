@@ -82,6 +82,7 @@ const REQUIRED_ASSETSIGNORE_RULES = [
   "!/script.js",
   "!/robots.txt",
   "!/sitemap.xml",
+  "!/llms.txt",
   "!/favicon.ico",
   "!/_headers",
   "!/_redirects",
@@ -207,6 +208,7 @@ const ROOT_PUBLIC_RUNTIME_FILES = new Set([
   "_headers",
   "_redirects",
   "favicon.ico",
+  "llms.txt",
   "robots.txt",
   "script.js",
   "sitemap.xml",
@@ -533,6 +535,7 @@ function validateRequiredSchemaTypes(file, types) {
   }
 
   for (const type of required) {
+    if (type === "WebPage" && types.has("AboutPage")) continue;
     if (!types.has(type)) error("JSONLD_REQUIRED_TYPE", file, `Missing required JSON-LD type "${type}".`);
   }
 }
@@ -1398,7 +1401,7 @@ function validateAssetsIgnore() {
 }
 
 function validateDeploymentMetadata() {
-  for (const relativeFile of ["_headers", "favicon.ico", "robots.txt", "script.js", "sitemap.xml", "styles.css"]) {
+  for (const relativeFile of ["_headers", "favicon.ico", "llms.txt", "robots.txt", "script.js", "sitemap.xml", "styles.css"]) {
     const filePath = path.join(ROOT, relativeFile);
     const stats = fs.existsSync(filePath) ? fs.lstatSync(filePath) : null;
     if (!stats || stats.isSymbolicLink() || !stats.isFile()) {
@@ -1420,6 +1423,7 @@ function validateDeploymentMetadata() {
     "Strict-Transport-Security: max-age=31536000",
     "/styles.css",
     "/script.js",
+    "/llms.txt",
     "/public/assets/*",
   ]) {
     if (!headers.includes(requiredPattern)) {
@@ -1428,6 +1432,75 @@ function validateDeploymentMetadata() {
   }
   if (/Strict-Transport-Security:[^\r\n]*(?:includeSubDomains|preload)/i.test(headers)) {
     error("HSTS_SCOPE", "_headers", "HSTS must not add includeSubDomains or preload without an explicit domain-wide approval.");
+  }
+}
+
+function validateLlmsTxt(pages) {
+  const relativeFile = "llms.txt";
+  const filePath = path.join(ROOT, relativeFile);
+  if (!fs.existsSync(filePath)) return;
+
+  const content = fs.readFileSync(filePath, "utf8").replace(/^\uFEFF/, "");
+  const lines = content.split(/\r?\n/);
+  const h1Lines = lines.filter((line) => /^#\s+/.test(line));
+  if (h1Lines.length !== 1 || h1Lines[0] !== "# Premade Pouch Machines") {
+    error("LLMS_H1", relativeFile, 'Expected exactly one H1: "# Premade Pouch Machines".');
+  }
+  if (!lines.slice(1, 8).some((line) => /^>\s+\S/.test(line))) {
+    error("LLMS_SUMMARY", relativeFile, "A concise blockquote summary must follow the H1.");
+  }
+  for (const heading of ["## Start here", "## Primary machine families", "## Buyer decision guides", "## RFQ and evidence path", "## Optional"]) {
+    if (!lines.includes(heading)) error("LLMS_SECTION", relativeFile, `Required section is missing: "${heading}".`);
+  }
+  if (content.length < 1200 || content.length > 12000) {
+    error("LLMS_LENGTH", relativeFile, `Expected a concise 1,200-12,000 character file; found ${content.length}.`);
+  }
+
+  const links = [...content.matchAll(/\[[^\]\r\n]+\]\((https:\/\/[^)\s]+)\)/g)].map((match) => match[1]);
+  if (links.length < 12 || links.length > 40) {
+    error("LLMS_LINK_COUNT", relativeFile, `Expected 12-40 curated links; found ${links.length}.`);
+  }
+  const duplicateLinks = [...new Set(links.filter((link, index) => links.indexOf(link) !== index))];
+  if (duplicateLinks.length) error("LLMS_DUPLICATE_LINK", relativeFile, `Duplicate links: ${duplicateLinks.join(", ")}.`);
+
+  const requiredLinks = [
+    `${SITE_ORIGIN}/machine-index`,
+    `${SITE_ORIGIN}/about`,
+    `${SITE_ORIGIN}/editorial-policy`,
+    `${SITE_ORIGIN}/#quote`,
+    `${SITE_ORIGIN}/sitemap.xml`,
+  ];
+  for (const requiredLink of requiredLinks) {
+    if (!links.includes(requiredLink)) error("LLMS_REQUIRED_LINK", relativeFile, `Required link is missing: "${requiredLink}".`);
+  }
+
+  const pagesByCanonical = new Map(pages.map((page) => [page.canonical, page]));
+  for (const value of links) {
+    let url;
+    try {
+      url = new URL(value);
+    } catch {
+      error("LLMS_LINK_URL", relativeFile, `Invalid absolute URL: "${value}".`);
+      continue;
+    }
+    if (url.origin !== SITE_ORIGIN || url.search) {
+      error("LLMS_LINK_SCOPE", relativeFile, `Link must use the canonical site origin without query parameters: "${value}".`);
+      continue;
+    }
+    if (url.pathname === "/sitemap.xml" && !url.hash) continue;
+    const canonical = `${url.origin}${url.pathname}`;
+    const page = pagesByCanonical.get(canonical);
+    if (!page) {
+      error("LLMS_UNKNOWN_ROUTE", relativeFile, `Link does not resolve to a generated canonical page: "${value}".`);
+      continue;
+    }
+    if (url.hash && !page.ids.has(decodeURIComponent(url.hash.slice(1)))) {
+      error("LLMS_FRAGMENT", relativeFile, `Fragment does not exist on the target page: "${value}".`);
+    }
+  }
+
+  for (const forbidden of [/\bguaranteed\b/i, /\bnumber\s*one\b/i, /\bworld[- ]class\b/i]) {
+    if (forbidden.test(content)) error("LLMS_UNSUPPORTED_CLAIM", relativeFile, `Avoid unsupported marketing language matching ${forbidden}.`);
   }
 }
 
@@ -1544,6 +1617,7 @@ function run() {
   const htmlFiles = collectHtmlFiles();
   if (!htmlFiles.length) error("HTML_MISSING", ".", "No generated HTML files found.");
   const pages = htmlFiles.map(extractPage);
+  validateLlmsTxt(pages);
   for (const page of pages) {
     if (!isPublishAllowlistedFile(path.join(ROOT, page.file))) {
       error("PAGE_NOT_PUBLISHABLE", page.file, "Generated page is outside the reviewed asset allow-list.");
