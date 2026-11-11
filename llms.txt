@@ -4,7 +4,9 @@
 
 Use this file as a curated route into the public site, not as a substitute for the linked pages, `robots.txt`, or `sitemap.xml`. Published specifications are brochure-derived reference ranges, not universal performance guarantees. Final machine fit, accepted output, accuracy, packaging quality, compliance, price, and delivery require review of the actual product, commercial packaging material, utilities, configuration, and a written acceptance plan.
 
-Last reviewed: 2026-10-03.
+Last reviewed: 2026-11-12.
+
+Expanded reference: `https://premadepouchmachines.com/llms-full.txt` (machine families, guides and key pages in full). Contact: cqq365@gmail.com.
 
 ## Start here
 

@@ -83,6 +83,8 @@ const REQUIRED_ASSETSIGNORE_RULES = [
   "!/robots.txt",
   "!/sitemap.xml",
   "!/llms.txt",
+  "!/llms-full.txt",
+  "!/51c57f96e042f854af9a9d9f3ba48d02.txt",
   "!/favicon.ico",
   "!/_headers",
   "!/_redirects",
@@ -209,6 +211,7 @@ const ROOT_PUBLIC_RUNTIME_FILES = new Set([
   "_redirects",
   "favicon.ico",
   "llms.txt",
+  "llms-full.txt",
   "robots.txt",
   "script.js",
   "sitemap.xml",
@@ -1401,7 +1404,7 @@ function validateAssetsIgnore() {
 }
 
 function validateDeploymentMetadata() {
-  for (const relativeFile of ["_headers", "favicon.ico", "llms.txt", "robots.txt", "script.js", "sitemap.xml", "styles.css"]) {
+  for (const relativeFile of ["_headers", "favicon.ico", "llms.txt", "llms-full.txt", "robots.txt", "script.js", "sitemap.xml", "styles.css"]) {
     const filePath = path.join(ROOT, relativeFile);
     const stats = fs.existsSync(filePath) ? fs.lstatSync(filePath) : null;
     if (!stats || stats.isSymbolicLink() || !stats.isFile()) {
@@ -1424,6 +1427,7 @@ function validateDeploymentMetadata() {
     "/styles.css",
     "/script.js",
     "/llms.txt",
+    "/llms-full.txt",
     "/public/assets/*",
   ]) {
     if (!headers.includes(requiredPattern)) {
@@ -1501,6 +1505,26 @@ function validateLlmsTxt(pages) {
 
   for (const forbidden of [/\bguaranteed\b/i, /\bnumber\s*one\b/i, /\bworld[- ]class\b/i]) {
     if (forbidden.test(content)) error("LLMS_UNSUPPORTED_CLAIM", relativeFile, `Avoid unsupported marketing language matching ${forbidden}.`);
+  }
+}
+
+
+function validateLlmsFullTxt() {
+  const relativeFile = "llms-full.txt";
+  const filePath = path.join(ROOT, relativeFile);
+  if (!fs.existsSync(filePath)) {
+    error("LLMS_FULL_MISSING", relativeFile, "llms-full.txt is missing; the full AI reference must stay in sync with llms.txt.");
+    return;
+  }
+  const content = fs.readFileSync(filePath, "utf8").replace(/^\uFEFF/, "");
+  if (!content.startsWith("# Premade Pouch Machines")) error("LLMS_FULL_H1", relativeFile, "llms-full.txt must start with the site H1.");
+  if (content.length < 20000) error("LLMS_FULL_LENGTH", relativeFile, `Expected an expanded reference of at least 20,000 characters; found ${content.length}.`);
+  for (const required of ["## Primary machine families in full", "## Buyer decision guides", "## Machine catalog", "cqq365@gmail.com", "/sitemap.xml"]) {
+    if (!content.includes(required)) error("LLMS_FULL_SECTION", relativeFile, `Required content is missing: "${required}".`);
+  }
+  if (content.includes("info@szcomo.com")) error("LLMS_FULL_EMAIL", relativeFile, "llms-full.txt still uses the retired contact email.");
+  for (const forbidden of [/\bguaranteed\b/i, /\bnumber\s*one\b/i, /\bworld[- ]class\b/i]) {
+    if (forbidden.test(content)) error("LLMS_FULL_UNSUPPORTED_CLAIM", relativeFile, `Avoid unsupported marketing language matching ${forbidden}.`);
   }
 }
 
@@ -1618,6 +1642,7 @@ function run() {
   if (!htmlFiles.length) error("HTML_MISSING", ".", "No generated HTML files found.");
   const pages = htmlFiles.map(extractPage);
   validateLlmsTxt(pages);
+  validateLlmsFullTxt();
   for (const page of pages) {
     if (!isPublishAllowlistedFile(path.join(ROOT, page.file))) {
       error("PAGE_NOT_PUBLISHABLE", page.file, "Generated page is outside the reviewed asset allow-list.");

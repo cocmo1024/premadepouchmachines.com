@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const CONTACT_EMAIL = window.CONTACT_EMAIL || "info@szcomo.com";
+  const CONTACT_EMAIL = window.CONTACT_EMAIL || "cqq365@gmail.com";
   const LEAD_ENDPOINT = window.LEAD_ENDPOINT || "";
   const WHATSAPP_NUMBER = String(window.WHATSAPP_NUMBER || "8615301541312").replace(/\D/g, "");
   const RFQ_CONTEXT_KEY = "ppm:rfq-context:v1";

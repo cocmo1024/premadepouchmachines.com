@@ -44,6 +44,7 @@ Target output after the pending full regeneration:
 - `filling-cartoning-lines.html` - filling, sealing, cartoning and case line content page
 - `sitemap.xml` and `robots.txt` - search crawler discovery files
 - `llms.txt` - concise, curated AI-agent navigation with explicit evidence and performance boundaries; it supplements normal crawling and is not a ranking guarantee
+- `llms-full.txt` - expanded AI-agent reference with machine-family, guide and key-page summaries in full; kept in sync with `llms.txt`
 - `privacy.html` - generated inquiry-data notice linked directly from every RFQ form
 - `styles.css` - responsive industrial visual system
 - `script.js` - mobile navigation, catalog and topic search, spec tabs and RFQ form behavior
@@ -52,10 +53,10 @@ Target output after the pending full regeneration:
 
 ## Contact configuration
 
-The RFQ form and visible contact blocks use `info@szcomo.com` as the email fallback by default. To change it, edit `script.js` and `tools/build-multilingual-site.mjs`:
+The RFQ form and visible contact blocks use `cqq365@gmail.com` as the email fallback by default. To change it, edit `script.js` and `tools/build-multilingual-site.mjs`:
 
 ```js
-const CONTACT_EMAIL = window.CONTACT_EMAIL || "info@szcomo.com";
+const CONTACT_EMAIL = window.CONTACT_EMAIL || "cqq365@gmail.com";
 ```
 
 For production campaigns, connect the form to a CRM, Formspree, Make, Zapier, Cloudflare Worker or your own API by setting:

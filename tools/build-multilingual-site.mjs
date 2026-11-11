@@ -31,7 +31,7 @@ const HERO_IMAGE = "public/assets/brochure/rotary-premade-line.jpg";
 const DEFAULT_SOCIAL_IMAGE = HERO_IMAGE;
 const ORGANIZATION_LOGO_PATH = "public/assets/brand/premade-pouch-machines-logo.svg";
 const ORGANIZATION_LOGO_URL = `${BASE_URL}/${ORGANIZATION_LOGO_PATH}`;
-const CONTACT_EMAIL = "info@szcomo.com";
+const CONTACT_EMAIL = "cqq365@gmail.com";
 const WHATSAPP_NUMBER = "8615301541312";
 const INSTANT_CHAT_DISPLAY = "+86 15301541312";
 const SITE_NAME = "Premade Pouch Machines";
@@ -244,7 +244,7 @@ const TRUST_PAGES = [
       ["Authorship and structured publishing", "Content is assembled from structured brochure data, application mapping and source research. The publishing system supports consistency and relevant internal linking; it does not justify repeated keyword variants or replace buyer-specific engineering validation and professional compliance advice."],
       ["Recommendation and AI-use boundary", "Machine paths are explained through visible decision criteria, limitations and evidence requests so readers and retrieval systems can interpret the same basis. The site does not use hidden claims, fabricated experience, paid rankings or special AI-only text, and it does not promise inclusion or recommendation by any search or answer engine."],
       ["Troubleshooting and safety boundary", "Diagnostic pages organize symptoms, evidence and controlled checks. They do not replace the machine manual, trained maintenance personnel, risk assessment, isolation of energy, lockout/tagout or manufacturer-approved repair procedures."],
-      ["Corrections and updates", "Material changes update the page and sitemap date. If a specification, source statement or link needs correction, contact info@szcomo.com with the page URL and the evidence to review."],
+      ["Corrections and updates", "Material changes update the page and sitemap date. If a specification, source statement or link needs correction, contact cqq365@gmail.com with the page URL and the evidence to review."],
       ["Commercial independence and trademarks", "Third-party company names may appear only in neutral market-comparison context. The site does not claim affiliation with those companies and avoids reproducing third-party logos or implying approval."],
     ],
   },
@@ -263,7 +263,7 @@ const TRUST_PAGES = [
       ["Delivery and service providers", "Depending on the contact method, information may be processed by website hosting, email, messaging, security or customer-management providers used to deliver and respond to the request. These providers may operate in more than one country. Do not send trade secrets or regulated personal data until an appropriate confidentiality and data-handling arrangement is in place."],
       ["Controller identification boundary", `This website currently publishes ${CONTACT_EMAIL} as its inquiry and privacy contact but does not yet publish a verified legal-entity name, registered address or controller jurisdiction. Those facts, the applicable retention schedule and the relevant service-provider list must be confirmed and published before paid acquisition or expanded personal-data processing. Do not send sensitive or regulated personal data through this form.`],
       ["Retention and security boundary", "Inquiry records are retained only as long as reasonably needed for evaluation, follow-up, commercial recordkeeping, dispute handling or applicable legal obligations. No public website or email channel can promise absolute security. Use the contact address below if a different secure transfer method is required for sensitive files."],
-      ["Your choices and requests", "You may ask what inquiry information is held, request correction or deletion where applicable, or withdraw from further non-contractual contact. Send the request from the relevant business email to info@szcomo.com and include enough detail to identify the inquiry. Legal rights and response obligations depend on your location and the applicable law."],
+      ["Your choices and requests", "You may ask what inquiry information is held, request correction or deletion where applicable, or withdraw from further non-contractual contact. Send the request from the relevant business email to cqq365@gmail.com and include enough detail to identify the inquiry. Legal rights and response obligations depend on your location and the applicable law."],
       ["Changes and contact", `Material changes will update this notice and its date. Questions or privacy requests can be sent to ${CONTACT_EMAIL}. Last updated ${SITE_REFRESH_DATE}.`],
     ],
   },
