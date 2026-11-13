@@ -9,6 +9,7 @@ export const LANGUAGES = [
   { code: "pt", hreflang: "pt", label: "Portuguese", nativeName: "Português", short: "PT", dir: "ltr", pathPrefix: "/pt" },
   { code: "ru", hreflang: "ru", label: "Russian", nativeName: "Русский", short: "RU", dir: "ltr", pathPrefix: "/ru" },
   { code: "ar", hreflang: "ar", label: "Arabic", nativeName: "العربية", short: "AR", dir: "rtl", pathPrefix: "/ar" },
+  { code: "zh", hreflang: "zh", label: "Chinese", nativeName: "中文", short: "ZH", dir: "ltr", pathPrefix: "/zh" },
 ];
 
 export const PILLAR_PAGES = [
@@ -643,6 +644,125 @@ export const COPY = {
       "Vacuum, flow wrap and overwrapping machines": "فاكيوم وفلو باك وتغليف خارجي",
       "Filling, cartoning and case lines": "تعبئة وكرتنة وصناديق",
     },
+  },
+  zh: {
+    "categories": {
+      "Cartoning and case machines": "装盒与装箱设备",
+      "Cartoning and case packing lines": "装盒与装箱线",
+      "Complete filling lines": "完整灌装线",
+      "Counting and hardware machines": "计数与五金件包装机",
+      "Filling and sealing lines": "灌装封口线",
+      "Filling and sealing machines": "灌装封口机",
+      "Filling, cartoning and case lines": "灌装、装盒与装箱线",
+      "Flow wrapping machines": "枕式裹包机",
+      "Liquid packaging machines": "液体包装机",
+      "Multi-lane packaging machines": "多列包装机",
+      "Overwrapping machines": "三维裹包机",
+      "Premade pouch machines": "给袋式包装机",
+      "Sachet and stick pack machines": "小袋与条包包装机",
+      "Shrink packaging machines": "收缩包装机",
+      "Specialty packaging machines": "专用包装机",
+      "Tea and coffee packaging machines": "茶叶与咖啡包装机",
+      "Vacuum packaging machines": "真空包装机",
+      "Vacuum, flow wrap and overwrapping machines": "真空、枕式裹包与三维裹包设备",
+      "Vertical form fill seal machines": "立式制袋充填包装机（VFFS）"
+    },
+    "home": {
+      "catalogDepth": [
+        "机型意向页",
+        "设备家族",
+        "公开语言版本"
+      ],
+      "catalogText": "每个品类、机型页、应用说明、规格范围与 RFQ 核对清单，都按工业买家的需求结构化呈现。",
+      "catalogTitle": "完整的包装设备目录。",
+      "description": "工业包装设备目录，涵盖给袋式、VFFS 立式制袋充填、小袋、茶叶、咖啡、真空、枕式裹包、灌装、装盒及整套包装线。",
+      "eyebrow": "旋转式给袋包装系统",
+      "faqTitle": "采购问题提前解答。",
+      "guideText": "颗粒、粉体、液体、茶叶、咖啡、五金套件与真空包装，需要不同的计量、封口、精度与处理策略。",
+      "guideTitle": "按产品、包装形式与整线目标选型。",
+      "h1": "围绕您的产品来配置包装线。",
+      "lede": "对比机型、包装形式、计量方式与后段选项，掌握发起切实可行的出口整线方案所需的全部细节。",
+      "machinePortfolio": "设备组合",
+      "portfolioText": "从核心主机开始，按需增配称重、螺杆充填、泵送、打码、充氮、除尘、真空、输送或线尾装箱。",
+      "portfolioTitle": "按产品特性匹配的包装系统。",
+      "primaryCta": "索取整线方案",
+      "proof": [
+        "机型意向页",
+        "设备品类",
+        "语言版本",
+        "袋/分钟（部分旋转机型）"
+      ],
+      "quoteText": "请提供包装尺寸、充填重量、产品照片、目标产量、电压及所需选配。表单会为您整理成结构化的 RFQ 邮件。",
+      "quoteTitle": "发来产品细节，获取切实可行的设备配置方案。",
+      "secondaryCta": "对比机型",
+      "specsTitle": "面向真实 RFQ 的参考范围。",
+      "title": "给袋式包装机 | 旋转式、VFFS、小袋及包装整线"
+    },
+    "htmlLang": "zh",
+    "hub": {
+      "description": "浏览工业包装设备页面，涵盖给袋式、VFFS、小袋、茶叶、咖啡、真空、枕式裹包、灌装、装盒与装箱线。",
+      "h1": "面向工业买家的包装设备目录。",
+      "lede": "每个页面聚焦一项具体采购任务：应用、参考规格、选配、相关机型与 RFQ 所需资料。",
+      "statCategories": "个设备品类",
+      "statIntent": "个买家指南词条",
+      "statPages": "个机型页",
+      "title": "包装设备目录"
+    },
+    "locale": "zh_CN",
+    "machine": {
+      "applicationTemplate": "针对{application}，请结合有代表性的产品与包装样品评估相应的{category}；在最终定型前，确认计量方式、包装尺寸、封口要求与合格产量。",
+      "applications": "最适应用",
+      "checklist": "报价前买家核对清单",
+      "checklistItems": [
+        "产品名称、照片、密度、粒径、黏度或单件尺寸。",
+        "目标充填重量或容量、精度要求与产量目标。",
+        "包装尺寸、包装材料、袋样、容器或纸箱尺寸。",
+        "所需选配，如打码、充氮、真空、除尘、旋盖、贴标、装盒或装箱封箱。",
+        "工厂电压、压缩空气、当地安全要求、产线布局与可用占地面积。"
+      ],
+      "compatibleMaterials": "兼容材料",
+      "configuration": "配置路径",
+      "engineering": "包装形式、材料与整线适配",
+      "features": "核心功能",
+      "lede": "借助本页，按产品特性、包装形式、参考范围、选配与报价资料来评估这台设备是否合适。",
+      "lineFitFallback": "当买家需要一条可直接投产的主包装设备、并能顺畅衔接打码、检测与后段包装时，适合采用这一配置。",
+      "lineFitHeading": "这条线适合用在哪里",
+      "options": "常用选配",
+      "overview": "设备概览",
+      "packageFormats": "包装形式",
+      "parameter": "参数",
+      "productBehaviorFallback": "围绕产品的流动性、充填精度、袋型、封口质量以及所需的后段自动化程度来选设备。",
+      "quoteHeading": "需要这台设备的报价？",
+      "quoteText": "发来产品细节与包装样品，即可收到切实可行的设备配置方案。",
+      "related": "相关机型页",
+      "request": "索取方案",
+      "rfqEvidence": "最终报价前，请发来产品照片、样品、目标产量、电压、压缩空气情况与可用占地面积。",
+      "rfqOptions": "待确认选配",
+      "rfqPackage": "目标包装",
+      "rfqProducts": "目标产品",
+      "snapshotLabels": [
+        "最适产品",
+        "包装形式",
+        "产量参考",
+        "计量或充填方式"
+      ],
+      "technical": "技术参考",
+      "titleSuffix": "规格、应用与 RFQ 指南",
+      "value": "参考值"
+    },
+    "nav": {
+      "applications": "应用",
+      "catalog": "产品目录",
+      "faq": "常见问题",
+      "guide": "选型指南",
+      "homeLabel": "Premade Pouch Machines 首页",
+      "language": "语言",
+      "machines": "设备",
+      "openNav": "打开导航",
+      "quote": "获取报价",
+      "seoLibrary": "设备目录",
+      "specs": "规格参数"
+    }
   },
 };
 

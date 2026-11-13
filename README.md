@@ -2,12 +2,12 @@
 
 Integrated multilingual packaging machine website for `premadepouchmachines.com`, built for paid campaigns and organic buyer search.
 
-> **Updating content?** Read [`CONTENT_UPDATE_GUIDE.md`](CONTENT_UPDATE_GUIDE.md) first. It defines the generator-only workflow, seven-language rules, claim boundaries and required release checks.
+> **Updating content?** Read [`CONTENT_UPDATE_GUIDE.md`](CONTENT_UPDATE_GUIDE.md) first. It defines the generator-only workflow, eight-language rules, claim boundaries and required release checks.
 
 Target output after the pending full regeneration:
 
-- 802 generated HTML pages with matching `sitemap.xml` entries
-- 60 machine intent pages, generated in 7 public language versions
+- 870 generated HTML pages with matching `sitemap.xml` entries
+- 60 machine intent pages, generated in 8 public language versions
 - 316 English buyer-intent pages across applications, packaging formats, buying guides, industry insights, buyer-industry playbooks, packaging technologies and symptom-led troubleshooting
 - 7 English topic hubs for applications, formats, procurement guides, industry intelligence, buyer industries, packaging technologies and troubleshooting
 - 1515 mapped search phrases used for content planning and on-site discovery across product, format, cost, supplier, compliance, trend, role/persona, technical and problem-diagnosis intents
@@ -25,7 +25,7 @@ Target output after the pending full regeneration:
 
 - `index.html` - conversion-focused home page with machine catalog, guide, specs and FAQ sections
 - `machine-index.html` - generated machine catalog index
-- `es/`, `fr/`, `de/`, `pt/`, `ru/`, `ar/` - generated multilingual site versions
+- `es/`, `fr/`, `de/`, `pt/`, `ru/`, `ar/`, `zh/` - generated multilingual site versions
 - `machines/` - generated machine pages for specific equipment and production lines
 - `content/seo-machines.mjs` - source data for generated machine pages
 - `content/brochure-machines.mjs` - brochure-derived long-tail machines, image mappings and rich SEO fields

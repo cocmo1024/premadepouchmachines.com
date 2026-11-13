@@ -9,20 +9,20 @@
 - 内容数据：`content/*.mjs`
 - 页面、导航、JSON-LD、canonical、hreflang 与 sitemap 模板：`tools/build-multilingual-site.mjs`
 - 兼容入口：`tools/build-seo-pages.mjs`，它只调用主生成器
-- 生成成品：根目录 HTML、`machines/`、`applications/`、`formats/`、`guides/`、`industries/`、`insights/`、`technologies/`、`troubleshooting/`、六个非英语目录及 `sitemap.xml`
+- 生成成品：根目录 HTML、`machines/`、`applications/`、`formats/`、`guides/`、`industries/`、`insights/`、`technologies/`、`troubleshooting/`、七个非英语目录及 `sitemap.xml`
 
 **禁止直接编辑任何生成的 HTML 或 `sitemap.xml`。** 直接修改会在下一次生成时丢失，还可能造成语言版本、canonical、hreflang 和 sitemap 不一致。即使只改首页一句话，也应修改 `content/` 或 `tools/build-multilingual-site.mjs` 中的源，然后重新生成全部页面。
 
-当前已生成成品为 **802 个 HTML、802 个 sitemap URL**，已包含隐私页。这是验收基线，不是强行维持的上限；如有意新增、合并或删除页面，两个数字必须同步变化，并更新 `README.md` 中的库存说明。
+当前已生成成品为 **870 个 HTML、870 个 sitemap URL**，已包含隐私页。这是验收基线，不是强行维持的上限；如有意新增、合并或删除页面，两个数字必须同步变化，并更新 `README.md` 中的库存说明。
 
-生成器同时保存当前 802 条 canonical 的 URL 集合指纹，防止机型 slug 或专题路径在数量不变时被静默改名。新增 URL、合并或迁移路径必须先定义旧 URL 的去向、更新库存说明，再用 `node tools/build-multilingual-site.mjs --print-route-fingerprint` 取得新指纹并显式更新生成器契约；不能为了让校验变绿而无说明地替换指纹。
+生成器同时保存当前 870 条 canonical 的 URL 集合指纹，防止机型 slug 或专题路径在数量不变时被静默改名。新增 URL、合并或迁移路径必须先定义旧 URL 的去向、更新库存说明，再用 `node tools/build-multilingual-site.mjs --print-route-fingerprint` 取得新指纹并显式更新生成器契约；不能为了让校验变绿而无说明地替换指纹。
 
 ## 2. 应该修改哪个文件
 
 | 任务 | 唯一应修改的源 |
 | --- | --- |
 | 新增或调整机器型号页、规格、选件、应用 | `content/seo-machines.mjs`；授权宣传册派生机器和图库映射在 `content/brochure-machines.mjs` |
-| 调整机器页的六种非英语翻译、术语或规格标签 | `content/machine-localization.mjs` |
+| 调整机器页的七种非英语翻译、术语或规格标签 | `content/machine-localization.mjs` |
 | 修改语言列表、站点地址、`LASTMOD`、主页/分类页公共翻译、六个 pillar 路由 | `content/i18n.mjs` |
 | 新增或调整英文应用、格式、采购、行业、技术、故障诊断内容 | `content/seo-clusters.mjs`；行为型和补充意图数据在 `content/search-intent-expansion.mjs` |
 | 修改页面结构、导航、CTA、邮件/WhatsApp、HTML 元数据、JSON-LD、hreflang 或 sitemap 生成 | `tools/build-multilingual-site.mjs` |
@@ -70,16 +70,16 @@
 
 内容至少应帮助买家形成一份更好的 RFQ：产品照片/样品、密度或黏度/颗粒信息、填充量、袋或膜样、目标合格产能、电压、压缩空气、场地、前后道接口、检测和验收要求。
 
-## 5. 七语言与 hreflang 规则
+## 5. 八语言与 hreflang 规则
 
-公开语言固定为：英语 `en`、西班牙语 `es`、法语 `fr`、德语 `de`、葡萄牙语 `pt`、俄语 `ru`、阿拉伯语 `ar`。
+公开语言固定为：英语 `en`、西班牙语 `es`、法语 `fr`、德语 `de`、葡萄牙语 `pt`、俄语 `ru`、阿拉伯语 `ar`、中文 `zh`。
 
-- 首页、机器目录、六个 pillar 和机器详情当前均生成 7 个语言版本；英文专题 hub 与长尾专题目前仅生成英语。不要给不存在的翻译页输出 hreflang。
+- 首页、机器目录、六个 pillar 和机器详情当前均生成 8 个语言版本；英文专题 hub 与长尾专题目前仅生成英语。不要给不存在的翻译页输出 hreflang。
 - 添加到 7 语言路由的界面、标题、摘要与解释性正文时，必须同步完成 `content/i18n.mjs` / `content/machine-localization.mjs` 中的所有语言文案。不能先复制英语占位再上线。
 - 非英语机器页的应用、流程、材料、特征和选件列表只展示 `content/machine-localization.mjs` 中明确复核过的术语；未映射英语短语不应伪装成本地化正文。宣传册原始规格值确需保留英语时，元素必须声明 `lang="en"`，且不得把英语短语无标记地嵌入本地化句子。
 - 用 `node tools/build-multilingual-site.mjs --print-localization-coverage` 查看显式术语覆盖。新增机器内容不得降低各语言的既有显式术语数量；应先补齐并复核术语，再让它进入非英语可见列表。
 - 翻译必须由具备该语言能力的人复核：机器类别、计量方式、封口、单位、CTA 与 RFQ 字段要符合工业采购语境，不能逐字机翻。阿拉伯语同时检查 `lang="ar"`、`dir="rtl"`、标点、数字与移动布局。
-- 产品名、单位、范围和限制条件在七种语言中必须等价；翻译不能擅自提高速度、精度、认证或保证程度。
+- 产品名、单位、范围和限制条件在八种语言中必须等价；翻译不能擅自提高速度、精度、认证或保证程度。
 - 生成器负责 reciprocal hreflang、`x-default`、canonical 与 sitemap alternate。不要在成品 HTML 中补标签。
 - 只在发生实质内容更新时修改 `content/i18n.mjs` 的 `LASTMOD`；不能为了“看起来新”每天刷新日期。
 
@@ -136,10 +136,10 @@ node tools/serve-preview.mjs
 
 ## 9. 必须通过的自动验收
 
-页面与 sitemap 数量必须相等；本轮源代码重新生成后的目标是 `802 / 802`：
+页面与 sitemap 数量必须相等；本轮源代码重新生成后的目标是 `870 / 870`：
 
 ```powershell
-$publicRouteRoots = @('machines','applications','formats','guides','industries','insights','technologies','troubleshooting','es','fr','de','pt','ru','ar')
+$publicRouteRoots = @('machines','applications','formats','guides','industries','insights','technologies','troubleshooting','es','fr','de','pt','ru','ar','zh')
 $htmlCount = (Get-ChildItem -File -Filter *.html).Count
 $publicRouteRoots | ForEach-Object {
   $htmlCount += (Get-ChildItem $_ -Recurse -File -Filter *.html).Count
@@ -149,10 +149,10 @@ $sitemapCount = (Select-String -Path .\sitemap.xml -Pattern '<loc>' -AllMatches)
 if ($htmlCount -ne $sitemapCount) { throw 'HTML and sitemap counts differ' }
 ```
 
-当前每个非英语目录有 68 个 HTML。若机器或多语言 pillar 数量有意变化，六个目录应同步变化：
+当前每个非英语目录有 68 个 HTML。若机器或多语言 pillar 数量有意变化，七个目录应同步变化：
 
 ```powershell
-'es','fr','de','pt','ru','ar' | ForEach-Object {
+'es','fr','de','pt','ru','ar','zh' | ForEach-Object {
   "$_=$((Get-ChildItem $_ -Recurse -File -Filter *.html).Count)"
 }
 ```

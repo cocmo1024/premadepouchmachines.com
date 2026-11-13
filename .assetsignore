@@ -38,6 +38,8 @@
 !/ru/**
 !/ar/
 !/ar/**
+!/zh/
+!/zh/**
 !/public/
 !/public/**
 **/.git/**

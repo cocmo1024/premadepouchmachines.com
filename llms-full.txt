@@ -2,7 +2,7 @@
 
 > Premade Pouch Machines is a buyer-oriented packaging-equipment catalog and technical research library for factories, brands, co-packers, engineers, and procurement teams evaluating industrial packaging machinery. This full file expands llms.txt with machine-family, guide and key-page summaries so AI systems can cite the site accurately without guessing. Published specifications are brochure-derived reference ranges, not universal performance guarantees. Final machine fit, accepted output, accuracy, packaging quality, compliance, price, and delivery require review of the actual product, commercial packaging material, utilities, configuration, and a written acceptance plan.
 
-Last reviewed: 2026-11-12. Contact: cqq365@gmail.com. Canonical site: https://premadepouchmachines.com/. Sitemap: https://premadepouchmachines.com/sitemap.xml. Concise index: https://premadepouchmachines.com/llms.txt
+Last reviewed: 2026-11-13. Contact: cqq365@gmail.com. Canonical site: https://premadepouchmachines.com/. Sitemap: https://premadepouchmachines.com/sitemap.xml. Concise index: https://premadepouchmachines.com/llms.txt
 
 ## How to cite this site
 
@@ -112,7 +112,7 @@ Sections: Pack format, materials and line fit; Choose the closest machine page; 
 - [UL 508A Packaging Machine Control Panel Guide](https://premadepouchmachines.com/guides/ul-508a-packaging-machine-control-panel-guide): Buyer guide to UL 508A industrial control panels for packaging machinery, including panel scope, components, SCCR, labeling and supplier questions.
 - [Used vs New Packaging Machine Guide | Buyer Guide and RFQ Checklist](https://premadepouchmachines.com/guides/used-vs-new-packaging-machine-guide): Buyer guide comparing used and new packaging machines for product fit, controls, parts, documentation, safety, integration and total risk.
 
-## Machine catalog — all English machine pages with summaries (60 machines; each also published in es/fr/de/pt/ru/ar)
+## Machine catalog — all English machine pages with summaries (60 machines; each also published in es/fr/de/pt/ru/ar/zh)
 
 
 - [Adjustable Transparent Film Overwrapping Machine](https://premadepouchmachines.com/machines/adjustable-transparent-film-overwrapping-machine): A transparent film overwrapping machine that wraps rigid rectangular boxes with dust-proof, easy-open and anti-counterfeit style film.

@@ -37,13 +37,13 @@ const INSTANT_CHAT_DISPLAY = "+86 15301541312";
 const SITE_NAME = "Premade Pouch Machines";
 const ORGANIZATION_ID = `${BASE_URL}/#organization`;
 const INVENTORY_CONTRACT = Object.freeze({
-  languages: 7,
-  languageCodes: ["en", "es", "fr", "de", "pt", "ru", "ar"],
+  languages: 8,
+  languageCodes: ["en", "es", "fr", "de", "pt", "ru", "ar", "zh"],
   minimumMachines: 60,
   minimumTopics: 316,
-  minimumPublicPages: 802,
+  minimumPublicPages: 870,
   minimumLocalizedMachineTerms: 242,
-  routeInventoryFingerprint: "79d2d77ec8f7094e2da7bf9c7327ebbcb75dc802f3b0fc05f497114927a3f7ea",
+  routeInventoryFingerprint: "166ee70e86a62648cef14ba7e656e4691d99e5455fd161328f5ace4a16955098",
 });
 const MACHINE_UPDATED_AT = new Map(
   [
@@ -69,7 +69,7 @@ const DISALLOWED = [
 ];
 
 const NON_DEFAULT_LANGUAGES = LANGUAGES.filter((lang) => lang.code !== "en");
-const REMOVED_LOCALE_DIRS = [String.fromCharCode(0x7a, 0x68)];
+const REMOVED_LOCALE_DIRS = [];
 const GENERATED_ROUTE_DIRS = Object.freeze([
   "machines",
   "applications",
@@ -501,6 +501,87 @@ const HOME_DETAIL_COPY = {
     ],
     form: ["الاسم", "البريد الإلكتروني", "الشركة", "الآلة المطلوبة", "المنتج", "الإنتاجية المطلوبة", "ملاحظات المشروع"],
   },
+  zh: {
+    "applicationClusters": [
+      [
+        "食品、休闲食品与谷物",
+        "面向大米、豆类、烘烤坚果、冷冻食品、膨化食品、饼干、种子与零售干货包装的给袋式、VFFS、真空与灌装系统。"
+      ],
+      [
+        "粉体与调味料",
+        "面向面粉、奶粉、蛋白粉、调味料、固体饮料与化工粉体的螺杆计量、螺旋送料、除尘与粉体充填方案。"
+      ],
+      [
+        "茶叶、咖啡与饮品包装",
+        "三角茶包、线标茶包、挂耳咖啡内外袋，以及采用超声波封口与小剂量充填的紧凑型饮品包装。"
+      ],
+      [
+        "液体、酱料与膏体",
+        "面向液体、酱料、油类与日化产品的泵送小袋、给袋包装、PE 膜包装、自立袋旋盖系统与瓶装灌装线。"
+      ],
+      [
+        "规整固体与二次包装",
+        "面向零售多件装与可直接物流运输的纸箱的枕式裹包、收缩包装、透明膜三维裹包、装盒、开箱与封箱。"
+      ],
+      [
+        "五金件与混合小零件",
+        "计数、多物料充填、螺丝包装与套件包装页面，涵盖数量控制、混合配件与工业小零件。"
+      ]
+    ],
+    "form": [
+      "姓名",
+      "电子邮箱",
+      "公司",
+      "感兴趣的设备",
+      "产品",
+      "目标产量",
+      "项目备注"
+    ],
+    "guideCards": [
+      [
+        "先看产品特性",
+        "流动性好的颗粒、易扬尘的粉体、黏稠酱料、易碎的茶叶、五金套件和规整的固体物料，各自需要不同的计量与封口策略。"
+      ],
+      [
+        "再算包装经济性",
+        "成品袋能带来更高级的零售外观。卷膜 VFFS 与小袋机通常能降低膜材成本。枕式裹包与收缩机更适合规整固体与组合装。"
+      ],
+      [
+        "确认自动化边界",
+        "单机可以解决主包装；整线则在此基础上加入上料、称重、打码、检测、装盒、开箱、封箱与输送逻辑。"
+      ],
+      [
+        "用实证资料构建 RFQ",
+        "有用的报价需要产品照片、充填重量、袋样或膜样、目标产量、电压、压缩空气、占地面积与后段包装要求。"
+      ]
+    ],
+    "specReferenceLines": [
+      [
+        "给袋式系统",
+        "成品袋，参考范围宽 W100-350mm、长 L150-480mm，部分小规格最高 60 袋/分钟。"
+      ],
+      [
+        "VFFS 卷膜系统",
+        "袋尺寸按机架约为长 L80-450mm、宽 W80-350mm，可配电子秤、量杯、螺杆或泵计量。"
+      ],
+      [
+        "小袋与条包",
+        "小剂量规格参考范围 1-100g，有单列、双列、多列及圆角等选项。"
+      ],
+      [
+        "茶叶与挂耳咖啡",
+        "1-15g 饮品规格，配超声波封口、外袋、线标、充氮与小剂量精度选项。"
+      ],
+      [
+        "枕式裹包与收缩",
+        "上送料、下送料、往复式、枕式线与收缩配置，用于规整固体与成组包装。"
+      ],
+      [
+        "灌装与后段整线",
+        "从半自动灌装机到完整的颗粒、粉体、液体、装盒与装箱生产线。"
+      ]
+    ]
+  },
 };
 
 const EXPERIENCE_COPY = {
@@ -610,6 +691,77 @@ const EXPERIENCE_COPY = {
       specialty: ["شاي أو قهوة أو ساشيه أو فاكيوم أو نهاية خط", "وحدات حسب التطبيق", "مشروعات يحددها شكل خاص أو خطوة لاحقة", "العملية الكاملة والواجهات والمرافق ومعايير قبول قابلة للقياس"],
     },
     form: { country: "الدولة / المنطقة", phone: "الهاتف / واتساب (اختياري)", package: "شكل الكيس أو العبوة", fill: "وزن أو حجم التعبئة", dimensions: "أبعاد العبوة", consent: "أفهم أن بيانات الاستفسار ستعالج كما هو موضح في إشعار الخصوصية، وليست اشتراكاً تسويقياً.", privacy: "قراءة إشعار الخصوصية (بالإنجليزية)", requiredNote: "المطلوب أولاً: وسيلة الاتصال والدولة والمنتج والعبوة. يمكن إرسال كمية التعبئة والإنتاجية المستهدفة لاحقاً.", send: "إرسال RFQ", sending: "جارٍ إعداد RFQ…", success: "تم استلام RFQ. احتفظ بالرقم للمتابعة.", mailto: "سيُفتح بريدك مع RFQ جاهز. راجعه ثم اضغط إرسال.", failed: "الإرسال المباشر غير متاح، لذلك تم إعداد مسودة بريد.", blocked: "راجع الحقول المطلوبة وحاول مرة أخرى." },
+  },
+  zh: {
+    "form": {
+      "blocked": "请检查必填字段后重试。",
+      "consent": "我理解，我的询盘资料将按隐私声明所述方式处理。这不是营销订阅。",
+      "country": "国家 / 地区",
+      "dimensions": "包装尺寸",
+      "failed": "直接投递不可用，已为您准备好邮件草稿。",
+      "fill": "充填重量或容量",
+      "mailto": "您的邮件应用正在打开，RFQ 已准备好。请检查后点击发送。",
+      "package": "袋型或包装形式",
+      "phone": "电话 / WhatsApp（可选）",
+      "privacy": "阅读隐私声明",
+      "requiredNote": "第一步必填资料：联系方式、国家、产品与包装。充填量与目标产量可随后补充。",
+      "send": "发送 RFQ",
+      "sending": "正在准备 RFQ…",
+      "success": "已收到 RFQ。请保留所示编号，以便后续跟进。"
+    },
+    "navAbout": "关于我们",
+    "navResources": "资源",
+    "navSolutions": "解决方案",
+    "proof": [
+      [
+        "01",
+        "产品特性",
+        "流动性、扬尘、黏度、易碎性或零件几何形状"
+      ],
+      [
+        "02",
+        "成品包装",
+        "袋或膜结构、尺寸、封口方式与外观呈现"
+      ],
+      [
+        "03",
+        "合格产量",
+        "每小时合格包装数、精度、不合格品与换型"
+      ],
+      [
+        "04",
+        "验收",
+        "样品、运行时长、封口测试、公用工程与 FAT 限度"
+      ]
+    ],
+    "proofLabel": "选设备前先明确四项输入",
+    "selectorLabels": [
+      "包装基础",
+      "计量路径",
+      "适用场景",
+      "待确认的证据"
+    ],
+    "selectorModes": {
+      "pouch": [
+        "成品袋 / 拉链袋 / 异形袋",
+        "电子秤、螺杆、泵或计数",
+        "袋源已合格验证的零售包装形式",
+        "最终成品袋、产品样品、充填范围与合格产量目标"
+      ],
+      "specialty": [
+        "茶叶、咖啡、小袋、真空或线尾",
+        "按应用定制的专用模块",
+        "由专用包装或后段任务定义的项目",
+        "完整工艺、接口、公用工程与可量化的验收标准"
+      ],
+      "vffs": [
+        "卷膜 / 枕形袋 / 插角袋",
+        "电子秤、螺杆、量杯或泵",
+        "膜材经济性与连续制袋生产",
+        "膜结构、袋型图、产品特性与热封窗口"
+      ]
+    },
+    "skip": "跳到主要内容"
   },
 };
 
@@ -898,6 +1050,90 @@ const UI_COPY = {
       ["ما الذي يمنع إعادة العمل بعد العرض؟", "أكد المنتج والإنتاج والأبعاد والتفاوت والجهد والهواء والمساحة واتجاه الناقل وعينات القبول قبل تثبيت التكوين النهائي."],
     ],
   },
+  zh: {
+    "about": "关于我们",
+    "breadcrumb": "面包屑导航",
+    "buyerResources": "采购商资源",
+    "catalogStats": "机型目录数据",
+    "categoryScope": "类别范围",
+    "chat": "聊天",
+    "conversionActions": "联系操作",
+    "copy": "复制",
+    "copyEmail": "复制邮箱地址",
+    "copyHint": "点击复制",
+    "directContact": "直接联系方式",
+    "editorial": "编辑方针",
+    "faq": [
+      [
+        "应该先询价哪台机器？",
+        "先从产品流动性、包装形式和目标产量入手。成品自立袋通常指向旋转式给袋设备；追求较低的膜材成本通常指向 VFFS 或小袋系统。"
+      ],
+      [
+        "试机需要提供哪些样品？",
+        "请提供产品照片、充填重量、密度或黏度、袋或膜样品、预期封口形式，以及后道装盒或装箱的尺寸。"
+      ],
+      [
+        "一条线能处理不同产品吗？",
+        "可以，前提是产品特性和包装尺寸处于同一机械范围内。计量模块、成型部件、袋宽和封口钳口决定换型边界。"
+      ],
+      [
+        "哪些因素影响交期和最终价格？",
+        "机型系列、计量精度、产品接触部件材质、打印/打码、充氮、真空、除尘、检重、装盒、装箱以及当地合规要求。"
+      ],
+      [
+        "如何比较给袋、VFFS 和小袋的成本？",
+        "比较成品包装价值、膜材或预制袋成本、产量、废品率、操作人数和换型频率。机器单价最低，很少等于整线成本最低。"
+      ],
+      [
+        "怎样避免报价后返工？",
+        "在最终配置确认前，先确认产品特性、目标速度、袋尺寸、充填公差、电压、压缩空气、占地、输送方向和验收样品。"
+      ]
+    ],
+    "footerStatement": "面向采购商的机型目录。最终性能需以样品和验收测试为准。",
+    "instantChat": "即时沟通",
+    "keyCapabilities": "核心性能",
+    "lineFlow": [
+      {
+        "step": "01",
+        "text": "根据产品流动性和卫生要求，选用提升机、螺杆输送机、振动盘供料或人工上料。",
+        "title": "产品上料"
+      },
+      {
+        "step": "02",
+        "text": "按目标精度匹配多头组合秤、线性秤、螺杆、量杯、活塞泵或计数模块。",
+        "title": "计量与灌装"
+      },
+      {
+        "step": "03",
+        "text": "给袋式预制袋、VFFS 卷膜、小袋、茶包、枕式裹包、真空、杯装、瓶装或纸盒等包装形式。",
+        "title": "一次包装"
+      },
+      {
+        "step": "04",
+        "text": "热封、超声波封合、抽真空、充氮、日期喷码、检重与剔除处理。",
+        "title": "热封、喷码与检测"
+      },
+      {
+        "step": "05",
+        "text": "按需进行装盒、热缩捆扎、外裹包、纸箱成型、装箱与封箱。",
+        "title": "二次包装"
+      },
+      {
+        "step": "06",
+        "text": "产品照片、包装样品、灌装重量、产量目标、电压、压缩空气与布局共同确定最终设备配置范围。",
+        "title": "RFQ 依据资料"
+      }
+    ],
+    "noScriptBody": "请通过邮箱或 WhatsApp 提交 RFQ。请勿提交下方表单，因为网页直达送达需要 JavaScript。",
+    "noScriptTitle": "JavaScript 不可用。",
+    "privacy": "隐私声明",
+    "privacyEnglish": "隐私声明（英文）",
+    "quickContact": "快速联系",
+    "search": "搜索",
+    "searchPlaceholder": "搜索机型、产品、包装形式或应用",
+    "trustContact": "信任与联系",
+    "machinePagesAvailable": (count) => `${count} 个机型页面可供查看。`
+  },
 };
 
 function uiFor(langCode) {
@@ -928,6 +1164,7 @@ const PROJECT_SPECIFIC_OUTPUT = Object.freeze({
   pt: "Específico do projeto após testar o produto e a embalagem",
   ru: "Определяется проектом после испытаний продукта и упаковки",
   ar: "يحدد حسب المشروع بعد اختبار المنتج والعبوة",
+  zh: "需在产品与包装测试后按项目确定",
 });
 const TECHNICAL_DETAILS_FALLBACK = Object.freeze({
   en: "Confirm with product and final pack samples",
@@ -937,6 +1174,7 @@ const TECHNICAL_DETAILS_FALLBACK = Object.freeze({
   pt: "Confirmar com amostras do produto e da embalagem final",
   ru: "Подтвердить на образцах продукта и готовой упаковки",
   ar: "يؤكد بعينات المنتج والعبوة النهائية",
+  zh: "请以产品和最终包装样品确认",
 });
 
 const VISUAL_COPY = {
@@ -947,6 +1185,15 @@ const VISUAL_COPY = {
   pt: { label: "Evidência visual", pending: "Imagem exata pendente", linked: "Imagem vinculada ao catálogo", reference: "Imagem de referência da categoria", galleryView: "vista detalhada da máquina no catálogo", title: "Limite de evidência visual", body: "A imagem exata fica retida até que o equipamento do catálogo e o ativo público possam ser associados sem ambiguidade." },
   ru: { label: "Визуальное подтверждение", pending: "Точное изображение ожидает проверки", linked: "Изображение связано с брошюрой", reference: "Изображение категории", galleryView: "детальный вид машины из брошюры", title: "Граница визуальных доказательств", body: "Точное изображение не публикуется, пока оборудование в брошюре и публичный файл нельзя сопоставить однозначно." },
   ar: { label: "الدليل المرئي", pending: "الصورة الدقيقة بانتظار التحقق", linked: "صورة مرتبطة بالكتيب", reference: "صورة مرجعية للفئة", galleryView: "منظر تفصيلي للآلة من الكتيب", title: "حدود الدليل المرئي", body: "لا تُعرض صورة المنتج الدقيقة حتى يمكن مطابقة آلة الكتيب مع الملف العام دون التباس." },
+  zh: {
+    "body": "在样本册图框与公开素材能够无歧义对应之前，暂不发布准确产品图。",
+    "galleryView": "样本册机型细节图",
+    "label": "视觉依据",
+    "linked": "样本册关联机型图",
+    "pending": "准确产品图待确认",
+    "reference": "类别参考图",
+    "title": "视觉依据说明"
+  },
 };
 
 function visualCopyFor(langCode) {
@@ -1150,6 +1397,34 @@ const ENGINEERING_LABELS = {
     noDedicatedModel: "لا يوجد موديل مستقل في الكتيب؛ قارن الصفحات {pages}",
     equipmentFamily: "عائلة معدات مستمدة من الكتيب",
   },
+  zh: {
+    "acceptance": "下单前验收检查",
+    "acceptanceProperty": "验收检查",
+    "acceptanceShort": "验收",
+    "breadcrumb": "面包屑导航",
+    "brochurePage": "样本册第 {page} 页",
+    "brochurePages": "样本册第 {pages} 页",
+    "categoryChooser": "选择最接近的机型页面",
+    "categoryFormat": "主要包装形式",
+    "categoryMachines": "机型页面",
+    "categoryOutput": "产量依据",
+    "categoryRfq": "RFQ 重点",
+    "compareFamily": "在选定单台设备前，先对比完整的 {category} 系列。",
+    "equipmentFamily": "源自样本册的设备系列",
+    "evidenceAria": "源自样本册的工程依据",
+    "finalPackage": "包装形式",
+    "home": "首页",
+    "internalLinks": "对比相近机型路线",
+    "machineVisuals": "机型图片",
+    "noDedicatedModel": "样本册无专属机型；请对比样本册第 {pages} 页",
+    "onThisPage": "本页内容",
+    "rfqSignal": "RFQ 关键信息",
+    "selectedDosing": "所选计量方式",
+    "selectionReference": "选型参考",
+    "sourceEvidence": "样本册依据",
+    "sourceModel": "参考机型系列",
+    "targetOutput": "目标合格产量"
+  },
 };
 
 const ACCEPTANCE_TEMPLATES = {
@@ -1195,6 +1470,12 @@ const ACCEPTANCE_TEMPLATES = {
     ({ dosing }) => `أكد دقة ${dosing} وسهولة التنظيف ومواد ملامسة المنتج وزمن التغيير قبل العرض النهائي.`,
     ({ model }) => `استخدم ${model} كنقطة بداية فقط، وثبت الجهد والهواء والمساحة والاتجاه والخيارات في RFQ.`,
   ],
+  zh: [
+    ({ speed, packageStyle }) => `请用真实产品样品、最终 ${packageStyle} 尺寸和所选计量方式验证 ${speed}。`,
+    ({ packageStyle }) => `请使用最终 ${packageStyle} 材料，结合灌装温度和预期产品残留，进行封口与泄漏检查。`,
+    ({ dosing }) => `在最终报价前，确认 ${dosing} 的精度、清洁可达性、产品接触材料和换型时间。`,
+    ({ model }) => `仅将 ${model} 作为起始平台；在 RFQ 中锁定电压、气源、占地、输送方向和选配件。`,
+  ],
 };
 
 const PILLAR_TEXT = {
@@ -1206,6 +1487,10 @@ const PILLAR_TEXT = {
     pt: ["Sistemas rotativos para pouches stand-up, zipper e formatos especiais.", "Indicados para embalagens de varejo com aparência premium e dosagem flexível."],
     ru: ["Ротационные системы для stand-up пакетов, zipper-пакетов и фигурных форматов.", "Подходят для розничной упаковки, где важны внешний вид и гибкое дозирование."],
     ar: ["أنظمة دوارة للأكياس القائمة وأكياس السحاب والأشكال الخاصة.", "مناسبة لعبوات البيع بالتجزئة عندما يكون الشكل والجرعات المرنة مهمين."],
+    zh: [
+      "旋转式给袋包装系统，适用于自立袋、拉链袋和异形袋。",
+      "最适合注重袋型外观和灵活计量的零售包装。"
+    ],
   },
   vffs: {
     en: ["Roll-film vertical form fill seal systems for snacks, powders, frozen food and granules.", "Use when film economy, pillow bags and high-throughput commodity packing are priorities."],
@@ -1215,6 +1500,10 @@ const PILLAR_TEXT = {
     pt: ["Sistemas VFFS com filme em bobina para snacks, pós, congelados e grânulos.", "Use quando economia de filme, pillow bag e alta produção forem prioridades."],
     ru: ["Вертикальные VFFS-системы с рулонной пленкой для снеков, порошков, заморозки и гранул.", "Выбирайте для экономии пленки, pillow bag и высокой производительности."],
     ar: ["أنظمة VFFS بفيلم رول للوجبات الخفيفة والمساحيق والمجمدات والحبيبات.", "اختيار مناسب عند أهمية اقتصاد الفيلم وأكياس الوسادة والإنتاج العالي."],
+    zh: [
+      "卷膜立式制袋充填包装机（VFFS），适用于休闲食品、粉末、冷冻食品和颗粒物料。",
+      "当薄膜经济性、枕式袋和大批量商品高产能包装是优先考虑时选用。"
+    ],
   },
   teaCoffee: {
     en: ["Dedicated tea and coffee machines for triangle bags, drip coffee and inner/outer envelopes.", "Built around aroma protection, tag/thread handling and clean small-dose sealing."],
@@ -1224,6 +1513,10 @@ const PILLAR_TEXT = {
     pt: ["Máquinas para chá e café: sachês piramidais, drip coffee e envelopes internos/externos.", "Focadas em aroma, etiqueta/fio e selagem limpa de pequenas doses."],
     ru: ["Машины для чая и кофе: пирамидальные пакетики, drip coffee и внутренние/внешние пакеты.", "Ориентированы на аромат, ярлык/нить и чистую запайку малых доз."],
     ar: ["ماكينات للشاي والقهوة: أكياس هرمية، قهوة مقطرة وأكياس داخلية/خارجية.", "مصممة لحماية النكهة والتعامل مع الخيط والبطاقة ولحام الجرعات الصغيرة."],
+    zh: [
+      "茶与咖啡专用设备，适用于三角包、挂耳咖啡及内外袋包装。",
+      "围绕香气保护、吊牌/线绳处理和小剂量洁净封合设计。"
+    ],
   },
   sachet: {
     en: ["Sachet, stick pack and multi-lane systems for powder, granule, liquid and sauce.", "Useful for high-SKU small-dose products and high-output parallel lanes."],
@@ -1233,6 +1526,10 @@ const PILLAR_TEXT = {
     pt: ["Sistemas sachê, stick pack e multilinhas para pó, grânulo, líquido e molho.", "Úteis para pequenas doses, muitos SKUs e produção paralela."],
     ru: ["Саше, stick pack и многоручьевые системы для порошков, гранул, жидкостей и соусов.", "Подходят для малых доз, большого числа SKU и высокой параллельной выработки."],
     ar: ["أنظمة ساشيه وستيك باك ومتعددة المسارات للمسحوق والحبيبات والسوائل والصلصات.", "مناسبة للجرعات الصغيرة وعدد كبير من المنتجات والإنتاج المتوازي."],
+    zh: [
+      "小袋、条包及多列式系统，适用于粉末、颗粒、液体和酱料。",
+      "适合多 SKU 小剂量产品和多列并行高产能生产。"
+    ],
   },
   specialty: {
     en: ["Vacuum, flow wrapping, shrink sealing and overwrapping for specialty product protection.", "Covers rice bricks, candy, regular objects, boxed products and secondary retail packs."],
@@ -1242,6 +1539,10 @@ const PILLAR_TEXT = {
     pt: ["Vácuo, flow pack, shrink e sobreenvoltura para proteção especial.", "Atende arroz compacto, doces, objetos regulares, caixas e packs secundários."],
     ru: ["Вакуум, flow pack, термоусадка и overwrapping для специализированной защиты.", "Для рисовых брикетов, конфет, регулярных изделий, коробок и вторичной упаковки."],
     ar: ["فاكيوم وفلو باك وانكماش وتغليف خارجي لحماية المنتجات الخاصة.", "يغطي أرزاً مضغوطاً وحلوى ومنتجات منتظمة وصناديق وعبوات تجزئة ثانوية."],
+    zh: [
+      "真空、枕式裹包、热缩封合与外裹包，为特殊产品提供防护包装。",
+      "涵盖米砖、糖果、规则形状产品、盒装产品及零售二次包装。"
+    ],
   },
   filling: {
     en: ["Filling, sealing, cartoning, case opening and case sealing lines for downstream automation.", "Connect primary packs to retail cartons, shipping cases and e-commerce logistics."],
@@ -1251,6 +1552,10 @@ const PILLAR_TEXT = {
     pt: ["Linhas de envase, selagem, cartuchamento, abertura e fechamento de caixas.", "Conectam embalagem primária a cartuchos, caixas de envio e logística e-commerce."],
     ru: ["Линии фасовки, запайки, картонаторов, формирования и заклейки коробов.", "Соединяют первичную упаковку с розничными коробками, транспортной тарой и e-commerce."],
     ar: ["خطوط تعبئة ولحام وكرتنة وفتح وإغلاق الصناديق.", "تربط العبوة الأساسية بالكرتون التجاري وصناديق الشحن ولوجستيات التجارة الإلكترونية."],
+    zh: [
+      "灌装、封口、装盒、开箱与封箱产线，服务于下游自动化。",
+      "将一次包装衔接到零售纸盒、运输纸箱与电商物流环节。"
+    ],
   },
 };
 
@@ -1578,6 +1883,7 @@ function contactMessage(title = "packaging machine", langCode = "en") {
     pt: `Olá, desejo discutir um RFQ de ${title}. Posso enviar fotos do produto, tamanho da embalagem, produção alvo, tensão e requisitos do projeto.`,
     ru: `Здравствуйте, я хочу обсудить RFQ для ${title}. Я могу отправить фото продукта, размер упаковки, целевой выпуск, напряжение и требования проекта.`,
     ar: `مرحباً، أود مناقشة طلب RFQ بشأن ${title}. يمكنني إرسال صور المنتج وحجم العبوة والإنتاج المطلوب والجهد ومتطلبات المشروع.`,
+    zh: `您好，我想咨询 ${title} 的 RFQ。我可以提供产品照片、包装规格、目标产量、电压和项目要求。`,
   };
   return messages[langCode] || messages.en;
 }
@@ -2442,6 +2748,7 @@ function pillarPage(page, langCode) {
     pt: "Especificações e RFQ",
     ru: "Характеристики и RFQ",
     ar: "المواصفات وRFQ",
+    zh: "规格与 RFQ 指南",
   }[langCode];
   const shortTitle = `${category} | ${shortSuffix}`;
   const title = fullTitle.length <= 72 ? fullTitle : shortTitle.length <= 72 ? shortTitle : category;

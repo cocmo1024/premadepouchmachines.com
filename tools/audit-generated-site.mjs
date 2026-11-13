@@ -11,11 +11,11 @@ import { LANGUAGES, absoluteUrl } from "../content/i18n.mjs";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SITE_ORIGIN = "https://premadepouchmachines.com";
 const INVENTORY_CONTRACT = Object.freeze({
-  languages: 7,
-  languageCodes: ["en", "es", "fr", "de", "pt", "ru", "ar"],
+  languages: 8,
+  languageCodes: ["en", "es", "fr", "de", "pt", "ru", "ar", "zh"],
   minimumMachines: 60,
   minimumTopics: 316,
-  minimumPages: 802,
+  minimumPages: 870,
 });
 const TRUST_PATHS = ["/about.html", "/editorial-policy.html", "/privacy.html"];
 const PUBLIC_ROUTE_ROOTS = [
@@ -33,9 +33,10 @@ const PUBLIC_ROUTE_ROOTS = [
   "pt",
   "ru",
   "ar",
+  "zh",
 ];
 const PUBLIC_FILE_ROOTS = [...PUBLIC_ROUTE_ROOTS, "public"];
-const LOCALE_PREFIXES = new Set(["es", "fr", "de", "pt", "ru", "ar"]);
+const LOCALE_PREFIXES = new Set(["es", "fr", "de", "pt", "ru", "ar", "zh"]);
 const HTML_SCAN_SKIP_DIRS = new Set([".git", ".wrangler", "content", "docs", "functions", "node_modules", "outputs", "tmp", "tools"]);
 const BUILD_WORKSPACE_PREFIXES = [".site-build-", ".site-backup-", "会话_"];
 
@@ -116,6 +117,8 @@ const REQUIRED_ASSETSIGNORE_RULES = [
   "!/ru/**",
   "!/ar/",
   "!/ar/**",
+  "!/zh/",
+  "!/zh/**",
   "!/public/",
   "!/public/**",
   "**/.git/**",
@@ -525,7 +528,7 @@ function validateRequiredSchemaTypes(file, types) {
   if (/^(?:[^/]+\/)?machines\//.test(file)) required = ["WebPage", "Service", "BreadcrumbList"];
   else if (/^(?:applications|formats|guides|industries|insights|technologies|troubleshooting)\/(?!index\.html$)/.test(file)) {
     required = ["WebPage", "TechArticle", "BreadcrumbList"];
-  } else if (file === "index.html" || /^(?:es|fr|de|pt|ru|ar)\/index\.html$/.test(file)) {
+  } else if (file === "index.html" || /^(?:es|fr|de|pt|ru|ar|zh)\/index\.html$/.test(file)) {
     required = ["Organization", "WebSite", "ItemList"];
   } else if (/^(?:about|editorial-policy|privacy)\.html$/.test(file)) {
     required = ["WebPage", "BreadcrumbList"];

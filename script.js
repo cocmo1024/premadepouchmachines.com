@@ -81,6 +81,12 @@
       topics: (count) => `${count} صفحة موضوع متاحة.`,
       topicMatches: (count, query) => `${count} صفحة موضوع مطابقة لعبارة «${query}».`,
     },
+    zh: {
+      machines: (count) => `${count} 个机型页面可供查看。`,
+      machineMatches: (count, query) => `${count} 个机型页面与“${query}”匹配。`,
+      topics: (count) => `${count} 个主题页面可供查看。`,
+      topicMatches: (count, query) => `${count} 个主题页面与“${query}”匹配。`,
+    },
   };
 
   const FORM_FALLBACK_COPY = {
@@ -91,6 +97,15 @@
     pt: { idle: "Enviar RFQ", sending: "Preparando RFQ…", success: "RFQ recebido.", mailto: "Seu e-mail abrirá com o RFQ preparado. Revise e envie.", whatsapp: "O WhatsApp abrirá com o RFQ preparado. Revise e envie.", failed: "A entrega direta está indisponível; um rascunho de e-mail foi preparado.", blocked: "Revise os campos obrigatórios e tente novamente." },
     ru: { idle: "Отправить RFQ", sending: "Подготовка RFQ…", success: "RFQ получен.", mailto: "Открывается почта с подготовленным RFQ. Проверьте и отправьте.", whatsapp: "Открывается WhatsApp с подготовленным RFQ. Проверьте и отправьте.", failed: "Прямая отправка недоступна; подготовлен черновик письма.", blocked: "Проверьте обязательные поля и повторите." },
     ar: { idle: "إرسال RFQ", sending: "جارٍ إعداد RFQ…", success: "تم استلام RFQ.", mailto: "سيُفتح بريدك مع RFQ جاهز. راجعه ثم اضغط إرسال.", whatsapp: "سيُفتح واتساب مع RFQ جاهز. راجعه ثم اضغط إرسال.", failed: "الإرسال المباشر غير متاح، لذلك تم إعداد مسودة بريد.", blocked: "راجع الحقول المطلوبة وحاول مرة أخرى." },
+    zh: {
+      "idle": "发送 RFQ",
+      "sending": "正在准备 RFQ…",
+      "success": "已收到 RFQ。",
+      "mailto": "您的邮箱应用正在打开，RFQ 已准备好。请检查后点击发送。",
+      "whatsapp": "WhatsApp 正在打开，RFQ 已准备好。请检查后点击发送。",
+      "failed": "直达送达不可用，已为您准备好邮件草稿。",
+      "blocked": "请检查必填字段后重试。"
+    },
   };
   const MAILTO_COPY = {
     en: {
@@ -148,6 +163,31 @@
       campaign: "حملة الزيارة الأولى",
       notes: "ملاحظات المشروع",
       acknowledged: "تم التأكيد",
+    },
+    zh: {
+      "subject": "RFQ",
+      "heading": "来自 premadepouchmachines.com 的新 RFQ",
+      "fields": [
+        "姓名",
+        "邮箱",
+        "公司",
+        "国家 / 地区",
+        "电话 / WhatsApp",
+        "意向机型",
+        "产品",
+        "包装形式",
+        "灌装重量 / 容量",
+        "包装尺寸",
+        "目标合格产量",
+        "RFQ 来源",
+        "首次接触页面",
+        "首次接触来源",
+        "页面语言",
+        "隐私确认"
+      ],
+      "campaign": "首次接触来源活动",
+      "notes": "项目备注",
+      "acknowledged": "已确认"
     },
   };
 
